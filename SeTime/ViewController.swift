@@ -31,6 +31,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tasksTableView: UITableView!
     
+//    Радиус скругления для всех UI объектов на экране
+    let totalCornerRadius = 10
+    
 //    MARK: - Actions
     
     @IBAction func workButtonAction(_ sender: Any) {
