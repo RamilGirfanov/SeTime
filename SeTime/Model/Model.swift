@@ -11,7 +11,7 @@ import UIKit
 
 //Структура описывающая данные дня
 struct Day {
-    let data: Int?
+    let data = NSData()
     var workTime: Int?
     var breakTime: Int?
     
