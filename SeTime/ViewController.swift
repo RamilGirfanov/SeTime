@@ -11,13 +11,22 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ///Делегирование
+        ///Есть ли проблема сильных сылок?
+        delegateToModel = model
+        
+        ///А может так?
+        ///Где тогда будет храниться файл модели?
+        ///Если пользователь закроет приложение?
+        var model_2 = Model()
+        delegateToModel = model_2
     }
 
 //    MARK: - Outlets
+        
+    @IBOutlet weak var workTimeLabel: UILabel!
     
-    @IBOutlet weak var graphicView: UIView!
-    
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var breakTimeLabel: UILabel!
     
     @IBOutlet weak var workButton: UIButton!
     
@@ -37,6 +46,7 @@ class ViewController: UIViewController {
 //    MARK: - Actions
     
     @IBAction func workButtonAction(_ sender: Any) {
+        
     }
     
     @IBAction func breakButtonAction(_ sender: Any) {
@@ -48,6 +58,7 @@ class ViewController: UIViewController {
     @IBAction func startTaskButtonAction(_ sender: Any) {
     }
     
+    var delegateToModel: TimerDayManagement?
     
 }
 
