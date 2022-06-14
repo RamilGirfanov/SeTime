@@ -11,15 +11,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ///Делегирование
-        ///Есть ли проблема сильных сылок?
-        delegateToModel = model
         
-        ///А может так?
-        ///Где тогда будет храниться файл модели?
-        ///Если пользователь закроет приложение?
-        var model_2 = Model()
-        delegateToModel = model_2
+        var model = Model()
+        
     }
 
 //    MARK: - Outlets
@@ -46,7 +40,6 @@ class ViewController: UIViewController {
 //    MARK: - Actions
     
     @IBAction func workButtonAction(_ sender: Any) {
-        
     }
     
     @IBAction func breakButtonAction(_ sender: Any) {
@@ -57,8 +50,6 @@ class ViewController: UIViewController {
     
     @IBAction func startTaskButtonAction(_ sender: Any) {
     }
-    
-    var delegateToModel: TimerDayManagement?
-    
+        
 }
 
