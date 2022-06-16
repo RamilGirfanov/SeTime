@@ -11,14 +11,13 @@ import Foundation
 
 class DataManager {
         
-    var launched = false
-
 //    Свойства, которые будут использоваться для наполнения времени работы и перерывов за день
     var workTimer = Timer()
     var breakTimer = Timer()
     
     var timeOfWork = 0
     var timeOfBreak = 0
+    var totalTime = 0
 
 //    Свойства, которые будут использоваться для наполнения массива задач за день
     var taskName: String?

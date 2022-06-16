@@ -13,6 +13,7 @@ struct Day {
     let data = NSData()
     var workTime = 0
     var breakTime = 0
+    var totalTime = 0
     
 //    Массив с типом данных кортеж, в кортеже продолжительность и задача
     var tasks: [(task: String, lasting: Int)]?

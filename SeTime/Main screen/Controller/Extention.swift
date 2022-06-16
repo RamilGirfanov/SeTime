@@ -33,14 +33,14 @@ extension ViewController: TimeTasksManagement {
     func startWorkTimer() {
         
         dataManager.workTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeOfWork), userInfo: nil, repeats: true)
-        
-        dataManager.launched = true
-        
+                
     }
     
     @objc func updateTimeOfWork() {
         dataManager.timeOfWork += 1
+        dataManager.totalTime += 1
         day.workTime += dataManager.timeOfWork
+        day.totalTime += dataManager.totalTime
         
         if dataManager.timeOfWork < 60 {
             workTimeLabel.text = "00:00:\(dataManager.timeOfWork)"
@@ -48,6 +48,14 @@ extension ViewController: TimeTasksManagement {
             workTimeLabel.text = "00:\(dataManager.timeOfWork / 60):\(dataManager.timeOfWork % 60)"
         } else {
             workTimeLabel.text = "\(dataManager.timeOfWork / 3600):\((dataManager.timeOfWork % 3600) / 60):\((dataManager.timeOfWork % 3600) % 60)"
+        }
+        
+        if dataManager.totalTime < 60 {
+            totalTimeLabel.text = "00:00:\(dataManager.totalTime)"
+        } else if dataManager.timeOfWork < 3600 {
+            totalTimeLabel.text = "00:\(dataManager.totalTime / 60):\(dataManager.totalTime % 60)"
+        } else {
+            totalTimeLabel.text = "\(dataManager.totalTime / 3600):\((dataManager.totalTime % 3600) / 60):\((dataManager.totalTime % 3600) % 60)"
         }
         
     }
@@ -59,7 +67,9 @@ extension ViewController: TimeTasksManagement {
     
     @objc func updateTimeOfBreak() {
         dataManager.timeOfBreak += 1
+        dataManager.totalTime += 1
         day.breakTime += dataManager.timeOfBreak
+        day.totalTime += dataManager.totalTime
         
         if dataManager.timeOfBreak < 60 {
             breakTimeLabel.text = "00:00:\(dataManager.timeOfBreak)"
@@ -67,6 +77,14 @@ extension ViewController: TimeTasksManagement {
             breakTimeLabel.text = "00:\(dataManager.timeOfBreak / 60):\(dataManager.timeOfBreak % 60)"
         } else {
             breakTimeLabel.text = "\(dataManager.timeOfBreak / 3600):\((dataManager.timeOfBreak % 3600) / 60):\((dataManager.timeOfBreak % 3600) % 60)"
+        }
+        
+        if dataManager.totalTime < 60 {
+            totalTimeLabel.text = "00:00:\(dataManager.totalTime)"
+        } else if dataManager.timeOfWork < 3600 {
+            totalTimeLabel.text = "00:\(dataManager.totalTime / 60):\(dataManager.totalTime % 60)"
+        } else {
+            totalTimeLabel.text = "\(dataManager.totalTime / 3600):\((dataManager.totalTime % 3600) / 60):\((dataManager.totalTime % 3600) % 60)"
         }
         
     }
@@ -86,7 +104,6 @@ extension ViewController: TimeTasksManagement {
         dataManager.workTimer.invalidate()
         dataManager.breakTimer.invalidate()
         
-        dataManager.launched = false
     }
     
     func newTask() {

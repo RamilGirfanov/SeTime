@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupUIobjects()
     }
       
     
@@ -29,10 +29,15 @@ class ViewController: UIViewController {
     
     
 //    MARK: - Outlets
-        
+    
+    
+    @IBOutlet weak var viewForTime: UIView!
+    
     @IBOutlet weak var workTimeLabel: UILabel!
     
     @IBOutlet weak var breakTimeLabel: UILabel!
+    
+    @IBOutlet weak var totalTimeLabel: UILabel!
     
     @IBOutlet weak var workButton: UIButton!
     
@@ -46,8 +51,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tasksTableView: UITableView!
     
-//    Радиус скругления для всех UI объектов на экране
-    let totalCornerRadius = 10
+    
+ 
+    
+
     
     
     
@@ -57,22 +64,29 @@ class ViewController: UIViewController {
     
     @IBAction func workButtonAction(_ sender: Any) {
         
-        if dataManager.launched == true {
-            pauseBreakTimer()
-        }
-        
         startWorkTimer()
+        pauseBreakTimer()
         breakButton.isEnabled = true
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
     }
     
     @IBAction func breakButtonAction(_ sender: Any) {
         pauseWorkTimer()
         startBreakTimer()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+
     }
     
     @IBAction func stopButtonAction(_ sender: Any) {
         stop()
-        breakButton.isEnabled = false
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+
     }
     
     @IBAction func startTaskButtonAction(_ sender: Any) {
@@ -83,12 +97,35 @@ class ViewController: UIViewController {
     
     
     
-//    MARK: - Настройка View
+//    MARK: - Настройка UI объектов
     
-    private func setupView() {
-        if dataManager.launched == false {
-            breakButton.isEnabled = false
-        }
+    private func setupUIobjects() {
+        
+        breakButton.isHidden = true
+
+        let totalCornerRadius: CGFloat = 10
+        
+        let totalHeightForTappedUIobjets: CGFloat = 34
+        
+//        Констрейнты
+        NSLayoutConstraint.activate([
+            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
+            breakButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
+            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
+            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
+            taskField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets)
+        ])
+        
+        
+//        Радиус
+        viewForTime.layer.cornerRadius = totalCornerRadius
+        workButton.layer.cornerRadius = totalCornerRadius
+        breakButton.layer.cornerRadius = totalCornerRadius
+        stopButton.layer.cornerRadius = totalCornerRadius
+        startTaskButton.layer.cornerRadius = totalCornerRadius
+        taskField.layer.cornerRadius = totalCornerRadius
+        tasksTableView.layer.cornerRadius = totalCornerRadius
+        
     }
     
 }
