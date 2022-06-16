@@ -11,12 +11,8 @@ import Foundation
 
 struct Day {
     let data = NSData()
-    var workTime: String?
-    var breakTime: String?
-    
-//    Свойства, которые будут использоваться для наполнения массива задач за день
-    var taskName: String?
-    var taskLasting: Int?
+    var workTime = 0
+    var breakTime = 0
     
 //    Массив с типом данных кортеж, в кортеже продолжительность и задача
     var tasks: [(task: String, lasting: Int)]?

@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     
     
     
-//    Создаем экземпляр модели
+//    Создаем экземпляры модели
     var dataManager = DataManager()
+    var day = Day()
     
     
     
@@ -56,19 +57,21 @@ class ViewController: UIViewController {
     
     @IBAction func workButtonAction(_ sender: Any) {
         
-//        dataManager.startWorkTimer()
-//
-//        workTimeLabel.text = String(dataManager.stopwatch.timeOfWork)
-//
-//        breakButton.isEnabled = true
+        if dataManager.launched == true {
+            pauseBreakTimer()
+        }
         
+        startWorkTimer()
+        breakButton.isEnabled = true
     }
     
     @IBAction func breakButtonAction(_ sender: Any) {
+        pauseWorkTimer()
+        startBreakTimer()
     }
     
     @IBAction func stopButtonAction(_ sender: Any) {
-        
+        stop()
         breakButton.isEnabled = false
     }
     
