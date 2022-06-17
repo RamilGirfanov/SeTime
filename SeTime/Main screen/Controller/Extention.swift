@@ -31,79 +31,84 @@ extension ViewController: TimeTasksManagement {
     
 //    Запускает таймер работы
     func startWorkTimer() {
+        dataManager.startTime = Date()
         
         dataManager.workTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeOfWork), userInfo: nil, repeats: true)
-                
+        
+        dataManager.secondsOfWork = day.secondsOfWork
+        dataManager.minutesOfWork = day.minutesOfWork
+        dataManager.hoursOfWork = day.hoursOfWork
     }
     
     @objc func updateTimeOfWork() {
-        dataManager.timeOfWork += 1
-        dataManager.totalTime += 1
-        day.workTime += dataManager.timeOfWork
-        day.totalTime += dataManager.totalTime
         
-        if dataManager.timeOfWork < 60 {
-            workTimeLabel.text = "00:00:\(dataManager.timeOfWork)"
-        } else if dataManager.timeOfWork < 3600 {
-            workTimeLabel.text = "00:\(dataManager.timeOfWork / 60):\(dataManager.timeOfWork % 60)"
-        } else {
-            workTimeLabel.text = "\(dataManager.timeOfWork / 3600):\((dataManager.timeOfWork % 3600) / 60):\((dataManager.timeOfWork % 3600) % 60)"
-        }
+        let stopTime = Date()
+
+        let deltaOfTime = dataManager.calendar.dateComponents([.hour, .minute, .second], from: dataManager.startTime, to: stopTime)
+
+        dataManager.secondsOfWork = deltaOfTime.second ?? 0
+        dataManager.minutesOfWork = deltaOfTime.minute ?? 0
+        dataManager.hoursOfWork = deltaOfTime.hour ?? 0
         
-        if dataManager.totalTime < 60 {
-            totalTimeLabel.text = "00:00:\(dataManager.totalTime)"
-        } else if dataManager.timeOfWork < 3600 {
-            totalTimeLabel.text = "00:\(dataManager.totalTime / 60):\(dataManager.totalTime % 60)"
-        } else {
-            totalTimeLabel.text = "\(dataManager.totalTime / 3600):\((dataManager.totalTime % 3600) / 60):\((dataManager.totalTime % 3600) % 60)"
-        }
-        
+        workTimeLabel.text = "\(dataManager.hoursOfWork)ч \(dataManager.minutesOfWork)м \(dataManager.secondsOfWork)с"
+        totalTimeLabel.text = "\(dataManager.hoursOfTotalTime)ч \(dataManager.minutesOfTotalTime)м \(dataManager.secondsOfTotalTime)с"
     }
     
 //    Запускает таймер перерывов
     func startBreakTimer() {
+        dataManager.startTime = Date()
+
         dataManager.breakTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeOfBreak), userInfo: nil, repeats: true)
+        
+        dataManager.secondsOfBreak = day.secondsOfBreak
+        dataManager.minutesOfBreak = day.minutesOfBreak
+        dataManager.hoursOfBreak = day.hoursOfBreak
     }
     
     @objc func updateTimeOfBreak() {
-        dataManager.timeOfBreak += 1
-        dataManager.totalTime += 1
-        day.breakTime += dataManager.timeOfBreak
-        day.totalTime += dataManager.totalTime
-        
-        if dataManager.timeOfBreak < 60 {
-            breakTimeLabel.text = "00:00:\(dataManager.timeOfBreak)"
-        } else if dataManager.timeOfWork < 3600 {
-            breakTimeLabel.text = "00:\(dataManager.timeOfBreak / 60):\(dataManager.timeOfBreak % 60)"
-        } else {
-            breakTimeLabel.text = "\(dataManager.timeOfBreak / 3600):\((dataManager.timeOfBreak % 3600) / 60):\((dataManager.timeOfBreak % 3600) % 60)"
-        }
-        
-        if dataManager.totalTime < 60 {
-            totalTimeLabel.text = "00:00:\(dataManager.totalTime)"
-        } else if dataManager.timeOfWork < 3600 {
-            totalTimeLabel.text = "00:\(dataManager.totalTime / 60):\(dataManager.totalTime % 60)"
-        } else {
-            totalTimeLabel.text = "\(dataManager.totalTime / 3600):\((dataManager.totalTime % 3600) / 60):\((dataManager.totalTime % 3600) % 60)"
-        }
-        
+        let stopTime = Date()
+
+        let deltaOfTime = dataManager.calendar.dateComponents([.hour, .minute, .second], from: dataManager.startTime, to: stopTime)
+
+        dataManager.secondsOfBreak = deltaOfTime.second ?? 0
+        dataManager.minutesOfBreak = deltaOfTime.minute ?? 0
+        dataManager.hoursOfBreak = deltaOfTime.hour ?? 0
+                
+        breakTimeLabel.text = "\(dataManager.hoursOfBreak)ч \(dataManager.minutesOfBreak)м \(dataManager.secondsOfBreak)с"
+        totalTimeLabel.text = "\(dataManager.hoursOfTotalTime)ч \(dataManager.minutesOfTotalTime)м \(dataManager.secondsOfTotalTime)с"
     }
     
 //    Пауза для таймера работы
     func pauseWorkTimer() {
         dataManager.workTimer.invalidate()
+        
+        day.secondsOfWork += dataManager.secondsOfWork
+        day.minutesOfWork += dataManager.minutesOfWork
+        day.hoursOfWork += dataManager.hoursOfWork
     }
     
 //    Пауза для таймера перерывов
     func pauseBreakTimer() {
         dataManager.breakTimer.invalidate()
+        
+        day.secondsOfBreak += dataManager.secondsOfBreak
+        day.minutesOfBreak += dataManager.minutesOfBreak
+        day.hoursOfBreak += dataManager.hoursOfBreak
     }
 
 //    Пауза для обоих таймеров
     func stop() {
         dataManager.workTimer.invalidate()
+        
+        day.secondsOfWork += dataManager.secondsOfWork
+        day.minutesOfWork += dataManager.minutesOfWork
+        day.hoursOfWork += dataManager.hoursOfWork
+
         dataManager.breakTimer.invalidate()
         
+        day.secondsOfBreak += dataManager.secondsOfBreak
+        day.minutesOfBreak += dataManager.minutesOfBreak
+        day.hoursOfBreak += dataManager.hoursOfBreak
     }
     
     func newTask() {

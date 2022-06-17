@@ -10,54 +10,38 @@ import Foundation
 //MARK: - Структура управления
 
 class DataManager {
+    
+//    Календарь для вычисления даты и времени
+    let calendar = Calendar.current
         
 //    Свойства, которые будут использоваться для наполнения времени работы и перерывов за день
     var workTimer = Timer()
     var breakTimer = Timer()
     
-    var timeOfWork = 0
-    var timeOfBreak = 0
-    var totalTime = 0
+//    Время начала отсчета. Будет обновляться после каждого вызова функции
+    var startTime = Date()
+    
+    
+    var hoursOfWork = 0
+    var minutesOfWork = 0
+    var secondsOfWork = 0
+
+    var hoursOfBreak = 0
+    var minutesOfBreak = 0
+    var secondsOfBreak = 0
+    
+    var hoursOfTotalTime: Int {
+        hoursOfWork + hoursOfBreak
+    }
+    var minutesOfTotalTime: Int {
+        minutesOfWork + minutesOfBreak
+    }
+    var secondsOfTotalTime: Int {
+        secondsOfWork + secondsOfBreak
+    }
 
 //    Свойства, которые будут использоваться для наполнения массива задач за день
     var taskName: String?
     var taskLasting: Int?
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-@objc func updateTimer() {
-
-    if time < 60 {
-        workTime = String(format: "%.0f", time)
-    } else if time < 3600 {
-        workTime = String(format: "%.0f:%.0f", time / 60, time % 60)
-    } else {
-        workTime = String(format: "%.0f:%.0f:%.0f", time / 3600, time % 60, time % 3600)
-    }
-    
-}
-*/
