@@ -15,21 +15,13 @@ class ViewController: UIViewController {
     }
       
     
+//    MARK: - Экземпляры модели
     
-    
-    
-//    Создаем экземпляры модели
     var dataManager = DataManager()
     var day = Day()
     
     
-    
-    
-    
-    
-    
 //    MARK: - Outlets
-    
     
     @IBOutlet weak var viewForTime: UIView!
     
@@ -50,14 +42,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var startTaskButton: UIButton!
     
     @IBOutlet weak var tasksTableView: UITableView!
-    
-    
- 
-    
-
-    
-    
-    
     
     
 //    MARK: - Actions
@@ -91,11 +75,6 @@ class ViewController: UIViewController {
     
     @IBAction func startTaskButtonAction(_ sender: Any) {
     }
-        
-    
-    
-    
-    
     
 //    MARK: - Настройка UI объектов
     
@@ -129,5 +108,3 @@ class ViewController: UIViewController {
     }
     
 }
-
-
