@@ -78,21 +78,20 @@ class ViewController: UIViewController {
     
 //    MARK: - Настройка UI объектов
     
+    
     private func setupUIobjects() {
         
         breakButton.isHidden = true
-
-        let totalCornerRadius: CGFloat = 10
-        
-        let totalHeightForTappedUIobjets: CGFloat = 34
         
 //        Констрейнты
         NSLayoutConstraint.activate([
-            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
-            breakButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
-            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
-            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets),
-            taskField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjets)
+            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            breakButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            taskField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            
+            startTaskButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons)
         ])
         
         

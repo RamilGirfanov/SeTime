@@ -37,15 +37,64 @@
                                     <action selector="stopButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qlG-TH-QJO"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Задача" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Phr-5O-L4Z">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Задача" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Phr-5O-L4Z">
                                 <rect key="frame" x="16" y="350.33333333333331" width="268" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vMJ-vx-Li7">
                                 <rect key="frame" x="16" y="392.33333333333326" width="343" height="377.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="81" id="MyZ-6R-JTk">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="343" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MyZ-6R-JTk" id="h04-7f-tNQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="81"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Создание служебной записки" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wtc-kN-fj3">
+                                                    <rect key="frame" x="8" y="8" width="252" height="65"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLl-UP-04a">
+                                                    <rect key="frame" x="268" y="42" width="67" height="31"/>
+                                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="67" id="0iQ-J6-ZhA"/>
+                                                        <constraint firstAttribute="height" constant="31" id="f57-9E-uCu"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5м 43с" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKJ-5r-h5b">
+                                                    <rect key="frame" x="260" y="8" width="83" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                            <constraints>
+                                                <constraint firstItem="Wtc-kN-fj3" firstAttribute="top" secondItem="h04-7f-tNQ" secondAttribute="top" constant="8" id="28H-jx-az5"/>
+                                                <constraint firstItem="wLl-UP-04a" firstAttribute="top" secondItem="FKJ-5r-h5b" secondAttribute="bottom" constant="8" symbolic="YES" id="KNb-fU-xj0"/>
+                                                <constraint firstAttribute="trailing" secondItem="wLl-UP-04a" secondAttribute="trailing" constant="8" id="Kvo-3C-1Vw"/>
+                                                <constraint firstAttribute="bottom" secondItem="Wtc-kN-fj3" secondAttribute="bottom" constant="8" id="U3y-QV-iSN"/>
+                                                <constraint firstAttribute="bottom" secondItem="wLl-UP-04a" secondAttribute="bottom" constant="8" id="VGQ-Tf-DPk"/>
+                                                <constraint firstItem="Wtc-kN-fj3" firstAttribute="leading" secondItem="h04-7f-tNQ" secondAttribute="leading" constant="8" id="VnK-JY-7yb"/>
+                                                <constraint firstAttribute="trailing" secondItem="FKJ-5r-h5b" secondAttribute="trailing" id="iHO-is-VMT"/>
+                                                <constraint firstItem="FKJ-5r-h5b" firstAttribute="top" secondItem="h04-7f-tNQ" secondAttribute="top" constant="8" id="jLi-43-lUD"/>
+                                                <constraint firstItem="FKJ-5r-h5b" firstAttribute="leading" secondItem="Wtc-kN-fj3" secondAttribute="trailing" id="ppA-BE-Mk0"/>
+                                                <constraint firstItem="wLl-UP-04a" firstAttribute="leading" secondItem="Wtc-kN-fj3" secondAttribute="trailing" constant="8" id="xt3-34-gcW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="op5-S0-oTZ">
                                 <rect key="frame" x="16" y="88.333333333333314" width="343" height="122"/>
@@ -178,7 +227,7 @@
                                 <rect key="frame" x="292" y="350.33333333333331" width="67" height="30"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="67" id="dTZ-XS-hiu"/>
+                                    <constraint firstAttribute="width" priority="750" constant="67" id="dTZ-XS-hiu"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -238,8 +287,17 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
