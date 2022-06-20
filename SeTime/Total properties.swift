@@ -11,5 +11,8 @@ let totalCornerRadius: CGFloat = 10
 
 let totalHeightForTappedUIobjects: CGFloat = 34
 
-let totalWidthForTasksButtons: CGFloat = 67
+let totalWidthForTasksButtons: CGFloat = 80
+
+let totalSizeTextInButtons = 15
+
 

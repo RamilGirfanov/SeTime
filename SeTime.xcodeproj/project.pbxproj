@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		743D2561285A1E93000E508C /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D2560285A1E93000E508C /* Extention.swift */; };
+		743D2561285A1E93000E508C /* Extension time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D2560285A1E93000E508C /* Extension time.swift */; };
 		743D256A285E47B6000E508C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D2569285E47B6000E508C /* TaskCell.swift */; };
 		743D256C285E5006000E508C /* Total properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D256B285E5006000E508C /* Total properties.swift */; };
+		743D256E285F0037000E508C /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D256D285F0037000E508C /* Identifier.swift */; };
+		743D2570285F0077000E508C /* Extension TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743D256F285F0077000E508C /* Extension TableView.swift */; };
+		744B4BA8285FFDAB007E44C6 /* Extension cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B4BA7285FFDAB007E44C6 /* Extension cell.swift */; };
+		744B4BAC286063A6007E44C6 /* Objecs of model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B4BAB286063A6007E44C6 /* Objecs of model.swift */; };
 		745128FD284B3DA500BD4F27 /* Data Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745128FC284B3DA500BD4F27 /* Data Manager.swift */; };
 		745128FF284B3DB800BD4F27 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745128FE284B3DB800BD4F27 /* Archive.swift */; };
 		745129072858D3CF00BD4F27 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745129062858D3CF00BD4F27 /* Day.swift */; };
@@ -22,9 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		743D2560285A1E93000E508C /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
+		743D2560285A1E93000E508C /* Extension time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension time.swift"; sourceTree = "<group>"; };
 		743D2569285E47B6000E508C /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		743D256B285E5006000E508C /* Total properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Total properties.swift"; sourceTree = "<group>"; };
+		743D256D285F0037000E508C /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		743D256F285F0077000E508C /* Extension TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension TableView.swift"; sourceTree = "<group>"; };
+		744B4BA7285FFDAB007E44C6 /* Extension cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension cell.swift"; sourceTree = "<group>"; };
+		744B4BAB286063A6007E44C6 /* Objecs of model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Objecs of model.swift"; sourceTree = "<group>"; };
 		745128FC284B3DA500BD4F27 /* Data Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data Manager.swift"; sourceTree = "<group>"; };
 		745128FE284B3DB800BD4F27 /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		745129062858D3CF00BD4F27 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -53,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				745128FC284B3DA500BD4F27 /* Data Manager.swift */,
+				744B4BAB286063A6007E44C6 /* Objecs of model.swift */,
 				745129062858D3CF00BD4F27 /* Day.swift */,
 				745128FE284B3DB800BD4F27 /* Archive.swift */,
 			);
@@ -73,7 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				74AC63E12843C6EB00CAE0F5 /* ViewController.swift */,
-				743D2560285A1E93000E508C /* Extention.swift */,
+				743D2560285A1E93000E508C /* Extension time.swift */,
+				743D256F285F0077000E508C /* Extension TableView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -83,6 +93,7 @@
 			children = (
 				74AC63E32843C6EB00CAE0F5 /* Main.storyboard */,
 				743D2569285E47B6000E508C /* TaskCell.swift */,
+				744B4BA7285FFDAB007E44C6 /* Extension cell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -109,6 +120,7 @@
 				74AC63DD2843C6EB00CAE0F5 /* AppDelegate.swift */,
 				74AC63DF2843C6EB00CAE0F5 /* SceneDelegate.swift */,
 				743D256B285E5006000E508C /* Total properties.swift */,
+				743D256D285F0037000E508C /* Identifier.swift */,
 				745129012858D34D00BD4F27 /* Main screen */,
 				74AC63E62843C6EC00CAE0F5 /* Assets.xcassets */,
 				74AC63E82843C6EC00CAE0F5 /* LaunchScreen.storyboard */,
@@ -188,12 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				743D2561285A1E93000E508C /* Extention.swift in Sources */,
+				743D2561285A1E93000E508C /* Extension time.swift in Sources */,
 				743D256C285E5006000E508C /* Total properties.swift in Sources */,
 				745128FF284B3DB800BD4F27 /* Archive.swift in Sources */,
+				743D2570285F0077000E508C /* Extension TableView.swift in Sources */,
 				74AC63E22843C6EB00CAE0F5 /* ViewController.swift in Sources */,
 				745129072858D3CF00BD4F27 /* Day.swift in Sources */,
 				743D256A285E47B6000E508C /* TaskCell.swift in Sources */,
+				744B4BA8285FFDAB007E44C6 /* Extension cell.swift in Sources */,
+				744B4BAC286063A6007E44C6 /* Objecs of model.swift in Sources */,
+				743D256E285F0037000E508C /* Identifier.swift in Sources */,
 				74AC63DE2843C6EB00CAE0F5 /* AppDelegate.swift in Sources */,
 				74AC63E02843C6EB00CAE0F5 /* SceneDelegate.swift in Sources */,
 				745128FD284B3DA500BD4F27 /* Data Manager.swift in Sources */,

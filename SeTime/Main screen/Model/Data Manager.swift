@@ -14,9 +14,5 @@ class DataManager {
 //    Свойства, которые будут использоваться для наполнения времени работы и перерывов за день
     var workTimer = Timer()
     var breakTimer = Timer()
-
-//    Свойства, которые будут использоваться для наполнения массива задач за день
-    var taskName: String?
-    var taskLasting: Int?
     
 }

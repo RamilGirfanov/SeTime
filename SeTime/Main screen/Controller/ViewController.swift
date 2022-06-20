@@ -11,15 +11,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         setupUIobjects()
     }
       
-    
-//    MARK: - Экземпляры модели
-    
-    var dataManager = DataManager()
-    var day = Day()
-    
     
 //    MARK: - Outlets
     
@@ -47,7 +42,6 @@ class ViewController: UIViewController {
 //    MARK: - Actions
     
     @IBAction func workButtonAction(_ sender: Any) {
-        
         startWorkTimer()
         pauseBreakTimer()
         breakButton.isEnabled = true
@@ -62,7 +56,6 @@ class ViewController: UIViewController {
         
         workButton.isHidden = false
         breakButton.isHidden = true
-
     }
     
     @IBAction func stopButtonAction(_ sender: Any) {
@@ -70,14 +63,13 @@ class ViewController: UIViewController {
         
         workButton.isHidden = false
         breakButton.isHidden = true
-
     }
     
     @IBAction func startTaskButtonAction(_ sender: Any) {
+        newTask()
     }
     
 //    MARK: - Настройка UI объектов
-    
     
     private func setupUIobjects() {
         
@@ -103,7 +95,16 @@ class ViewController: UIViewController {
         startTaskButton.layer.cornerRadius = totalCornerRadius
         taskField.layer.cornerRadius = totalCornerRadius
         tasksTableView.layer.cornerRadius = totalCornerRadius
-        
     }
+    
+    private func setupTableView(){
+        tasksTableView.dataSource = self
+        tasksTableView.delegate = self
+        tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
+    }
+    
+//    MARK: - Делегат ячейки
+    
+    var cellDelegate: CellManagement?
     
 }

@@ -32,6 +32,6 @@ struct Day {
     var totalTime: Int {workTime + breakTime}
     
 //    Массив с типом данных кортеж, в кортеже продолжительность и задача
-    var tasks: [(task: String, lasting: Int)]?
+    var tasks: [(task: String, lasting: Int)] = []
     
 }
