@@ -13,6 +13,6 @@ let totalHeightForTappedUIobjects: CGFloat = 34
 
 let totalWidthForTasksButtons: CGFloat = 80
 
-let totalSizeTextInButtons = 15
+let totalSizeTextInButtons: CGFloat = 15
 
 

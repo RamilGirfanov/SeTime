@@ -56,6 +56,8 @@ class ViewController: UIViewController {
         
         workButton.isHidden = false
         breakButton.isHidden = true
+        
+        cellDelegate?.stopTaskTimer()
     }
     
     @IBAction func stopButtonAction(_ sender: Any) {
@@ -63,6 +65,8 @@ class ViewController: UIViewController {
         
         workButton.isHidden = false
         breakButton.isHidden = true
+        
+        cellDelegate?.stopTaskTimer()
     }
     
     @IBAction func startTaskButtonAction(_ sender: Any) {
@@ -82,10 +86,8 @@ class ViewController: UIViewController {
             stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             taskField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            
             startTaskButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons)
         ])
-        
         
 //        Радиус
         viewForTime.layer.cornerRadius = totalCornerRadius
@@ -95,6 +97,12 @@ class ViewController: UIViewController {
         startTaskButton.layer.cornerRadius = totalCornerRadius
         taskField.layer.cornerRadius = totalCornerRadius
         tasksTableView.layer.cornerRadius = totalCornerRadius
+        
+//        Размер шрифра в кнопках
+        workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        startTaskButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
     }
     
     private func setupTableView(){

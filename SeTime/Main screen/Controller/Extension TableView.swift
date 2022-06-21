@@ -27,6 +27,9 @@ extension ViewController: UITableViewDataSource {
         cell.numberOfCell = indexPath.row
         cell.pullCell(taskData: day.tasks[indexPath.row])
         
+//        Делегат ячейки
+        cellDelegate = cell
+        
         return cell
     }
 }

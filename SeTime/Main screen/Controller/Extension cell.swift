@@ -35,6 +35,7 @@ extension TaskCell: CellManagement {
     
     func stopTaskTimer() {
         taskTimer.invalidate()
+        pauseButton.isHidden = true
     }
     
 }

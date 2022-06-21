@@ -14,7 +14,7 @@ class TaskCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
-        
+        setupUIobjects()
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +46,7 @@ class TaskCell: UITableViewCell {
         return timeLabel
     }()
     
-    private lazy var startButton: UIButton = {
+    lazy var startButton: UIButton = {
         lazy var startButton = UIButton()
         startButton.setTitle("Старт", for: .normal)
         startButton.setTitleColor(.black, for: .normal)
@@ -62,7 +62,7 @@ class TaskCell: UITableViewCell {
         pauseButton.isHidden = false
     }
     
-    private lazy var pauseButton: UIButton = {
+    lazy var pauseButton: UIButton = {
         lazy var pauseButton = UIButton()
         pauseButton.setTitle("Стоп", for: .normal)
         pauseButton.setTitleColor(.black, for: .normal)
@@ -76,7 +76,6 @@ class TaskCell: UITableViewCell {
     
     @objc func pauseTap() {
         stopTaskTimer()
-        pauseButton.isHidden = true
     }
 
     //    MARK: - Расстановка объектов в ячейке
@@ -114,6 +113,11 @@ class TaskCell: UITableViewCell {
             timeLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -safeIndent)
         ])
         
+    }
+    
+    private func setupUIobjects() {
+        startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        pauseButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
     }
     
     //    MARK: - Заполнение ячеек данными
