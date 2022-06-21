@@ -60,8 +60,8 @@
 		74512900284B54AC00BD4F27 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				745128FC284B3DA500BD4F27 /* Data Manager.swift */,
 				744B4BAB286063A6007E44C6 /* Objecs of model.swift */,
+				745128FC284B3DA500BD4F27 /* Data Manager.swift */,
 				745129062858D3CF00BD4F27 /* Day.swift */,
 				745128FE284B3DB800BD4F27 /* Archive.swift */,
 			);
@@ -84,6 +84,8 @@
 				74AC63E12843C6EB00CAE0F5 /* ViewController.swift */,
 				743D2560285A1E93000E508C /* Extension time.swift */,
 				743D256F285F0077000E508C /* Extension TableView.swift */,
+				743D2569285E47B6000E508C /* TaskCell.swift */,
+				744B4BA7285FFDAB007E44C6 /* Extension cell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -92,8 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				74AC63E32843C6EB00CAE0F5 /* Main.storyboard */,
-				743D2569285E47B6000E508C /* TaskCell.swift */,
-				744B4BA7285FFDAB007E44C6 /* Extension cell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
