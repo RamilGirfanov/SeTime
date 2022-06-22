@@ -43,19 +43,19 @@ extension ViewController: TimeTasksManagement {
             day.workTime += 1
             
             if day.workTime < 60 {
-                workTimeLabel.text = "\(day.workTime)с"
+                workTimeDataLabel.text = "\(day.workTime)с"
             } else if day.workTime < 3600 {
-                workTimeLabel.text = "\(day.workTime / 60)м \(day.workTime % 60)с"
+                workTimeDataLabel.text = "\(day.workTime / 60)м \(day.workTime % 60)с"
             } else {
-                workTimeLabel.text = "\(day.workTime / 3600)ч \((day.workTime % 3600) / 60)м"
+                workTimeDataLabel.text = "\(day.workTime / 3600)ч \((day.workTime % 3600) / 60)м"
             }
             
             if day.totalTime < 60 {
-                totalTimeLabel.text = "\(day.totalTime)с"
+                totalTimeDataLabel.text = "\(day.totalTime)с"
             } else if day.totalTime < 3600 {
-                totalTimeLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
+                totalTimeDataLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
             } else {
-                totalTimeLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
+                totalTimeDataLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
             }
             
         })
@@ -67,19 +67,19 @@ extension ViewController: TimeTasksManagement {
             day.breakTime += 1
             
             if day.breakTime < 60 {
-                breakTimeLabel.text = "\(day.breakTime)с"
+                breakTimeDataLabel.text = "\(day.breakTime)с"
             } else if day.breakTime < 3600 {
-                breakTimeLabel.text = "\(day.breakTime / 60)м \(day.breakTime % 60)с"
+                breakTimeDataLabel.text = "\(day.breakTime / 60)м \(day.breakTime % 60)с"
             } else {
-                breakTimeLabel.text = "\(day.breakTime / 3600)ч \((day.breakTime % 3600) / 60)м"
+                breakTimeDataLabel.text = "\(day.breakTime / 3600)ч \((day.breakTime % 3600) / 60)м"
             }
             
             if day.totalTime < 60 {
-                totalTimeLabel.text = "\(day.totalTime)с"
+                totalTimeDataLabel.text = "\(day.totalTime)с"
             } else if day.totalTime < 3600 {
-                totalTimeLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
+                totalTimeDataLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
             } else {
-                totalTimeLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
+                totalTimeDataLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
             }
         })
     }
@@ -103,7 +103,7 @@ extension ViewController: TimeTasksManagement {
     func newTask() {
         
 //        Добавление задачи в массив задач дня
-        guard let newTask = taskField.text else { return }
+        guard let newTask = textFieldForTasks.text else { return }
         day.tasks.append((task: newTask, lasting: 0))
         
 //        Добавление новой строки таблицы

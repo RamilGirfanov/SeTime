@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     private lazy var reviewTimeLabel: UILabel = {
         lazy var timeTextLabel = UILabel()
         timeTextLabel.text = "Обзор времени"
-        timeTextLabel.font = .systemFont(ofSize: 17, weight: .bold)
+        timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel
     }()
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         lazy var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "Время работы"
         workTimeTextLabel.textColor = .systemGray
-        workTimeTextLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         workTimeTextLabel.textAlignment = .center
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return workTimeTextLabel
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     lazy var workTimeDataLabel: UILabel = {
         lazy var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "0c"
-        workTimeTextLabel.font = .systemFont(ofSize: 20, weight: .regular)
+        workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
         workTimeTextLabel.textAlignment = .center
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return workTimeTextLabel
@@ -82,21 +82,22 @@ class ViewController: UIViewController {
         return stackForTextLabel
     }()
     
-    lazy var totalTimeTextLabel: UILabel = {
+    private lazy var totalTimeTextLabel: UILabel = {
         lazy var totalTimeTextLabel = UILabel()
         totalTimeTextLabel.text = "Общее время"
         totalTimeTextLabel.textColor = .systemGray
-        totalTimeTextLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        totalTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         totalTimeTextLabel.textAlignment = .center
         totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         return totalTimeTextLabel
     }()
     
-    lazy var breakTimeTextLabel: UILabel = {
+    private lazy var breakTimeTextLabel: UILabel = {
         lazy var breakTimeTextLabel = UILabel()
-        breakTimeTextLabel.text = "Время перерывов"
+        breakTimeTextLabel.text = "Время отдыха"
         breakTimeTextLabel.textColor = .systemGray
-        breakTimeTextLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         breakTimeTextLabel.textAlignment = .center
         breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return breakTimeTextLabel
@@ -113,7 +114,7 @@ class ViewController: UIViewController {
     lazy var totalTimeDataLabel: UILabel = {
         lazy var totalTimeDataLabel = UILabel()
         totalTimeDataLabel.text = "0с"
-        totalTimeDataLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeDataLabel.textAlignment = .center
         totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return totalTimeDataLabel
@@ -122,7 +123,7 @@ class ViewController: UIViewController {
     lazy var breakTimeDataLabel: UILabel = {
         lazy var breakTimeDataLabel = UILabel()
         breakTimeDataLabel.text = "0с"
-        breakTimeDataLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         breakTimeDataLabel.textAlignment = .center
         breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return breakTimeDataLabel
@@ -131,8 +132,9 @@ class ViewController: UIViewController {
     private lazy var workButton: UIButton = {
         lazy var workButton = UIButton()
         workButton.setTitle("Работа", for: .normal)
-        workButton.tintColor = .black
+        workButton.setTitleColor(.black, for: .normal)
         workButton.backgroundColor = .systemYellow
+        workButton.layer.cornerRadius = totalCornerRadius
         workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         workButton.translatesAutoresizingMaskIntoConstraints = false
         return workButton
@@ -141,8 +143,10 @@ class ViewController: UIViewController {
     private lazy var breakButton: UIButton = {
         lazy var breakButton = UIButton()
         breakButton.setTitle("Отдых", for: .normal)
+        breakButton.setTitleColor(.black, for: .normal)
         breakButton.tintColor = .black
         breakButton.backgroundColor = .systemYellow
+        breakButton.layer.cornerRadius = totalCornerRadius
         breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         breakButton.isHidden = true
         breakButton.translatesAutoresizingMaskIntoConstraints = false
@@ -152,8 +156,10 @@ class ViewController: UIViewController {
     private lazy var stopButton: UIButton = {
         lazy var stopButton = UIButton()
         stopButton.setTitle("Стоп", for: .normal)
+        stopButton.setTitleColor(.black, for: .normal)
         stopButton.tintColor = .black
         stopButton.backgroundColor = .systemYellow
+        stopButton.layer.cornerRadius = totalCornerRadius
         stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         return stopButton
@@ -162,7 +168,7 @@ class ViewController: UIViewController {
     private lazy var reviewTasksLabel: UILabel = {
         lazy var reviewTasksLabel = UILabel()
         reviewTasksLabel.text = "Обзор задач"
-        reviewTasksLabel.font = .systemFont(ofSize: 17, weight: .bold)
+        reviewTasksLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         reviewTasksLabel.translatesAutoresizingMaskIntoConstraints = false
         return reviewTasksLabel
     }()
@@ -171,6 +177,8 @@ class ViewController: UIViewController {
         lazy var viewForTextField = UIView()
         viewForTextField.clipsToBounds = true
         viewForTextField.layer.cornerRadius = totalCornerRadius
+        viewForTextField.layer.borderWidth = 0.5
+        viewForTextField.layer.borderColor = UIColor.lightGray.cgColor
         viewForTextField.translatesAutoresizingMaskIntoConstraints = false
         return viewForTextField
     }()
@@ -178,8 +186,10 @@ class ViewController: UIViewController {
     lazy var textFieldForTasks: UITextField = {
         lazy var textFieldForTasks = UITextField()
         textFieldForTasks.placeholder = "Задача"
-        textFieldForTasks.font = .systemFont(ofSize: 12)
+        textFieldForTasks.font = .systemFont(ofSize: textSize4)
+        textFieldForTasks.backgroundColor = .systemGray6
         textFieldForTasks.tintColor = .systemYellow
+        textFieldForTasks.borderStyle = .roundedRect
         textFieldForTasks.translatesAutoresizingMaskIntoConstraints = false
         return textFieldForTasks
     }()
@@ -187,14 +197,16 @@ class ViewController: UIViewController {
     private lazy var taskButton: UIButton = {
         lazy var taskButton = UIButton()
         taskButton.setTitle("Добавить", for: .normal)
+        taskButton.setTitleColor(.black, for: .normal)
         taskButton.tintColor = .black
         taskButton.backgroundColor = .systemYellow
+        taskButton.layer.cornerRadius = totalCornerRadius
         taskButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         taskButton.translatesAutoresizingMaskIntoConstraints = false
         return taskButton
     }()
     
-    private lazy var tasksTableView: UITableView = {
+    lazy var tasksTableView: UITableView = {
         lazy var tasksTableView = UITableView()
         tasksTableView.backgroundColor = .systemGray6
         tasksTableView.layer.cornerRadius = totalCornerRadius
@@ -212,7 +224,7 @@ class ViewController: UIViewController {
         workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
         breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
-
+        taskButton.addTarget(self, action: #selector(tapForTask), for: .touchUpInside)
     }
     
     @objc func tapForWork() {
@@ -242,16 +254,25 @@ class ViewController: UIViewController {
         cellDelegate?.stopTaskTimer()
     }
     
+    @objc func tapForTask() {
+        newTask()
+    }
+    
     
     //    MARK: - Настройка констрейнтов
     
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        
         [reviewTimeLabel, viewForTimeReview, workButton, breakButton, stopButton, reviewTasksLabel, viewForTextField, taskButton, tasksTableView].forEach { contentView.addSubview($0) }
+        
         [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
-        [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addSubview($0) }
-        [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addSubview($0) }
+        
+        [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
+        
+        [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
+        
         viewForTextField.addSubview(textFieldForTasks)
         
         
@@ -268,6 +289,7 @@ class ViewController: UIViewController {
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             reviewTimeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
@@ -292,7 +314,7 @@ class ViewController: UIViewController {
             stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
             stackForDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
             stackForDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
-            stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor),
+            stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
             
             workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             workButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons),
@@ -314,8 +336,14 @@ class ViewController: UIViewController {
             reviewTasksLabel.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
             reviewTasksLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
+            viewForTextField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             viewForTextField.topAnchor.constraint(equalTo: reviewTasksLabel.bottomAnchor, constant: safeIndent2),
             viewForTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            
+            textFieldForTasks.topAnchor.constraint(equalTo: viewForTextField.topAnchor),
+            textFieldForTasks.leadingAnchor.constraint(equalTo: viewForTextField.leadingAnchor),
+            textFieldForTasks.trailingAnchor.constraint(equalTo: viewForTextField.trailingAnchor),
+            textFieldForTasks.bottomAnchor.constraint(equalTo: viewForTextField.bottomAnchor),
             
             taskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             taskButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons),
