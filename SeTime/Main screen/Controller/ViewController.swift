@@ -18,10 +18,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupTableView()
-//        setupUIobjects()
         layout()
         setupButtons()
+        self.setupToHideKeyboardOnTapOnView()
     }
       
     
@@ -191,6 +190,7 @@ class ViewController: UIViewController {
         textFieldForTasks.tintColor = .systemYellow
         textFieldForTasks.borderStyle = .roundedRect
         textFieldForTasks.translatesAutoresizingMaskIntoConstraints = false
+        textFieldForTasks.delegate = self
         return textFieldForTasks
     }()
     
@@ -358,112 +358,37 @@ class ViewController: UIViewController {
         ])
         
     }
-
-    
-    
-    
-    
- /*
-    
-//    MARK: - Outlets
-    
-    @IBOutlet weak var viewForTime: UIView!
-    
-    @IBOutlet weak var workTimeLabel: UILabel!
-    
-    @IBOutlet weak var breakTimeLabel: UILabel!
-    
-    @IBOutlet weak var totalTimeLabel: UILabel!
-    
-    @IBOutlet weak var workButton: UIButton!
-    
-    @IBOutlet weak var breakButton: UIButton!
-    
-    @IBOutlet weak var stopButton: UIButton!
-    
-    @IBOutlet weak var taskField: UITextField!
-    
-    @IBOutlet weak var startTaskButton: UIButton!
-    
-    @IBOutlet weak var tasksTableView: UITableView!
-    
-    
-//    MARK: - Actions
-    
-    @IBAction func workButtonAction(_ sender: Any) {
-        startWorkTimer()
-        pauseBreakTimer()
-        breakButton.isEnabled = true
-        
-        workButton.isHidden = true
-        breakButton.isHidden = false
-    }
-    
-    @IBAction func breakButtonAction(_ sender: Any) {
-        pauseWorkTimer()
-        startBreakTimer()
-        
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        
-        cellDelegate?.stopTaskTimer()
-    }
-    
-    @IBAction func stopButtonAction(_ sender: Any) {
-        stop()
-        
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        
-        cellDelegate?.stopTaskTimer()
-    }
-    
-    @IBAction func startTaskButtonAction(_ sender: Any) {
-        newTask()
-    }
-    
-//    MARK: - Настройка UI объектов
-    
-    private func setupUIobjects() {
-        
-        breakButton.isHidden = true
-        
-//        Констрейнты
-        NSLayoutConstraint.activate([
-            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            breakButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            taskField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            startTaskButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons)
-        ])
-        
-//        Радиус
-        viewForTime.layer.cornerRadius = totalCornerRadius
-        workButton.layer.cornerRadius = totalCornerRadius
-        breakButton.layer.cornerRadius = totalCornerRadius
-        stopButton.layer.cornerRadius = totalCornerRadius
-        startTaskButton.layer.cornerRadius = totalCornerRadius
-        taskField.layer.cornerRadius = totalCornerRadius
-        tasksTableView.layer.cornerRadius = totalCornerRadius
-        
-//        Размер шрифра в кнопках
-        workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        startTaskButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-    }
-    
-    private func setupTableView(){
-        tasksTableView.dataSource = self
-        tasksTableView.delegate = self
-        tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
-    }
-    
-  */
     
 //    MARK: - Делегат ячейки
     
     var cellDelegate: CellManagement?
     
+    
+//    MARK: - Notification center для приподнития ScrollView при вызове клавиатуры
+    
+    private let nc = NotificationCenter.default
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nc.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func kbShow(notification: NSNotification) {
+        if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = kbSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        }
+    }
+    
+    @objc private func kbHide() {
+        scrollView.contentInset = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 }

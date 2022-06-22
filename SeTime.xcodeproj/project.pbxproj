@@ -17,6 +17,7 @@
 		745128FD284B3DA500BD4F27 /* Data Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745128FC284B3DA500BD4F27 /* Data Manager.swift */; };
 		745128FF284B3DB800BD4F27 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745128FE284B3DB800BD4F27 /* Archive.swift */; };
 		745129072858D3CF00BD4F27 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745129062858D3CF00BD4F27 /* Day.swift */; };
+		7492CFE22862EB7B00481437 /* Extension Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492CFE12862EB7B00481437 /* Extension Keyboard.swift */; };
 		74AC63DE2843C6EB00CAE0F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63DD2843C6EB00CAE0F5 /* AppDelegate.swift */; };
 		74AC63E02843C6EB00CAE0F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63DF2843C6EB00CAE0F5 /* SceneDelegate.swift */; };
 		74AC63E22843C6EB00CAE0F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63E12843C6EB00CAE0F5 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		745128FC284B3DA500BD4F27 /* Data Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data Manager.swift"; sourceTree = "<group>"; };
 		745128FE284B3DB800BD4F27 /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		745129062858D3CF00BD4F27 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		7492CFE12862EB7B00481437 /* Extension Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension Keyboard.swift"; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AC63DD2843C6EB00CAE0F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74AC63DF2843C6EB00CAE0F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				743D256F285F0077000E508C /* Extension TableView.swift */,
 				743D2569285E47B6000E508C /* TaskCell.swift */,
 				744B4BA7285FFDAB007E44C6 /* Extension TaskCell.swift */,
+				7492CFE12862EB7B00481437 /* Extension Keyboard.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				74AC63DE2843C6EB00CAE0F5 /* AppDelegate.swift in Sources */,
 				74AC63E02843C6EB00CAE0F5 /* SceneDelegate.swift in Sources */,
 				745128FD284B3DA500BD4F27 /* Data Manager.swift in Sources */,
+				7492CFE22862EB7B00481437 /* Extension Keyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
