@@ -256,6 +256,7 @@ class ViewController: UIViewController {
     
     @objc func tapForTask() {
         newTask()
+        textFieldForTasks.text = ""
     }
     
     
