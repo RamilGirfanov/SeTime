@@ -21,7 +21,6 @@ class TaskCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
-        setupUIobjects()
     }
     
     required init?(coder: NSCoder) {
@@ -59,6 +58,7 @@ class TaskCell: UITableViewCell {
         startButton.setTitleColor(.black, for: .normal)
         startButton.backgroundColor = .systemYellow
         startButton.layer.cornerRadius = totalCornerRadius
+        startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         startButton.translatesAutoresizingMaskIntoConstraints = false
         startButton.addTarget(self, action: #selector(startTap), for: .touchUpInside)
         return startButton
@@ -75,6 +75,7 @@ class TaskCell: UITableViewCell {
         pauseButton.setTitleColor(.black, for: .normal)
         pauseButton.backgroundColor = .systemYellow
         pauseButton.layer.cornerRadius = totalCornerRadius
+        pauseButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         pauseButton.isHidden = true
         pauseButton.translatesAutoresizingMaskIntoConstraints = false
         pauseButton.addTarget(self, action: #selector(pauseTap), for: .touchUpInside)
@@ -113,7 +114,6 @@ class TaskCell: UITableViewCell {
             pauseButton.trailingAnchor.constraint(equalTo: startButton.trailingAnchor),
             pauseButton.bottomAnchor.constraint(equalTo: startButton.bottomAnchor),
             
-            timeLabel.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             timeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: safeIndent),
             timeLabel.leadingAnchor.constraint(equalTo: taskText.trailingAnchor),
             timeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -121,12 +121,7 @@ class TaskCell: UITableViewCell {
         ])
         
     }
-    
-    private func setupUIobjects() {
-        startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        pauseButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-    }
-    
+        
     //    MARK: - Заполнение ячеек данными
     
     func pullCell(taskData: (task: String, lasting: Int)) {
