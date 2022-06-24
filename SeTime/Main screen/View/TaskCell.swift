@@ -57,7 +57,7 @@ class TaskCell: UITableViewCell {
         lazy var startButton = UIButton()
         startButton.setTitle("Старт", for: .normal)
         startButton.setTitleColor(.black, for: .normal)
-        startButton.backgroundColor = .systemYellow
+        startButton.backgroundColor = mainColorTheme
         startButton.layer.cornerRadius = totalCornerRadius
         startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         startButton.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +74,7 @@ class TaskCell: UITableViewCell {
         lazy var pauseButton = UIButton()
         pauseButton.setTitle("Стоп", for: .normal)
         pauseButton.setTitleColor(.black, for: .normal)
-        pauseButton.backgroundColor = .systemYellow
+        pauseButton.backgroundColor = mainColorTheme
         pauseButton.layer.cornerRadius = totalCornerRadius
         pauseButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         pauseButton.isHidden = true

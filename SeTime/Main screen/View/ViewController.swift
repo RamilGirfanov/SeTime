@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         layout()
         setupButtons()
         self.setupToHideKeyboardOnTapOnView()
@@ -132,7 +133,7 @@ class ViewController: UIViewController {
         lazy var workButton = UIButton()
         workButton.setTitle("Работа", for: .normal)
         workButton.setTitleColor(.black, for: .normal)
-        workButton.backgroundColor = .systemYellow
+        workButton.backgroundColor = mainColorTheme
         workButton.layer.cornerRadius = totalCornerRadius
         workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         workButton.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +145,7 @@ class ViewController: UIViewController {
         breakButton.setTitle("Отдых", for: .normal)
         breakButton.setTitleColor(.black, for: .normal)
         breakButton.tintColor = .black
-        breakButton.backgroundColor = .systemYellow
+        breakButton.backgroundColor = mainColorTheme
         breakButton.layer.cornerRadius = totalCornerRadius
         breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         breakButton.isHidden = true
@@ -157,7 +158,7 @@ class ViewController: UIViewController {
         stopButton.setTitle("Стоп", for: .normal)
         stopButton.setTitleColor(.black, for: .normal)
         stopButton.tintColor = .black
-        stopButton.backgroundColor = .systemYellow
+        stopButton.backgroundColor = mainColorTheme
         stopButton.layer.cornerRadius = totalCornerRadius
         stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         stopButton.translatesAutoresizingMaskIntoConstraints = false
@@ -187,7 +188,7 @@ class ViewController: UIViewController {
         textFieldForTasks.placeholder = "Задача"
         textFieldForTasks.font = .systemFont(ofSize: textSize4)
         textFieldForTasks.backgroundColor = .systemGray6
-        textFieldForTasks.tintColor = .systemYellow
+        textFieldForTasks.tintColor = mainColorTheme
         textFieldForTasks.borderStyle = .roundedRect
         textFieldForTasks.translatesAutoresizingMaskIntoConstraints = false
         textFieldForTasks.delegate = self
@@ -199,7 +200,7 @@ class ViewController: UIViewController {
         taskButton.setTitle("Добавить", for: .normal)
         taskButton.setTitleColor(.black, for: .normal)
         taskButton.tintColor = .black
-        taskButton.backgroundColor = .systemYellow
+        taskButton.backgroundColor = mainColorTheme
         taskButton.layer.cornerRadius = totalCornerRadius
         taskButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         taskButton.translatesAutoresizingMaskIntoConstraints = false
