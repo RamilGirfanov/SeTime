@@ -242,7 +242,9 @@ class ViewController: UIViewController {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        cellDelegate?.stopTaskTimer()
+        for i in arrayOfCells {
+            i.stopTaskTimer()
+        }
     }
     
     @objc func tapForStop() {
@@ -251,7 +253,9 @@ class ViewController: UIViewController {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        cellDelegate?.stopTaskTimer()
+        for i in arrayOfCells {
+            i.stopTaskTimer()
+        }
     }
     
     @objc func tapForTask() {

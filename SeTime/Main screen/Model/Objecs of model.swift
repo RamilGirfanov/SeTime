@@ -15,3 +15,5 @@ import Foundation
 var dataManager = DataManager()
 
 var day = Day()
+
+var arrayOfCells = [TaskCell]()
