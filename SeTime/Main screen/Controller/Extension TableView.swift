@@ -31,9 +31,6 @@ extension ViewController: UITableViewDataSource {
         
         arrayOfCells.append(cell)
         
-//        Делегат ячейки
-        cellDelegate = cell
-        
         return cell
     }
 }

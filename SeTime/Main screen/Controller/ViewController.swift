@@ -208,7 +208,6 @@ class ViewController: UIViewController {
     
     lazy var tasksTableView: UITableView = {
         lazy var tasksTableView = UITableView()
-        tasksTableView.backgroundColor = .systemGray6
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.dataSource = self
@@ -363,10 +362,6 @@ class ViewController: UIViewController {
         ])
         
     }
-    
-//    MARK: - Делегат ячейки
-    
-    var cellDelegate: CellManagement?
     
     
 //    MARK: - Notification center для приподнития ScrollView при вызове клавиатуры

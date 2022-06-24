@@ -39,6 +39,7 @@ class TaskCell: UITableViewCell {
     
     private lazy var taskText: UITextView = {
         lazy var taskText = UITextView()
+        taskText.backgroundColor = .systemGray6
         taskText.layer.cornerRadius = totalCornerRadius
         taskText.translatesAutoresizingMaskIntoConstraints = false
         return taskText
@@ -94,14 +95,14 @@ class TaskCell: UITableViewCell {
         let safeIndent: CGFloat = 8
         
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent / 2),
+            view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent / 4),
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent / 2),
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent / 4),
             
-            taskText.topAnchor.constraint(equalTo: view.topAnchor, constant: safeIndent),
-            taskText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: safeIndent),
-            taskText.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -safeIndent),
+            taskText.topAnchor.constraint(equalTo: view.topAnchor),
+            taskText.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            taskText.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             startButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             startButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons),
