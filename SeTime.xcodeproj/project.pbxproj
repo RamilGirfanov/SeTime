@@ -17,13 +17,18 @@
 		74ED60CA286594370008B57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60C9286594370008B57C /* ViewController.swift */; };
 		74ED60D0286594E00008B57C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CD286594E00008B57C /* Day.swift */; };
 		74ED60D1286594E00008B57C /* Objecs of model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CE286594E00008B57C /* Objecs of model.swift */; };
-		74ED60D2286594E00008B57C /* Data Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CF286594E00008B57C /* Data Manager.swift */; };
+		74ED60D2286594E00008B57C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CF286594E00008B57C /* DataManager.swift */; };
 		74ED60D8286594F10008B57C /* Extension TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D3286594F10008B57C /* Extension TaskCell.swift */; };
 		74ED60D9286594F10008B57C /* Extension TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D4286594F10008B57C /* Extension TableView.swift */; };
 		74ED60DA286594F10008B57C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D5286594F10008B57C /* TaskCell.swift */; };
 		74ED60DB286594F10008B57C /* Extension Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D6286594F10008B57C /* Extension Keyboard.swift */; };
-		74ED60DC286594F10008B57C /* Extension time tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D7286594F10008B57C /* Extension time tasks.swift */; };
+		74ED60DC286594F10008B57C /* Extension TimeTasksManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D7286594F10008B57C /* Extension TimeTasksManagement.swift */; };
 		74ED60DE286594FA0008B57C /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60DD286594FA0008B57C /* Archive.swift */; };
+		74ED60E2286599750008B57C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60E1286599750008B57C /* CalendarViewController.swift */; };
+		74ED60E4286BF8E10008B57C /* CalendarDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60E3286BF8E10008B57C /* CalendarDay.swift */; };
+		74ED60E6286D1B1A0008B57C /* MonthMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60E5286D1B1A0008B57C /* MonthMetaData.swift */; };
+		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
+		74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,13 +44,18 @@
 		74ED60C9286594370008B57C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74ED60CD286594E00008B57C /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		74ED60CE286594E00008B57C /* Objecs of model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Objecs of model.swift"; sourceTree = "<group>"; };
-		74ED60CF286594E00008B57C /* Data Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data Manager.swift"; sourceTree = "<group>"; };
+		74ED60CF286594E00008B57C /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		74ED60D3286594F10008B57C /* Extension TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension TaskCell.swift"; sourceTree = "<group>"; };
 		74ED60D4286594F10008B57C /* Extension TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension TableView.swift"; sourceTree = "<group>"; };
 		74ED60D5286594F10008B57C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		74ED60D6286594F10008B57C /* Extension Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension Keyboard.swift"; sourceTree = "<group>"; };
-		74ED60D7286594F10008B57C /* Extension time tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension time tasks.swift"; sourceTree = "<group>"; };
+		74ED60D7286594F10008B57C /* Extension TimeTasksManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension TimeTasksManagement.swift"; sourceTree = "<group>"; };
 		74ED60DD286594FA0008B57C /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
+		74ED60E1286599750008B57C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		74ED60E3286BF8E10008B57C /* CalendarDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDay.swift; sourceTree = "<group>"; };
+		74ED60E5286D1B1A0008B57C /* MonthMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetaData.swift; sourceTree = "<group>"; };
+		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,20 +91,21 @@
 				74ED60B6286593E50008B57C /* System */,
 				74ED60BC286593E50008B57C /* Global files */,
 				74ED60C7286594370008B57C /* Main screen */,
-				74ED60B2286593E50008B57C /* Calendar screen */,
+				74ED60E9286D346D0008B57C /* History screan */,
+				74ED60B2286593E50008B57C /* Calendar screen v1 */,
 				74AC63EB2843C6EC00CAE0F5 /* Info.plist */,
 			);
 			path = SeTime;
 			sourceTree = "<group>";
 		};
-		74ED60B2286593E50008B57C /* Calendar screen */ = {
+		74ED60B2286593E50008B57C /* Calendar screen v1 */ = {
 			isa = PBXGroup;
 			children = (
 				74ED60B5286593E50008B57C /* Veiw */,
 				74ED60B3286593E50008B57C /* Controller */,
 				74ED60B4286593E50008B57C /* Model */,
 			);
-			path = "Calendar screen";
+			path = "Calendar screen v1";
 			sourceTree = "<group>";
 		};
 		74ED60B3286593E50008B57C /* Controller */ = {
@@ -107,6 +118,8 @@
 		74ED60B4286593E50008B57C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				74ED60E3286BF8E10008B57C /* CalendarDay.swift */,
+				74ED60E5286D1B1A0008B57C /* MonthMetaData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -114,6 +127,7 @@
 		74ED60B5286593E50008B57C /* Veiw */ = {
 			isa = PBXGroup;
 			children = (
+				74ED60E1286599750008B57C /* CalendarViewController.swift */,
 			);
 			path = Veiw;
 			sourceTree = "<group>";
@@ -162,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				74ED60CE286594E00008B57C /* Objecs of model.swift */,
-				74ED60CF286594E00008B57C /* Data Manager.swift */,
+				74ED60CF286594E00008B57C /* DataManager.swift */,
 				74ED60CD286594E00008B57C /* Day.swift */,
 				74ED60DD286594FA0008B57C /* Archive.swift */,
 			);
@@ -172,12 +186,45 @@
 		74ED60CC286594C10008B57C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				74ED60D7286594F10008B57C /* Extension time tasks.swift */,
+				74ED60D7286594F10008B57C /* Extension TimeTasksManagement.swift */,
 				74ED60D4286594F10008B57C /* Extension TableView.swift */,
 				74ED60D3286594F10008B57C /* Extension TaskCell.swift */,
 				74ED60D6286594F10008B57C /* Extension Keyboard.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		74ED60E9286D346D0008B57C /* History screan */ = {
+			isa = PBXGroup;
+			children = (
+				74ED60EC286D34AC0008B57C /* View */,
+				74ED60EB286D34A30008B57C /* Controller */,
+				74ED60EA286D348F0008B57C /* Model */,
+			);
+			path = "History screan";
+			sourceTree = "<group>";
+		};
+		74ED60EA286D348F0008B57C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74ED60EB286D34A30008B57C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		74ED60EC286D34AC0008B57C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74ED60ED286D350C0008B57C /* DatePickerViewController.swift */,
+				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,12 +297,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74ED60E2286599750008B57C /* CalendarViewController.swift in Sources */,
 				74ED60D0286594E00008B57C /* Day.swift in Sources */,
 				74ED60CA286594370008B57C /* ViewController.swift in Sources */,
 				74ED60C4286593E50008B57C /* Total properties.swift in Sources */,
-				74ED60DC286594F10008B57C /* Extension time tasks.swift in Sources */,
-				74ED60D2286594E00008B57C /* Data Manager.swift in Sources */,
+				74ED60DC286594F10008B57C /* Extension TimeTasksManagement.swift in Sources */,
+				74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */,
+				74ED60D2286594E00008B57C /* DataManager.swift in Sources */,
 				74ED60DA286594F10008B57C /* TaskCell.swift in Sources */,
+				74ED60E6286D1B1A0008B57C /* MonthMetaData.swift in Sources */,
 				74ED60C5286593E50008B57C /* TabBarController.swift in Sources */,
 				74ED60DB286594F10008B57C /* Extension Keyboard.swift in Sources */,
 				74ED60D1286594E00008B57C /* Objecs of model.swift in Sources */,
@@ -263,8 +313,10 @@
 				74ED60DE286594FA0008B57C /* Archive.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
+				74ED60E4286BF8E10008B57C /* CalendarDay.swift in Sources */,
 				74ED60C6286593E50008B57C /* Identifier.swift in Sources */,
 				74ED60D8286594F10008B57C /* Extension TaskCell.swift in Sources */,
+				74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

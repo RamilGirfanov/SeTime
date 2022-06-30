@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }
       
     
-    //    MARK: - UIobjects
+    //    MARK: - UIObjects
     
     private lazy var scrollView: UIScrollView = {
         lazy var scrollView = UIScrollView()
