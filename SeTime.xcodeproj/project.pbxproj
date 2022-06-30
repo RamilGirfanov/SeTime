@@ -29,6 +29,8 @@
 		74ED60E6286D1B1A0008B57C /* MonthMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60E5286D1B1A0008B57C /* MonthMetaData.swift */; };
 		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
 		74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */; };
+		74ED60F3286D37670008B57C /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60F2286D37670008B57C /* Storyboard.storyboard */; };
+		74ED60F5286D76830008B57C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60F4286D76830008B57C /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		74ED60E5286D1B1A0008B57C /* MonthMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetaData.swift; sourceTree = "<group>"; };
 		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreanViewController.swift; sourceTree = "<group>"; };
+		74ED60F2286D37670008B57C /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		74ED60F4286D76830008B57C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +96,8 @@
 				74ED60BC286593E50008B57C /* Global files */,
 				74ED60C7286594370008B57C /* Main screen */,
 				74ED60E9286D346D0008B57C /* History screan */,
-				74ED60B2286593E50008B57C /* Calendar screen v1 */,
 				74AC63EB2843C6EC00CAE0F5 /* Info.plist */,
+				74ED60F1286D36AC0008B57C /* X */,
 			);
 			path = SeTime;
 			sourceTree = "<group>";
@@ -146,8 +150,8 @@
 		74ED60BC286593E50008B57C /* Global files */ = {
 			isa = PBXGroup;
 			children = (
+				74ED60F4286D76830008B57C /* NavigationController.swift */,
 				74ED60BD286593E50008B57C /* Total properties.swift */,
-				74ED60BE286593E50008B57C /* TabBarController.swift */,
 				74ED60BF286593E50008B57C /* Identifier.swift */,
 			);
 			path = "Global files";
@@ -222,9 +226,19 @@
 			isa = PBXGroup;
 			children = (
 				74ED60ED286D350C0008B57C /* DatePickerViewController.swift */,
+				74ED60F2286D37670008B57C /* Storyboard.storyboard */,
 				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		74ED60F1286D36AC0008B57C /* X */ = {
+			isa = PBXGroup;
+			children = (
+				74ED60BE286593E50008B57C /* TabBarController.swift */,
+				74ED60B2286593E50008B57C /* Calendar screen v1 */,
+			);
+			path = X;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +301,7 @@
 			files = (
 				74ED60C0286593E50008B57C /* Assets.xcassets in Resources */,
 				74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */,
+				74ED60F3286D37670008B57C /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +331,7 @@
 				74ED60E4286BF8E10008B57C /* CalendarDay.swift in Sources */,
 				74ED60C6286593E50008B57C /* Identifier.swift in Sources */,
 				74ED60D8286594F10008B57C /* Extension TaskCell.swift in Sources */,
+				74ED60F5286D76830008B57C /* NavigationController.swift in Sources */,
 				74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
