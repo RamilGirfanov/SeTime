@@ -18,10 +18,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBackground
+        title = "Сегодня"
+        
         layout()
         setupButtons()
+        
         self.setupToHideKeyboardOnTapOnView()
+        
+        navigationItem.largeTitleDisplayMode = .automatic
+        makeBarButtonItem()
     }
       
     
@@ -47,13 +54,13 @@ class ViewController: UIViewController {
         return viewForTimeReview
     }()
     
-    private lazy var reviewTimeLabel: UILabel = {
-        lazy var timeTextLabel = UILabel()
-        timeTextLabel.text = "Обзор времени"
-        timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
-        timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return timeTextLabel
-    }()
+//    private lazy var reviewTimeLabel: UILabel = {
+//        lazy var timeTextLabel = UILabel()
+//        timeTextLabel.text = "Обзор времени"
+//        timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
+//        timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+//        return timeTextLabel
+//    }()
     
     private lazy var workTimeTextLabel: UILabel = {
         lazy var workTimeTextLabel = UILabel()
@@ -165,13 +172,13 @@ class ViewController: UIViewController {
         return stopButton
     }()
     
-    private lazy var reviewTasksLabel: UILabel = {
-        lazy var reviewTasksLabel = UILabel()
-        reviewTasksLabel.text = "Обзор задач"
-        reviewTasksLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
-        reviewTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-        return reviewTasksLabel
-    }()
+//    private lazy var reviewTasksLabel: UILabel = {
+//        lazy var reviewTasksLabel = UILabel()
+//        reviewTasksLabel.text = "Обзор задач"
+//        reviewTasksLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
+//        reviewTasksLabel.translatesAutoresizingMaskIntoConstraints = false
+//        return reviewTasksLabel
+//    }()
 
     private lazy var viewForTextField: UIView = {
         lazy var viewForTextField = UIView()
@@ -270,7 +277,7 @@ class ViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [reviewTimeLabel, viewForTimeReview, workButton, breakButton, stopButton, reviewTasksLabel, viewForTextField, taskButton, tasksTableView].forEach { contentView.addSubview($0) }
+        [viewForTimeReview, workButton, breakButton, stopButton, viewForTextField, taskButton, tasksTableView].forEach { contentView.addSubview($0) }
         
         [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
         
@@ -296,11 +303,8 @@ class ViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            reviewTimeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
-            reviewTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            
-            viewForTimeReview.topAnchor.constraint(equalTo: reviewTimeLabel.bottomAnchor, constant: safeIndent2),
+                        
+            viewForTimeReview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
             viewForTimeReview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             viewForTimeReview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
@@ -338,11 +342,8 @@ class ViewController: UIViewController {
             stopButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            reviewTasksLabel.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
-            reviewTasksLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            
             viewForTextField.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            viewForTextField.topAnchor.constraint(equalTo: reviewTasksLabel.bottomAnchor, constant: safeIndent2),
+            viewForTextField.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
             viewForTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
             textFieldForTasks.topAnchor.constraint(equalTo: viewForTextField.topAnchor),

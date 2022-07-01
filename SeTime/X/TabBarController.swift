@@ -5,6 +5,8 @@
 //  Created by Рамиль Гирфанов on 24.06.2022.
 //
 
+/*
+ 
 import UIKit
 
 class TabBarController: UITabBarController {
@@ -31,3 +33,5 @@ class TabBarController: UITabBarController {
     }
     
 }
+
+ */
