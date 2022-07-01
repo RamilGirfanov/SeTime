@@ -11,6 +11,7 @@ class DatePickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         layout()
     }
     
@@ -29,13 +30,14 @@ class DatePickerViewController: UIViewController {
         lazy var datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
+        datePicker.tintColor = mainColorTheme
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         return datePicker
     }()
 
     private lazy var button: UIButton = {
         lazy var button = UIButton()
-        button.setTitle("Добавить", for: .normal)
+        button.setTitle("Показать", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.tintColor = .black
         button.backgroundColor = mainColorTheme
@@ -59,12 +61,12 @@ class DatePickerViewController: UIViewController {
                         
             datePicker.topAnchor.constraint(equalTo: calendarLabel.bottomAnchor, constant: safeIndent2),
             datePicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: safeIndent1),
+            datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
 //            ЗАДАТЬ ВЫСОТУ
             
             button.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: safeIndent1),
             button.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: safeIndent1),
+            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
         ])
     }

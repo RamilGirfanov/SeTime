@@ -14,6 +14,8 @@ class NavigationController: UINavigationController {
         
         let mainVC = ViewController()
         viewControllers.append(mainVC)
-        mainVC.title = "Сегодня"
+        
+//        navigationBar.prefersLargeTitles = true
+//        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemOrange]
     }
 }
