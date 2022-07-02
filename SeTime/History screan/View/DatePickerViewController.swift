@@ -13,12 +13,13 @@ class DatePickerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         layout()
+        setupButton()
     }
     
     
     //    MARK: - UIObjects
 
-    private lazy var calendarLabel: UILabel = {
+    lazy var calendarLabel: UILabel = {
         lazy var timeTextLabel = UILabel()
         timeTextLabel.text = "Выбор даты"
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
@@ -26,7 +27,7 @@ class DatePickerViewController: UIViewController {
         return timeTextLabel
     }()
 
-    private lazy var datePicker: UIDatePicker = {
+    lazy var datePicker: UIDatePicker = {
         lazy var datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
@@ -35,22 +36,23 @@ class DatePickerViewController: UIViewController {
         return datePicker
     }()
 
-    private lazy var button: UIButton = {
-        lazy var button = UIButton()
-        button.setTitle("Показать", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.tintColor = .black
-        button.backgroundColor = mainColorTheme
-        button.layer.cornerRadius = totalCornerRadius
-        button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    lazy var showButton: UIButton = {
+        lazy var showButton = UIButton()
+        showButton.setTitle("Показать", for: .normal)
+        showButton.setTitleColor(.black, for: .normal)
+        showButton.tintColor = .black
+        showButton.backgroundColor = mainColorTheme
+        showButton.layer.cornerRadius = totalCornerRadius
+        showButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        showButton.translatesAutoresizingMaskIntoConstraints = false
+        return showButton
     }()
+        
     
 //    MARK: - Layout
     
     private func layout() {
-        [calendarLabel, datePicker, button].forEach { view.addSubview($0) }
+        [calendarLabel, datePicker, showButton].forEach { view.addSubview($0) }
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -64,10 +66,10 @@ class DatePickerViewController: UIViewController {
             datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
 //            ЗАДАТЬ ВЫСОТУ
             
-            button.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: safeIndent1),
-            button.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-            button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
+            showButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: safeIndent1),
+            showButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            showButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            showButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
         ])
     }
 }
