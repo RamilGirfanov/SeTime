@@ -12,8 +12,12 @@ import Foundation
 
 //    MARK: - Экземпляры модели
 
-var dataManager = DataManager()
+var workTimeManager = WorkTimeManager()
+
+var taskTimeManager = TaskTimeManager()
+
+var task = Task()
 
 var day = Day()
 
-var arrayOfCells = [TaskCell]()
+//var arrayOfCells = [TaskCell]()

@@ -11,7 +11,7 @@ import Foundation
 
 //MARK: - Структура управления
 
-class DataManager {
+class WorkTimeManager {
         
 //    Свойства, которые будут использоваться для наполнения времени работы и перерывов за день
     var workTimer = Timer()

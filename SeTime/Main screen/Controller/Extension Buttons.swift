@@ -15,17 +15,23 @@ extension ViewController {
         workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
         breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
-        taskButton.addTarget(self, action: #selector(tapForTask), for: .touchUpInside)
+        stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
     }
     
+//    Запускает таймер работы
     @objc func tapForWork() {
         startWorkTimer()
         pauseBreakTimer()
         
         workButton.isHidden = true
         breakButton.isHidden = false
+        
+        if task.duration != 0 {
+            taskTimeManager.startTaskTimer()
+        }
     }
     
+//    Запускает таймер перерывов, в том числе для всех задач
     @objc func tapForBreak() {
         pauseWorkTimer()
         startBreakTimer()
@@ -33,25 +39,23 @@ extension ViewController {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        for i in arrayOfCells {
-            i.stopTaskTimer()
-        }
+        taskTimeManager.taskTimer.invalidate()
     }
     
+    //    Останавливает все таймеры, в том числе для задачи
     @objc func tapForStop() {
         stop()
         
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        for i in arrayOfCells {
-            i.stopTaskTimer()
-        }
+        stopTaskTimer()
+
     }
     
-    @objc func tapForTask() {
-        newTask()
-        textFieldForTasks.text = ""
+//    Создает новую строку задачи
+    @objc func stopTask() {
+        stopTaskTimer()
     }
     
 }
