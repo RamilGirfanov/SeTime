@@ -12,8 +12,8 @@ extension ViewController {
     func makeBarButtonItem(){
         lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
         
-        navigationItem.rightBarButtonItem = barButton
-        navigationItem.rightBarButtonItem?.tintColor = mainColorTheme
+        navigationItem.leftBarButtonItem = barButton
+        navigationItem.leftBarButtonItem?.tintColor = mainColorTheme
     }
     
     @objc private func tap() {

@@ -25,11 +25,13 @@ extension ViewController: UITableViewDataSource {
 //    Тип ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         lazy var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        cell.backgroundColor = .clear
         
-        cell.numberOfCell = indexPath.row
+//        Для упорядовачивания очередности задач в массиве задач в дне
         cell.pullCell(taskData: day.tasks[indexPath.row])
         
-        arrayOfCells.append(cell)
+//        Для управления таймерами в звдачах
+//        arrayOfCells.append(cell)
         
         return cell
     }

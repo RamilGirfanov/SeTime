@@ -13,7 +13,7 @@ import UIKit
 
 protocol TimeTasksManagement {
     
-    func newDay()
+//    func newDay()
         
     func startWorkTimer()
     func startBreakTimer()
@@ -22,10 +22,10 @@ protocol TimeTasksManagement {
     func pauseBreakTimer()
     
     func stop()
-    
-    func newTask()
         
-    func endOfDay()
+    func stopTaskTimer()
+        
+//    func endOfDay()
 
 }
 
@@ -34,12 +34,17 @@ protocol TimeTasksManagement {
 extension ViewController: TimeTasksManagement {
     
     func newDay() {
+        
+        ///Остановка всех таймеров
+        ///Запись в архив
+        ///Инициировние нового дня
+        
         day = Day()
     }
     
 //    Запускает таймер работы
     func startWorkTimer() {
-        dataManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
+        workTimeManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
             day.workTime += 1
             
             if day.workTime < 60 {
@@ -63,7 +68,7 @@ extension ViewController: TimeTasksManagement {
     
 //    Запускает таймер перерывов
     func startBreakTimer() {
-        dataManager.breakTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
+        workTimeManager.breakTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
             day.breakTime += 1
             
             if day.breakTime < 60 {
@@ -86,35 +91,57 @@ extension ViewController: TimeTasksManagement {
     
 //    Пауза для таймера работы
     func pauseWorkTimer() {
-        dataManager.workTimer.invalidate()
+        workTimeManager.workTimer.invalidate()
     }
     
 //    Пауза для таймера перерывов
     func pauseBreakTimer() {
-        dataManager.breakTimer.invalidate()
+        workTimeManager.breakTimer.invalidate()
     }
 
 //    Пауза для обоих таймеров
     func stop() {
-        dataManager.workTimer.invalidate()
-        dataManager.breakTimer.invalidate()
+        workTimeManager.workTimer.invalidate()
+        workTimeManager.breakTimer.invalidate()
     }
     
-    func newTask() {
+//    Для создания новой задачи
+    func stopTaskTimer() {
+
+        taskTimeManager.taskTimer.invalidate()
+        
+        task.addStopTime()
+        
         
 //        Добавление задачи в массив задач дня
-        guard let newTask = textFieldForTasks.text else { return }
-        day.tasks.append((task: newTask, lasting: 0))
+        day.tasks.append(task)
         
+//        Обнуление объекта задачи
+        task = Task()
+        
+//        Обнуление объекта таймера для задач
+        taskTimeManager = TaskTimeManager()
+                
 //        Добавление новой строки таблицы
         tasksTableView.beginUpdates()
         tasksTableView.insertRows(at: [(NSIndexPath(row: day.tasks.count-1, section: 0) as IndexPath)], with: .automatic)
         tasksTableView.endUpdates()
-    }
-
-    func endOfDay() {
+        
+//        Обнуление значений лейблов данных задачи
+        ViewController.taskTimeTextLabel.text = "Название"
+        ViewController.taskTimeDataLabel.text = "0с"
+        
+        ViewController.addTaskButton.isHidden = false
+        
+        ViewController.taskTimerView.isHidden = true
         
     }
+
+    
+    
+//    func endOfDay() {
+//
+//    }
     
 }
 
