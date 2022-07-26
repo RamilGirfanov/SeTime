@@ -15,25 +15,27 @@ extension TaskViewController {
     
     @objc private func addTask() {
         
+//        Проверка на введеное название задачи
         guard let newTask = taskName.text, !newTask.isEmpty else { return }
         
+//        Меняет видимости кнопки и вью задачи на главном экране
         ViewController.addTaskButton.isHidden = true
-        
         ViewController.taskTimerView.isHidden = false
         
-        
+//        Устанавливает в лейбл задачи ее название
+        ViewController.taskTimeTextLabel.text = newTask
+
+//        Устанавливает название и описание задачи
         task.taskName = newTask
-        
         task.definition = definition.text ?? ""
         
-        ViewController.taskTimeTextLabel.text = newTask
-        
-        self.dismiss(animated: true)
-        
+//        Запускает таймер и устанавливает время начала задачи
         taskTimeManager.startTaskTimer()
-        
         task.addStartTime()
         
+//        Скрывает текущий экран
+        self.dismiss(animated: true)
+
     }
     
 }

@@ -23,6 +23,7 @@ protocol TimeTasksManagement {
     
     func stop()
         
+//    static func startTaskTimer()
     func stopTaskTimer()
         
 //    func endOfDay()
@@ -105,13 +106,17 @@ extension ViewController: TimeTasksManagement {
         workTimeManager.breakTimer.invalidate()
     }
     
-//    Для создания новой задачи
+////    Запускает таймер и устанавливает время начала задачи
+//    static func startTaskTimer() {
+//        taskTimeManager.startTaskTimer()
+//        task.addStartTime()
+//    }
+    
+//    Останавливает таймер и устанавливает время конца задачи
     func stopTaskTimer() {
 
         taskTimeManager.taskTimer.invalidate()
-        
         task.addStopTime()
-        
         
 //        Добавление задачи в массив задач дня
         day.tasks.append(task)
@@ -131,10 +136,9 @@ extension ViewController: TimeTasksManagement {
         ViewController.taskTimeTextLabel.text = "Название"
         ViewController.taskTimeDataLabel.text = "0с"
         
+//        Меняет видимости кнопки и вью задачи на главном экране
         ViewController.addTaskButton.isHidden = false
-        
         ViewController.taskTimerView.isHidden = true
-        
     }
 
     

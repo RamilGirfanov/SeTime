@@ -50,7 +50,7 @@ class TaskViewController: UIViewController {
     
     lazy var startButton: UIButton = {
         lazy var startButton = UIButton()
-        startButton.setTitle("Старт", for: .normal)
+        startButton.setTitle("Добавить", for: .normal)
         startButton.setTitleColor(.black, for: .normal)
         startButton.tintColor = .black
         startButton.backgroundColor = mainColorTheme
