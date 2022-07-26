@@ -13,7 +13,7 @@ import UIKit
 
 protocol TimeTasksManagement {
     
-//    func newDay()
+    func newDay()
         
     func startWorkTimer()
     func startBreakTimer()
@@ -23,7 +23,6 @@ protocol TimeTasksManagement {
     
     func stop()
         
-//    static func startTaskTimer()
     func stopTaskTimer()
         
 //    func endOfDay()
@@ -63,7 +62,6 @@ extension ViewController: TimeTasksManagement {
             } else {
                 totalTimeDataLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
             }
-            
         })
     }
     
@@ -106,15 +104,10 @@ extension ViewController: TimeTasksManagement {
         workTimeManager.breakTimer.invalidate()
     }
     
-////    Запускает таймер и устанавливает время начала задачи
-//    static func startTaskTimer() {
-//        taskTimeManager.startTaskTimer()
-//        task.addStartTime()
-//    }
-    
-//    Останавливает таймер и устанавливает время конца задачи
+//    Остановка таймера задачи
     func stopTaskTimer() {
-
+        
+//        Останавливает таймер задачи и устанавливает время конца задачи
         taskTimeManager.taskTimer.invalidate()
         task.addStopTime()
         

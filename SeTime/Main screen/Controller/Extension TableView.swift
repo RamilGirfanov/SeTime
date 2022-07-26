@@ -29,10 +29,7 @@ extension ViewController: UITableViewDataSource {
         
 //        Для упорядовачивания очередности задач в массиве задач в дне
         cell.pullCell(taskData: day.tasks[indexPath.row])
-        
-//        Для управления таймерами в звдачах
-//        arrayOfCells.append(cell)
-        
+                
         return cell
     }
 }

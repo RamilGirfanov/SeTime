@@ -56,14 +56,6 @@ class ViewController: UIViewController {
         return viewForTimeReview
     }()
     
-//    private lazy var reviewTimeLabel: UILabel = {
-//        lazy var timeTextLabel = UILabel()
-//        timeTextLabel.text = "Обзор времени"
-//        timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
-//        timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return timeTextLabel
-//    }()
-    
     lazy var workTimeTextLabel: UILabel = {
         lazy var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "Время работы"
@@ -173,53 +165,13 @@ class ViewController: UIViewController {
         return stopButton
     }()
     
-//    lazy var reviewTasksLabel: UILabel = {
-//        lazy var reviewTasksLabel = UILabel()
-//        reviewTasksLabel.text = "Обзор задач"
-//        reviewTasksLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
-//        reviewTasksLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return reviewTasksLabel
-//    }()
-
-//    lazy var viewForTextField: UIView = {
-//        lazy var viewForTextField = UIView()
-//        viewForTextField.clipsToBounds = true
-//        viewForTextField.layer.cornerRadius = totalCornerRadius
-//        viewForTextField.layer.borderWidth = 0.5
-//        viewForTextField.layer.borderColor = UIColor.lightGray.cgColor
-//        viewForTextField.translatesAutoresizingMaskIntoConstraints = false
-//        return viewForTextField
-//    }()
-//
-//    lazy var textFieldForTasks: UITextField = {
-//        lazy var textFieldForTasks = UITextField()
-//        textFieldForTasks.placeholder = "Задача"
-//        textFieldForTasks.font = .systemFont(ofSize: textSize4)
-//        textFieldForTasks.backgroundColor = .systemGray6
-//        textFieldForTasks.tintColor = mainColorTheme
-//        textFieldForTasks.borderStyle = .roundedRect
-//        textFieldForTasks.translatesAutoresizingMaskIntoConstraints = false
-//        textFieldForTasks.delegate = self
-//        return textFieldForTasks
-//    }()
-//
-//    lazy var taskButton: UIButton = {
-//        lazy var taskButton = UIButton()
-//        taskButton.setTitle("Старт", for: .normal)
-//        taskButton.setTitleColor(.black, for: .normal)
-//        taskButton.tintColor = .black
-//        taskButton.backgroundColor = mainColorTheme
-//        taskButton.layer.cornerRadius = totalCornerRadius
-//        taskButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-//        taskButton.translatesAutoresizingMaskIntoConstraints = false
-//        return taskButton
-//    }()
-    
     static var addTaskButton: UIButton = {
         lazy var addTaskButton = UIButton()
         addTaskButton.setTitle("Добавить задачу", for: .normal)
         addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
         addTaskButton.backgroundColor = .systemGray6
+        addTaskButton.layer.borderWidth = 0.5
+        addTaskButton.layer.borderColor = UIColor.lightGray.cgColor
         addTaskButton.layer.cornerRadius = totalCornerRadius
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         return addTaskButton
@@ -393,7 +345,7 @@ class ViewController: UIViewController {
             tasksTableView.topAnchor.constraint(equalTo: ViewController.taskTimerView.bottomAnchor, constant: safeIndent2),
             tasksTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             tasksTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent2)
         ])
         
     }

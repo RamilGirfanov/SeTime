@@ -19,5 +19,3 @@ var taskTimeManager = TaskTimeManager()
 var task = Task()
 
 var day = Day()
-
-//var arrayOfCells = [TaskCell]()

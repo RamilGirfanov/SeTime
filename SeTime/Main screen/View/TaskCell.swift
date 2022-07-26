@@ -27,66 +27,8 @@ class TaskCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     //    MARK: - Создание и настройка объектов для кастомизации ячейки
-
-//    private lazy var view: UIView = {
-//        lazy var view = UIView()
-//        view.backgroundColor = .systemGray6
-//        view.layer.cornerRadius = totalCornerRadius
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//
-//    private lazy var taskText: UITextView = {
-//        lazy var taskText = UITextView()
-//        taskText.backgroundColor = .systemGray6
-//        taskText.layer.cornerRadius = totalCornerRadius
-//        taskText.translatesAutoresizingMaskIntoConstraints = false
-//        return taskText
-//    }()
-//
-//    lazy var timeLabel: UILabel = {
-//        lazy var timeLabel = UILabel()
-//        timeLabel.text = "0c"
-//        timeLabel.textAlignment = .center
-//        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return timeLabel
-//    }()
-//
-//    lazy var startButton: UIButton = {
-//        lazy var startButton = UIButton()
-//        startButton.setTitle("Старт", for: .normal)
-//        startButton.setTitleColor(.black, for: .normal)
-//        startButton.backgroundColor = mainColorTheme
-//        startButton.layer.cornerRadius = totalCornerRadius
-//        startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-//        startButton.translatesAutoresizingMaskIntoConstraints = false
-//        startButton.addTarget(self, action: #selector(startTap), for: .touchUpInside)
-//        return startButton
-//    }()
-//
-//    @objc func startTap() {
-//        startTaskTimer()
-//        pauseButton.isHidden = false
-//    }
-//
-//    lazy var pauseButton: UIButton = {
-//        lazy var pauseButton = UIButton()
-//        pauseButton.setTitle("Стоп", for: .normal)
-//        pauseButton.setTitleColor(.black, for: .normal)
-//        pauseButton.backgroundColor = mainColorTheme
-//        pauseButton.layer.cornerRadius = totalCornerRadius
-//        pauseButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-//        pauseButton.isHidden = true
-//        pauseButton.translatesAutoresizingMaskIntoConstraints = false
-//        pauseButton.addTarget(self, action: #selector(pauseTap), for: .touchUpInside)
-//        return pauseButton
-//    }()
-//
-//    @objc func pauseTap() {
-//        stopTaskTimer()
-//    }
-
     
     lazy var taskName: UILabel = {
         lazy var taskName = UILabel()
@@ -139,6 +81,7 @@ class TaskCell: UITableViewCell {
         
     }
         
+    
     //    MARK: - Заполнение ячеек данными
     
     func pullCell(taskData: Task) {
@@ -156,12 +99,4 @@ class TaskCell: UITableViewCell {
 
     }
     
-////    MARK: - Для работы со временем задачи
-//
-////    Для обращения в массив с задачами в дне
-//    lazy var numberOfCell = 0
-//
-//    lazy var taskTimer = Timer()
-//    lazy var taskTime = 0
-//
 }

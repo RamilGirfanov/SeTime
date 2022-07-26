@@ -37,6 +37,26 @@ class TaskViewController: UIViewController {
         return taskName
     }()
     
+        lazy var viewForTextFieldTaskName: UIView = {
+            lazy var viewForTextFieldTaskName = UIView()
+            viewForTextFieldTaskName.clipsToBounds = true
+            viewForTextFieldTaskName.layer.cornerRadius = totalCornerRadius
+            viewForTextFieldTaskName.layer.borderWidth = 0.5
+            viewForTextFieldTaskName.layer.borderColor = UIColor.lightGray.cgColor
+            viewForTextFieldTaskName.translatesAutoresizingMaskIntoConstraints = false
+            return viewForTextFieldTaskName
+        }()
+    
+    lazy var viewForTextFieldTaskDefinition: UIView = {
+        lazy var viewForTextFieldTaskDefinition = UIView()
+        viewForTextFieldTaskDefinition.clipsToBounds = true
+        viewForTextFieldTaskDefinition.layer.cornerRadius = totalCornerRadius
+        viewForTextFieldTaskDefinition.layer.borderWidth = 0.5
+        viewForTextFieldTaskDefinition.layer.borderColor = UIColor.lightGray.cgColor
+        viewForTextFieldTaskDefinition.translatesAutoresizingMaskIntoConstraints = false
+        return viewForTextFieldTaskDefinition
+    }()
+    
     lazy var definition: UITextField = {
         lazy var definition = UITextField ()
         definition.placeholder = "Описание"
@@ -63,7 +83,9 @@ class TaskViewController: UIViewController {
     //    MARK: - Layout
     
     private func layout() {
-        [taskLabel, taskName, definition, startButton].forEach { view.addSubview($0) }
+        [taskLabel, viewForTextFieldTaskName, viewForTextFieldTaskDefinition, startButton].forEach { view.addSubview($0) }
+        viewForTextFieldTaskName.addSubview(taskName)
+        viewForTextFieldTaskDefinition.addSubview(definition)
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -71,18 +93,28 @@ class TaskViewController: UIViewController {
         NSLayoutConstraint.activate([
             taskLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             taskLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-                     
-            taskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
-            taskName.topAnchor.constraint(equalTo: taskLabel.bottomAnchor, constant: safeIndent2),
-            taskName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            taskName.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+             
+            viewForTextFieldTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
+            viewForTextFieldTaskName.topAnchor.constraint(equalTo: taskLabel.bottomAnchor, constant: safeIndent2),
+            viewForTextFieldTaskName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            viewForTextFieldTaskName.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            definition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 3),
-            definition.topAnchor.constraint(equalTo: taskName.bottomAnchor, constant: safeIndent2),
-            definition.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            definition.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            viewForTextFieldTaskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 3),
+            viewForTextFieldTaskDefinition.topAnchor.constraint(equalTo: taskName.bottomAnchor, constant: safeIndent2),
+            viewForTextFieldTaskDefinition.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            viewForTextFieldTaskDefinition.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            startButton.topAnchor.constraint(equalTo: definition.bottomAnchor, constant: safeIndent2),
+            taskName.topAnchor.constraint(equalTo: viewForTextFieldTaskName.topAnchor),
+            taskName.leadingAnchor.constraint(equalTo: viewForTextFieldTaskName.leadingAnchor),
+            taskName.trailingAnchor.constraint(equalTo: viewForTextFieldTaskName.trailingAnchor),
+            taskName.bottomAnchor.constraint(equalTo: viewForTextFieldTaskName.bottomAnchor),
+            
+            definition.topAnchor.constraint(equalTo: viewForTextFieldTaskDefinition.topAnchor),
+            definition.leadingAnchor.constraint(equalTo: viewForTextFieldTaskDefinition.leadingAnchor),
+            definition.trailingAnchor.constraint(equalTo: viewForTextFieldTaskDefinition.trailingAnchor),
+            definition.bottomAnchor.constraint(equalTo: viewForTextFieldTaskDefinition.bottomAnchor),
+            
+            startButton.topAnchor.constraint(equalTo: viewForTextFieldTaskDefinition.bottomAnchor, constant: safeIndent2),
             startButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             startButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             startButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)

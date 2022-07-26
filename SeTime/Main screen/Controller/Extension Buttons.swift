@@ -19,20 +19,20 @@ extension ViewController {
         stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
     }
     
-//    Запускает таймер работы и опционально таймер задачи
+//    Запускает таймер работы, останавливает таймер перерывов
     @objc func tapForWork() {
         startWorkTimer()
         pauseBreakTimer()
         
         workButton.isHidden = true
         breakButton.isHidden = false
-                
-        startTaskButton.isEnabled = true
-
+        
         ViewController.addTaskButton.isEnabled = true
+
+        startTaskButton.isEnabled = true
     }
     
-//    Запускает таймер перерывов, в том числе для всех задач
+//    Запускает таймер перерывов, в том числе для задачи
     @objc func tapForBreak() {
         pauseWorkTimer()
         startBreakTimer()
@@ -40,12 +40,12 @@ extension ViewController {
         workButton.isHidden = false
         breakButton.isHidden = true
         
+        ViewController.addTaskButton.isEnabled = false
+
         taskTimeManager.taskTimer.invalidate()
         startTaskButton.isHidden = false
         startTaskButton.isEnabled = false
         stopTaskButton.isHidden = true
-        
-        ViewController.addTaskButton.isEnabled = false
     }
     
 //    Останавливает все таймеры, в том числе для задачи
@@ -55,20 +55,23 @@ extension ViewController {
         workButton.isHidden = false
         breakButton.isHidden = true
         
+        ViewController.addTaskButton.isEnabled = false
+        
+//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
         if task.startTime.isEmpty == false {
             stopTaskTimer()
         }
         
-        ViewController.addTaskButton.isEnabled = false
     }
     
+//    Запускает таймер задачи
     @objc func startTask() {
         taskTimeManager.startTaskTimer()
         startTaskButton.isHidden = true
         stopTaskButton.isHidden = false
     }
     
-//    Переносит задачу в таблицу
+//    Останавливает таймер задачи и переносит задачу в таблицу
     @objc func stopTask() {
         stopTaskTimer()
     }
