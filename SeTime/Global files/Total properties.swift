@@ -9,7 +9,7 @@ import UIKit
 
 let mainColorTheme: UIColor = .systemYellow
 
-let totalCornerRadius: CGFloat = 10
+let totalCornerRadius: CGFloat = 12
 
 let totalHeightForTappedUIobjects: CGFloat = 34
 

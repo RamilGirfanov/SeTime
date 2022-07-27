@@ -99,21 +99,4 @@ class TaskCell: UITableViewCell {
 
     }
     
-//    func pullCellHistoryData(date: String, numberOfTask: Int) {
-//        taskName.text = archiveOfDays[date]?.tasks[numberOfTask].taskName
-//        
-//        guard let time = archiveOfDays[date]?.tasks[numberOfTask].duration else { return }
-//        
-//        if time < 60 {
-//            taskDuration.text = "\(time)с"
-//        } else if time < 3600 {
-//            taskDuration.text = "\(time / 60)м \(time % 60)с"
-//        } else {
-//            taskDuration.text = "\(time / 3600)ч \((time % 3600) / 60)м"
-//        }
-//        
-//        taskStartAndStop.text = "\(archiveOfDays[date]?.tasks[numberOfTask].startTime) - \(archiveOfDays[date]?.tasks[numberOfTask].stopTime)"
-//
-//    }
-    
 }
