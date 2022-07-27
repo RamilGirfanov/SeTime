@@ -301,7 +301,6 @@ class ViewController: UIViewController {
             stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
             
             workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-//            workButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons),
             workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
             workButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             workButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
@@ -312,7 +311,6 @@ class ViewController: UIViewController {
             breakButton.bottomAnchor.constraint(equalTo: workButton.bottomAnchor),
             
             stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-//            stopButton.widthAnchor.constraint(equalToConstant: totalWidthForTasksButtons),
             stopButton.topAnchor.constraint(equalTo: workButton.bottomAnchor, constant: safeIndent2),
             stopButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),

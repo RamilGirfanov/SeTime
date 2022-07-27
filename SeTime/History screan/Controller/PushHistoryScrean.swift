@@ -1,5 +1,5 @@
 //
-//  Extension Button.swift
+//  PushHistoryScrean.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 02.07.2022.
@@ -26,12 +26,10 @@ extension DatePickerViewController {
         lazy var mm = calendar.component(.month, from: datePicker.date)
         lazy var dd = calendar.component(.day, from: datePicker.date)
 
-        chosenDate = "\(yyyy)-\(mm)-\(dd)"
-        
-        print("Выбранная дата:", chosenDate)
-        
+        chosenDate = "\(dd)-\(mm)-\(yyyy)"
+                
         lazy var historyVC = HistoryScreanViewController()
-        historyVC.title = chosenDate
+        historyVC.historyLabel.text = chosenDate
         present(historyVC, animated: true)
     }
 }

@@ -1,17 +1,15 @@
 //
-//  Extension for TableView.swift
+//  Exstension HistoryTableView.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 19.06.2022.
+//  Created by Рамиль Гирфанов on 27.07.2022.
 //
-
-/// В этом файле: расширяется ViewController для UITableView
 
 import UIKit
 
 //    MARK: - Расширение UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+extension HistoryScreanViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -36,7 +34,7 @@ extension ViewController: UITableViewDataSource {
 
 //    MARK: - Расширение UITableViewDelegate
 
-extension ViewController: UITableViewDelegate {
+extension HistoryScreanViewController: UITableViewDelegate {
     //    Возвращает динамическую высоту ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension

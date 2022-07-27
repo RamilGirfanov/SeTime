@@ -64,7 +64,6 @@ class DatePickerViewController: UIViewController {
             datePicker.topAnchor.constraint(equalTo: calendarLabel.bottomAnchor, constant: safeIndent2),
             datePicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-//            ЗАДАТЬ ВЫСОТУ
             
             showButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: safeIndent1),
             showButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),

@@ -25,7 +25,7 @@ struct Day {
         let mm = calendar.component(.month, from: todayDate)
         let dd = calendar.component(.day, from: todayDate)
         
-        lazy var dayDate = "\(yyyy)-\(mm)-\(dd)"
+        lazy var dayDate = "\(dd)-\(mm)-\(yyyy)"
         return dayDate
     }()
 
