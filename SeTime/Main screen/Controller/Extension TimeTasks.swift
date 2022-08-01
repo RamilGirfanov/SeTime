@@ -47,21 +47,76 @@ extension ViewController: TimeTasksManagement {
         workTimeManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
             day.workTime += 1
             
-            if day.workTime < 60 {
-                workTimeDataLabel.text = "\(day.workTime)с"
-            } else if day.workTime < 3600 {
-                workTimeDataLabel.text = "\(day.workTime / 60)м \(day.workTime % 60)с"
-            } else {
-                workTimeDataLabel.text = "\(day.workTime / 3600)ч \((day.workTime % 3600) / 60)м"
+            lazy var workSeconds = day.workTime % 60
+            lazy var workMinutes = day.workTime / 60 % 60
+            lazy var workHours = day.workTime / 3600
+
+            lazy var fullWorkTime: [String] = []
+            
+            switch workHours {
+            case 1...9:
+                fullWorkTime.append("0\(workHours)ч")
+            case 10...24:
+                fullWorkTime.append("\(workHours)ч")
+            default:
+                fullWorkTime.append("")
             }
             
-            if day.totalTime < 60 {
-                totalTimeDataLabel.text = "\(day.totalTime)с"
-            } else if day.totalTime < 3600 {
-                totalTimeDataLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
-            } else {
-                totalTimeDataLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
+            switch workMinutes {
+            case 1...9:
+                fullWorkTime.append("0\(workMinutes)м")
+            case 10...59:
+                fullWorkTime.append("\(workMinutes)м")
+            default:
+                fullWorkTime.append("")
             }
+            
+            switch workSeconds {
+            case 1...9:
+                fullWorkTime.append("0\(workSeconds)с")
+            case 10...59:
+                fullWorkTime.append("\(workSeconds)с")
+            default:
+                fullWorkTime.append("")
+            }
+            
+            workTimeDataLabel.text = fullWorkTime.joined(separator: " ")
+            
+            
+            lazy var totalSeconds = day.totalTime % 60
+            lazy var totalMinutes = day.totalTime / 60 % 60
+            lazy var totalHours = day.totalTime / 3600
+
+            lazy var fullTotalTime: [String] = []
+            
+            switch totalHours {
+            case 1...9:
+                fullTotalTime.append("0\(totalHours)ч")
+            case 10...24:
+                fullTotalTime.append("\(totalHours)ч")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            switch totalMinutes {
+            case 1...9:
+                fullTotalTime.append("0\(totalMinutes)м")
+            case 10...59:
+                fullTotalTime.append("\(totalMinutes)м")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            switch totalSeconds {
+            case 1...9:
+                fullTotalTime.append("0\(totalSeconds)с")
+            case 10...59:
+                fullTotalTime.append("\(totalSeconds)с")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            totalTimeDataLabel.text = fullTotalTime.joined(separator: " ")
         })
     }
     
@@ -69,23 +124,80 @@ extension ViewController: TimeTasksManagement {
     func startBreakTimer() {
         workTimeManager.breakTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] _ in
             day.breakTime += 1
+          
+            lazy var breakSeconds = day.breakTime % 60
+            lazy var breakMinutes = day.breakTime / 60 % 60
+            lazy var breakHours = day.breakTime / 3600
+
+            lazy var fullBreakTime: [String] = []
             
-            if day.breakTime < 60 {
-                breakTimeDataLabel.text = "\(day.breakTime)с"
-            } else if day.breakTime < 3600 {
-                breakTimeDataLabel.text = "\(day.breakTime / 60)м \(day.breakTime % 60)с"
-            } else {
-                breakTimeDataLabel.text = "\(day.breakTime / 3600)ч \((day.breakTime % 3600) / 60)м"
+            switch breakHours {
+            case 1...9:
+                fullBreakTime.append("0\(breakHours)ч")
+            case 10...24:
+                fullBreakTime.append("\(breakHours)ч")
+            default:
+                fullBreakTime.append("")
             }
             
-            if day.totalTime < 60 {
-                totalTimeDataLabel.text = "\(day.totalTime)с"
-            } else if day.totalTime < 3600 {
-                totalTimeDataLabel.text = "\(day.totalTime / 60)м \(day.totalTime % 60)с"
-            } else {
-                totalTimeDataLabel.text = "\(day.totalTime / 3600)ч \((day.totalTime % 3600) / 60)м"
+            switch breakMinutes {
+            case 1...9:
+                fullBreakTime.append("0\(breakMinutes)м")
+            case 10...59:
+                fullBreakTime.append("\(breakMinutes)м")
+            default:
+                fullBreakTime.append("")
             }
+            
+            switch breakSeconds {
+            case 1...9:
+                fullBreakTime.append("0\(breakSeconds)с")
+            case 10...59:
+                fullBreakTime.append("\(breakSeconds)с")
+            default:
+                fullBreakTime.append("")
+            }
+            
+            workTimeDataLabel.text = fullBreakTime.joined(separator: " ")
+            
+            
+            lazy var totalSeconds = day.totalTime % 60
+            lazy var totalMinutes = day.totalTime / 60 % 60
+            lazy var totalHours = day.totalTime / 3600
+
+            lazy var fullTotalTime: [String] = []
+            
+            switch totalHours {
+            case 1...9:
+                fullTotalTime.append("0\(totalHours)ч")
+            case 10...24:
+                fullTotalTime.append("\(totalHours)ч")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            switch totalMinutes {
+            case 1...9:
+                fullTotalTime.append("0\(totalMinutes)м")
+            case 10...59:
+                fullTotalTime.append("\(totalMinutes)м")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            switch totalSeconds {
+            case 1...9:
+                fullTotalTime.append("0\(totalSeconds)с")
+            case 10...59:
+                fullTotalTime.append("\(totalSeconds)с")
+            default:
+                fullTotalTime.append("")
+            }
+            
+            totalTimeDataLabel.text = fullTotalTime.joined(separator: " ")
         })
+        RunLoop.current.add(workTimeManager.breakTimer, forMode: .common)
+        workTimeManager.breakTimer.tolerance = 0.1
     }
     
 //    Пауза для таймера работы

@@ -24,10 +24,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="10j-ZZ-rqy"/>
-                            <constraint firstAttribute="bottom" secondItem="DIZ-xp-9R9" secondAttribute="bottom" id="GiF-bO-ZSd"/>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="HNf-am-lbv"/>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ehp-K8-aWX"/>
+                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="KGO-H5-pd4"/>
+                            <constraint firstAttribute="bottom" secondItem="DIZ-xp-9R9" secondAttribute="bottom" id="NJB-uo-F1f"/>
+                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dXK-Xl-pbg"/>
+                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="m50-fB-BJv"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreenImage" width="1455" height="2160"/>
+        <image name="LaunchScreenImage" width="5175" height="9200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
