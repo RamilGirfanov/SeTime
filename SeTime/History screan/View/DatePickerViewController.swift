@@ -31,7 +31,7 @@ class DatePickerViewController: UIViewController {
         lazy var datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
-        datePicker.tintColor = mainColorTheme
+//        datePicker.tintColor = mainColorTheme
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         return datePicker
     }()

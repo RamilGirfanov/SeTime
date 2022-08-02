@@ -87,27 +87,27 @@ extension ViewController: TimeTasksManagement {
             
             switch workHours {
             case 1...9:
-                fullWorkTime.append("0\(workHours)ч")
+                fullWorkTime.append("0\(workHours)")
             case 10...24:
-                fullWorkTime.append("\(workHours)ч")
+                fullWorkTime.append("\(workHours)")
             default:
                 fullWorkTime.append("00")
             }
             
             switch workMinutes {
             case 1...9:
-                fullWorkTime.append("0\(workMinutes)м")
+                fullWorkTime.append("0\(workMinutes)")
             case 10...59:
-                fullWorkTime.append("\(workMinutes)м")
+                fullWorkTime.append("\(workMinutes)")
             default:
                 fullWorkTime.append("00")
             }
             
             switch workSeconds {
             case 1...9:
-                fullWorkTime.append("0\(workSeconds)с")
+                fullWorkTime.append("0\(workSeconds)")
             case 10...59:
-                fullWorkTime.append("\(workSeconds)с")
+                fullWorkTime.append("\(workSeconds)")
             default:
                 fullWorkTime.append("00")
             }
@@ -123,27 +123,27 @@ extension ViewController: TimeTasksManagement {
             
             switch totalHours {
             case 1...9:
-                fullTotalTime.append("0\(totalHours)ч")
+                fullTotalTime.append("0\(totalHours)")
             case 10...24:
-                fullTotalTime.append("\(totalHours)ч")
+                fullTotalTime.append("\(totalHours)")
             default:
                 fullTotalTime.append("00")
             }
             
             switch totalMinutes {
             case 1...9:
-                fullTotalTime.append("0\(totalMinutes)м")
+                fullTotalTime.append("0\(totalMinutes)")
             case 10...59:
-                fullTotalTime.append("\(totalMinutes)м")
+                fullTotalTime.append("\(totalMinutes)")
             default:
                 fullTotalTime.append("00")
             }
             
             switch totalSeconds {
             case 1...9:
-                fullTotalTime.append("0\(totalSeconds)с")
+                fullTotalTime.append("0\(totalSeconds)")
             case 10...59:
-                fullTotalTime.append("\(totalSeconds)с")
+                fullTotalTime.append("\(totalSeconds)")
             default:
                 fullTotalTime.append("00")
             }
@@ -167,27 +167,27 @@ extension ViewController: TimeTasksManagement {
             
             switch breakHours {
             case 1...9:
-                fullBreakTime.append("0\(breakHours)ч")
+                fullBreakTime.append("0\(breakHours)")
             case 10...24:
-                fullBreakTime.append("\(breakHours)ч")
+                fullBreakTime.append("\(breakHours)")
             default:
                 fullBreakTime.append("00")
             }
             
             switch breakMinutes {
             case 1...9:
-                fullBreakTime.append("0\(breakMinutes)м")
+                fullBreakTime.append("0\(breakMinutes)")
             case 10...59:
-                fullBreakTime.append("\(breakMinutes)м")
+                fullBreakTime.append("\(breakMinutes)")
             default:
                 fullBreakTime.append("00")
             }
             
             switch breakSeconds {
             case 1...9:
-                fullBreakTime.append("0\(breakSeconds)с")
+                fullBreakTime.append("0\(breakSeconds)")
             case 10...59:
-                fullBreakTime.append("\(breakSeconds)с")
+                fullBreakTime.append("\(breakSeconds)")
             default:
                 fullBreakTime.append("00")
             }
@@ -203,27 +203,27 @@ extension ViewController: TimeTasksManagement {
             
             switch totalHours {
             case 1...9:
-                fullTotalTime.append("0\(totalHours)ч")
+                fullTotalTime.append("0\(totalHours)")
             case 10...24:
-                fullTotalTime.append("\(totalHours)ч")
+                fullTotalTime.append("\(totalHours)")
             default:
                 fullTotalTime.append("00")
             }
             
             switch totalMinutes {
             case 1...9:
-                fullTotalTime.append("0\(totalMinutes)м")
+                fullTotalTime.append("0\(totalMinutes)")
             case 10...59:
-                fullTotalTime.append("\(totalMinutes)м")
+                fullTotalTime.append("\(totalMinutes)")
             default:
                 fullTotalTime.append("00")
             }
             
             switch totalSeconds {
             case 1...9:
-                fullTotalTime.append("0\(totalSeconds)с")
+                fullTotalTime.append("0\(totalSeconds)")
             case 10...59:
-                fullTotalTime.append("\(totalSeconds)с")
+                fullTotalTime.append("\(totalSeconds)")
             default:
                 fullTotalTime.append("00")
             }

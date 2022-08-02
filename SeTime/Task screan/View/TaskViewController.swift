@@ -31,7 +31,7 @@ class TaskViewController: UIViewController {
         taskName.placeholder = "Название"
         taskName.font = .systemFont(ofSize: textSize4)
         taskName.backgroundColor = .systemGray6
-        taskName.tintColor = mainColorTheme
+//        taskName.tintColor = mainColorTheme
         taskName.borderStyle = .roundedRect
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
@@ -62,7 +62,7 @@ class TaskViewController: UIViewController {
         definition.placeholder = "Описание"
         definition.font = .systemFont(ofSize: textSize4)
         definition.backgroundColor = .systemGray6
-        definition.tintColor = mainColorTheme
+//        definition.tintColor = mainColorTheme
         definition.borderStyle = .roundedRect
         definition.translatesAutoresizingMaskIntoConstraints = false
         return definition
