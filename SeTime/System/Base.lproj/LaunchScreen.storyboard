@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="DIZ-xp-9R9">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="ZQN-OU-72e">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="KGO-H5-pd4"/>
-                            <constraint firstAttribute="bottom" secondItem="DIZ-xp-9R9" secondAttribute="bottom" id="NJB-uo-F1f"/>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dXK-Xl-pbg"/>
-                            <constraint firstItem="DIZ-xp-9R9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="m50-fB-BJv"/>
+                            <constraint firstItem="ZQN-OU-72e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Hk-Rp-3kf"/>
+                            <constraint firstItem="ZQN-OU-72e" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AAW-rt-Nxr"/>
+                            <constraint firstItem="ZQN-OU-72e" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Mjg-D2-VtE"/>
+                            <constraint firstAttribute="bottom" secondItem="ZQN-OU-72e" secondAttribute="bottom" id="XY1-zr-hS0"/>
                         </constraints>
                     </view>
                 </viewController>

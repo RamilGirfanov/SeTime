@@ -24,10 +24,22 @@ struct Task {
         let todayDate = Date()
         
         // Извлечение компонентов из сегодняшней даты при помощи Calendar
-        let hh = calendar.component(.hour, from: todayDate)
-        let mm = calendar.component(.minute, from: todayDate)
+        lazy var time: [String] = []
+
+        if calendar.component(.hour, from: todayDate) < 10 {
+            time.append("0\(calendar.component(.hour, from: todayDate))")
+        } else {
+            time.append("\(calendar.component(.hour, from: todayDate))")
+        }
         
-        startTime = "\(hh):\(mm)"
+        if calendar.component(.minute, from: todayDate) < 10 {
+            time.append("0\(calendar.component(.minute, from: todayDate))")
+        } else {
+            time.append("\(calendar.component(.minute, from: todayDate))")
+        }
+        
+        startTime = time.joined(separator: ":")
+        
     }
     
     mutating func addStopTime() {
@@ -38,10 +50,22 @@ struct Task {
         let todayDate = Date()
         
         // Извлечение компонентов из сегодняшней даты при помощи Calendar
-        let hh = calendar.component(.hour, from: todayDate)
-        let mm = calendar.component(.minute, from: todayDate)
+        lazy var time: [String] = []
+
+        if calendar.component(.hour, from: todayDate) < 10 {
+            time.append("0\(calendar.component(.hour, from: todayDate))")
+        } else {
+            time.append("\(calendar.component(.hour, from: todayDate))")
+        }
         
-        stopTime = "\(hh):\(mm)"
+        if calendar.component(.minute, from: todayDate) < 10 {
+            time.append("0\(calendar.component(.minute, from: todayDate))")
+        } else {
+            time.append("\(calendar.component(.minute, from: todayDate))")
+        }
+        
+        stopTime = time.joined(separator: ":")
+        
     }
     
 }

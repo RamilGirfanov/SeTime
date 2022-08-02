@@ -22,11 +22,24 @@ extension DatePickerViewController {
         lazy var calendar = Calendar.current
 
         // Извлечение компонентов из выбранной даты при помощи Calendar
-        lazy var yyyy = calendar.component(.year, from: datePicker.date)
-        lazy var mm = calendar.component(.month, from: datePicker.date)
-        lazy var dd = calendar.component(.day, from: datePicker.date)
-
-        chosenDate = "\(dd)-\(mm)-\(yyyy)"
+        
+        lazy var date: [String] = []
+        
+        if calendar.component(.day, from: datePicker.date) < 10 {
+            date.append("0\(calendar.component(.day, from: datePicker.date))")
+        } else {
+            date.append("\(calendar.component(.day, from: datePicker.date))")
+        }
+        
+        if calendar.component(.month, from: datePicker.date) < 10 {
+            date.append("0\(calendar.component(.month, from: datePicker.date))")
+        } else {
+            date.append("\(calendar.component(.month, from: datePicker.date))")
+        }
+        
+        date.append("\(calendar.component(.year, from: datePicker.date))")
+        
+        chosenDate = date.joined(separator: ".")
                 
         lazy var historyVC = HistoryScreanViewController()
         historyVC.historyLabel.text = chosenDate

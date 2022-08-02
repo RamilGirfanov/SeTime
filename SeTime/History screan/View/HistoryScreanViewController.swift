@@ -48,7 +48,7 @@ class HistoryScreanViewController: UIViewController {
     
     lazy var workTimeDataLabel: UILabel = {
         lazy var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "0c"
+        workTimeTextLabel.text = "-"
         workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
         workTimeTextLabel.textAlignment = .center
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ class HistoryScreanViewController: UIViewController {
     
     lazy var totalTimeDataLabel: UILabel = {
         lazy var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "0с"
+        totalTimeDataLabel.text = "-"
         totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeDataLabel.textAlignment = .center
         totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +102,7 @@ class HistoryScreanViewController: UIViewController {
     
     lazy var breakTimeDataLabel: UILabel = {
         lazy var breakTimeDataLabel = UILabel()
-        breakTimeDataLabel.text = "0с"
+        breakTimeDataLabel.text = "-"
         breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         breakTimeDataLabel.textAlignment = .center
         breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false

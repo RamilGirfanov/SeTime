@@ -24,44 +24,34 @@ class TaskTimeManager {
             
             switch taskHours {
             case 1...9:
-                fullTaskTime.append("0\(taskHours)ч")
+                fullTaskTime.append("0\(taskHours)")
             case 10...24:
-                fullTaskTime.append("\(taskHours)ч")
+                fullTaskTime.append("\(taskHours)")
             default:
-                fullTaskTime.append("")
+                fullTaskTime.append("00")
             }
             
             switch taskMinutes {
             case 1...9:
-                fullTaskTime.append("0\(taskMinutes)м")
+                fullTaskTime.append("0\(taskMinutes)")
             case 10...59:
-                fullTaskTime.append("\(taskMinutes)м")
+                fullTaskTime.append("\(taskMinutes)")
             default:
-                fullTaskTime.append("")
+                fullTaskTime.append("00")
             }
             
             switch taskSeconds {
             case 1...9:
-                fullTaskTime.append("0\(taskSeconds)с")
+                fullTaskTime.append("0\(taskSeconds)")
             case 10...59:
-                fullTaskTime.append("\(taskSeconds)с")
+                fullTaskTime.append("\(taskSeconds)")
             default:
-                fullTaskTime.append("")
+                fullTaskTime.append("00")
             }
             
-            ViewController.taskTimeDataLabel.text = fullTaskTime.joined(separator: " ")
-            
-//            if task.duration < 60 {
-//                ViewController.taskTimeDataLabel.text = "\(task.duration)с"
-//            } else if task.duration < 3600 {
-//                ViewController.taskTimeDataLabel.text = "\(task.duration / 60)м \(task.duration % 60)с"
-//            } else {
-//                ViewController.taskTimeDataLabel.text = "\(task.duration / 3600)ч \((task.duration % 3600) / 60)м"
-//            }
-            
+            ViewController.taskTimeDataLabel.text = fullTaskTime.joined(separator: ":")
+                        
         })
-        RunLoop.current.add(taskTimer, forMode: .common)
-        taskTimer.tolerance = 0.1
     }
     
     func pauseTaskTimer() {

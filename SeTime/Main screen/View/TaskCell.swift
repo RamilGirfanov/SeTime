@@ -87,13 +87,40 @@ class TaskCell: UITableViewCell {
     func pullCell(taskData: Task) {
         taskName.text = taskData.taskName
         
-        if taskData.duration < 60 {
-            taskDuration.text = "\(taskData.duration)с"
-        } else if taskData.duration < 3600 {
-            taskDuration.text = "\(taskData.duration / 60)м \(taskData.duration % 60)с"
-        } else {
-            taskDuration.text = "\(taskData.duration / 3600)ч \((taskData.duration % 3600) / 60)м"
+        lazy var taskSeconds = taskData.duration % 60
+        lazy var taskMinutes = taskData.duration / 60 % 60
+        lazy var taskHours = taskData.duration / 3600
+
+        lazy var fullTaskTime: [String] = []
+        
+        switch taskHours {
+        case 1...9:
+            fullTaskTime.append("0\(taskHours)")
+        case 10...24:
+            fullTaskTime.append("\(taskHours)")
+        default:
+            fullTaskTime.append("00")
         }
+        
+        switch taskMinutes {
+        case 1...9:
+            fullTaskTime.append("0\(taskMinutes)")
+        case 10...59:
+            fullTaskTime.append("\(taskMinutes)")
+        default:
+            fullTaskTime.append("00")
+        }
+        
+        switch taskSeconds {
+        case 1...9:
+            fullTaskTime.append("0\(taskSeconds)")
+        case 10...59:
+            fullTaskTime.append("\(taskSeconds)")
+        default:
+            fullTaskTime.append("00")
+        }
+        
+        taskDuration.text = fullTaskTime.joined(separator: ":")
         
         taskStartAndStop.text = "\(taskData.startTime) - \(taskData.stopTime)"
 

@@ -11,6 +11,7 @@
 		746751A5286FFB9E004F6647 /* Extension Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A4286FFB9E004F6647 /* Extension Buttons.swift */; };
 		746751A7286FFCEA004F6647 /* PushHistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A6286FFCEA004F6647 /* PushHistoryScrean.swift */; };
 		746751A9286FFEEB004F6647 /* Objects of model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A8286FFEEB004F6647 /* Objects of model.swift */; };
+		74C504A8289773020085CDDB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C504A7289773020085CDDB /* Date.swift */; };
 		74E79069288AF0C8000BAC0B /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79068288AF0C8000BAC0B /* TaskViewController.swift */; };
 		74E7906B288D791F000BAC0B /* PushTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7906A288D791F000BAC0B /* PushTaskView.swift */; };
 		74E79070288E6841000BAC0B /* Extension Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7906F288E6841000BAC0B /* Extension Tasks.swift */; };
@@ -49,6 +50,7 @@
 		746751A8286FFEEB004F6647 /* Objects of model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Objects of model.swift"; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AC63EB2843C6EC00CAE0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C504A7289773020085CDDB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		74E79068288AF0C8000BAC0B /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		74E7906A288D791F000BAC0B /* PushTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTaskView.swift; sourceTree = "<group>"; };
 		74E7906F288E6841000BAC0B /* Extension Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension Tasks.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				74ED60BD286593E50008B57C /* Total properties.swift */,
 				74ED60BF286593E50008B57C /* Identifier.swift */,
 				74ED60DD286594FA0008B57C /* Archive.swift */,
+				74C504A7289773020085CDDB /* Date.swift */,
 			);
 			path = "Global files";
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				74ED60E2286599750008B57C /* CalendarViewController.swift in Sources */,
 				74E7906B288D791F000BAC0B /* PushTaskView.swift in Sources */,
 				74E79072288E6C6E000BAC0B /* TaskTimeManager.swift in Sources */,
+				74C504A8289773020085CDDB /* Date.swift in Sources */,
 				74ED60D0286594E00008B57C /* Day.swift in Sources */,
 				74ED60CA286594370008B57C /* ViewController.swift in Sources */,
 				74ED60C4286593E50008B57C /* Total properties.swift in Sources */,
