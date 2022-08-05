@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    func setupPushTaskScrean() {
+    func pushTaskScrean() {
         ViewController.addTaskButton.addTarget(self, action: #selector(tapForTask), for: .touchUpInside)
     }
  

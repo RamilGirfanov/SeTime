@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         self.setupToHideKeyboardOnTapOnView()
         
-        setupPushTaskScrean()
+        pushTaskScrean()
         
         navigationItem.largeTitleDisplayMode = .automatic
         makeBarButtonItem()

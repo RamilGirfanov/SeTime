@@ -25,7 +25,8 @@ extension HistoryScreanViewController: UITableViewDataSource {
         lazy var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         cell.backgroundColor = .clear
         
-        cell.pullCell(taskData: day.tasks[indexPath.row])
+        guard let taskData = archiveOfDays[chosenDate]?.tasks[indexPath.row] else { return cell }
+        cell.pullCell(taskData: taskData)
                 
         return cell
     }
