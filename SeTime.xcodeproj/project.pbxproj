@@ -280,8 +280,8 @@
 		74ED60EC286D34AC0008B57C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
 				74ED60ED286D350C0008B57C /* DatePickerViewController.swift */,
+				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

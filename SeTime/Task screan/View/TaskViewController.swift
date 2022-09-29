@@ -31,21 +31,21 @@ class TaskViewController: UIViewController {
         taskName.placeholder = "Название"
         taskName.font = .systemFont(ofSize: textSize4)
         taskName.backgroundColor = .systemGray6
-//        taskName.tintColor = mainColorTheme
+        //        taskName.tintColor = mainColorTheme
         taskName.borderStyle = .roundedRect
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
     }()
     
-        lazy var viewForTextFieldTaskName: UIView = {
-            lazy var viewForTextFieldTaskName = UIView()
-            viewForTextFieldTaskName.clipsToBounds = true
-            viewForTextFieldTaskName.layer.cornerRadius = totalCornerRadius
-            viewForTextFieldTaskName.layer.borderWidth = 0.5
-            viewForTextFieldTaskName.layer.borderColor = UIColor.lightGray.cgColor
-            viewForTextFieldTaskName.translatesAutoresizingMaskIntoConstraints = false
-            return viewForTextFieldTaskName
-        }()
+    lazy var viewForTextFieldTaskName: UIView = {
+        lazy var viewForTextFieldTaskName = UIView()
+        viewForTextFieldTaskName.clipsToBounds = true
+        viewForTextFieldTaskName.layer.cornerRadius = totalCornerRadius
+        viewForTextFieldTaskName.layer.borderWidth = 0.5
+        viewForTextFieldTaskName.layer.borderColor = UIColor.lightGray.cgColor
+        viewForTextFieldTaskName.translatesAutoresizingMaskIntoConstraints = false
+        return viewForTextFieldTaskName
+    }()
     
     lazy var viewForTextFieldTaskDefinition: UIView = {
         lazy var viewForTextFieldTaskDefinition = UIView()
@@ -71,12 +71,8 @@ class TaskViewController: UIViewController {
     lazy var startButton: UIButton = {
         lazy var startButton = UIButton()
         startButton.setTitle("Добавить", for: .normal)
-        startButton.setTitleColor(.black, for: .normal)
-        startButton.tintColor = .black
-        startButton.backgroundColor = mainColorTheme
-        startButton.layer.cornerRadius = totalCornerRadius
         startButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        startButton.translatesAutoresizingMaskIntoConstraints = false
+        startButton.roundYeellowButton()
         return startButton
     }()
     

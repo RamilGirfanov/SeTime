@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         self.setupToHideKeyboardOnTapOnView()
         
-        pushTaskScrean()
+        pushTaskScreen()
         
         navigationItem.largeTitleDisplayMode = .automatic
         makeBarButtonItem()
@@ -132,36 +132,25 @@ class ViewController: UIViewController {
     lazy var workButton: UIButton = {
         lazy var workButton = UIButton()
         workButton.setTitle("Работа", for: .normal)
-        workButton.setTitleColor(.black, for: .normal)
-        workButton.backgroundColor = mainColorTheme
-        workButton.layer.cornerRadius = totalCornerRadius
         workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        workButton.translatesAutoresizingMaskIntoConstraints = false
+        workButton.roundYeellowButton()
         return workButton
     }()
     
     lazy var breakButton: UIButton = {
         lazy var breakButton = UIButton()
         breakButton.setTitle("Отдых", for: .normal)
-        breakButton.setTitleColor(.black, for: .normal)
-        breakButton.tintColor = .black
-        breakButton.backgroundColor = mainColorTheme
-        breakButton.layer.cornerRadius = totalCornerRadius
         breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         breakButton.isHidden = true
-        breakButton.translatesAutoresizingMaskIntoConstraints = false
+        breakButton.roundYeellowButton()
         return breakButton
     }()
 
     lazy var stopButton: UIButton = {
         lazy var stopButton = UIButton()
         stopButton.setTitle("Стоп", for: .normal)
-        stopButton.setTitleColor(.black, for: .normal)
-        stopButton.tintColor = .black
-        stopButton.backgroundColor = mainColorTheme
-        stopButton.layer.cornerRadius = totalCornerRadius
         stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        stopButton.translatesAutoresizingMaskIntoConstraints = false
+        stopButton.roundYeellowButton()
         return stopButton
     }()
     
@@ -213,10 +202,7 @@ class ViewController: UIViewController {
     lazy var startTaskButton: UIButton = {
         lazy var startTaskButton = UIButton()
         startTaskButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        startTaskButton.tintColor = .black
-        startTaskButton.backgroundColor = mainColorTheme
-        startTaskButton.layer.cornerRadius = totalCornerRadius
-        startTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        startTaskButton.roundYeellowButton()
         startTaskButton.isHidden = true
         return startTaskButton
     }()
@@ -224,10 +210,7 @@ class ViewController: UIViewController {
     lazy var stopTaskButton: UIButton = {
         lazy var stopTaskButton = UIButton()
         stopTaskButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-        stopTaskButton.tintColor = .black
-        stopTaskButton.backgroundColor = mainColorTheme
-        stopTaskButton.layer.cornerRadius = totalCornerRadius
-        stopTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        stopTaskButton.roundYeellowButton()
         return stopTaskButton
     }()
     

@@ -26,3 +26,12 @@ let textSize3: CGFloat = 15
 let textSize4: CGFloat = 14
 
 
+extension UIButton {
+    func roundYeellowButton() {
+        setTitleColor(.black, for: .normal)
+        tintColor = .black
+        backgroundColor = mainColorTheme
+        layer.cornerRadius = totalCornerRadius
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+}

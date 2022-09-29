@@ -39,12 +39,8 @@ class DatePickerViewController: UIViewController {
     lazy var showButton: UIButton = {
         lazy var showButton = UIButton()
         showButton.setTitle("Показать", for: .normal)
-        showButton.setTitleColor(.black, for: .normal)
-        showButton.tintColor = .black
-        showButton.backgroundColor = mainColorTheme
-        showButton.layer.cornerRadius = totalCornerRadius
         showButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        showButton.translatesAutoresizingMaskIntoConstraints = false
+        showButton.roundYeellowButton()
         return showButton
     }()
         
