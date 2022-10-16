@@ -93,4 +93,6 @@ iOSInjectionProject/
 project.xcworkspace/
 xcuserdata/
 
+*.xcodeproj/project.xcworkspace/xcuserdata/ramilgirfanov.xcuserdatad/UserInterfaceState.xcuserstate
+
 .DS_Store
