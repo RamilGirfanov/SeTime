@@ -40,8 +40,6 @@ extension ViewController {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-//            Проверка на новый день
-            checkNewDay()
             
             nc.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
             nc.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)

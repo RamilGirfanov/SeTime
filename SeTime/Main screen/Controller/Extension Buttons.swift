@@ -29,7 +29,9 @@ extension ViewController {
         
         ViewController.addTaskButton.isEnabled = true
 
+        startTaskButton.isHidden = false
         startTaskButton.isEnabled = true
+//        stopTaskButton.isHidden = false
     }
     
 //    Запускает таймер перерывов, в том числе для задачи
@@ -56,17 +58,11 @@ extension ViewController {
         breakButton.isHidden = true
         
         ViewController.addTaskButton.isEnabled = false
-        
-//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
-        if task.startTime.isEmpty == false {
-            stopTaskTimer()
-        }
-        
     }
     
 //    Запускает таймер задачи
     @objc func startTask() {
-        taskTimeManager.startTaskTimer()
+        ViewController.startTaskTimer()
         startTaskButton.isHidden = true
         stopTaskButton.isHidden = false
     }

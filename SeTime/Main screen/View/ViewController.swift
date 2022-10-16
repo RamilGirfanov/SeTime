@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         
         layout()
         setupButtons()
+
+        checkDay()
         
         self.setupToHideKeyboardOnTapOnView()
         

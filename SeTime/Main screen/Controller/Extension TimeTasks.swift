@@ -13,7 +13,7 @@ import UIKit
 
 protocol TimeTasksManagement {
     
-    func checkNewDay()
+    func checkDay()
         
     func startWorkTimer()
     func startBreakTimer()
@@ -29,6 +29,61 @@ protocol TimeTasksManagement {
 //MARK: - Расширение для управления
 
 extension ViewController: TimeTasksManagement {
+    
+    private func oldDay(date: String) {
+        
+        let currentDay = archiveOfDays[date]!
+        
+        day = currentDay
+        
+        workTimeDataLabel.text = timeIntToString(time: currentDay.workTime)
+        breakTimeDataLabel.text = timeIntToString(time: currentDay.breakTime)
+        totalTimeDataLabel.text = timeIntToString(time: currentDay.totalTime)
+        tasksTableView.reloadData()
+    }
+    
+    private func newDay(date: String) {
+        
+//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
+        if task.startTime.isEmpty == false {
+            stopTaskTimer()
+        }
+                
+//        Инициирование нового дня
+        workTimeManager = WorkTimeManager()
+        taskTimeManager = TaskTimeManager()
+        task = Task()
+        day = Day()
+        lastDate = date
+        
+//        Настройка видимости кнопок "Работа", "Отдых", "Добавить задачу"
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        ViewController.addTaskButton.isEnabled = false
+        
+//        Очистка экрана от данных
+        workTimeDataLabel.text = "-"
+        breakTimeDataLabel.text = "-"
+        totalTimeDataLabel.text = "-"
+        
+        tasksTableView.reloadData()
+    }
+    
+    
+    func checkDay() {
+//        Если таймеры остановлены
+        guard !workTimeManager.workTimer.isValid && !workTimeManager.breakTimer.isValid else { return }
+        
+        let currentDate = getDate()
+
+        if currentDate == lastDate {
+            oldDay(date: currentDate)
+        } else {
+            newDay(date: currentDate)
+        }
+    }
+   
+    /*
     
 //    Будет проверяться во viewWillAppear
     func checkNewDay() {
@@ -73,180 +128,68 @@ extension ViewController: TimeTasksManagement {
         tasksTableView.reloadData()
 
     }
+     */
     
 //    Запускает таймер работы
     func startWorkTimer() {
-        workTimeManager.workTimer = Timer(timeInterval: 1, repeats: true) { [self] _ in
+        workTimeManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             day.workTime += 1
-            
-            lazy var workSeconds = day.workTime % 60
-            lazy var workMinutes = day.workTime / 60 % 60
-            lazy var workHours = day.workTime / 3600
-
-            lazy var fullWorkTime: [String] = []
-            
-            switch workHours {
-            case 1...9:
-                fullWorkTime.append("0\(workHours)")
-            case 10...24:
-                fullWorkTime.append("\(workHours)")
-            default:
-                fullWorkTime.append("00")
-            }
-            
-            switch workMinutes {
-            case 1...9:
-                fullWorkTime.append("0\(workMinutes)")
-            case 10...59:
-                fullWorkTime.append("\(workMinutes)")
-            default:
-                fullWorkTime.append("00")
-            }
-            
-            switch workSeconds {
-            case 1...9:
-                fullWorkTime.append("0\(workSeconds)")
-            case 10...59:
-                fullWorkTime.append("\(workSeconds)")
-            default:
-                fullWorkTime.append("00")
-            }
-            
-            workTimeDataLabel.text = fullWorkTime.joined(separator: ":")
-            
-            
-            lazy var totalSeconds = day.totalTime % 60
-            lazy var totalMinutes = day.totalTime / 60 % 60
-            lazy var totalHours = day.totalTime / 3600
-
-            lazy var fullTotalTime: [String] = []
-            
-            switch totalHours {
-            case 1...9:
-                fullTotalTime.append("0\(totalHours)")
-            case 10...24:
-                fullTotalTime.append("\(totalHours)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            switch totalMinutes {
-            case 1...9:
-                fullTotalTime.append("0\(totalMinutes)")
-            case 10...59:
-                fullTotalTime.append("\(totalMinutes)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            switch totalSeconds {
-            case 1...9:
-                fullTotalTime.append("0\(totalSeconds)")
-            case 10...59:
-                fullTotalTime.append("\(totalSeconds)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            totalTimeDataLabel.text = fullTotalTime.joined(separator: ":")
+            self.workTimeDataLabel.text = timeIntToString(time: day.workTime)
+            self.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
         }
         RunLoop.current.add(workTimeManager.workTimer, forMode: .common)
     }
-
     
 //    Запускает таймер перерывов
     func startBreakTimer() {
-        workTimeManager.breakTimer = Timer(timeInterval: 1, repeats: true) { [self] _ in
+        workTimeManager.breakTimer = Timer(timeInterval: 1, repeats: true) { _ in
             day.breakTime += 1
-          
-            lazy var breakSeconds = day.breakTime % 60
-            lazy var breakMinutes = day.breakTime / 60 % 60
-            lazy var breakHours = day.breakTime / 3600
-
-            lazy var fullBreakTime: [String] = []
-            
-            switch breakHours {
-            case 1...9:
-                fullBreakTime.append("0\(breakHours)")
-            case 10...24:
-                fullBreakTime.append("\(breakHours)")
-            default:
-                fullBreakTime.append("00")
-            }
-            
-            switch breakMinutes {
-            case 1...9:
-                fullBreakTime.append("0\(breakMinutes)")
-            case 10...59:
-                fullBreakTime.append("\(breakMinutes)")
-            default:
-                fullBreakTime.append("00")
-            }
-            
-            switch breakSeconds {
-            case 1...9:
-                fullBreakTime.append("0\(breakSeconds)")
-            case 10...59:
-                fullBreakTime.append("\(breakSeconds)")
-            default:
-                fullBreakTime.append("00")
-            }
-            
-            breakTimeDataLabel.text = fullBreakTime.joined(separator: ":")
-            
-            
-            lazy var totalSeconds = day.totalTime % 60
-            lazy var totalMinutes = day.totalTime / 60 % 60
-            lazy var totalHours = day.totalTime / 3600
-
-            lazy var fullTotalTime: [String] = []
-            
-            switch totalHours {
-            case 1...9:
-                fullTotalTime.append("0\(totalHours)")
-            case 10...24:
-                fullTotalTime.append("\(totalHours)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            switch totalMinutes {
-            case 1...9:
-                fullTotalTime.append("0\(totalMinutes)")
-            case 10...59:
-                fullTotalTime.append("\(totalMinutes)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            switch totalSeconds {
-            case 1...9:
-                fullTotalTime.append("0\(totalSeconds)")
-            case 10...59:
-                fullTotalTime.append("\(totalSeconds)")
-            default:
-                fullTotalTime.append("00")
-            }
-            
-            totalTimeDataLabel.text = fullTotalTime.joined(separator: ":")
+            self.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
+            self.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
         }
         RunLoop.current.add(workTimeManager.breakTimer, forMode: .common)
     }
     
+//    Запускает таймер задачи
+    static func startTaskTimer() {
+        taskTimeManager.taskTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            task.duration += 1
+            taskTimeDataLabel.text = timeIntToString(time: task.duration)
+        }
+    }
+
 //    Пауза для таймера работы
     func pauseWorkTimer() {
         workTimeManager.workTimer.invalidate()
+        pauseTaskTimer()
     }
     
 //    Пауза для таймера перерывов
     func pauseBreakTimer() {
         workTimeManager.breakTimer.invalidate()
     }
+    
+    
+    func pauseTaskTimer() {
+        taskTimeManager.taskTimer.invalidate()
+    }
+    
 
 //    Пауза для обоих таймеров
     func stop() {
-        workTimeManager.workTimer.invalidate()
-        workTimeManager.breakTimer.invalidate()
+        pauseWorkTimer()
+        pauseBreakTimer()
+        
+//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
+        if task.duration != 0 {
+            stopTaskTimer()
+        }
+        
+        if archiveOfDays[day.date] != nil {
+            addDayToArchive(day: day)
+        }
+        
+
     }
     
 //    Остановка таймера задачи
@@ -254,7 +197,7 @@ extension ViewController: TimeTasksManagement {
         
 //        Останавливает таймер задачи и устанавливает время конца задачи
         taskTimeManager.taskTimer.invalidate()
-        task.addStopTime()
+        task.stopTime = getDate()
         
 //        Добавление задачи в массив задач дня
         day.tasks.append(task)
@@ -266,9 +209,10 @@ extension ViewController: TimeTasksManagement {
         taskTimeManager = TaskTimeManager()
                 
 //        Добавление новой строки таблицы
-        tasksTableView.beginUpdates()
-        tasksTableView.insertRows(at: [(NSIndexPath(row: day.tasks.count-1, section: 0) as IndexPath)], with: .automatic)
-        tasksTableView.endUpdates()
+        tasksTableView.reloadData()
+//        tasksTableView.beginUpdates()
+//        tasksTableView.insertRows(at: [(NSIndexPath(row: day.tasks.count-1, section: 0) as IndexPath)], with: .automatic)
+//        tasksTableView.endUpdates()
         
 //        Обнуление значений лейблов данных задачи
         ViewController.taskTimeTextLabel.text = "Название"

@@ -15,7 +15,7 @@ struct Task {
     var startTime = ""
     var stopTime = ""
     
-    
+    /*
     mutating func addStartTime() {
         
         // Календарь для вычисления даты и времени
@@ -67,5 +67,5 @@ struct Task {
         stopTime = time.joined(separator: ":")
         
     }
-    
+ */
 }

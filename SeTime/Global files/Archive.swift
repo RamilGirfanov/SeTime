@@ -16,5 +16,5 @@ var archiveOfDays: [String: Day] = [:]
 
 //Функция добавления дня в архив
 func addDayToArchive(day: Day) {
-    archiveOfDays[day.data] = day
+    archiveOfDays[day.date] = day
 }
