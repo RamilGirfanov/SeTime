@@ -49,22 +49,12 @@ class TaskCell: UITableViewCell {
         taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
         return taskStartAndStop
     }()
-    
-//    lazy var stackForTaskTime: UIStackView = {
-//        lazy var stackForTaskLabel = UIStackView()
-//        stackForTaskLabel.axis = .vertical
-//        stackForTaskLabel.distribution = .fillEqually
-//        stackForTaskLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return stackForTaskLabel
-//    }()
-    
+        
     
     //    MARK: - Расстановка объектов в ячейке
 
     private func layout() {
         [taskName, taskDuration, taskStartTime].forEach { contentView.addSubview($0) }
-//        [taskDuration, taskStartAndStop].forEach { stackForTaskTime.addArrangedSubview($0) }
-
         
         let safeIndent: CGFloat = 8
         
@@ -84,7 +74,6 @@ class TaskCell: UITableViewCell {
             taskDuration.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent),
             taskDuration.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent)
         ])
-        
     }
         
     

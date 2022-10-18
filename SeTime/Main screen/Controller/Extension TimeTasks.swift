@@ -70,7 +70,6 @@ extension ViewController: TimeTasksManagement {
     }
     
     func checkDay() {
-//        Если таймеры остановлены
         guard !workTimeManager.workTimer.isValid && !workTimeManager.breakTimer.isValid else { return }
         
         let currentDate = getDate()
@@ -82,53 +81,6 @@ extension ViewController: TimeTasksManagement {
         }
     }
    
-    /*
-    
-//    Будет проверяться во viewWillAppear
-    func checkNewDay() {
-        
-        // Календарь для вычисления даты и времени
-        let calendar = Calendar.current
-        // Текущая дата
-        let todayDate = Date()
-
-        let date = calendar.dateComponents([.day, .month, .year], from: todayDate)
-
-        let currentDate = "\(date.day!).\(date.month!).\(date.year!)"
-        
-        guard currentDate != lastDate else { return }
-        guard !workTimeManager.workTimer.isValid && !workTimeManager.breakTimer.isValid else { return }
-        
-//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
-        if task.startTime.isEmpty == false {
-            stopTaskTimer()
-        }
-        
-//        Запись дня в архив
-        addDayToArchive(day: day)
-        
-//        Инициирование нового дня
-        workTimeManager = WorkTimeManager()
-        taskTimeManager = TaskTimeManager()
-        task = Task()
-        day = Day()
-        lastDate = currentDate
-        
-//        Настройка видимости кнопок "Работа", "Отдых", "Добавить задачу"
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        ViewController.addTaskButton.isEnabled = false
-        
-//        Очистка экрана от данных
-        workTimeDataLabel.text = "-"
-        breakTimeDataLabel.text = "-"
-        totalTimeDataLabel.text = "-"
-
-        tasksTableView.reloadData()
-
-    }
-     */
-    
     private func saveData() {
         if archiveOfDays[day.date] == nil {
             addDayToArchive(day: day)

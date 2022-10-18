@@ -17,7 +17,6 @@ extension ViewController: UITableViewDataSource {
         1
     }
     
-//    Необхобимое количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         day.tasks.count
     }
@@ -37,7 +36,6 @@ extension ViewController: UITableViewDataSource {
 //    MARK: - Расширение UITableViewDelegate
 
 extension ViewController: UITableViewDelegate {
-    //    Возвращает динамическую высоту ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
