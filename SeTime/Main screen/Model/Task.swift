@@ -13,7 +13,7 @@ struct Task {
     var duration = 0
     
     var startTime = ""
-    var stopTime = ""
+//    var stopTime = ""
     
     /*
     mutating func addStartTime() {

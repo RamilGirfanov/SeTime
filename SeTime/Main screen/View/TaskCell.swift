@@ -43,40 +43,46 @@ class TaskCell: UITableViewCell {
         return taskDuration
     }()
     
-    lazy var taskStartAndStop: UILabel = {
+    lazy var taskStartTime: UILabel = {
         lazy var taskStartAndStop = UILabel()
         taskStartAndStop.textAlignment = .center
         taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
         return taskStartAndStop
     }()
     
-    lazy var stackForTaskTime: UIStackView = {
-        lazy var stackForTaskLabel = UIStackView()
-        stackForTaskLabel.axis = .vertical
-        stackForTaskLabel.distribution = .fillEqually
-        stackForTaskLabel.translatesAutoresizingMaskIntoConstraints = false
-        return stackForTaskLabel
-    }()
+//    lazy var stackForTaskTime: UIStackView = {
+//        lazy var stackForTaskLabel = UIStackView()
+//        stackForTaskLabel.axis = .vertical
+//        stackForTaskLabel.distribution = .fillEqually
+//        stackForTaskLabel.translatesAutoresizingMaskIntoConstraints = false
+//        return stackForTaskLabel
+//    }()
     
     
     //    MARK: - Расстановка объектов в ячейке
 
     private func layout() {
-        [taskName, taskDuration, taskStartAndStop, stackForTaskTime].forEach { contentView.addSubview($0) }
-        [taskDuration, taskStartAndStop].forEach { stackForTaskTime.addArrangedSubview($0) }
+        [taskName, taskDuration, taskStartTime].forEach { contentView.addSubview($0) }
+//        [taskDuration, taskStartAndStop].forEach { stackForTaskTime.addArrangedSubview($0) }
 
         
         let safeIndent: CGFloat = 8
         
         NSLayoutConstraint.activate([
-            taskName.topAnchor.constraint(equalTo: contentView.topAnchor),
-            taskName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),
-            taskName.trailingAnchor.constraint(equalTo: stackForTaskTime.leadingAnchor, constant: -safeIndent),
-            taskName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            taskStartTime.widthAnchor.constraint(equalToConstant: 50),
+            taskStartTime.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
+            taskStartTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),
+            taskStartTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent),
             
-            stackForTaskTime.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackForTaskTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent),
-            stackForTaskTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            taskName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
+            taskName.leadingAnchor.constraint(equalTo: taskStartTime.trailingAnchor, constant: safeIndent),
+            taskName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent),
+            
+            taskDuration.widthAnchor.constraint(equalToConstant: 90),
+            taskDuration.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
+            taskDuration.leadingAnchor.constraint(equalTo: taskName.trailingAnchor, constant: safeIndent),
+            taskDuration.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent),
+            taskDuration.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent)
         ])
         
     }
@@ -86,44 +92,7 @@ class TaskCell: UITableViewCell {
     
     func pullCell(taskData: Task) {
         taskName.text = taskData.taskName
-        
-        lazy var taskSeconds = taskData.duration % 60
-        lazy var taskMinutes = taskData.duration / 60 % 60
-        lazy var taskHours = taskData.duration / 3600
-
-        lazy var fullTaskTime: [String] = []
-        
-        switch taskHours {
-        case 1...9:
-            fullTaskTime.append("0\(taskHours)")
-        case 10...24:
-            fullTaskTime.append("\(taskHours)")
-        default:
-            fullTaskTime.append("00")
-        }
-        
-        switch taskMinutes {
-        case 1...9:
-            fullTaskTime.append("0\(taskMinutes)")
-        case 10...59:
-            fullTaskTime.append("\(taskMinutes)")
-        default:
-            fullTaskTime.append("00")
-        }
-        
-        switch taskSeconds {
-        case 1...9:
-            fullTaskTime.append("0\(taskSeconds)")
-        case 10...59:
-            fullTaskTime.append("\(taskSeconds)")
-        default:
-            fullTaskTime.append("00")
-        }
-        
-        taskDuration.text = fullTaskTime.joined(separator: ":")
-        
-        taskStartAndStop.text = "\(taskData.startTime) - \(taskData.stopTime)"
-
+        taskDuration.text = timeIntToString(time: taskData.duration)
+        taskStartTime.text = "\(taskData.startTime)"
     }
-    
 }

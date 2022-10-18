@@ -18,21 +18,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBackground
-        title = "Сегодня"
-        
         layout()
         setupButtons()
-
-        checkDay()
+        pushTaskScreen()
+        makeBarButtonItem()
+        navigationItem.largeTitleDisplayMode = .automatic
         
         self.setupToHideKeyboardOnTapOnView()
         
-        pushTaskScreen()
-        
-        navigationItem.largeTitleDisplayMode = .automatic
-        makeBarButtonItem()
+        checkDay()
     }
       
     
@@ -160,6 +154,7 @@ class ViewController: UIViewController {
         lazy var addTaskButton = UIButton()
         addTaskButton.setTitle("Добавить задачу", for: .normal)
         addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+        addTaskButton.tintColor = .systemGray
         addTaskButton.backgroundColor = .systemGray6
         addTaskButton.layer.borderWidth = 0.5
         addTaskButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -201,13 +196,12 @@ class ViewController: UIViewController {
         return stackForTaskLabel
     }()
    
-    lazy var startTaskButton: UIButton = {
-        lazy var startTaskButton = UIButton()
-        startTaskButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        startTaskButton.roundYeellowButton()
-        startTaskButton.isHidden = true
-        return startTaskButton
-    }()
+//    lazy var startTaskButton: UIButton = {
+//        lazy var startTaskButton = UIButton()
+//        startTaskButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+//        startTaskButton.roundYeellowButton()
+//        return startTaskButton
+//    }()
     
     lazy var stopTaskButton: UIButton = {
         lazy var stopTaskButton = UIButton()
@@ -241,7 +235,7 @@ class ViewController: UIViewController {
         [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
         [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
         
-        [stackForTaskLabel, startTaskButton, stopTaskButton].forEach { ViewController.taskTimerView.addSubview($0) }
+        [stackForTaskLabel, stopTaskButton].forEach { ViewController.taskTimerView.addSubview($0) }
                 
         [ViewController.taskTimeTextLabel, ViewController.taskTimeDataLabel].forEach { stackForTaskLabel.addArrangedSubview($0) }
         
@@ -307,16 +301,17 @@ class ViewController: UIViewController {
             stackForTaskLabel.leadingAnchor.constraint(equalTo: ViewController.taskTimerView.leadingAnchor, constant: safeIndent2),
             stackForTaskLabel.bottomAnchor.constraint(equalTo: ViewController.taskTimerView.bottomAnchor),
             
-            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            startTaskButton.widthAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            startTaskButton.centerYAnchor.constraint(equalTo: ViewController.taskTimerView.centerYAnchor),
-            startTaskButton.leadingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor, constant: safeIndent2),
-            startTaskButton.trailingAnchor.constraint(equalTo: ViewController.taskTimerView.trailingAnchor, constant: -safeIndent2),
-            
-            stopTaskButton.topAnchor.constraint(equalTo: startTaskButton.topAnchor),
-            stopTaskButton.leadingAnchor.constraint(equalTo: startTaskButton.leadingAnchor),
-            stopTaskButton.trailingAnchor.constraint(equalTo: startTaskButton.trailingAnchor),
-            stopTaskButton.bottomAnchor.constraint(equalTo: startTaskButton.bottomAnchor),
+            stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopTaskButton.widthAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopTaskButton.centerYAnchor.constraint(equalTo: ViewController.taskTimerView.centerYAnchor),
+            stopTaskButton.leadingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor, constant: safeIndent2),
+            stopTaskButton.trailingAnchor.constraint(equalTo: ViewController.taskTimerView.trailingAnchor, constant: -safeIndent2),
+
+//            startTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+//            startTaskButton.widthAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+//            startTaskButton.centerYAnchor.constraint(equalTo: ViewController.taskTimerView.centerYAnchor),
+//            startTaskButton.leadingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor, constant: safeIndent2),
+//            startTaskButton.trailingAnchor.constraint(equalTo: stopTaskButton.leadingAnchor, constant: -safeIndent2),
             
             ViewController.addTaskButton.topAnchor.constraint(equalTo: ViewController.taskTimerView.topAnchor),
             ViewController.addTaskButton.leadingAnchor.constraint(equalTo: ViewController.taskTimerView.leadingAnchor),

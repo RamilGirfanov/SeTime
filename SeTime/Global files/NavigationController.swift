@@ -13,7 +13,9 @@ class NavigationController: UINavigationController {
         super.viewDidLoad()
         
         let mainVC = ViewController()
+        mainVC.view.backgroundColor = .systemBackground
+        mainVC.title = "Сегодня"
         viewControllers.append(mainVC)
-        
+
     }
 }

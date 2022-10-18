@@ -31,7 +31,7 @@ extension TaskViewController {
         
 //        Запускает таймер и устанавливает время начала задачи
         ViewController.startTaskTimer()
-        task.startTime = getDate()
+        task.startTime = getTime()
         
 //        Скрывает текущий экран
         self.dismiss(animated: true)

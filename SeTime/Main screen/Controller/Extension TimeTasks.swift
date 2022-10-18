@@ -69,7 +69,6 @@ extension ViewController: TimeTasksManagement {
         tasksTableView.reloadData()
     }
     
-    
     func checkDay() {
 //        Если таймеры остановлены
         guard !workTimeManager.workTimer.isValid && !workTimeManager.breakTimer.isValid else { return }
@@ -130,98 +129,113 @@ extension ViewController: TimeTasksManagement {
     }
      */
     
-//    Запускает таймер работы
-    func startWorkTimer() {
-        workTimeManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            day.workTime += 1
-            self.workTimeDataLabel.text = timeIntToString(time: day.workTime)
-            self.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
+    private func saveData() {
+        if archiveOfDays[day.date] == nil {
+            addDayToArchive(day: day)
+        } else {
+            var archiveDay = archiveOfDays[day.date]!
+            archiveDay.workTime = day.workTime
+            archiveDay.breakTime = day.breakTime
+            archiveDay.tasks = day.tasks
+            archiveOfDays[day.date] = archiveDay
         }
+    }
+    
+    
+//    MARK: - Функции для управления WorkTimeManager
+    
+    func startWorkTimer() {
+        let creationDate = Date()
+        workTimeManager.workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            
+            workTimeManager.workTime = Int(Date().timeIntervalSince(creationDate))
+            workTimeManager.workTime += day.workTime
+            workTimeManager.totalTime = Int(Date().timeIntervalSince(creationDate))
+            workTimeManager.totalTime += day.totalTime
+            
+            self.workTimeDataLabel.text = timeIntToString(time: workTimeManager.workTime)
+            self.totalTimeDataLabel.text = timeIntToString(time: workTimeManager.totalTime)
+        }
+        workTimeManager.workTimer.tolerance = 0.2
         RunLoop.current.add(workTimeManager.workTimer, forMode: .common)
     }
     
-//    Запускает таймер перерывов
     func startBreakTimer() {
+        let creationDate = Date()
         workTimeManager.breakTimer = Timer(timeInterval: 1, repeats: true) { _ in
-            day.breakTime += 1
-            self.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
-            self.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
+            
+            workTimeManager.breakTime = Int(Date().timeIntervalSince(creationDate))
+            workTimeManager.breakTime += day.breakTime
+            workTimeManager.totalTime = Int(Date().timeIntervalSince(creationDate))
+            workTimeManager.totalTime += day.totalTime
+            
+            self.breakTimeDataLabel.text = timeIntToString(time: workTimeManager.breakTime)
+            self.totalTimeDataLabel.text = timeIntToString(time: workTimeManager.totalTime)
         }
+        workTimeManager.breakTimer.tolerance = 0.2
         RunLoop.current.add(workTimeManager.breakTimer, forMode: .common)
     }
-    
-//    Запускает таймер задачи
-    static func startTaskTimer() {
-        taskTimeManager.taskTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            task.duration += 1
-            taskTimeDataLabel.text = timeIntToString(time: task.duration)
-        }
-    }
 
-//    Пауза для таймера работы
     func pauseWorkTimer() {
         workTimeManager.workTimer.invalidate()
+        day.workTime = workTimeManager.workTime
         pauseTaskTimer()
     }
     
-//    Пауза для таймера перерывов
     func pauseBreakTimer() {
         workTimeManager.breakTimer.invalidate()
+        day.breakTime = workTimeManager.breakTime
     }
-    
-    
-    func pauseTaskTimer() {
-        taskTimeManager.taskTimer.invalidate()
-    }
-    
 
-//    Пауза для обоих таймеров
     func stop() {
         pauseWorkTimer()
         pauseBreakTimer()
+        stopTaskTimer()
+        saveData()
+    }
+
+    
+//    MARK: - Функции для управления TaskTimeManager
+    
+    static func startTaskTimer() {
+        let creationDate = Date()
+        taskTimeManager.taskTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            
+            taskTimeManager.taskTime = Int(Date().timeIntervalSince(creationDate))
+            taskTimeManager.taskTime += task.duration
+            taskTimeDataLabel.text = timeIntToString(time: taskTimeManager.taskTime)
+        }
+        taskTimeManager.taskTimer.tolerance = 0.2
+        RunLoop.current.add(taskTimeManager.taskTimer, forMode: .common)
+    }
+    
+    func pauseTaskTimer() {
+        taskTimeManager.taskTimer.invalidate()
+        task.duration = taskTimeManager.taskTime
+    }
+    
+    func stopTaskTimer() {
+        
+//        Останавливает таймер задачи и сохраняет данные
+        taskTimeManager.taskTimer.invalidate()
+        task.duration = taskTimeManager.taskTime
+        
+        print(task.duration)
         
 //        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
         if task.duration != 0 {
-            stopTaskTimer()
-        }
-        
-        if archiveOfDays[day.date] != nil {
-            addDayToArchive(day: day)
-        }
-        
+            day.tasks.append(task)
+            tasksTableView.reloadData()
 
+            task = Task()
+            taskTimeManager = TaskTimeManager()
+            
+            ViewController.taskTimeTextLabel.text = "Название"
+            ViewController.taskTimeDataLabel.text = "-"
+            
+            ViewController.addTaskButton.isHidden = false
+            ViewController.taskTimerView.isHidden = true
+        }
     }
-    
-//    Остановка таймера задачи
-    func stopTaskTimer() {
-        
-//        Останавливает таймер задачи и устанавливает время конца задачи
-        taskTimeManager.taskTimer.invalidate()
-        task.stopTime = getDate()
-        
-//        Добавление задачи в массив задач дня
-        day.tasks.append(task)
-        
-//        Обнуление объекта задачи
-        task = Task()
-        
-//        Обнуление объекта таймера для задач
-        taskTimeManager = TaskTimeManager()
-                
-//        Добавление новой строки таблицы
-        tasksTableView.reloadData()
-//        tasksTableView.beginUpdates()
-//        tasksTableView.insertRows(at: [(NSIndexPath(row: day.tasks.count-1, section: 0) as IndexPath)], with: .automatic)
-//        tasksTableView.endUpdates()
-        
-//        Обнуление значений лейблов данных задачи
-        ViewController.taskTimeTextLabel.text = "Название"
-        ViewController.taskTimeDataLabel.text = "0с"
-        
-//        Меняет видимости кнопки и вью задачи на главном экране
-        ViewController.addTaskButton.isHidden = false
-        ViewController.taskTimerView.isHidden = true
-    }
-    
 }
 

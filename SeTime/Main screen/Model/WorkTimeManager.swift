@@ -17,4 +17,7 @@ class WorkTimeManager {
     var workTimer = Timer()
     var breakTimer = Timer()
     
+    var workTime = 0
+    var breakTime = 0
+    var totalTime = 0
 }

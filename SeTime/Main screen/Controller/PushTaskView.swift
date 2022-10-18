@@ -14,10 +14,7 @@ extension ViewController {
     }
  
     @objc func tapForTask() {
-        
-        if day.workTime != 0 {
-            lazy var taskVC = TaskViewController()
-            present(taskVC, animated: true)
-        }
+        let taskVC = TaskViewController()
+        present(taskVC, animated: true)
     }
 }

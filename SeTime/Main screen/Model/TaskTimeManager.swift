@@ -11,4 +11,5 @@ class TaskTimeManager {
     
     var taskTimer = Timer()
     
+    var taskTime = 0
 }
