@@ -172,8 +172,6 @@ extension ViewController: TimeTasksManagement {
         taskTimeManager.taskTimer.invalidate()
         task.duration = taskTimeManager.taskTime
         
-        print(task.duration)
-        
 //        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
         if task.duration != 0 {
             day.tasks.append(task)
