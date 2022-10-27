@@ -10,7 +10,6 @@
 		695B983474C0E1C3D548F71B /* Pods_SeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E847E12BEA55A5131DB9DD30 /* Pods_SeTime.framework */; };
 		74080349290A7F9F002AB91D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74080348290A7F9F002AB91D /* MainScreen.swift */; };
 		746751A3286D93EE004F6647 /* PushCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A2286D93EE004F6647 /* PushCalendarView.swift */; };
-		746751A5286FFB9E004F6647 /* Extension Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A4286FFB9E004F6647 /* Extension Buttons.swift */; };
 		746751A7286FFCEA004F6647 /* PushHistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A6286FFCEA004F6647 /* PushHistoryScrean.swift */; };
 		746751A9286FFEEB004F6647 /* Objects of model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A8286FFEEB004F6647 /* Objects of model.swift */; };
 		74C504A8289773020085CDDB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C504A7289773020085CDDB /* Date.swift */; };
@@ -32,7 +31,6 @@
 		74ED60D0286594E00008B57C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CD286594E00008B57C /* Day.swift */; };
 		74ED60D1286594E00008B57C /* Objecs of model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CE286594E00008B57C /* Objecs of model.swift */; };
 		74ED60D2286594E00008B57C /* WorkTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CF286594E00008B57C /* WorkTimeManager.swift */; };
-		74ED60D9286594F10008B57C /* Extension TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D4286594F10008B57C /* Extension TableView.swift */; };
 		74ED60DA286594F10008B57C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D5286594F10008B57C /* TaskCell.swift */; };
 		74ED60DB286594F10008B57C /* Extension Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D6286594F10008B57C /* Extension Keyboard.swift */; };
 		74ED60DC286594F10008B57C /* Extension TimeTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D7286594F10008B57C /* Extension TimeTasks.swift */; };
@@ -50,7 +48,6 @@
 		26B82F2301FFD02ABB49F144 /* Pods-SeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.release.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.release.xcconfig"; sourceTree = "<group>"; };
 		74080348290A7F9F002AB91D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		746751A2286D93EE004F6647 /* PushCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCalendarView.swift; sourceTree = "<group>"; };
-		746751A4286FFB9E004F6647 /* Extension Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension Buttons.swift"; sourceTree = "<group>"; };
 		746751A6286FFCEA004F6647 /* PushHistoryScrean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHistoryScrean.swift; sourceTree = "<group>"; };
 		746751A8286FFEEB004F6647 /* Objects of model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Objects of model.swift"; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,7 +71,6 @@
 		74ED60CD286594E00008B57C /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		74ED60CE286594E00008B57C /* Objecs of model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Objecs of model.swift"; sourceTree = "<group>"; };
 		74ED60CF286594E00008B57C /* WorkTimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkTimeManager.swift; sourceTree = "<group>"; };
-		74ED60D4286594F10008B57C /* Extension TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension TableView.swift"; sourceTree = "<group>"; };
 		74ED60D5286594F10008B57C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		74ED60D6286594F10008B57C /* Extension Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension Keyboard.swift"; sourceTree = "<group>"; };
 		74ED60D7286594F10008B57C /* Extension TimeTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension TimeTasks.swift"; sourceTree = "<group>"; };
@@ -237,6 +233,7 @@
 			children = (
 				74080348290A7F9F002AB91D /* MainScreen.swift */,
 				74ED60D5286594F10008B57C /* TaskCell.swift */,
+				74ED60D6286594F10008B57C /* Extension Keyboard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -258,9 +255,6 @@
 			children = (
 				74ED60C9286594370008B57C /* MainScreenViewController.swift */,
 				74ED60D7286594F10008B57C /* Extension TimeTasks.swift */,
-				746751A4286FFB9E004F6647 /* Extension Buttons.swift */,
-				74ED60D4286594F10008B57C /* Extension TableView.swift */,
-				74ED60D6286594F10008B57C /* Extension Keyboard.swift */,
 				74E7906A288D791F000BAC0B /* PushTaskView.swift */,
 				746751A2286D93EE004F6647 /* PushCalendarView.swift */,
 			);
@@ -458,10 +452,8 @@
 				74ED60C5286593E50008B57C /* TabBarController.swift in Sources */,
 				74ED60DB286594F10008B57C /* Extension Keyboard.swift in Sources */,
 				74ED60D1286594E00008B57C /* Objecs of model.swift in Sources */,
-				74ED60D9286594F10008B57C /* Extension TableView.swift in Sources */,
 				74ED60DE286594FA0008B57C /* Archive.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
-				746751A5286FFB9E004F6647 /* Extension Buttons.swift in Sources */,
 				74E79074288E6CC8000BAC0B /* Task.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
 				74ED60E4286BF8E10008B57C /* CalendarDay.swift in Sources */,
