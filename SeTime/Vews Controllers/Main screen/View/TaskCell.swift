@@ -5,13 +5,6 @@
 //  Created by Рамиль Гирфанов on 19.06.2022.
 //
 
-/// В этом файле:
-/// - создается ячейка для UITableView
-/// - нстраивается внешний вид ячейки
-/// - кнопкам добавляются методы из расшитения для ячейки
-/// - создаются объекты для управления таймером и архивом задач
-
-
 import UIKit
 
 class TaskCell: UITableViewCell {
@@ -79,6 +72,7 @@ class TaskCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

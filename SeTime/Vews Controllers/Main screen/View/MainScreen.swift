@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ManageTimers: AnyObject {
-            
+    
     func startWorkTimer()
     func startBreakTimer()
         
@@ -19,6 +19,10 @@ protocol ManageTimers: AnyObject {
         
     func startTaskTimer()
     func stopTaskTimer()
+    
+    func tapForAddTask()
+    
+    func getDayData() -> Day
 }
 
 class MainScreen: UIView {
@@ -317,16 +321,14 @@ class MainScreen: UIView {
         breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
         stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
+        addTaskButton.addTarget(self, action: #selector(tapForAddTask), for: .touchUpInside)
     }
     
+//    Запускает таймер работы, в том числе для задачи
     @objc func tapForWork() {
         delegate?.startWorkTimer()
         delegate?.pauseBreakTimer()
-        
-        if task.duration != 0 {
-            delegate?.startTaskTimer()
-        }
-        
+                
         addTaskButton.setTitleColor(.black, for: .normal)
         addTaskButton.tintColor = .black
         addTaskButton.backgroundColor = mainColorTheme
@@ -379,6 +381,19 @@ class MainScreen: UIView {
 //    Останавливает таймер задачи и переносит задачу в таблицу
     @objc func stopTask() {
         delegate?.stopTaskTimer()
+        
+        taskTimeTextLabel.text = "Название"
+        taskTimeDataLabel.text = "-"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        tasksTableView.reloadData()
+    }
+    
+//    Вызывает экран запуска задачи
+    @objc func tapForAddTask() {
+        delegate?.tapForAddTask()
     }
     
     
@@ -388,6 +403,7 @@ class MainScreen: UIView {
         super.init(frame: frame)
         layout()
         setupButtons()
+        setupToHideKeyboardOnTapOnView()
     }
     
     required init?(coder: NSCoder) {
@@ -395,22 +411,23 @@ class MainScreen: UIView {
     }
 }
 
+
 //    MARK: - Расширение UITableViewDataSource
 
-extension UIViewMainScreen: UITableViewDataSource {
+extension MainScreen: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        day.tasks.count
+        delegate?.getDayData().tasks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
-        cell.backgroundColor = .clear
         
+        guard let day = delegate?.getDayData() else { return cell }
         cell.pullCell(taskData: day.tasks[indexPath.row])
         
         return cell
@@ -420,8 +437,32 @@ extension UIViewMainScreen: UITableViewDataSource {
 
 //    MARK: - Расширение UITableViewDelegate
 
-extension UIViewMainScreen: UITableViewDelegate {
+extension MainScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+}
+
+
+//  MARK: - Расширение для клавиатуры что бы она скрывалась по нажанию на return
+
+extension MainScreen: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing(true)
+        return true
+    }
+}
+
+//  MARK: - Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
+
+extension MainScreen {
+    func setupToHideKeyboardOnTapOnView() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        endEditing(true)
     }
 }
