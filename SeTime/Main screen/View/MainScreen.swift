@@ -21,7 +21,7 @@ protocol ManageTimers: AnyObject {
     func stopTaskTimer()
 }
 
-class UIViewMainScreen: UIView {
+class MainScreen: UIView {
     
 //    MARK: - UIObjects
     
@@ -407,7 +407,6 @@ extension UIViewMainScreen: UITableViewDataSource {
         day.tasks.count
     }
     
-    //    Тип ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         cell.backgroundColor = .clear
@@ -425,5 +424,4 @@ extension UIViewMainScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-    
 }

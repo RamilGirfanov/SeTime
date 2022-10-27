@@ -15,20 +15,8 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
-
-    //    MARK: - Инициализатор
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        layout()
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    //    MARK: - Создание и настройка объектов для кастомизации ячейки
+//    MARK: - UIObjects
     
     lazy var taskName: UILabel = {
         lazy var taskName = UILabel()
@@ -51,7 +39,7 @@ class TaskCell: UITableViewCell {
     }()
         
     
-    //    MARK: - Расстановка объектов в ячейке
+//    MARK: - Layout
 
     private func layout() {
         [taskName, taskDuration, taskStartTime].forEach { contentView.addSubview($0) }
@@ -77,11 +65,23 @@ class TaskCell: UITableViewCell {
     }
         
     
-    //    MARK: - Заполнение ячеек данными
+//    MARK: - Заполнение ячеек данными
     
     func pullCell(taskData: Task) {
         taskName.text = taskData.taskName
         taskDuration.text = timeIntToString(time: taskData.duration)
         taskStartTime.text = "\(taskData.startTime)"
+    }
+    
+    
+//    MARK: - init
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

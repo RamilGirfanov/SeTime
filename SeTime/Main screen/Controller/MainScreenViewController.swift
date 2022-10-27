@@ -14,12 +14,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainScreenViewController: UIViewController {
 
+    private lazy var mainScreen: MainScreen = {
+       let view = MainScreen()
+        view.delegate = self
+        return view
+    }()
+    
+    override func loadView() {
+        view = mainScreen
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
-        setupButtons()
         pushTaskScreen()
         makeBarButtonItem()
         navigationItem.largeTitleDisplayMode = .automatic
@@ -29,4 +37,35 @@ class ViewController: UIViewController {
         checkDay()
     }
       
+}
+
+extension MainScreenViewController: ManageTimers {
+    
+    func startWorkTimer() {
+        <#code#>
+    }
+    
+    func startBreakTimer() {
+        <#code#>
+    }
+    
+    func pauseWorkTimer() {
+        <#code#>
+    }
+    
+    func pauseBreakTimer() {
+        <#code#>
+    }
+    
+    func stop() {
+        <#code#>
+    }
+    
+    func startTaskTimer() {
+        <#code#>
+    }
+    
+    func stopTaskTimer() {
+        <#code#>
+    }
 }
