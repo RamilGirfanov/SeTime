@@ -7,6 +7,20 @@
 
 import UIKit
 
+protocol ManageTimers: AnyObject {
+            
+    func startWorkTimer()
+    func startBreakTimer()
+        
+    func pauseWorkTimer()
+    func pauseBreakTimer()
+    
+    func stop()
+        
+    func startTaskTimer()
+    func stopTaskTimer()
+}
+
 class UIViewMainScreen: UIView {
     
 //    MARK: - UIObjects
@@ -194,7 +208,11 @@ class UIViewMainScreen: UIView {
     }()
     
     
-    //    MARK: - Layout
+//    MARK: - Delegate
+    
+    weak var delegate: ManageTimers?
+    
+//    MARK: - Layout
     
     private func layout() {
         addSubview(scrollView)
@@ -289,6 +307,91 @@ class UIViewMainScreen: UIView {
             tasksTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent2)
         ])
+    }
+    
+    
+//    MARK: - Настройка кнопок
+    
+    private func setupButtons() {
+        workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
+        breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
+        stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
+        stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
+    }
+    
+    @objc func tapForWork() {
+        delegate?.startWorkTimer()
+        delegate?.pauseBreakTimer()
+        
+        if task.duration != 0 {
+            delegate?.startTaskTimer()
+        }
+        
+        addTaskButton.setTitleColor(.black, for: .normal)
+        addTaskButton.tintColor = .black
+        addTaskButton.backgroundColor = mainColorTheme
+        addTaskButton.layer.borderWidth = 0
+        
+        addTaskButton.isEnabled = true
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
+        
+        stopTaskButton.isEnabled = true
+    }
+    
+//    Запускает таймер перерывов, в том числе для задачи
+    @objc func tapForBreak() {
+        delegate?.pauseWorkTimer()
+        delegate?.startBreakTimer()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        
+        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+        addTaskButton.tintColor = .black
+        addTaskButton.backgroundColor = .systemGray6
+        addTaskButton.layer.borderWidth = 0.5
+        
+        addTaskButton.isEnabled = false
+    }
+    
+//    Останавливает все таймеры, в том числе для задачи
+    @objc func tapForStop() {
+        delegate?.stop()
+        
+        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+        addTaskButton.tintColor = .black
+        addTaskButton.backgroundColor = .systemGray6
+        addTaskButton.layer.borderWidth = 0.5
+        
+        addTaskButton.isEnabled = false
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+    }
+    
+//    Запускает таймер задачи
+    @objc func startTask() {
+        delegate?.startTaskTimer()
+    }
+    
+//    Останавливает таймер задачи и переносит задачу в таблицу
+    @objc func stopTask() {
+        delegate?.stopTaskTimer()
+    }
+    
+    
+//    MARK: - init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layout()
+        setupButtons()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

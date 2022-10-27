@@ -236,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				74080348290A7F9F002AB91D /* UIViewMainScreen.swift */,
-				74ED60C9286594370008B57C /* ViewController.swift */,
 				74ED60D5286594F10008B57C /* TaskCell.swift */,
 			);
 			path = View;
@@ -257,6 +256,7 @@
 		74ED60CC286594C10008B57C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				74ED60C9286594370008B57C /* ViewController.swift */,
 				74ED60D7286594F10008B57C /* Extension TimeTasks.swift */,
 				746751A4286FFB9E004F6647 /* Extension Buttons.swift */,
 				74ED60D4286594F10008B57C /* Extension TableView.swift */,
