@@ -1,0 +1,326 @@
+//
+//  UIViewMainScreen.swift
+//  SeTime
+//
+//  Created by Рамиль Гирфанов on 27.10.2022.
+//
+
+import UIKit
+
+class UIViewMainScreen: UIView {
+    
+//    MARK: - UIObjects
+    
+    var scrollView: UIScrollView = {
+        var scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    var contentView: UIView = {
+        var contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
+    var viewForTimeReview: UIView = {
+        var viewForTimeReview = UIView()
+        viewForTimeReview.backgroundColor = .systemGray6
+        viewForTimeReview.layer.cornerRadius = totalCornerRadius
+        viewForTimeReview.translatesAutoresizingMaskIntoConstraints = false
+        return viewForTimeReview
+    }()
+    
+    var workTimeTextLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "Время работы"
+        workTimeTextLabel.textColor = .systemGray
+        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
+    }()
+    
+    var workTimeDataLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "-"
+        workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
+    }()
+    
+    var stackForTextLabel: UIStackView = {
+        var stackForTextLabel = UIStackView()
+        stackForTextLabel.axis = .horizontal
+        stackForTextLabel.distribution = .fillEqually
+        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return stackForTextLabel
+    }()
+    
+    var totalTimeTextLabel: UILabel = {
+        var totalTimeTextLabel = UILabel()
+        totalTimeTextLabel.text = "Общее время"
+        totalTimeTextLabel.textColor = .systemGray
+        totalTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        totalTimeTextLabel.textAlignment = .center
+        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeTextLabel
+    }()
+    
+    var breakTimeTextLabel: UILabel = {
+        var breakTimeTextLabel = UILabel()
+        breakTimeTextLabel.text = "Время отдыха"
+        breakTimeTextLabel.textColor = .systemGray
+        breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        breakTimeTextLabel.textAlignment = .center
+        breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return breakTimeTextLabel
+    }()
+    
+    var stackForDataLabel: UIStackView = {
+        var stackForTextLabel = UIStackView()
+        stackForTextLabel.axis = .horizontal
+        stackForTextLabel.distribution = .fillEqually
+        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return stackForTextLabel
+    }()
+    
+    var totalTimeDataLabel: UILabel = {
+        var totalTimeDataLabel = UILabel()
+        totalTimeDataLabel.text = "-"
+        totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        totalTimeDataLabel.textAlignment = .center
+        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeDataLabel
+    }()
+    
+    var breakTimeDataLabel: UILabel = {
+        var breakTimeDataLabel = UILabel()
+        breakTimeDataLabel.text = "-"
+        breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        breakTimeDataLabel.textAlignment = .center
+        breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return breakTimeDataLabel
+    }()
+    
+    var workButton: UIButton = {
+        var workButton = UIButton()
+        workButton.setTitle("Работа", for: .normal)
+        workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        workButton.roundYeellowButton()
+        return workButton
+    }()
+    
+    var breakButton: UIButton = {
+        var breakButton = UIButton()
+        breakButton.setTitle("Отдых", for: .normal)
+        breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        breakButton.isHidden = true
+        breakButton.roundYeellowButton()
+        return breakButton
+    }()
+    
+    var stopButton: UIButton = {
+        var stopButton = UIButton()
+        stopButton.setTitle("Стоп", for: .normal)
+        stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        stopButton.roundYeellowButton()
+        return stopButton
+    }()
+    
+    var addTaskButton: UIButton = {
+        var addTaskButton = UIButton()
+        addTaskButton.setTitle("Добавить задачу", for: .normal)
+        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+        addTaskButton.tintColor = .systemGray
+        addTaskButton.backgroundColor = .systemGray6
+        addTaskButton.layer.borderWidth = 0.5
+        addTaskButton.layer.borderColor = UIColor.lightGray.cgColor
+        addTaskButton.layer.cornerRadius = totalCornerRadius
+        addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        return addTaskButton
+    }()
+    
+    var taskTimerView: UIView = {
+        var taskTimerView = UIView()
+        taskTimerView.backgroundColor = .systemGray6
+        taskTimerView.layer.cornerRadius = totalCornerRadius
+        taskTimerView.translatesAutoresizingMaskIntoConstraints = false
+        taskTimerView.isHidden = true
+        return taskTimerView
+    }()
+    
+    var taskTimeTextLabel: UILabel = {
+        var taskTimeTextLabel = UILabel()
+        taskTimeTextLabel.text = "Название"
+        taskTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        taskTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return taskTimeTextLabel
+    }()
+    
+    var taskTimeDataLabel: UILabel = {
+        var taskTimeDataLabel = UILabel()
+        taskTimeDataLabel.text = "-"
+        taskTimeDataLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return taskTimeDataLabel
+    }()
+    
+    var stackForTaskLabel: UIStackView = {
+        var stackForTaskLabel = UIStackView()
+        stackForTaskLabel.axis = .vertical
+        stackForTaskLabel.distribution = .fillEqually
+        stackForTaskLabel.translatesAutoresizingMaskIntoConstraints = false
+        return stackForTaskLabel
+    }()
+    
+    var stopTaskButton: UIButton = {
+        var stopTaskButton = UIButton()
+        stopTaskButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+        stopTaskButton.roundYeellowButton()
+        return stopTaskButton
+    }()
+    
+    lazy var tasksTableView: UITableView = {
+        var tasksTableView = UITableView()
+        tasksTableView.backgroundColor = .systemGray6
+        tasksTableView.layer.cornerRadius = totalCornerRadius
+        tasksTableView.translatesAutoresizingMaskIntoConstraints = false
+        tasksTableView.dataSource = self
+        tasksTableView.delegate = self
+        tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
+        return tasksTableView
+    }()
+    
+    
+    //    MARK: - Layout
+    
+    private func layout() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { contentView.addSubview($0) }
+        
+        [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
+        
+        [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
+        [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
+        
+        [stackForTaskLabel, stopTaskButton].forEach { taskTimerView.addSubview($0) }
+        
+        [taskTimeTextLabel, taskTimeDataLabel].forEach { stackForTaskLabel.addArrangedSubview($0) }
+        
+        
+        let safeIndent1: CGFloat = 16
+        let safeIndent2: CGFloat = 8
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            viewForTimeReview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
+            viewForTimeReview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            viewForTimeReview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            
+            workTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
+            workTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            workTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            
+            workTimeDataLabel.topAnchor.constraint(equalTo: workTimeTextLabel.bottomAnchor),
+            workTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            workTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            
+            stackForTextLabel.topAnchor.constraint(equalTo: workTimeDataLabel.bottomAnchor, constant: safeIndent1),
+            stackForTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            stackForTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            
+            stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
+            stackForDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            stackForDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
+            
+            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
+            workButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            workButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            
+            breakButton.topAnchor.constraint(equalTo: workButton.topAnchor),
+            breakButton.leadingAnchor.constraint(equalTo: workButton.leadingAnchor),
+            breakButton.trailingAnchor.constraint(equalTo: workButton.trailingAnchor),
+            breakButton.bottomAnchor.constraint(equalTo: workButton.bottomAnchor),
+            
+            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopButton.topAnchor.constraint(equalTo: workButton.bottomAnchor, constant: safeIndent2),
+            stopButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            
+            taskTimerView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 1.5),
+            taskTimerView.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
+            taskTimerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            taskTimerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            
+            stackForTaskLabel.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor, constant: safeIndent2),
+            stackForTaskLabel.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            
+            stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopTaskButton.widthAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopTaskButton.centerYAnchor.constraint(equalTo: taskTimerView.centerYAnchor),
+            stopTaskButton.leadingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor, constant: safeIndent2),
+            stopTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor, constant: -safeIndent2),
+            
+            addTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            addTaskButton.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
+            addTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
+            addTaskButton.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            
+            tasksTableView.topAnchor.constraint(equalTo: taskTimerView.bottomAnchor, constant: safeIndent2),
+            tasksTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            tasksTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent2)
+        ])
+    }
+}
+
+//    MARK: - Расширение UITableViewDataSource
+
+extension UIViewMainScreen: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        day.tasks.count
+    }
+    
+    //    Тип ячейки
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        cell.backgroundColor = .clear
+        
+        cell.pullCell(taskData: day.tasks[indexPath.row])
+        
+        return cell
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDelegate
+
+extension UIViewMainScreen: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+}
