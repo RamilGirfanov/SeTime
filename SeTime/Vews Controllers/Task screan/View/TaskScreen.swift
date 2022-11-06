@@ -123,14 +123,6 @@ class TaskScreen: UIView {
     }
     
     @objc private func addTask() {
-        
-//        Меняет видимости кнопки и вью задачи на главном экране
-        ViewController.addTaskButton.isHidden = true
-        ViewController.taskTimerView.isHidden = false
-        
-//        Устанавливает в лейбл задачи ее название
-        ViewController.taskTimeTextLabel.text = newTask
-        
 //        Скрывает текущий экран
         delegate?.dismiss()
     }

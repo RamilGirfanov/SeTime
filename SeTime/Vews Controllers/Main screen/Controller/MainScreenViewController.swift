@@ -11,7 +11,7 @@ class MainScreenViewController: UIViewController {
 
 //    MARK: - Экземпляр MainScreen
     
-    private lazy var mainScreen: MainScreen = {
+    lazy var mainScreen: MainScreen = {
        let view = MainScreen()
         view.delegate = self
         return view
@@ -20,7 +20,11 @@ class MainScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр модели
     
-    var model = Model()
+    lazy var model: Model = {
+        let model = Model()
+        model.delegate = self
+        return model
+    }()
     
     
 //    MARK: - Жизненный цикл
@@ -31,8 +35,6 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.largeTitleDisplayMode = .automatic
-                
         checkDay()
     }
     
@@ -99,6 +101,7 @@ class MainScreenViewController: UIViewController {
     }
      */
     
+    
 //    MARK: - Notification center для приподнития ScrollView при вызове клавиатуры
 
     var nc: NotificationCenter { NotificationCenter.default }
@@ -131,7 +134,7 @@ class MainScreenViewController: UIViewController {
 }
 
 
-//MARK: - Протокол делегата
+//MARK: - Протокол делегата MainScreen
 
 extension MainScreenViewController: ManageTimers {
     
@@ -141,39 +144,91 @@ extension MainScreenViewController: ManageTimers {
         if model.task.duration != 0 {
             model.startTaskTimer()
         }
+        
+        model.pauseBreakTimer()
     }
     
     func startBreakTimer() {
         model.startBreakTimer()
-    }
-    
-    func pauseWorkTimer() {
         model.pauseWorkTimer()
     }
     
-    func pauseBreakTimer() {
-        model.pauseBreakTimer()
-    }
+//    func pauseWorkTimer() {
+//        model.pauseWorkTimer()
+//    }
+    
+//    func pauseBreakTimer() {
+//        model.pauseBreakTimer()
+//    }
     
     func stop() {
         model.stop()
     }
     
-    func startTaskTimer() {
-        model.startTaskTimer()
-    }
+//    func startTaskTimer() {
+//        model.startTaskTimer()
+//    }
     
     func stopTaskTimer() {
         model.stopTaskTimer()
+        mainScreen.tasksTableView.reloadData()
     }
     
     func tapForAddTask() {
         let taskVC = TaskScreenViewController()
-        taskVC.model = model
+//        TODO: - через делегат
+        taskVC.delegate = self
+//        Или через inout и свойство с наблюдателем
+//        Или передать объект этого VC
         present(taskVC, animated: true)
     }
     
     func getDayData() -> Day {
         return model.day
+    }
+}
+
+
+//MARK: - Протокол делегата TaskScreen
+
+extension MainScreenViewController: ManageTasks {
+    func addTask(name: String, definition: String) {
+//        Меняет видимости кнопки и вью задачи на главном экране
+        mainScreen.addTaskButton.isHidden = true
+        mainScreen.taskTimerView.isHidden = false
+        
+//        Устанавливает в лейбл задачи ее название
+        mainScreen.taskTimeTextLabel.text = name
+        
+//        Устанавливает название и описание задачи в объект задачи
+        model.task.taskName = name
+        model.task.definition = definition
+        
+//        Запускает таймер задачи
+        model.startTaskTimer()
+        model.task.startTime = getTime()
+    }
+}
+
+
+//MARK: - Протокол делегата Model
+
+extension MainScreenViewController: UpdateTime {
+    func uptadeWorkTime(time: Int) {
+        print("Рабочее время будет обновлено")
+        mainScreen.workTimeDataLabel.text = timeIntToString(time: time)
+        print("Рабочее время обновлено")
+    }
+    
+    func uptadeBreakTime(time: Int) {
+        mainScreen.breakTimeDataLabel.text = timeIntToString(time: time)
+    }
+    
+    func uptadeTotalTime(time: Int) {
+        mainScreen.totalTimeDataLabel.text = timeIntToString(time: time)
+    }
+    
+    func uptadeTaskTime(time: Int) {
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: time)
     }
 }

@@ -7,6 +7,13 @@
 
 import Foundation
 
+protocol UpdateTime: AnyObject {
+    func uptadeWorkTime(time: Int)
+    func uptadeBreakTime(time: Int)
+    func uptadeTotalTime(time: Int)
+    func uptadeTaskTime(time: Int)    
+}
+
 class Model {
     
     var day = Day()
@@ -21,7 +28,11 @@ class Model {
     var totalTime = 0
     var taskTime = 0
     
+//    MARK: - Delegate
 
+    weak var delegate: UpdateTime?
+    
+//    MARK: - Функция сохранения данных
     
     private func saveData() {
         if archiveOfDays[day.date] == nil {
@@ -40,11 +51,21 @@ class Model {
     
     func startWorkTimer() {
         let creationDate = Date()
-        workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-            workTime = Int(Date().timeIntervalSince(creationDate))
-            workTime += day.workTime
-            totalTime = Int(Date().timeIntervalSince(creationDate))
-            totalTime += day.totalTime
+        workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.workTime = Int(Date().timeIntervalSince(creationDate))
+            self.workTime += self.day.workTime
+            
+//            TODO: - Возможно через наблюдателя, Observable
+//            TODO: - Попробоватьчерез inout
+            self.delegate?.uptadeWorkTime(time: self.workTime)
+            print(self.workTime)
+            
+            self.totalTime = Int(Date().timeIntervalSince(creationDate))
+            self.totalTime += self.day.totalTime
+            
+            self.delegate?.uptadeTotalTime(time: self.totalTime)
+            
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -52,11 +73,16 @@ class Model {
     
     func startBreakTimer() {
         let creationDate = Date()
-        breakTimer = Timer(timeInterval: 1, repeats: true) { [self] _ in
-            breakTime = Int(Date().timeIntervalSince(creationDate))
-            breakTime += day.breakTime
-            totalTime = Int(Date().timeIntervalSince(creationDate))
-            totalTime += day.totalTime
+        breakTimer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.breakTime = Int(Date().timeIntervalSince(creationDate))
+            self.breakTime += self.day.breakTime
+            self.delegate?.uptadeBreakTime(time: self.breakTime)
+            
+            self.totalTime = Int(Date().timeIntervalSince(creationDate))
+            self.totalTime += self.day.totalTime
+            self.delegate?.uptadeTotalTime(time: self.totalTime)
+
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -85,10 +111,11 @@ class Model {
     
     func startTaskTimer() {
         let creationDate = Date()
-        taskTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
-            
-            taskTime = Int(Date().timeIntervalSince(creationDate))
-            taskTime += task.duration
+        taskTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.taskTime = Int(Date().timeIntervalSince(creationDate))
+            self.taskTime += self.task.duration
+            self.delegate?.uptadeTaskTime(time: self.taskTime)
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)

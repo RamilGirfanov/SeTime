@@ -1,25 +1,21 @@
 //
-//  HistoryScreanViewController.swift
+//  HistoryScrean.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 30.06.2022.
+//  Created by Рамиль Гирфанов on 01.11.2022.
 //
 
 import UIKit
 
-class HistoryScreanViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        layout()
-        setupData()
-        
-    }
-    
-  
-    //    MARK: - UIObjects
+protocol GetData: AnyObject {
+    func getDay() -> Day
+    func getDate() -> String
+}
 
+class HistoryScrean: UIView {
+
+//    MARK: - UIObjects
+    
     lazy var historyLabel: UILabel = {
         lazy var timeTextLabel = UILabel()
         timeTextLabel.text = "Дата"
@@ -27,7 +23,7 @@ class HistoryScreanViewController: UIViewController {
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel
     }()
-
+    
     lazy var viewForTimeReview: UIView = {
         lazy var viewForTimeReview = UIView()
         viewForTimeReview.backgroundColor = .systemGray6
@@ -121,28 +117,33 @@ class HistoryScreanViewController: UIViewController {
     }()
     
     
-    //    MARK: - Layout
+//    MARK: - Delegate
+    
+    weak var delegate: GetData?
+    
+
+//    MARK: - Layout
     
     private func layout() {
         
-        [historyLabel, viewForTimeReview, tasksTableView].forEach { view.addSubview($0) }
+        [historyLabel, viewForTimeReview, tasksTableView].forEach { addSubview($0) }
         
         [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
         
         [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
         [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
-                                
+        
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
         
         NSLayoutConstraint.activate([
-            historyLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
-            historyLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            historyLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
+            historyLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
             viewForTimeReview.topAnchor.constraint(equalTo: historyLabel.bottomAnchor, constant: safeIndent1),
-            viewForTimeReview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: safeIndent1),
-            viewForTimeReview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -safeIndent1),
+            viewForTimeReview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: safeIndent1),
+            viewForTimeReview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -safeIndent1),
             
             workTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
             workTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
@@ -160,13 +161,61 @@ class HistoryScreanViewController: UIViewController {
             stackForDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
             stackForDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
-
+            
             tasksTableView.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
-            tasksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            tasksTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-            tasksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent2)
+            tasksTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            tasksTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            tasksTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent2)
         ])
+    }
+
+    
+//    MARK: - init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDataSource
+
+extension HistoryScrean: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+//    Необхобимое количество ячеек
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        archiveOfDays[(delegate?.getDate())!]?.tasks.count ?? 0
+    }
+    
+//    Тип ячейки
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        lazy var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        cell.backgroundColor = .clear
         
+        guard let taskData = archiveOfDays[(delegate?.getDate())!]?.tasks[indexPath.row] else { return cell }
+        cell.pullCell(taskData: taskData)
+                
+        return cell
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDelegate
+
+extension HistoryScrean: UITableViewDelegate {
+    //    Возвращает динамическую высоту ячейки
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
     
 }

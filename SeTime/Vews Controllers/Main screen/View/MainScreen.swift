@@ -12,12 +12,12 @@ protocol ManageTimers: AnyObject {
     func startWorkTimer()
     func startBreakTimer()
         
-    func pauseWorkTimer()
-    func pauseBreakTimer()
+//    func pauseWorkTimer()
+//    func pauseBreakTimer()
     
     func stop()
         
-    func startTaskTimer()
+//    func startTaskTimer()
     func stopTaskTimer()
     
     func tapForAddTask()
@@ -327,7 +327,6 @@ class MainScreen: UIView {
 //    Запускает таймер работы, в том числе для задачи
     @objc func tapForWork() {
         delegate?.startWorkTimer()
-        delegate?.pauseBreakTimer()
                 
         addTaskButton.setTitleColor(.black, for: .normal)
         addTaskButton.tintColor = .black
@@ -344,7 +343,6 @@ class MainScreen: UIView {
     
 //    Запускает таймер перерывов, в том числе для задачи
     @objc func tapForBreak() {
-        delegate?.pauseWorkTimer()
         delegate?.startBreakTimer()
         
         workButton.isHidden = false
@@ -374,9 +372,9 @@ class MainScreen: UIView {
     }
     
 //    Запускает таймер задачи
-    @objc func startTask() {
-        delegate?.startTaskTimer()
-    }
+//    @objc func startTask() {
+//        delegate?.startTaskTimer()
+//    }
     
 //    Останавливает таймер задачи и переносит задачу в таблицу
     @objc func stopTask() {

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ManageTasks: AnyObject {
+    func addTask (name: String, definition: String)
+}
+
 class TaskScreenViewController: UIViewController {
 
 //    MARK: - Экземпляр TaskScreen
@@ -18,8 +22,9 @@ class TaskScreenViewController: UIViewController {
     }()
     
     
-    //    MARK: - Экземпляр модели
-    var model: Model?
+    //    MARK: - Delegate
+
+    weak var delegate: ManageTasks?
     
 }
 
@@ -32,14 +37,25 @@ extension TaskScreenViewController: TaskScreenProtocol {
 //        Проверка на введеное название задачи
 
         guard let newTask = taskScreen.taskName.text, !newTask.isEmpty else { return }
+                
+        delegate?.addTask(name: newTask, definition: taskScreen.definition.text ?? "")
+        
+//        Меняет видимости кнопки и вью задачи на главном экране
+//        mainScreen?.addTaskButton
+        
+//        mainScreen.addTaskButton.isHidden = true
+//        ViewController.taskTimerView.isHidden = false
+        
+//        Устанавливает в лейбл задачи ее название
+//        ViewController.taskTimeTextLabel.text = newTask
         
 //        Устанавливает название и описание задачи
-        model?.task.taskName = newTask
-        model?.task.definition = taskScreen.definition.text ?? ""
+//        model?.task.taskName = newTask
+//        model?.task.definition = taskScreen.definition.text ?? ""
                 
 //        Запускает таймер и устанавливает время начала задачи
-        model?.startTaskTimer()
-        model?.task.startTime = getTime()
+//        model?.startTaskTimer()
+//        model?.task.startTime = getTime()
         
         dismiss(animated: true)
     }

@@ -25,7 +25,7 @@ class NavigationController: UINavigationController {
     }
     
     @objc private func tap() {
-        lazy var calendarVC = DatePickerViewController()
+        lazy var calendarVC = DatePickerScreenViewController()
         calendarVC.title = "Выбор даты"
         present(calendarVC, animated: true)
     }
