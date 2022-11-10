@@ -108,6 +108,8 @@ class HistoryScrean: UIView {
     lazy var tasksTableView: UITableView = {
         lazy var tasksTableView = UITableView()
         tasksTableView.backgroundColor = .systemGray6
+        tasksTableView.layer.borderWidth = 0.5
+        tasksTableView.layer.borderColor = UIColor.lightGray.cgColor
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.dataSource = self
@@ -194,7 +196,8 @@ extension HistoryScrean: UITableViewDataSource {
     
 //    Необхобимое количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        archiveOfDays[(delegate?.getDate())!]?.tasks.count ?? 0
+        guard let date = delegate?.getDate() else { return 0 }
+        return archiveOfDays[date]?.tasks.count ?? 0
     }
     
 //    Тип ячейки

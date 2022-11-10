@@ -183,33 +183,17 @@ extension MainScreenViewController: ManageTimers {
         model.pauseWorkTimer()
     }
     
-//    func pauseWorkTimer() {
-//        model.pauseWorkTimer()
-//    }
-    
-//    func pauseBreakTimer() {
-//        model.pauseBreakTimer()
-//    }
-    
     func stop() {
         model.stop()
     }
-    
-//    func startTaskTimer() {
-//        model.startTaskTimer()
-//    }
-    
+        
     func stopTaskTimer() {
         model.stopTaskTimer()
-        mainScreen.tasksTableView.reloadData()
     }
     
     func tapForAddTask() {
         let taskVC = TaskScreenViewController()
-//        TODO: - через делегат
         taskVC.delegate = self
-//        Или через inout и свойство с наблюдателем
-//        Или передать объект этого VC
         present(taskVC, animated: true)
     }
     

@@ -14,7 +14,11 @@ class HistoryScreanViewController: UIViewController {
     
 //    MARK: - Экземпляр HistoryScreen
 
-    private lazy var historyScreen = HistoryScrean()
+    private lazy var historyScreen: HistoryScrean = {
+        let view = HistoryScrean()
+        view.delegate = self
+        return view
+    }()
     
     
 //    MARK: - Экземпляр модели
@@ -55,6 +59,6 @@ extension HistoryScreanViewController: GetData {
     }
     
     func getDate() -> String {
-        date
+        return date
     }
 }

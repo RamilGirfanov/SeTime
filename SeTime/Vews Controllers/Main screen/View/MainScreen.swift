@@ -11,13 +11,9 @@ protocol ManageTimers: AnyObject {
     
     func startWorkTimer()
     func startBreakTimer()
-        
-//    func pauseWorkTimer()
-//    func pauseBreakTimer()
-    
+            
     func stop()
         
-//    func startTaskTimer()
     func stopTaskTimer()
     
     func tapForAddTask()
@@ -203,6 +199,8 @@ class MainScreen: UIView {
     lazy var tasksTableView: UITableView = {
         var tasksTableView = UITableView()
         tasksTableView.backgroundColor = .systemGray6
+        tasksTableView.layer.borderWidth = 0.5
+        tasksTableView.layer.borderColor = UIColor.lightGray.cgColor
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.dataSource = self
@@ -325,7 +323,7 @@ class MainScreen: UIView {
     }
     
 //    Запускает таймер работы, в том числе для задачи
-    @objc func tapForWork() {
+    @objc private func tapForWork() {
         delegate?.startWorkTimer()
                 
         addTaskButton.setTitleColor(.black, for: .normal)
@@ -342,7 +340,7 @@ class MainScreen: UIView {
     }
     
 //    Запускает таймер перерывов, в том числе для задачи
-    @objc func tapForBreak() {
+    @objc private func tapForBreak() {
         delegate?.startBreakTimer()
         
         workButton.isHidden = false
@@ -357,7 +355,7 @@ class MainScreen: UIView {
     }
     
 //    Останавливает все таймеры, в том числе для задачи
-    @objc func tapForStop() {
+    @objc private func tapForStop() {
         delegate?.stop()
         
         addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
@@ -369,15 +367,18 @@ class MainScreen: UIView {
         
         workButton.isHidden = false
         breakButton.isHidden = true
+        
+        taskTimeTextLabel.text = "Название"
+        taskTimeDataLabel.text = "-"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        tasksTableView.reloadData()
     }
     
-//    Запускает таймер задачи
-//    @objc func startTask() {
-//        delegate?.startTaskTimer()
-//    }
-    
 //    Останавливает таймер задачи и переносит задачу в таблицу
-    @objc func stopTask() {
+    @objc private func stopTask() {
         delegate?.stopTaskTimer()
         
         taskTimeTextLabel.text = "Название"
@@ -390,7 +391,7 @@ class MainScreen: UIView {
     }
     
 //    Вызывает экран запуска задачи
-    @objc func tapForAddTask() {
+    @objc private func tapForAddTask() {
         delegate?.tapForAddTask()
     }
     
@@ -423,7 +424,7 @@ extension MainScreen: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         
         guard let day = delegate?.getDayData() else { return cell }
         cell.pullCell(taskData: day.tasks[indexPath.row])
@@ -460,7 +461,7 @@ extension MainScreen {
         addGestureRecognizer(tap)
     }
 
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         endEditing(true)
     }
 }
