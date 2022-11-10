@@ -19,9 +19,9 @@ class NavigationController: UINavigationController {
         
 //        Настройка кнопки вызова экрана истории
         lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
-        navigationItem.leftBarButtonItem = barButton
+        mainVC.navigationItem.leftBarButtonItem = barButton
         
-        navigationItem.largeTitleDisplayMode = .automatic
+        mainVC.navigationItem.largeTitleDisplayMode = .automatic
     }
     
     @objc private func tap() {

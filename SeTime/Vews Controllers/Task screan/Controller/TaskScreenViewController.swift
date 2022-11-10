@@ -26,6 +26,13 @@ class TaskScreenViewController: UIViewController {
 
     weak var delegate: ManageTasks?
     
+    
+    //    MARK: - Жизненный цикл
+    
+    override func loadView() {
+        view = taskScreen
+    }
+    
 }
 
 

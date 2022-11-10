@@ -7,13 +7,6 @@
 
 import Foundation
 
-protocol UpdateTime: AnyObject {
-    func uptadeWorkTime(time: Int)
-    func uptadeBreakTime(time: Int)
-    func uptadeTotalTime(time: Int)
-    func uptadeTaskTime(time: Int)    
-}
-
 class Model {
     
     var day = Day()
@@ -27,11 +20,7 @@ class Model {
     var breakTime = 0
     var totalTime = 0
     var taskTime = 0
-    
-//    MARK: - Delegate
-
-    weak var delegate: UpdateTime?
-    
+        
 //    MARK: - Функция сохранения данных
     
     private func saveData() {
@@ -55,17 +44,15 @@ class Model {
             guard let self = self else { return }
             self.workTime = Int(Date().timeIntervalSince(creationDate))
             self.workTime += self.day.workTime
-            
-//            TODO: - Возможно через наблюдателя, Observable
-//            TODO: - Попробоватьчерез inout
-            self.delegate?.uptadeWorkTime(time: self.workTime)
-            print(self.workTime)
-            
+
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationWorkTime, object: nil)
+                        
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += self.day.totalTime
             
-            self.delegate?.uptadeTotalTime(time: self.totalTime)
-            
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -77,12 +64,15 @@ class Model {
             guard let self = self else { return }
             self.breakTime = Int(Date().timeIntervalSince(creationDate))
             self.breakTime += self.day.breakTime
-            self.delegate?.uptadeBreakTime(time: self.breakTime)
+            
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationBreakTime, object: nil)
             
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += self.day.totalTime
-            self.delegate?.uptadeTotalTime(time: self.totalTime)
-
+            
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -115,7 +105,9 @@ class Model {
             guard let self = self else { return }
             self.taskTime = Int(Date().timeIntervalSince(creationDate))
             self.taskTime += self.task.duration
-            self.delegate?.uptadeTaskTime(time: self.taskTime)
+                        
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTime, object: nil)
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)

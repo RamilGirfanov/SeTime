@@ -8,38 +8,22 @@
 import UIKit
 
 class MainScreenViewController: UIViewController {
-
-//    MARK: - Экземпляр MainScreen
+    
+    //    MARK: - Экземпляр MainScreen
     
     lazy var mainScreen: MainScreen = {
-       let view = MainScreen()
+        let view = MainScreen()
         view.delegate = self
         return view
     }()
     
     
-//    MARK: - Экземпляр модели
+    //    MARK: - Экземпляр модели
     
-    lazy var model: Model = {
-        let model = Model()
-        model.delegate = self
-        return model
-    }()
+    lazy var model = Model()
     
-    
-//    MARK: - Жизненный цикл
-    
-    override func loadView() {
-        view = mainScreen
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        checkDay()
-    }
-    
-    
-//    MARK: - Функционал для проверки дня
+
+    //    MARK: - Функционал для проверки дня
     
     private func oldDay(date: String) {
         
@@ -76,60 +60,106 @@ class MainScreenViewController: UIViewController {
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getDate()
-
+        
         if currentDate == lastDate {
             oldDay(date: currentDate)
         } else {
             newDay(date: currentDate)
         }
     }
+    
+    
+    //    MARK: - NotificationCenter для обновления UIView
+    
+    static let notificationWorkTime = Notification.Name("workTime")
+    static let notificationBreakTime = Notification.Name("breakTime")
+    static let notificationTotalTime = Notification.Name("totalTime")
+    static let notificationTaskTime = Notification.Name("taskTime")
 
+    private func setupNC() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBreakTime), name: MainScreenViewController.notificationBreakTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
+    }
+    
+    @objc private func updateWorkTime() {
+        mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+    }
+    
+    @objc private func updateBreakTime() {
+        mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+    }
+    
+    @objc private func updateTotalTime() {
+        mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+    }
+    
+    @objc private func updateTaskTime() {
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
+    }
+    
     
     /*
-//    Настройка кнопки вызова экрана истории
+     //    Настройка кнопки вызова экрана истории
+     
+     func makeBarButtonItem(){
+     lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
+     
+     navigationItem.leftBarButtonItem = barButton
+     }
+     
+     @objc private func tap() {
+     lazy var calendarVC = DatePickerViewController()
+     calendarVC.title = "Выбор даты"
+     present(calendarVC, animated: true)
+     }
+     */
     
-    func makeBarButtonItem(){
-        lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
-        
-        navigationItem.leftBarButtonItem = barButton
-    }
-    
-    @objc private func tap() {
-        lazy var calendarVC = DatePickerViewController()
-        calendarVC.title = "Выбор даты"
-        present(calendarVC, animated: true)
-    }
+    /*
+     //    Notification center для приподнития ScrollView при вызове клавиатуры
+     
+     var ncForKeyBoard: NotificationCenter { NotificationCenter.default }
+     
+     override func viewWillAppear(_ animated: Bool) {
+     super.viewWillAppear(animated)
+     
+     
+     ncForKeyBoard.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+     ncForKeyBoard.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+     }
+     
+     @objc private func kbShow(notification: NSNotification) {
+     if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+     mainScreen.scrollView.contentInset.bottom = kbSize.height
+     mainScreen.scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+     }
+     }
+     
+     @objc private func kbHide() {
+     mainScreen.scrollView.contentInset = .zero
+     mainScreen.scrollView.verticalScrollIndicatorInsets = .zero
+     }
+     
+     override func viewDidDisappear(_ animated: Bool) {
+     super.viewDidDisappear(animated)
+     ncForKeyBoard.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+     ncForKeyBoard.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+     }
      */
     
     
-//    MARK: - Notification center для приподнития ScrollView при вызове клавиатуры
-
-    var nc: NotificationCenter { NotificationCenter.default }
+    //    MARK: - Жизненный цикл
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func loadView() {
+        view = mainScreen
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkDay()
         
-        
-        nc.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        nc.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc private func kbShow(notification: NSNotification) {
-        if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            mainScreen.scrollView.contentInset.bottom = kbSize.height
-            mainScreen.scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-        }
-    }
-    
-    @objc private func kbHide() {
-        mainScreen.scrollView.contentInset = .zero
-        mainScreen.scrollView.verticalScrollIndicatorInsets = .zero
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupNC()
     }
 }
 
@@ -210,25 +240,3 @@ extension MainScreenViewController: ManageTasks {
     }
 }
 
-
-//MARK: - Протокол делегата Model
-
-extension MainScreenViewController: UpdateTime {
-    func uptadeWorkTime(time: Int) {
-        print("Рабочее время будет обновлено")
-        mainScreen.workTimeDataLabel.text = timeIntToString(time: time)
-        print("Рабочее время обновлено")
-    }
-    
-    func uptadeBreakTime(time: Int) {
-        mainScreen.breakTimeDataLabel.text = timeIntToString(time: time)
-    }
-    
-    func uptadeTotalTime(time: Int) {
-        mainScreen.totalTimeDataLabel.text = timeIntToString(time: time)
-    }
-    
-    func uptadeTaskTime(time: Int) {
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: time)
-    }
-}
