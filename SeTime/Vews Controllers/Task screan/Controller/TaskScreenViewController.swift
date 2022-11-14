@@ -32,7 +32,6 @@ class TaskScreenViewController: UIViewController {
     override func loadView() {
         view = taskScreen
     }
-    
 }
 
 

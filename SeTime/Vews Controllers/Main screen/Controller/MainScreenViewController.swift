@@ -19,7 +19,7 @@ class MainScreenViewController: UIViewController {
     }()
     
     
-//    MARK: - Экземпляры модели
+//    MARK: - Экземпляр модели
     
     lazy var model = Model()
     
@@ -27,7 +27,7 @@ class MainScreenViewController: UIViewController {
 //    MARK: - Функционал для проверки дня
     
     func checkDay() {
-//        guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
+        guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getDate()
         
@@ -70,12 +70,14 @@ class MainScreenViewController: UIViewController {
     static let notificationBreakTime = Notification.Name("breakTime")
     static let notificationTotalTime = Notification.Name("totalTime")
     static let notificationTaskTime = Notification.Name("taskTime")
+    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
 
     private func setupNC() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateBreakTime), name: MainScreenViewController.notificationBreakTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
     }
     
     @objc private func updateWorkTime() {
@@ -92,6 +94,10 @@ class MainScreenViewController: UIViewController {
     
     @objc private func updateTaskTime() {
         mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
+    }
+    
+    @objc private func stopTimers() {
+        stop()
     }
     
     

@@ -12,7 +12,6 @@ class Model {
     
     let date = getDate()
     
-//    var day = Day()
     var task = Task()
     
     var workTimer = Timer()
@@ -23,32 +22,7 @@ class Model {
     var breakTime = 0
     var totalTime = 0
     var taskTime = 0
-        
-//    MARK: - Функция сохранения данных
-    
-//    private func saveDayData() {
-//
-//        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
-////            Если день в БД есть
-//            RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
-//            print("Данные времени обновились")
-//        } else {
-////            Если дня в БД нет
-//            let day = Day()
-//            day.date = date
-//            day.workTime = workTime
-//            day.breakTime = breakTime
-//            day.totalTime = totalTime
-//            day.tasks.append(task)
-//            RealmManager.shared.saveDay(day: day)
-//            print("Данные создались")
-//        }
-//    }
-    
-    private func saveTaskData() {
-        RealmManager.shared.updateTasks(date: date, task: task)
-    }
-    
+          
     
 //    MARK: - Функции для управления WorkTimeManager
     
@@ -58,14 +32,12 @@ class Model {
             guard let self = self else { return }
             self.workTime = Int(Date().timeIntervalSince(creationDate))
             self.workTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.workTime ?? 0
-
-//            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationWorkTime, object: nil)
                         
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationWorkTime, object: nil)
             NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
         }
         workTimer.tolerance = 0.2
@@ -79,13 +51,11 @@ class Model {
             self.breakTime = Int(Date().timeIntervalSince(creationDate))
             self.breakTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.breakTime ?? 0
             
-//            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationBreakTime, object: nil)
-            
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenViewController.notificationBreakTime, object: nil)
             NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
         }
         breakTimer.tolerance = 0.2
@@ -106,7 +76,6 @@ class Model {
     func stop() {
         pauseWorkTimer()
         pauseBreakTimer()
-//        saveDayData()
         stopTaskTimer()
     }
 
