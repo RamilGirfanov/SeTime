@@ -18,7 +18,7 @@ protocol ManageTimers: AnyObject {
     
     func tapForAddTask()
     
-    func getDayData() -> Day
+    func getTasksData() -> [Task]
 }
 
 class MainScreen: UIView {
@@ -420,14 +420,14 @@ extension MainScreen: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        delegate?.getDayData().tasks.count ?? 0
+        delegate?.getTasksData().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         
-        guard let day = delegate?.getDayData() else { return cell }
-        cell.pullCell(taskData: day.tasks[indexPath.row])
+        guard let tasks = delegate?.getTasksData() else { return cell }
+        cell.pullCell(taskData: tasks[indexPath.row])
         
         return cell
     }

@@ -9,15 +9,13 @@
 /* Begin PBXBuildFile section */
 		695B983474C0E1C3D548F71B /* Pods_SeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E847E12BEA55A5131DB9DD30 /* Pods_SeTime.framework */; };
 		74080349290A7F9F002AB91D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74080348290A7F9F002AB91D /* MainScreen.swift */; };
-		7408034B290AA260002AB91D /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* TimeManager.swift */; };
+		7408034B290AA260002AB91D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* Model.swift */; };
 		7408034E290AC14F002AB91D /* TaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034D290AC14F002AB91D /* TaskScreen.swift */; };
 		7408035029113820002AB91D /* DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034F29113820002AB91D /* DatePickerScreen.swift */; };
 		7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408035129113EF4002AB91D /* HistoryScrean.swift */; };
 		741FDF082921653B00F36193 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DayModel.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
-		74C504A8289773020085CDDB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C504A7289773020085CDDB /* Date.swift */; };
 		74E79069288AF0C8000BAC0B /* TaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79068288AF0C8000BAC0B /* TaskScreenViewController.swift */; };
-		74E79074288E6CC8000BAC0B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79073288E6CC8000BAC0B /* Task.swift */; };
 		74ED60C0286593E50008B57C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B7286593E50008B57C /* Assets.xcassets */; };
 		74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B8286593E50008B57C /* LaunchScreen.storyboard */; };
 		74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BA286593E50008B57C /* AppDelegate.swift */; };
@@ -25,9 +23,7 @@
 		74ED60C4286593E50008B57C /* Total properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BD286593E50008B57C /* Total properties.swift */; };
 		74ED60C6286593E50008B57C /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BF286593E50008B57C /* Identifier.swift */; };
 		74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60C9286594370008B57C /* MainScreenViewController.swift */; };
-		74ED60D0286594E00008B57C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60CD286594E00008B57C /* Day.swift */; };
 		74ED60DA286594F10008B57C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D5286594F10008B57C /* TaskCell.swift */; };
-		74ED60DE286594FA0008B57C /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60DD286594FA0008B57C /* Archive.swift */; };
 		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
 		74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */; };
 		74ED60F5286D76830008B57C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60F4286D76830008B57C /* NavigationController.swift */; };
@@ -37,7 +33,7 @@
 		0B541703E48C7A1EA051FA14 /* Pods-SeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.debug.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		26B82F2301FFD02ABB49F144 /* Pods-SeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.release.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.release.xcconfig"; sourceTree = "<group>"; };
 		74080348290A7F9F002AB91D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
-		7408034A290AA260002AB91D /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
+		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7408034D290AC14F002AB91D /* TaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreen.swift; sourceTree = "<group>"; };
 		7408034F29113820002AB91D /* DatePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerScreen.swift; sourceTree = "<group>"; };
 		7408035129113EF4002AB91D /* HistoryScrean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScrean.swift; sourceTree = "<group>"; };
@@ -45,9 +41,7 @@
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AC63EB2843C6EC00CAE0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74C504A7289773020085CDDB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		74E79068288AF0C8000BAC0B /* TaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreenViewController.swift; sourceTree = "<group>"; };
-		74E79073288E6CC8000BAC0B /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		74ED60B7286593E50008B57C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74ED60B9286593E50008B57C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74ED60BA286593E50008B57C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,9 +49,7 @@
 		74ED60BD286593E50008B57C /* Total properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Total properties.swift"; sourceTree = "<group>"; };
 		74ED60BF286593E50008B57C /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		74ED60C9286594370008B57C /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
-		74ED60CD286594E00008B57C /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		74ED60D5286594F10008B57C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		74ED60DD286594FA0008B57C /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreanViewController.swift; sourceTree = "<group>"; };
 		74ED60F4286D76830008B57C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -200,12 +192,8 @@
 		74ED60CB286594C10008B57C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7408034A290AA260002AB91D /* TimeManager.swift */,
+				7408034A290AA260002AB91D /* Model.swift */,
 				741FDF0A2921654E00F36193 /* Realm */,
-				74C504A7289773020085CDDB /* Date.swift */,
-				74ED60DD286594FA0008B57C /* Archive.swift */,
-				74ED60CD286594E00008B57C /* Day.swift */,
-				74E79073288E6CC8000BAC0B /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,8 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C504A8289773020085CDDB /* Date.swift in Sources */,
-				74ED60D0286594E00008B57C /* Day.swift in Sources */,
 				74080349290A7F9F002AB91D /* MainScreen.swift in Sources */,
 				741FDF082921653B00F36193 /* DayModel.swift in Sources */,
 				74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */,
@@ -379,11 +365,9 @@
 				7408035029113820002AB91D /* DatePickerScreen.swift in Sources */,
 				74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */,
 				74ED60DA286594F10008B57C /* TaskCell.swift in Sources */,
-				7408034B290AA260002AB91D /* TimeManager.swift in Sources */,
+				7408034B290AA260002AB91D /* Model.swift in Sources */,
 				74E79069288AF0C8000BAC0B /* TaskScreenViewController.swift in Sources */,
-				74ED60DE286594FA0008B57C /* Archive.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
-				74E79074288E6CC8000BAC0B /* Task.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
 				7408034E290AC14F002AB91D /* TaskScreen.swift in Sources */,
 				74ED60C6286593E50008B57C /* Identifier.swift in Sources */,

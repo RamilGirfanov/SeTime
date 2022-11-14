@@ -24,7 +24,7 @@ class HistoryScreanViewController: UIViewController {
     
 //    MARK: - Экземпляр модели
     
-    private var model = Model()
+    private var day = Day()
     
     
 //    MARK: - Настройка данных
@@ -33,11 +33,11 @@ class HistoryScreanViewController: UIViewController {
         
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
             
-            model.day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
+            day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
             
-            historyScreen.totalTimeDataLabel.text = timeIntToString(time: model.day.totalTime)
-            historyScreen.workTimeDataLabel.text = timeIntToString(time: model.day.workTime)
-            historyScreen.breakTimeDataLabel.text = timeIntToString(time: model.day.breakTime)
+            historyScreen.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
+            historyScreen.workTimeDataLabel.text = timeIntToString(time: day.workTime)
+            historyScreen.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
         } else {
             historyScreen.totalTimeDataLabel.text = "-"
             historyScreen.workTimeDataLabel.text = "-"
@@ -62,7 +62,7 @@ class HistoryScreanViewController: UIViewController {
 
 extension HistoryScreanViewController: GetData {
     func getDay() -> Day {
-        model.day
+        day
     }
     
     func getDate() -> String {

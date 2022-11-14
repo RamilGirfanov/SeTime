@@ -10,7 +10,7 @@ import RealmSwift
 
 class MainScreenViewController: UIViewController {
     
-    //    MARK: - Экземпляр MainScreen
+//    MARK: - Экземпляр MainScreen
     
     lazy var mainScreen: MainScreen = {
         let view = MainScreen()
@@ -19,65 +19,52 @@ class MainScreenViewController: UIViewController {
     }()
     
     
-    //    MARK: - Экземпляр модели
+//    MARK: - Экземпляры модели
     
     lazy var model = Model()
     
 
-    //    MARK: - Функционал для проверки дня
-    
-    /*
-    private func oldDay(date: String) {
-        
-        let currentDay = archiveOfDays[date]!
-        
-        model.day = currentDay
-        
-        mainScreen.workTimeDataLabel.text = timeIntToString(time: currentDay.workTime)
-        mainScreen.breakTimeDataLabel.text = timeIntToString(time: currentDay.breakTime)
-        mainScreen.totalTimeDataLabel.text = timeIntToString(time: currentDay.totalTime)
-        mainScreen.tasksTableView.reloadData()
-    }
-    */
-    
-    private func newDay() {
-        
-//        Инициирование нового дня
-        model = Model()
-        
-//        Настройка видимости кнопок "Работа", "Отдых", "Добавить задачу"
-        mainScreen.workButton.isHidden = false
-        mainScreen.breakButton.isHidden = true
-        mainScreen.addTaskButton.isEnabled = false
-        
-//        Очистка экрана от данных
-        mainScreen.workTimeDataLabel.text = "-"
-        mainScreen.breakTimeDataLabel.text = "-"
-        mainScreen.totalTimeDataLabel.text = "-"
-        
-        mainScreen.tasksTableView.reloadData()
-    }
+//    MARK: - Функционал для проверки дня
     
     func checkDay() {
-        guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
+//        guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getDate()
         
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
+            print("ДЕНЬ ЕСТЬ")
+//            Если день в БД есть
+            model.workTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.workTime
+            model.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
+            model.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
             
-            model.day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!
-            
-            mainScreen.workTimeDataLabel.text = timeIntToString(time: model.day.workTime)
-            mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.day.breakTime)
-            mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.day.totalTime)
+            mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+            mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+            mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
             mainScreen.tasksTableView.reloadData()
         } else {
-            newDay()
+            print("ДНЯ НЕТ")
+//          Если дня в БД нет
+            let day = Day()
+            day.date = currentDate
+            RealmManager.shared.saveDay(day: day)
+            model = Model()
+            
+//        Настройка видимости кнопок
+            mainScreen.workButton.isHidden = false
+            mainScreen.breakButton.isHidden = true
+            mainScreen.addTaskButton.isEnabled = false
+            
+//        Очистка экрана от данных
+            mainScreen.workTimeDataLabel.text = "-"
+            mainScreen.breakTimeDataLabel.text = "-"
+            mainScreen.totalTimeDataLabel.text = "-"
+            mainScreen.tasksTableView.reloadData()
         }
     }
     
     
-    //    MARK: - NotificationCenter для обновления UIView
+//    MARK: - NotificationCenter для обновления UIView
     
     static let notificationWorkTime = Notification.Name("workTime")
     static let notificationBreakTime = Notification.Name("breakTime")
@@ -108,56 +95,7 @@ class MainScreenViewController: UIViewController {
     }
     
     
-    /*
-     //    Настройка кнопки вызова экрана истории
-     
-     func makeBarButtonItem(){
-     lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
-     
-     navigationItem.leftBarButtonItem = barButton
-     }
-     
-     @objc private func tap() {
-     lazy var calendarVC = DatePickerViewController()
-     calendarVC.title = "Выбор даты"
-     present(calendarVC, animated: true)
-     }
-     */
-    
-    /*
-     //    Notification center для приподнития ScrollView при вызове клавиатуры
-     
-     var ncForKeyBoard: NotificationCenter { NotificationCenter.default }
-     
-     override func viewWillAppear(_ animated: Bool) {
-     super.viewWillAppear(animated)
-     
-     
-     ncForKeyBoard.addObserver(self, selector: #selector(kbShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-     ncForKeyBoard.addObserver(self, selector: #selector(kbHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-     }
-     
-     @objc private func kbShow(notification: NSNotification) {
-     if let kbSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-     mainScreen.scrollView.contentInset.bottom = kbSize.height
-     mainScreen.scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-     }
-     }
-     
-     @objc private func kbHide() {
-     mainScreen.scrollView.contentInset = .zero
-     mainScreen.scrollView.verticalScrollIndicatorInsets = .zero
-     }
-     
-     override func viewDidDisappear(_ animated: Bool) {
-     super.viewDidDisappear(animated)
-     ncForKeyBoard.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-     ncForKeyBoard.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-     }
-     */
-    
-    
-    //    MARK: - Жизненный цикл
+//    MARK: - Жизненный цикл
     
     override func loadView() {
         checkDay()
@@ -204,8 +142,10 @@ extension MainScreenViewController: ManageTimers {
         present(taskVC, animated: true)
     }
     
-    func getDayData() -> Day {
-        return model.day
+    func getTasksData() -> [Task] {
+        var tasksArray: [Task] = []
+        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getDate()).first?.tasks.forEach { tasksArray.append($0) }
+        return tasksArray
     }
 }
 

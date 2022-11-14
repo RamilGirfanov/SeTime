@@ -21,18 +21,23 @@ class RealmManager {
         }
     }
     
-//    func getDay(date: String) -> Day {
-//        let day = localRealm.objects(Day.self).filter("date == \(date)").first
-//        return day
-//    }
-    
-    func updateDay(day: Day) {
-        guard let dayToUpdate = localRealm.objects(Day.self).filter("date == \(day.date)").first else {return}
+    func updateTime(date: String, workTime: Int, breakTime: Int, totalTime: Int) {
+        guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
         try! localRealm.write {
-            dayToUpdate.workTime = day.workTime
-            dayToUpdate.breakTime = day.breakTime
-            dayToUpdate.totalTime = day.totalTime
-            dayToUpdate.tasks = day.tasks
+            dayToUpdate.workTime = workTime
+            dayToUpdate.breakTime = breakTime
+            dayToUpdate.totalTime = totalTime
         }
+    }
+    
+    func updateTasks(date: String, task: Task) {
+        guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
+        try! localRealm.write{
+            dayToUpdate.tasks.append(task)
+        }
+    }
+    
+    func deteTask() {
+//        TODO: - Реализовать
     }
 }

@@ -10,7 +10,9 @@ import RealmSwift
 
 class Model {
     
-    var day = Day()
+    let date = getDate()
+    
+//    var day = Day()
     var task = Task()
     
     var workTimer = Timer()
@@ -24,18 +26,27 @@ class Model {
         
 //    MARK: - Функция сохранения данных
     
-    private func saveData() {
-        
-        
-        let daysInRealm = RealmManager.shared.localRealm.objects(Day.self).where {
-            $0.date == getDate()
-        }
-        
-        if daysInRealm.count != 0 {
-            RealmManager.shared.updateDay(day: day)
-        } else {
-            RealmManager.shared.saveDay(day: day)
-        }
+//    private func saveDayData() {
+//
+//        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
+////            Если день в БД есть
+//            RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+//            print("Данные времени обновились")
+//        } else {
+////            Если дня в БД нет
+//            let day = Day()
+//            day.date = date
+//            day.workTime = workTime
+//            day.breakTime = breakTime
+//            day.totalTime = totalTime
+//            day.tasks.append(task)
+//            RealmManager.shared.saveDay(day: day)
+//            print("Данные создались")
+//        }
+//    }
+    
+    private func saveTaskData() {
+        RealmManager.shared.updateTasks(date: date, task: task)
     }
     
     
@@ -46,13 +57,13 @@ class Model {
         workTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             self.workTime = Int(Date().timeIntervalSince(creationDate))
-            self.workTime += self.day.workTime
+            self.workTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.workTime ?? 0
 
 //            Обновление UIView через NSNotificationCenter
             NotificationCenter.default.post(name: MainScreenViewController.notificationWorkTime, object: nil)
                         
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
-            self.totalTime += self.day.totalTime
+            self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
             NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
@@ -66,13 +77,13 @@ class Model {
         breakTimer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             self.breakTime = Int(Date().timeIntervalSince(creationDate))
-            self.breakTime += self.day.breakTime
+            self.breakTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.breakTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
             NotificationCenter.default.post(name: MainScreenViewController.notificationBreakTime, object: nil)
             
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
-            self.totalTime += self.day.totalTime
+            self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
             NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
@@ -83,20 +94,20 @@ class Model {
 
     func pauseWorkTimer() {
         workTimer.invalidate()
-        day.workTime = workTime
+        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
         pauseTaskTimer()
     }
     
     func pauseBreakTimer() {
         breakTimer.invalidate()
-        day.breakTime = breakTime
+        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
     }
 
     func stop() {
         pauseWorkTimer()
         pauseBreakTimer()
+//        saveDayData()
         stopTaskTimer()
-        saveData()
     }
 
     
@@ -122,17 +133,13 @@ class Model {
     }
     
     func stopTaskTimer() {
+        pauseTaskTimer()
         
-//        Останавливает таймер задачи и сохраняет данные
-        taskTimer.invalidate()
-        task.duration = taskTime
-        
-//        Проверка на пустое значение времени начала задачи, если пусто - не добавлять в таблицу
+//        Проверка на пустое значение времени начала задачи, если пусто - не сохранять данные и не добавлять в таблицу
         if task.duration != 0 {
-            day.tasks.append(task)
+            RealmManager.shared.updateTasks(date: date, task: task)
 
             task = Task()
-            
             taskTimer = Timer()
             taskTime = 0
         }
