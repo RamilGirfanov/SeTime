@@ -7,6 +7,7 @@
 
 /// В этом файле: создается объкет модели для хранения данных каждого прошедшего дня
 
+/*
 import UIKit
 
 //В этом файле будет архив с данными каждого дня
@@ -18,3 +19,4 @@ var archiveOfDays: [String: Day] = [:]
 func addDayToArchive(day: Day) {
     archiveOfDays[day.date] = day
 }
+*/

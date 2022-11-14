@@ -18,14 +18,14 @@ class NavigationController: UINavigationController {
         viewControllers.append(mainVC)
         
 //        Настройка кнопки вызова экрана истории
-        lazy var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
+        var barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
         mainVC.navigationItem.leftBarButtonItem = barButton
         
         mainVC.navigationItem.largeTitleDisplayMode = .automatic
     }
     
     @objc private func tap() {
-        lazy var calendarVC = DatePickerScreenViewController()
+        var calendarVC = DatePickerScreenViewController()
         calendarVC.title = "Выбор даты"
         present(calendarVC, animated: true)
     }

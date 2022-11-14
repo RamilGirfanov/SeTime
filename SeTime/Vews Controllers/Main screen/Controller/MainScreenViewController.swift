@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainScreenViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class MainScreenViewController: UIViewController {
 
     //    MARK: - Функционал для проверки дня
     
+    /*
     private func oldDay(date: String) {
         
         let currentDay = archiveOfDays[date]!
@@ -36,12 +38,12 @@ class MainScreenViewController: UIViewController {
         mainScreen.totalTimeDataLabel.text = timeIntToString(time: currentDay.totalTime)
         mainScreen.tasksTableView.reloadData()
     }
+    */
     
-    private func newDay(date: String) {
+    private func newDay() {
         
 //        Инициирование нового дня
         model = Model()
-        lastDate = date
         
 //        Настройка видимости кнопок "Работа", "Отдых", "Добавить задачу"
         mainScreen.workButton.isHidden = false
@@ -61,10 +63,16 @@ class MainScreenViewController: UIViewController {
         
         let currentDate = getDate()
         
-        if currentDate == lastDate {
-            oldDay(date: currentDate)
+        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
+            
+            model.day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!
+            
+            mainScreen.workTimeDataLabel.text = timeIntToString(time: model.day.workTime)
+            mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.day.breakTime)
+            mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.day.totalTime)
+            mainScreen.tasksTableView.reloadData()
         } else {
-            newDay(date: currentDate)
+            newDay()
         }
     }
     
@@ -152,13 +160,12 @@ class MainScreenViewController: UIViewController {
     //    MARK: - Жизненный цикл
     
     override func loadView() {
+        checkDay()
         view = mainScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkDay()
-        
         setupNC()
     }
 }
@@ -215,7 +222,7 @@ extension MainScreenViewController: ManageTasks {
         mainScreen.taskTimeTextLabel.text = name
         
 //        Устанавливает название и описание задачи в объект задачи
-        model.task.taskName = name
+        model.task.name = name
         model.task.definition = definition
         
 //        Запускает таймер задачи

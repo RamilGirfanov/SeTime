@@ -44,6 +44,13 @@ func getDate() -> String {
     return currentDate
 }
 
+func updateDate(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+    let currentDate = dateFormatter.string(from: date)
+    return currentDate
+}
+
 //Функция получения времени
 func getTime() -> String {
     let dateFormatter = DateFormatter()

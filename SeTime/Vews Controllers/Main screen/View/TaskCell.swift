@@ -61,7 +61,7 @@ class TaskCell: UITableViewCell {
 //    MARK: - Заполнение ячеек данными
     
     func pullCell(taskData: Task) {
-        taskName.text = taskData.taskName
+        taskName.text = taskData.name
         taskDuration.text = timeIntToString(time: taskData.duration)
         taskStartTime.text = "\(taskData.startTime)"
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HistoryScreanViewController: UIViewController {
     
@@ -26,30 +27,36 @@ class HistoryScreanViewController: UIViewController {
     private var model = Model()
     
     
+//    MARK: - Настройка данных
+    
+    func setupData() {
+        
+        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
+            
+            model.day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
+            
+            historyScreen.totalTimeDataLabel.text = timeIntToString(time: model.day.totalTime)
+            historyScreen.workTimeDataLabel.text = timeIntToString(time: model.day.workTime)
+            historyScreen.breakTimeDataLabel.text = timeIntToString(time: model.day.breakTime)
+        } else {
+            historyScreen.totalTimeDataLabel.text = "-"
+            historyScreen.workTimeDataLabel.text = "-"
+            historyScreen.breakTimeDataLabel.text = "-"
+        }
+    }
+    
+    
 //    MARK: - Жизненный цикл
             
     override func loadView() {
         view = historyScreen
+        setupData()
+        historyScreen.tasksTableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        setupData()
-    }
-    
-    
-//    MARK: - Настройка данных
-    
-    func setupData() {
-        guard let time = archiveOfDays[date]?.totalTime else { return }
-        historyScreen.totalTimeDataLabel.text = timeIntToString(time: time)
-        
-        guard let time = archiveOfDays[date]?.workTime else { return }
-        historyScreen.workTimeDataLabel.text = timeIntToString(time: time)
-        
-        guard let time = archiveOfDays[date]?.breakTime else {return}
-        historyScreen.breakTimeDataLabel.text = timeIntToString(time: time)
     }
 }
 

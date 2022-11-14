@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class Model {
     
@@ -24,14 +25,16 @@ class Model {
 //    MARK: - Функция сохранения данных
     
     private func saveData() {
-        if archiveOfDays[day.date] == nil {
-            addDayToArchive(day: day)
+        
+        
+        let daysInRealm = RealmManager.shared.localRealm.objects(Day.self).where {
+            $0.date == getDate()
+        }
+        
+        if daysInRealm.count != 0 {
+            RealmManager.shared.updateDay(day: day)
         } else {
-            var archiveDay = archiveOfDays[day.date]!
-            archiveDay.workTime = day.workTime
-            archiveDay.breakTime = day.breakTime
-            archiveDay.tasks = day.tasks
-            archiveOfDays[day.date] = archiveDay
+            RealmManager.shared.saveDay(day: day)
         }
     }
     

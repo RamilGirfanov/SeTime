@@ -54,7 +54,7 @@ extension DatePickerScreenViewController: PresentHistory {
         date.append("\(calendar.component(.year, from: datePickerScreen.datePicker.date))")
         
         let chosenDate = date.joined(separator: ".")
-                
+        
         lazy var historyVC = HistoryScreanViewController()
         historyVC.date = chosenDate
         present(historyVC, animated: true)

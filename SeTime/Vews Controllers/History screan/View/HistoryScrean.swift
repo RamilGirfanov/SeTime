@@ -194,21 +194,22 @@ extension HistoryScrean: UITableViewDataSource {
         1
     }
     
-//    Необхобимое количество ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let date = delegate?.getDate() else { return 0 }
-        return archiveOfDays[date]?.tasks.count ?? 0
+        let day = delegate?.getDay()
+        return day?.tasks.count ?? 0
     }
     
-//    Тип ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         lazy var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+//        TODO: - разобраться с background
         cell.backgroundColor = .clear
         
-        guard let taskData = archiveOfDays[(delegate?.getDate())!]?.tasks[indexPath.row] else { return cell }
-        cell.pullCell(taskData: taskData)
-                
-        return cell
+        if let day = delegate?.getDay() {
+            cell.pullCell(taskData: day.tasks[indexPath.row])
+            return cell
+        } else {
+            return cell
+        }
     }
 }
 
