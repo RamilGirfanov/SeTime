@@ -81,7 +81,8 @@
 			children = (
 				74ED60C7286594370008B57C /* Main screen */,
 				74E7906C288D820F000BAC0B /* Task screan */,
-				74ED60E9286D346D0008B57C /* History screan */,
+				744F56AA292586D800D242F7 /* History Screen */,
+				74ED60E9286D346D0008B57C /* DatePicker Screen */,
 			);
 			path = "Vews Controllers";
 			sourceTree = "<group>";
@@ -93,6 +94,31 @@
 				741FDF0B2921701D00F36193 /* RealmManager.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		744F56AA292586D800D242F7 /* History Screen */ = {
+			isa = PBXGroup;
+			children = (
+				744F56AB2925871400D242F7 /* View */,
+				744F56AD2925873A00D242F7 /* Controller */,
+			);
+			path = "History Screen";
+			sourceTree = "<group>";
+		};
+		744F56AB2925871400D242F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7408035129113EF4002AB91D /* HistoryScrean.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		744F56AD2925873A00D242F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		74AC63D12843C6EB00CAE0F5 = {
@@ -206,20 +232,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		74ED60E9286D346D0008B57C /* History screan */ = {
+		74ED60E9286D346D0008B57C /* DatePicker Screen */ = {
 			isa = PBXGroup;
 			children = (
 				74ED60EC286D34AC0008B57C /* View */,
 				74ED60EB286D34A30008B57C /* Controller */,
 			);
-			path = "History screan";
+			path = "DatePicker Screen";
 			sourceTree = "<group>";
 		};
 		74ED60EB286D34A30008B57C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				74ED60ED286D350C0008B57C /* DatePickerViewController.swift */,
-				74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				7408034F29113820002AB91D /* DatePickerScreen.swift */,
-				7408035129113EF4002AB91D /* HistoryScrean.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -8,15 +8,15 @@
 import UIKit
 import RealmSwift
 
-class HistoryScreanViewController: UIViewController {
+class HistoryScreenViewController: UIViewController {
     
     var date = ""
     
     
 //    MARK: - Экземпляр HistoryScreen
 
-    private lazy var historyScreen: HistoryScrean = {
-        let view = HistoryScrean()
+    private lazy var historyScreen: HistoryScreen = {
+        let view = HistoryScreen()
         view.delegate = self
         return view
     }()
@@ -60,7 +60,7 @@ class HistoryScreanViewController: UIViewController {
     }
 }
 
-extension HistoryScreanViewController: GetData {
+extension HistoryScreenViewController: GetData {
     func getDay() -> Day {
         day
     }

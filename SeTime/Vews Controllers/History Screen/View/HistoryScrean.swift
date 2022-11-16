@@ -12,7 +12,7 @@ protocol GetData: AnyObject {
     func getDate() -> String
 }
 
-class HistoryScrean: UIView {
+class HistoryScreen: UIView {
 
 //    MARK: - UIObjects
     
@@ -188,7 +188,7 @@ class HistoryScrean: UIView {
 
 //    MARK: - Расширение UITableViewDataSource
 
-extension HistoryScrean: UITableViewDataSource {
+extension HistoryScreen: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -216,7 +216,7 @@ extension HistoryScrean: UITableViewDataSource {
 
 //    MARK: - Расширение UITableViewDelegate
 
-extension HistoryScrean: UITableViewDelegate {
+extension HistoryScreen: UITableViewDelegate {
     //    Возвращает динамическую высоту ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension

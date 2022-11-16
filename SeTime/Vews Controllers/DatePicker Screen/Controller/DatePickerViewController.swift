@@ -55,7 +55,7 @@ extension DatePickerScreenViewController: PresentHistory {
         
         let chosenDate = date.joined(separator: ".")
         
-        lazy var historyVC = HistoryScreanViewController()
+        lazy var historyVC = HistoryScreenViewController()
         historyVC.date = chosenDate
         present(historyVC, animated: true)
     }
