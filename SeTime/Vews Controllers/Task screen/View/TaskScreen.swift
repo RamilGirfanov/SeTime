@@ -13,14 +13,14 @@ protocol TaskScreenProtocol: AnyObject {
 
 class TaskScreen: UIView {
 
-    //    MARK: - UIObjects
+//    MARK: - UIObjects
 
-    var taskLabel: UILabel = {
-        var taskLabel = UILabel()
-        taskLabel.text = "Название и описание"
-        taskLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
-        taskLabel.translatesAutoresizingMaskIntoConstraints = false
-        return taskLabel
+    var screenLabel: UILabel = {
+        var screenLabel = UILabel()
+        screenLabel.text = "Название и описание"
+        screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
+        screenLabel.translatesAutoresizingMaskIntoConstraints = false
+        return screenLabel
     }()
     
     var taskName: UITextField = {
@@ -71,12 +71,15 @@ class TaskScreen: UIView {
         return startButton
     }()
     
+    
+//    MARK: - Delegate
+    
     weak var delegate: TaskScreenProtocol?
     
-    //    MARK: - Layout
+//    MARK: - Layout
     
     private func layout() {
-        [taskLabel, viewForTextFieldTaskName, viewForTextFieldTaskDefinition, startButton].forEach { addSubview($0) }
+        [screenLabel, viewForTextFieldTaskName, viewForTextFieldTaskDefinition, startButton].forEach { addSubview($0) }
         viewForTextFieldTaskName.addSubview(taskName)
         viewForTextFieldTaskDefinition.addSubview(definition)
         
@@ -84,11 +87,11 @@ class TaskScreen: UIView {
         let safeIndent2: CGFloat = 8
 
         NSLayoutConstraint.activate([
-            taskLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
-            taskLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            screenLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
+            screenLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
              
             viewForTextFieldTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
-            viewForTextFieldTaskName.topAnchor.constraint(equalTo: taskLabel.bottomAnchor, constant: safeIndent2),
+            viewForTextFieldTaskName.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent2),
             viewForTextFieldTaskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             viewForTextFieldTaskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
@@ -116,7 +119,7 @@ class TaskScreen: UIView {
     }
     
     
-    //    MARK: - Настройка кнопки
+//    MARK: - Настройка кнопки
 
     func setupButton() {
         startButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)

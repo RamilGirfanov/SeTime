@@ -18,6 +18,7 @@ class HistoryScreenViewController: UIViewController {
     private lazy var historyScreen: HistoryScreen = {
         let view = HistoryScreen()
         view.delegate = self
+        view.historyLabel.text = date
         return view
     }()
     

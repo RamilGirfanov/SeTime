@@ -153,6 +153,7 @@ class MainScreen: UIView {
         addTaskButton.layer.borderColor = UIColor.lightGray.cgColor
         addTaskButton.layer.cornerRadius = totalCornerRadius
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
+        addTaskButton.isEnabled = false
         return addTaskButton
     }()
     
