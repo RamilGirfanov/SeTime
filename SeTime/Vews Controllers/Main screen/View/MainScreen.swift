@@ -8,16 +8,18 @@
 import UIKit
 
 protocol ManageTimers: AnyObject {
-    
     func startWorkTimer()
+    
     func startBreakTimer()
-            
+    
     func stop()
-        
+    
     func stopTaskTimer()
     
-    func tapForAddTask()
+    func addTask()
     
+    func showTaskDifinition()
+        
     func getTasksData() -> [Task]
 }
 
@@ -163,6 +165,7 @@ class MainScreen: UIView {
         taskTimerView.layer.cornerRadius = totalCornerRadius
         taskTimerView.translatesAutoresizingMaskIntoConstraints = false
         taskTimerView.isHidden = true
+        taskTimerView.isUserInteractionEnabled = true
         return taskTimerView
     }()
     
@@ -320,7 +323,10 @@ class MainScreen: UIView {
         breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
         stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
-        addTaskButton.addTarget(self, action: #selector(tapForAddTask), for: .touchUpInside)
+        addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showTaskDifinition))
+        taskTimerView.addGestureRecognizer(tap)
     }
     
 //    Запускает таймер работы, в том числе для задачи
@@ -392,8 +398,12 @@ class MainScreen: UIView {
     }
     
 //    Вызывает экран запуска задачи
-    @objc private func tapForAddTask() {
-        delegate?.tapForAddTask()
+    @objc private func addTask() {
+        delegate?.addTask()
+    }
+    
+    @objc private func showTaskDifinition() {
+        delegate?.showTaskDifinition()
     }
     
     

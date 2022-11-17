@@ -32,7 +32,6 @@ class MainScreenViewController: UIViewController {
         let currentDate = getDate()
         
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
-            print("ДЕНЬ ЕСТЬ")
 //            Если день в БД есть
             model.workTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.workTime
             model.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
@@ -43,7 +42,6 @@ class MainScreenViewController: UIViewController {
             mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
             mainScreen.tasksTableView.reloadData()
         } else {
-            print("ДНЯ НЕТ")
 //          Если дня в БД нет
             let day = Day()
             day.date = currentDate
@@ -119,6 +117,7 @@ class MainScreenViewController: UIViewController {
 
 extension MainScreenViewController: ManageTimers {
     
+    
     func startWorkTimer() {
         model.startWorkTimer()
         
@@ -142,10 +141,18 @@ extension MainScreenViewController: ManageTimers {
         model.stopTaskTimer()
     }
     
-    func tapForAddTask() {
-        let taskVC = TaskScreenViewController()
-        taskVC.delegate = self
-        present(taskVC, animated: true)
+    func addTask() {
+        let taskAddVC = TaskAddScreenViewController()
+        taskAddVC.delegate = self
+        present(taskAddVC, animated: true)
+    }
+    
+    func showTaskDifinition() {
+        let taskDefinitionVC = TaskDefinitionScreenViewController()
+        taskDefinitionVC.name = model.task.name
+        taskDefinitionVC.definition = model.task.definition
+        taskDefinitionVC.delegate = self
+        present(taskDefinitionVC, animated: true)
     }
     
     func getTasksData() -> [Task] {
@@ -156,9 +163,9 @@ extension MainScreenViewController: ManageTimers {
 }
 
 
-//MARK: - Протокол делегата TaskScreen
+//MARK: - Протокол делегата TaskAddScreen
 
-extension MainScreenViewController: ManageTasks {
+extension MainScreenViewController: AddTasksProtocol {
     func addTask(name: String, definition: String) {
 //        Меняет видимости кнопки и вью задачи на главном экране
         mainScreen.addTaskButton.isHidden = true
@@ -177,3 +184,26 @@ extension MainScreenViewController: ManageTasks {
     }
 }
 
+
+//MARK: - Протокол делегата TaskDefinitionScreen
+
+extension MainScreenViewController: EditTasksProtocol {
+    func editTask(name: String, definition: String) {
+        let taskEditVC = TaskEditScreenViewController()
+        taskEditVC.name = model.task.name
+        taskEditVC.definition = model.task.definition
+        taskEditVC.delegate = self
+        present(taskEditVC, animated: true)
+    }
+}
+
+
+//MARK: - Протокол делегата TaskEditScreen
+
+extension MainScreenViewController: SaveTasksProtocol {
+    func saveTask(name: String, definition: String) {
+        model.task.name = name
+        model.task.definition = definition
+        mainScreen.taskTimeTextLabel.text = name
+    }
+}

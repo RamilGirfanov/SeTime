@@ -1,44 +1,48 @@
 //
-//  TaskDefinitionScreen.swift
+//  TaskScreen.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 17.11.2022.
+//  Created by Рамиль Гирфанов on 27.10.2022.
 //
 
 import UIKit
 
-protocol EditTaskProtocol: AnyObject {
-    func editTask()
+protocol AddTaskProtocol: AnyObject {
+    func addTask()
 }
 
-class TaskDefinitionScreen: UIView {
+class TaskAddScreen: UIView {
 
 //    MARK: - UIObjects
-    
+
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Описание"
+        screenLabel.text = "Добавить задачу"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel
     }()
     
-    var name: UITextView = {
-        var nameT = UITextView()
-        nameT.font = .systemFont(ofSize: textSize4)
-        nameT.backgroundColor = .systemGray6
-        nameT.translatesAutoresizingMaskIntoConstraints = false
-        return nameT
+    var taskName: UITextField = {
+        var taskName = UITextField()
+        taskName.placeholder = "Название"
+        taskName.font = .systemFont(ofSize: textSize4)
+        taskName.backgroundColor = .systemGray6
+        taskName.borderStyle = .roundedRect
+        taskName.translatesAutoresizingMaskIntoConstraints = false
+        return taskName
     }()
     
-    var definition: UITextView = {
-        var definitionT = UITextView()
-        definitionT.font = .systemFont(ofSize: textSize4)
-        definitionT.backgroundColor = .systemGray6
-        definitionT.translatesAutoresizingMaskIntoConstraints = false
-        return definitionT
-    }()
-    
+    var taskDefinition: UITextField = {
+          var taskDefinition = UITextField ()
+          taskDefinition.placeholder = "Описание"
+          taskDefinition.font = .systemFont(ofSize: textSize4)
+          taskDefinition.backgroundColor = .systemGray6
+          taskDefinition.borderStyle = .roundedRect
+          taskDefinition.translatesAutoresizingMaskIntoConstraints = false
+          return taskDefinition
+      }()
+      
     var viewForTaskName: UIView = {
         var viewForTaskName = UIView()
         viewForTaskName.clipsToBounds = true
@@ -61,7 +65,7 @@ class TaskDefinitionScreen: UIView {
     
     var button: UIButton = {
         var button = UIButton()
-        button.setTitle("Редактировать", for: .normal)
+        button.setTitle("Добавить", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         button.roundYeellowButton()
         return button
@@ -70,15 +74,15 @@ class TaskDefinitionScreen: UIView {
     
 //    MARK: - Delegate
     
-    weak var delegate: EditTaskProtocol?
+    weak var delegate: AddTaskProtocol?
     
     
 //    MARK: - Layout
     
     private func layout() {
         [screenLabel, viewForTaskName, viewForTaskDefinition, button].forEach { addSubview($0) }
-        viewForTaskName.addSubview(name)
-        viewForTaskDefinition.addSubview(definition)
+        viewForTaskName.addSubview(taskName)
+        viewForTaskDefinition.addSubview(taskDefinition)
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -97,15 +101,15 @@ class TaskDefinitionScreen: UIView {
             viewForTaskDefinition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             viewForTaskDefinition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            name.topAnchor.constraint(equalTo: viewForTaskName.topAnchor),
-            name.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor),
-            name.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor),
-            name.bottomAnchor.constraint(equalTo: viewForTaskName.bottomAnchor),
+            taskName.topAnchor.constraint(equalTo: viewForTaskName.topAnchor),
+            taskName.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor),
+            taskName.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor),
+            taskName.bottomAnchor.constraint(equalTo: viewForTaskName.bottomAnchor),
             
-            definition.topAnchor.constraint(equalTo: viewForTaskDefinition.topAnchor),
-            definition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor),
-            definition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor),
-            definition.bottomAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor),
+            taskDefinition.topAnchor.constraint(equalTo: viewForTaskDefinition.topAnchor),
+            taskDefinition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor),
+            taskDefinition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor),
+            taskDefinition.bottomAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor),
             
             button.topAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor, constant: safeIndent2),
             button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
@@ -118,16 +122,16 @@ class TaskDefinitionScreen: UIView {
 //    MARK: - Настройка кнопки
 
     private func setupButton() {
-        button.addTarget(self, action: #selector(editTask), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addTask), for: .touchUpInside)
     }
     
-    @objc private func editTask() {
-        delegate?.editTask()
+    @objc private func addTask() {
+        delegate?.addTask()
     }
 
     
 //    MARK: - init
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()

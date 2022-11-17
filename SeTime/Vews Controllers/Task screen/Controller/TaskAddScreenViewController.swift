@@ -7,16 +7,16 @@
 
 import UIKit
 
-protocol ManageTasks: AnyObject {
+protocol AddTasksProtocol: AnyObject {
     func addTask (name: String, definition: String)
 }
 
-class TaskScreenViewController: UIViewController {
+class TaskAddScreenViewController: UIViewController {
 
-//    MARK: - Экземпляр TaskScreen
-        
-    private lazy var taskScreen: TaskScreen = {
-        let view = TaskScreen()
+//    MARK: - Экземпляр TaskAddScreen
+    
+    private lazy var taskScreen: TaskAddScreen = {
+        let view = TaskAddScreen()
         view.delegate = self
         return view
     }()
@@ -24,7 +24,7 @@ class TaskScreenViewController: UIViewController {
     
     //    MARK: - Delegate
 
-    weak var delegate: ManageTasks?
+    weak var delegate: AddTasksProtocol?
     
     
     //    MARK: - Жизненный цикл
@@ -37,12 +37,12 @@ class TaskScreenViewController: UIViewController {
 
 //MARK: - Протокол делегата
 
-extension TaskScreenViewController: TaskScreenProtocol {
-    func dismiss() {
+extension TaskAddScreenViewController: AddTaskProtocol {
+    func addTask() {
         
 //        Проверка на введеное название задачи
         guard let newTask = taskScreen.taskName.text, !newTask.isEmpty else { return }
-        delegate?.addTask(name: newTask, definition: taskScreen.definition.text ?? "")
+        delegate?.addTask(name: newTask, definition: taskScreen.taskDefinition.text ?? "")
         dismiss(animated: true)
     }
 }

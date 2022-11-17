@@ -97,3 +97,9 @@ func timeIntToString(time: Int) -> String {
     
     return fullTime.joined(separator: ":")
 }
+
+enum TypeScreen {
+    case add
+    case edit
+    case show
+}
