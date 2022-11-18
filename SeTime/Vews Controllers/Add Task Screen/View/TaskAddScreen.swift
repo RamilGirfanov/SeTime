@@ -17,7 +17,7 @@ class TaskAddScreen: UIView {
 
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Добавить задачу"
+        screenLabel.text = "Новая задачча"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel

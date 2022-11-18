@@ -17,7 +17,7 @@ class TaskEditScreen: UIView {
     
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Редактирование задачи"
+        screenLabel.text = "Правка задачи"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel

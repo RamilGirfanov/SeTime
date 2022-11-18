@@ -17,7 +17,7 @@ class TaskDefinitionScreen: UIView {
     
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Описание"
+        screenLabel.text = "Задача"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel
@@ -28,6 +28,7 @@ class TaskDefinitionScreen: UIView {
         nameT.font = .systemFont(ofSize: textSize4)
         nameT.backgroundColor = .systemGray6
         nameT.translatesAutoresizingMaskIntoConstraints = false
+        nameT.isEditable = false
         return nameT
     }()
     
@@ -36,6 +37,7 @@ class TaskDefinitionScreen: UIView {
         definitionT.font = .systemFont(ofSize: textSize4)
         definitionT.backgroundColor = .systemGray6
         definitionT.translatesAutoresizingMaskIntoConstraints = false
+        definitionT.isEditable = false
         return definitionT
     }()
     
