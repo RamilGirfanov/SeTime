@@ -87,10 +87,10 @@
 		7408034C290AB9AA002AB91D /* Vews Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				74ED60C7286594370008B57C /* Main screen */,
-				74E7906C288D820F000BAC0B /* Task screen */,
-				744F56AF29258A2600D242F7 /* Task Definition Screen */,
-				744F56B42926CAB200D242F7 /* Edit task screen */,
+				74ED60C7286594370008B57C /* Main Screen */,
+				74E7906C288D820F000BAC0B /* Add Task Screen */,
+				744F56AF29258A2600D242F7 /* Definition Task Screen */,
+				744F56B42926CAB200D242F7 /* Edit Task Screen */,
 				74ED60E9286D346D0008B57C /* DatePicker Screen */,
 				744F56AA292586D800D242F7 /* History Screen */,
 			);
@@ -131,13 +131,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		744F56AF29258A2600D242F7 /* Task Definition Screen */ = {
+		744F56AF29258A2600D242F7 /* Definition Task Screen */ = {
 			isa = PBXGroup;
 			children = (
 				744F56B129258A5000D242F7 /* View */,
 				744F56B029258A3F00D242F7 /* Controller */,
 			);
-			path = "Task Definition Screen";
+			path = "Definition Task Screen";
 			sourceTree = "<group>";
 		};
 		744F56B029258A3F00D242F7 /* Controller */ = {
@@ -156,13 +156,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		744F56B42926CAB200D242F7 /* Edit task screen */ = {
+		744F56B42926CAB200D242F7 /* Edit Task Screen */ = {
 			isa = PBXGroup;
 			children = (
 				744F56B62926CAD800D242F7 /* View */,
 				744F56B52926CACB00D242F7 /* Controller */,
 			);
-			path = "Edit task screen";
+			path = "Edit Task Screen";
 			sourceTree = "<group>";
 		};
 		744F56B52926CACB00D242F7 /* Controller */ = {
@@ -211,13 +211,13 @@
 			path = SeTime;
 			sourceTree = "<group>";
 		};
-		74E7906C288D820F000BAC0B /* Task screen */ = {
+		74E7906C288D820F000BAC0B /* Add Task Screen */ = {
 			isa = PBXGroup;
 			children = (
 				74E7906E288D822A000BAC0B /* View */,
 				74E7906D288D8221000BAC0B /* Controller */,
 			);
-			path = "Task screen";
+			path = "Add Task Screen";
 			sourceTree = "<group>";
 		};
 		74E7906D288D8221000BAC0B /* Controller */ = {
@@ -257,13 +257,13 @@
 			path = "Global files";
 			sourceTree = "<group>";
 		};
-		74ED60C7286594370008B57C /* Main screen */ = {
+		74ED60C7286594370008B57C /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
 				74ED60C8286594370008B57C /* View */,
 				74ED60CC286594C10008B57C /* Controller */,
 			);
-			path = "Main screen";
+			path = "Main Screen";
 			sourceTree = "<group>";
 		};
 		74ED60C8286594370008B57C /* View */ = {
