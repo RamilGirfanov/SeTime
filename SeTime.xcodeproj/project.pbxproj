@@ -10,16 +10,18 @@
 		695B983474C0E1C3D548F71B /* Pods_SeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E847E12BEA55A5131DB9DD30 /* Pods_SeTime.framework */; };
 		74080349290A7F9F002AB91D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74080348290A7F9F002AB91D /* MainScreen.swift */; };
 		7408034B290AA260002AB91D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* Model.swift */; };
-		7408034E290AC14F002AB91D /* TaskAddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034D290AC14F002AB91D /* TaskAddScreen.swift */; };
+		7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034D290AC14F002AB91D /* AddTaskScreen.swift */; };
 		7408035029113820002AB91D /* DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034F29113820002AB91D /* DatePickerScreen.swift */; };
 		7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408035129113EF4002AB91D /* HistoryScrean.swift */; };
 		741FDF082921653B00F36193 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DayModel.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
-		744F56B329258B9500D242F7 /* TaskDefinitionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* TaskDefinitionScreen.swift */; };
-		744F56B82926EFD700D242F7 /* TaskDefinitionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* TaskDefinitionScreenViewController.swift */; };
+		744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */; };
+		744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */; };
 		744F56BA2926F5F200D242F7 /* TaskEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B92926F5F200D242F7 /* TaskEditScreen.swift */; };
 		744F56BC2926F60A00D242F7 /* TaskEditScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56BB2926F60A00D242F7 /* TaskEditScreenViewController.swift */; };
-		74E79069288AF0C8000BAC0B /* TaskAddScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79068288AF0C8000BAC0B /* TaskAddScreenViewController.swift */; };
+		74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E530292ACA7500A470EA /* EditTaskScreen.swift */; };
+		74C8E533292ACACD00A470EA /* EditTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */; };
+		74E79069288AF0C8000BAC0B /* AddTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79068288AF0C8000BAC0B /* AddTaskScreenViewController.swift */; };
 		74ED60C0286593E50008B57C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B7286593E50008B57C /* Assets.xcassets */; };
 		74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B8286593E50008B57C /* LaunchScreen.storyboard */; };
 		74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BA286593E50008B57C /* AppDelegate.swift */; };
@@ -38,18 +40,20 @@
 		26B82F2301FFD02ABB49F144 /* Pods-SeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.release.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.release.xcconfig"; sourceTree = "<group>"; };
 		74080348290A7F9F002AB91D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		7408034D290AC14F002AB91D /* TaskAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddScreen.swift; sourceTree = "<group>"; };
+		7408034D290AC14F002AB91D /* AddTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
 		7408034F29113820002AB91D /* DatePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerScreen.swift; sourceTree = "<group>"; };
 		7408035129113EF4002AB91D /* HistoryScrean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScrean.swift; sourceTree = "<group>"; };
 		741FDF072921653B00F36193 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		744F56B229258B9500D242F7 /* TaskDefinitionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDefinitionScreen.swift; sourceTree = "<group>"; };
-		744F56B72926EFD700D242F7 /* TaskDefinitionScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDefinitionScreenViewController.swift; sourceTree = "<group>"; };
+		744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreen.swift; sourceTree = "<group>"; };
+		744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenViewController.swift; sourceTree = "<group>"; };
 		744F56B92926F5F200D242F7 /* TaskEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditScreen.swift; sourceTree = "<group>"; };
 		744F56BB2926F60A00D242F7 /* TaskEditScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditScreenViewController.swift; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AC63EB2843C6EC00CAE0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74E79068288AF0C8000BAC0B /* TaskAddScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddScreenViewController.swift; sourceTree = "<group>"; };
+		74C8E530292ACA7500A470EA /* EditTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskScreen.swift; sourceTree = "<group>"; };
+		74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskScreenViewController.swift; sourceTree = "<group>"; };
+		74E79068288AF0C8000BAC0B /* AddTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74ED60B7286593E50008B57C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74ED60B9286593E50008B57C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74ED60BA286593E50008B57C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 		7408034C290AB9AA002AB91D /* Vews Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				74C8E52D292ACA3D00A470EA /* ETS */,
 				74ED60C7286594370008B57C /* Main Screen */,
 				74E7906C288D820F000BAC0B /* Add Task Screen */,
 				744F56AF29258A2600D242F7 /* Definition Task Screen */,
@@ -143,7 +148,7 @@
 		744F56B029258A3F00D242F7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				744F56B72926EFD700D242F7 /* TaskDefinitionScreenViewController.swift */,
+				744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,7 +156,7 @@
 		744F56B129258A5000D242F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				744F56B229258B9500D242F7 /* TaskDefinitionScreen.swift */,
+				744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +216,31 @@
 			path = SeTime;
 			sourceTree = "<group>";
 		};
+		74C8E52D292ACA3D00A470EA /* ETS */ = {
+			isa = PBXGroup;
+			children = (
+				74C8E52F292ACA5100A470EA /* View */,
+				74C8E52E292ACA4A00A470EA /* Controller */,
+			);
+			path = ETS;
+			sourceTree = "<group>";
+		};
+		74C8E52E292ACA4A00A470EA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		74C8E52F292ACA5100A470EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74C8E530292ACA7500A470EA /* EditTaskScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		74E7906C288D820F000BAC0B /* Add Task Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +253,7 @@
 		74E7906D288D8221000BAC0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				74E79068288AF0C8000BAC0B /* TaskAddScreenViewController.swift */,
+				74E79068288AF0C8000BAC0B /* AddTaskScreenViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,7 +261,7 @@
 		74E7906E288D822A000BAC0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7408034D290AC14F002AB91D /* TaskAddScreen.swift */,
+				7408034D290AC14F002AB91D /* AddTaskScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -444,20 +474,22 @@
 				74080349290A7F9F002AB91D /* MainScreen.swift in Sources */,
 				741FDF082921653B00F36193 /* DayModel.swift in Sources */,
 				74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */,
-				744F56B82926EFD700D242F7 /* TaskDefinitionScreenViewController.swift in Sources */,
-				744F56B329258B9500D242F7 /* TaskDefinitionScreen.swift in Sources */,
+				74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */,
+				744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */,
+				744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */,
 				741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */,
 				7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */,
+				74C8E533292ACACD00A470EA /* EditTaskScreenViewController.swift in Sources */,
 				74ED60C4286593E50008B57C /* Total properties.swift in Sources */,
 				7408035029113820002AB91D /* DatePickerScreen.swift in Sources */,
 				74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */,
 				74ED60DA286594F10008B57C /* TaskCell.swift in Sources */,
 				744F56BC2926F60A00D242F7 /* TaskEditScreenViewController.swift in Sources */,
 				7408034B290AA260002AB91D /* Model.swift in Sources */,
-				74E79069288AF0C8000BAC0B /* TaskAddScreenViewController.swift in Sources */,
+				74E79069288AF0C8000BAC0B /* AddTaskScreenViewController.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
-				7408034E290AC14F002AB91D /* TaskAddScreen.swift in Sources */,
+				7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */,
 				74ED60C6286593E50008B57C /* Identifier.swift in Sources */,
 				74ED60F5286D76830008B57C /* NavigationController.swift in Sources */,
 				74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */,

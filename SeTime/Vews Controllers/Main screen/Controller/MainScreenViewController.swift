@@ -142,13 +142,13 @@ extension MainScreenViewController: ManageTimers {
     }
     
     func addTask() {
-        let taskAddVC = TaskAddScreenViewController()
+        let taskAddVC = AddTaskScreenViewController()
         taskAddVC.delegate = self
         present(taskAddVC, animated: true)
     }
     
     func showTaskDifinition() {
-        let taskDefinitionVC = TaskDefinitionScreenViewController()
+        let taskDefinitionVC = DefinitionTaskScreenViewController()
         taskDefinitionVC.name = model.task.name
         taskDefinitionVC.definition = model.task.definition
         taskDefinitionVC.delegate = self
@@ -163,7 +163,7 @@ extension MainScreenViewController: ManageTimers {
 }
 
 
-//MARK: - Протокол делегата TaskAddScreen
+//MARK: - Протокол делегата AddTaskScreen
 
 extension MainScreenViewController: AddTasksProtocol {
     func addTask(name: String, definition: String) {
@@ -185,7 +185,7 @@ extension MainScreenViewController: AddTasksProtocol {
 }
 
 
-//MARK: - Протокол делегата TaskDefinitionScreen
+//MARK: - Протокол делегата DefinitionTaskScreen
 
 extension MainScreenViewController: EditTasksProtocol {
     func editTask(name: String, definition: String) {

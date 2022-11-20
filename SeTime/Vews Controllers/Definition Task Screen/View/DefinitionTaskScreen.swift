@@ -1,5 +1,5 @@
 //
-//  TaskDefinitionScreen.swift
+//  DefinitionTaskScreen.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 17.11.2022.
@@ -11,7 +11,7 @@ protocol EditTaskProtocol: AnyObject {
     func editTask()
 }
 
-class TaskDefinitionScreen: UIView {
+class DefinitionTaskScreen: UIView {
 
 //    MARK: - UIObjects
     

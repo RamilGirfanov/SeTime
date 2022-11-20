@@ -11,7 +11,7 @@ protocol AddTaskProtocol: AnyObject {
     func addTask()
 }
 
-class TaskAddScreen: UIView {
+class AddTaskScreen: UIView {
 
 //    MARK: - UIObjects
 

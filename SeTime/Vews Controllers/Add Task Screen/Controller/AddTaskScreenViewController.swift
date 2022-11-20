@@ -11,12 +11,12 @@ protocol AddTasksProtocol: AnyObject {
     func addTask (name: String, definition: String)
 }
 
-class TaskAddScreenViewController: UIViewController {
+class AddTaskScreenViewController: UIViewController {
 
-//    MARK: - Экземпляр TaskAddScreen
+//    MARK: - Экземпляр AddTaskScreen
     
-    private lazy var taskScreen: TaskAddScreen = {
-        let view = TaskAddScreen()
+    private lazy var taskScreen: AddTaskScreen = {
+        let view = AddTaskScreen()
         view.delegate = self
         return view
     }()
@@ -37,7 +37,7 @@ class TaskAddScreenViewController: UIViewController {
 
 //MARK: - Протокол делегата
 
-extension TaskAddScreenViewController: AddTaskProtocol {
+extension AddTaskScreenViewController: AddTaskProtocol {
     func addTask() {
         
 //        Проверка на введеное название задачи
