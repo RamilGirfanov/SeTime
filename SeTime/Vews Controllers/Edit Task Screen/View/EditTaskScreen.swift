@@ -1,8 +1,8 @@
 //
-//  TaskEditScreen.swift
+//  EditTaskScreen.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 18.11.2022.
+//  Created by Рамиль Гирфанов on 20.11.2022.
 //
 
 import UIKit
@@ -11,9 +11,9 @@ protocol SaveTaskProtocol: AnyObject {
     func saveTask(name: String, definition: String)
 }
 
-class TaskEditScreen: UIView {
+class EditTaskScreen: UIView {
     
-    //    MARK: - UIObjects
+//    MARK: - UIObjects
     
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
@@ -70,12 +70,12 @@ class TaskEditScreen: UIView {
     }()
     
     
-    //    MARK: - Delegate
+//    MARK: - Delegate
     
     weak var delegate: SaveTaskProtocol?
     
     
-    //    MARK: - Layout
+//    MARK: - Layout
     
     private func layout() {
         [screenLabel, viewForTaskName, viewForTaskDefinition, button].forEach { addSubview($0) }
@@ -117,7 +117,7 @@ class TaskEditScreen: UIView {
     }
     
     
-    //    MARK: - Настройка кнопки
+//    MARK: - Настройка кнопки
     
     private func setupButton() {
         button.addTarget(self, action: #selector(saveTask), for: .touchUpInside)
@@ -129,7 +129,7 @@ class TaskEditScreen: UIView {
     }
     
     
-    //    MARK: - init
+//    MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)

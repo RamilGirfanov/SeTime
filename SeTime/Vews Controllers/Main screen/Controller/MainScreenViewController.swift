@@ -189,7 +189,7 @@ extension MainScreenViewController: AddTasksProtocol {
 
 extension MainScreenViewController: EditTasksProtocol {
     func editTask(name: String, definition: String) {
-        let taskEditVC = TaskEditScreenViewController()
+        let taskEditVC = EditTaskScreenViewController()
         taskEditVC.name = model.task.name
         taskEditVC.definition = model.task.definition
         taskEditVC.delegate = self

@@ -1,8 +1,8 @@
 //
-//  TaskEditScreenViewController.swift
+//  EditTaskScreenViewController.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 18.11.2022.
+//  Created by Рамиль Гирфанов on 20.11.2022.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ protocol SaveTasksProtocol: AnyObject {
     func saveTask (name: String, definition: String)
 }
 
-class TaskEditScreenViewController: UIViewController {
+class EditTaskScreenViewController: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     
@@ -22,8 +22,8 @@ class TaskEditScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр TaskAddScreen
     
-    private lazy var taskEditScreen: TaskEditScreen = {
-        let view = TaskEditScreen()
+    private lazy var editTaskScreen: EditTaskScreen = {
+        let view = EditTaskScreen()
         view.taskName.text = self.name
         view.taskDefinition.text = self.definition
         view.delegate = self
@@ -39,14 +39,14 @@ class TaskEditScreenViewController: UIViewController {
 //    MARK: - Жизненный цикл
     
     override func loadView() {
-        view = taskEditScreen
+        view = editTaskScreen
     }
 }
 
 
 //MARK: - Протокол делегата
 
-extension TaskEditScreenViewController: SaveTaskProtocol {
+extension EditTaskScreenViewController: SaveTaskProtocol {
     func saveTask(name: String, definition: String) {
         delegate?.saveTask(name: name, definition: definition)
         dismiss(animated: true)
