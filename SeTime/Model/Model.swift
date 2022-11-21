@@ -106,7 +106,8 @@ class Model {
         
 //        Проверка на пустое значение времени начала задачи, если пусто - не сохранять данные и не добавлять в таблицу
         if task.duration != 0 {
-            RealmManager.shared.updateTasks(date: date, task: task)
+            task.date = date
+            RealmManager.shared.addTask(date: date, task: task)
 
             task = Task()
             taskTimer = Timer()

@@ -18,7 +18,7 @@ protocol ManageTimers: AnyObject {
     
     func addTask()
     
-    func showTaskDifinition()
+    func showTaskDifinition(index: Int)
         
     func getTasksData() -> [Task]
 }
@@ -27,19 +27,19 @@ class MainScreen: UIView {
     
 //    MARK: - UIObjects
     
-    var scrollView: UIScrollView = {
+    private var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    var contentView: UIView = {
+    private var contentView: UIView = {
         var contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
     
-    var viewForTimeReview: UIView = {
+    private var viewForTimeReview: UIView = {
         var viewForTimeReview = UIView()
         viewForTimeReview.backgroundColor = .systemGray6
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
@@ -47,7 +47,7 @@ class MainScreen: UIView {
         return viewForTimeReview
     }()
     
-    var workTimeTextLabel: UILabel = {
+    private var workTimeTextLabel: UILabel = {
         var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "Время работы"
         workTimeTextLabel.textColor = .systemGray
@@ -66,7 +66,7 @@ class MainScreen: UIView {
         return workTimeTextLabel
     }()
     
-    var stackForTextLabel: UIStackView = {
+    private var stackForTextLabel: UIStackView = {
         var stackForTextLabel = UIStackView()
         stackForTextLabel.axis = .horizontal
         stackForTextLabel.distribution = .fillEqually
@@ -74,7 +74,7 @@ class MainScreen: UIView {
         return stackForTextLabel
     }()
     
-    var totalTimeTextLabel: UILabel = {
+    private var totalTimeTextLabel: UILabel = {
         var totalTimeTextLabel = UILabel()
         totalTimeTextLabel.text = "Общее время"
         totalTimeTextLabel.textColor = .systemGray
@@ -84,7 +84,7 @@ class MainScreen: UIView {
         return totalTimeTextLabel
     }()
     
-    var breakTimeTextLabel: UILabel = {
+    private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
         breakTimeTextLabel.text = "Время отдыха"
         breakTimeTextLabel.textColor = .systemGray
@@ -94,7 +94,7 @@ class MainScreen: UIView {
         return breakTimeTextLabel
     }()
     
-    var stackForDataLabel: UIStackView = {
+    private var stackForDataLabel: UIStackView = {
         var stackForTextLabel = UIStackView()
         stackForTextLabel.axis = .horizontal
         stackForTextLabel.distribution = .fillEqually
@@ -165,7 +165,6 @@ class MainScreen: UIView {
         taskTimerView.layer.cornerRadius = totalCornerRadius
         taskTimerView.translatesAutoresizingMaskIntoConstraints = false
         taskTimerView.isHidden = true
-        taskTimerView.isUserInteractionEnabled = true
         return taskTimerView
     }()
     
@@ -185,7 +184,7 @@ class MainScreen: UIView {
         return taskTimeDataLabel
     }()
     
-    var stackForTaskLabel: UIStackView = {
+    private var stackForTaskLabel: UIStackView = {
         var stackForTaskLabel = UIStackView()
         stackForTaskLabel.axis = .vertical
         stackForTaskLabel.distribution = .fillEqually
@@ -324,9 +323,6 @@ class MainScreen: UIView {
         stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
         stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
         addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showTaskDifinition))
-        taskTimerView.addGestureRecognizer(tap)
     }
     
 //    Запускает таймер работы, в том числе для задачи
@@ -402,10 +398,6 @@ class MainScreen: UIView {
         delegate?.addTask()
     }
     
-    @objc private func showTaskDifinition() {
-        delegate?.showTaskDifinition()
-    }
-    
     
 //    MARK: - init
     
@@ -453,6 +445,7 @@ extension MainScreen: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.showTaskDifinition(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

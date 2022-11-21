@@ -7,9 +7,10 @@
 
 import UIKit
 
-protocol GetData: AnyObject {
+protocol HistoryManager: AnyObject {
     func getDay() -> Day
     func getDate() -> String
+    func showTaskDifinition(index: Int)
 }
 
 class HistoryScreen: UIView {
@@ -121,7 +122,7 @@ class HistoryScreen: UIView {
     
 //    MARK: - Delegate
     
-    weak var delegate: GetData?
+    weak var delegate: HistoryManager?
     
 
 //    MARK: - Layout
@@ -223,6 +224,7 @@ extension HistoryScreen: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.showTaskDifinition(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -8,15 +8,16 @@
 import UIKit
 
 protocol SaveTasksProtocol: AnyObject {
-    func saveTask (name: String, definition: String)
+    func saveTask (taskIndex: Int, name: String, definition: String)
 }
 
 class EditTaskScreenViewController: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     
-    var name = ""
+    var taskIndex = 0
     
+    var name = ""
     var definition = ""
     
     
@@ -24,8 +25,8 @@ class EditTaskScreenViewController: UIViewController {
     
     private lazy var editTaskScreen: EditTaskScreen = {
         let view = EditTaskScreen()
-        view.taskName.text = self.name
-        view.taskDefinition.text = self.definition
+        view.taskName.text = name
+        view.taskDefinition.text = definition
         view.delegate = self
         return view
     }()
@@ -48,7 +49,7 @@ class EditTaskScreenViewController: UIViewController {
 
 extension EditTaskScreenViewController: SaveTaskProtocol {
     func saveTask(name: String, definition: String) {
-        delegate?.saveTask(name: name, definition: definition)
+        delegate?.saveTask(taskIndex: taskIndex, name: name, definition: definition)
         dismiss(animated: true)
     }
 }

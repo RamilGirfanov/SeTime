@@ -8,15 +8,18 @@
 import UIKit
 
 protocol EditTasksProtocol: AnyObject {
-    func editTask(name: String, definition: String)
+    func editTask(taskIndex: Int)
 }
 
 class DefinitionTaskScreenViewController: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     
-    var name = ""
+    var taskIndex = 0
     
+    var name = ""
+    var startTime = ""
+    var duration = ""
     var definition = ""
     
     
@@ -24,8 +27,10 @@ class DefinitionTaskScreenViewController: UIViewController {
     
     private lazy var taskDefinitionScreen: DefinitionTaskScreen = {
         let view = DefinitionTaskScreen()
-        view.name.text = self.name
-        view.definition.text = self.definition
+        view.name.text = name
+        view.startTime.text = startTime
+        view.duration.text = duration
+        view.definition.text = definition
         view.delegate = self
         return view
     }()
@@ -49,6 +54,6 @@ class DefinitionTaskScreenViewController: UIViewController {
 extension DefinitionTaskScreenViewController: EditTaskProtocol {
     func editTask() {
         dismiss(animated: true)
-        delegate?.editTask(name: self.name, definition: self.definition)
+        delegate?.editTask(taskIndex: taskIndex)
     }
 }

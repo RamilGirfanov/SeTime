@@ -8,6 +8,7 @@
 import RealmSwift
 
 class Task: Object {
+    @Persisted var date = ""
     @Persisted var name = ""
     @Persisted var definition = ""
     @Persisted var duration = 0

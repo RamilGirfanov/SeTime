@@ -61,12 +61,57 @@ class HistoryScreenViewController: UIViewController {
     }
 }
 
-extension HistoryScreenViewController: GetData {
+
+//MARK: - Протокол делегата HistoryScreen
+
+extension HistoryScreenViewController: HistoryManager {
     func getDay() -> Day {
         day
     }
     
     func getDate() -> String {
         return date
+    }
+    
+    func showTaskDifinition(index: Int) {
+        let taskDefinitionVC = DefinitionTaskScreenViewController()
+        
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!.tasks[index]
+        
+        taskDefinitionVC.taskIndex = index
+        
+        taskDefinitionVC.name = task.name
+        taskDefinitionVC.startTime = task.startTime
+        taskDefinitionVC.duration = timeIntToString(time: task.duration)
+        taskDefinitionVC.definition = task.definition
+        taskDefinitionVC.delegate = self
+        present(taskDefinitionVC, animated: true)
+    }
+}
+
+
+//MARK: - Протокол делегата DefinitionTaskScreen
+
+extension HistoryScreenViewController: EditTasksProtocol {
+    func editTask(taskIndex: Int) {
+        
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!.tasks[taskIndex]
+        
+        let taskEditVC = EditTaskScreenViewController()
+        taskEditVC.taskIndex = taskIndex
+        taskEditVC.name = task.name
+        taskEditVC.definition = task.definition
+        taskEditVC.delegate = self
+        present(taskEditVC, animated: true)
+    }
+}
+
+
+//MARK: - Протокол делегата EditTaskScreen
+
+extension HistoryScreenViewController: SaveTasksProtocol {
+    func saveTask(taskIndex: Int, name: String, definition: String) {
+        RealmManager.shared.updateTask(date: date, index: taskIndex, name: name, definition: definition)
+        historyScreen.tasksTableView.reloadData()
     }
 }

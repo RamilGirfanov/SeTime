@@ -11,21 +11,21 @@ class TaskCell: UITableViewCell {
     
 //    MARK: - UIObjects
     
-    lazy var taskName: UILabel = {
-        lazy var taskName = UILabel()
+    var taskName: UILabel = {
+        var taskName = UILabel()
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
     }()
     
-    lazy var taskDuration: UILabel = {
-        lazy var taskDuration = UILabel()
+    var taskDuration: UILabel = {
+        var taskDuration = UILabel()
         taskDuration.textAlignment = .center
         taskDuration.translatesAutoresizingMaskIntoConstraints = false
         return taskDuration
     }()
     
-    lazy var taskStartTime: UILabel = {
-        lazy var taskStartAndStop = UILabel()
+    var taskStartTime: UILabel = {
+        var taskStartAndStop = UILabel()
         taskStartAndStop.textAlignment = .center
         taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
         return taskStartAndStop

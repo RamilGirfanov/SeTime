@@ -147,12 +147,18 @@ extension MainScreenViewController: ManageTimers {
         present(taskAddVC, animated: true)
     }
     
-    func showTaskDifinition() {
-        let taskDefinitionVC = DefinitionTaskScreenViewController()
-        taskDefinitionVC.name = model.task.name
-        taskDefinitionVC.definition = model.task.definition
-        taskDefinitionVC.delegate = self
-        present(taskDefinitionVC, animated: true)
+    func showTaskDifinition(index: Int) {
+        
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
+        
+        let definitionTaskVC = DefinitionTaskScreenViewController()
+        definitionTaskVC.taskIndex = index
+        definitionTaskVC.name = task.name
+        definitionTaskVC.startTime = task.startTime
+        definitionTaskVC.duration = timeIntToString(time: task.duration)
+        definitionTaskVC.definition = task.definition
+        definitionTaskVC.delegate = self
+        present(definitionTaskVC, animated: true)
     }
     
     func getTasksData() -> [Task] {
@@ -188,22 +194,25 @@ extension MainScreenViewController: AddTasksProtocol {
 //MARK: - Протокол делегата DefinitionTaskScreen
 
 extension MainScreenViewController: EditTasksProtocol {
-    func editTask(name: String, definition: String) {
-        let taskEditVC = EditTaskScreenViewController()
-        taskEditVC.name = model.task.name
-        taskEditVC.definition = model.task.definition
-        taskEditVC.delegate = self
-        present(taskEditVC, animated: true)
+    func editTask(taskIndex: Int) {
+        
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[taskIndex]
+        
+        let editTaskVC = EditTaskScreenViewController()
+        editTaskVC.taskIndex = taskIndex
+        editTaskVC.name = task.name
+        editTaskVC.definition = task.definition
+        editTaskVC.delegate = self
+        present(editTaskVC, animated: true)
     }
 }
 
 
-//MARK: - Протокол делегата TaskEditScreen
+//MARK: - Протокол делегата EditTaskScreen
 
 extension MainScreenViewController: SaveTasksProtocol {
-    func saveTask(name: String, definition: String) {
-        model.task.name = name
-        model.task.definition = definition
-        mainScreen.taskTimeTextLabel.text = name
+    func saveTask(taskIndex: Int, name: String, definition: String) {
+        RealmManager.shared.updateTask(date: model.date, index: taskIndex, name: name, definition: definition)
+        mainScreen.tasksTableView.reloadData()
     }
 }
