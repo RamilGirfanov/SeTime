@@ -17,24 +17,24 @@ class HistoryScreen: UIView {
 
 //    MARK: - UIObjects
     
-    lazy var historyLabel: UILabel = {
-        lazy var timeTextLabel = UILabel()
+    var historyLabel: UILabel = {
+        var timeTextLabel = UILabel()
         timeTextLabel.text = "Дата"
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel
     }()
     
-    lazy var viewForTimeReview: UIView = {
-        lazy var viewForTimeReview = UIView()
+    private var viewForTimeReview: UIView = {
+        var viewForTimeReview = UIView()
         viewForTimeReview.backgroundColor = .systemGray6
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
         viewForTimeReview.translatesAutoresizingMaskIntoConstraints = false
         return viewForTimeReview
     }()
     
-    lazy var workTimeTextLabel: UILabel = {
-        lazy var workTimeTextLabel = UILabel()
+    private var workTimeTextLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "Время работы"
         workTimeTextLabel.textColor = .systemGray
         workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
@@ -43,8 +43,8 @@ class HistoryScreen: UIView {
         return workTimeTextLabel
     }()
     
-    lazy var workTimeDataLabel: UILabel = {
-        lazy var workTimeTextLabel = UILabel()
+    var workTimeDataLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "-"
         workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
         workTimeTextLabel.textAlignment = .center
@@ -52,16 +52,16 @@ class HistoryScreen: UIView {
         return workTimeTextLabel
     }()
     
-    lazy var stackForTextLabel: UIStackView = {
-        lazy var stackForTextLabel = UIStackView()
+    private var stackForTextLabel: UIStackView = {
+        var stackForTextLabel = UIStackView()
         stackForTextLabel.axis = .horizontal
         stackForTextLabel.distribution = .fillEqually
         stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return stackForTextLabel
     }()
     
-    lazy var totalTimeTextLabel: UILabel = {
-        lazy var totalTimeTextLabel = UILabel()
+    private var totalTimeTextLabel: UILabel = {
+        var totalTimeTextLabel = UILabel()
         totalTimeTextLabel.text = "Общее время"
         totalTimeTextLabel.textColor = .systemGray
         totalTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
@@ -70,8 +70,8 @@ class HistoryScreen: UIView {
         return totalTimeTextLabel
     }()
     
-    lazy var breakTimeTextLabel: UILabel = {
-        lazy var breakTimeTextLabel = UILabel()
+    private var breakTimeTextLabel: UILabel = {
+        var breakTimeTextLabel = UILabel()
         breakTimeTextLabel.text = "Время отдыха"
         breakTimeTextLabel.textColor = .systemGray
         breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
@@ -80,16 +80,16 @@ class HistoryScreen: UIView {
         return breakTimeTextLabel
     }()
     
-    lazy var stackForDataLabel: UIStackView = {
-        lazy var stackForTextLabel = UIStackView()
+    private var stackForDataLabel: UIStackView = {
+        var stackForTextLabel = UIStackView()
         stackForTextLabel.axis = .horizontal
         stackForTextLabel.distribution = .fillEqually
         stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return stackForTextLabel
     }()
     
-    lazy var totalTimeDataLabel: UILabel = {
-        lazy var totalTimeDataLabel = UILabel()
+    var totalTimeDataLabel: UILabel = {
+        var totalTimeDataLabel = UILabel()
         totalTimeDataLabel.text = "-"
         totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeDataLabel.textAlignment = .center
@@ -97,8 +97,8 @@ class HistoryScreen: UIView {
         return totalTimeDataLabel
     }()
     
-    lazy var breakTimeDataLabel: UILabel = {
-        lazy var breakTimeDataLabel = UILabel()
+    var breakTimeDataLabel: UILabel = {
+        var breakTimeDataLabel = UILabel()
         breakTimeDataLabel.text = "-"
         breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         breakTimeDataLabel.textAlignment = .center
@@ -107,7 +107,7 @@ class HistoryScreen: UIView {
     }()
     
     lazy var tasksTableView: UITableView = {
-        lazy var tasksTableView = UITableView()
+        var tasksTableView = UITableView()
         tasksTableView.backgroundColor = .systemGray6
         tasksTableView.layer.borderWidth = 0.5
         tasksTableView.layer.borderColor = UIColor.lightGray.cgColor
@@ -201,7 +201,7 @@ extension HistoryScreen: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        lazy var cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
 //        TODO: - разобраться с background
         cell.backgroundColor = .clear
         

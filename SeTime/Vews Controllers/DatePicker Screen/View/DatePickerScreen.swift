@@ -16,7 +16,7 @@ class DatePickerScreen: UIView {
     
 //    MARK: - UIObjects
 
-    lazy var calendarLabel: UILabel = {
+    private var calendarLabel: UILabel = {
         lazy var timeTextLabel = UILabel()
         timeTextLabel.text = "Выбор даты"
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
@@ -24,7 +24,7 @@ class DatePickerScreen: UIView {
         return timeTextLabel
     }()
 
-    lazy var datePicker: UIDatePicker = {
+    var datePicker: UIDatePicker = {
         lazy var datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
@@ -33,7 +33,7 @@ class DatePickerScreen: UIView {
         return datePicker
     }()
 
-    lazy var showButton: UIButton = {
+    private var showButton: UIButton = {
         lazy var showButton = UIButton()
         showButton.setTitle("Показать", for: .normal)
         showButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)

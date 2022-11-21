@@ -15,7 +15,7 @@ class AddTaskScreen: UIView {
 
 //    MARK: - UIObjects
 
-    var screenLabel: UILabel = {
+    private var screenLabel: UILabel = {
         var screenLabel = UILabel()
         screenLabel.text = "Новая задачча"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
@@ -43,7 +43,7 @@ class AddTaskScreen: UIView {
           return taskDefinition
       }()
       
-    var viewForTaskName: UIView = {
+    private var viewForTaskName: UIView = {
         var viewForTaskName = UIView()
         viewForTaskName.clipsToBounds = true
         viewForTaskName.layer.cornerRadius = totalCornerRadius
@@ -53,7 +53,7 @@ class AddTaskScreen: UIView {
         return viewForTaskName
     }()
     
-    var viewForTaskDefinition: UIView = {
+    private var viewForTaskDefinition: UIView = {
         var viewForTaskDefinition = UIView()
         viewForTaskDefinition.clipsToBounds = true
         viewForTaskDefinition.layer.cornerRadius = totalCornerRadius
@@ -63,7 +63,7 @@ class AddTaskScreen: UIView {
         return viewForTaskDefinition
     }()
     
-    var button: UIButton = {
+    private var button: UIButton = {
         var button = UIButton()
         button.setTitle("Добавить", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)

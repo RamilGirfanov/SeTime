@@ -15,7 +15,7 @@ class EditTaskScreen: UIView {
     
 //    MARK: - UIObjects
     
-    var screenLabel: UILabel = {
+    private var screenLabel: UILabel = {
         var screenLabel = UILabel()
         screenLabel.text = "Правка задачи"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
@@ -41,7 +41,7 @@ class EditTaskScreen: UIView {
         return taskDefinition
     }()
     
-    var viewForTaskName: UIView = {
+    private var viewForTaskName: UIView = {
         var viewForTaskName = UIView()
         viewForTaskName.clipsToBounds = true
         viewForTaskName.layer.cornerRadius = totalCornerRadius
@@ -51,7 +51,7 @@ class EditTaskScreen: UIView {
         return viewForTaskName
     }()
     
-    var viewForTaskDefinition: UIView = {
+    private var viewForTaskDefinition: UIView = {
         var viewForTaskDefinition = UIView()
         viewForTaskDefinition.clipsToBounds = true
         viewForTaskDefinition.layer.cornerRadius = totalCornerRadius
@@ -61,7 +61,7 @@ class EditTaskScreen: UIView {
         return viewForTaskDefinition
     }()
     
-    var button: UIButton = {
+    private var button: UIButton = {
         var button = UIButton()
         button.setTitle("Сохранить", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)

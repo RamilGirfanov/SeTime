@@ -54,11 +54,6 @@ class HistoryScreenViewController: UIViewController {
         setupData()
         historyScreen.tasksTableView.reloadData()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-    }
 }
 
 

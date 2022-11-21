@@ -12,7 +12,7 @@ class MainScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр MainScreen
     
-    lazy var mainScreen: MainScreen = {
+    private lazy var mainScreen: MainScreen = {
         let view = MainScreen()
         view.delegate = self
         return view
@@ -26,7 +26,7 @@ class MainScreenViewController: UIViewController {
 
 //    MARK: - Функционал для проверки дня
     
-    func checkDay() {
+    private func checkDay() {
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getDate()
@@ -117,7 +117,6 @@ class MainScreenViewController: UIViewController {
 
 extension MainScreenViewController: ManageTimers {
     
-    
     func startWorkTimer() {
         model.startWorkTimer()
         
@@ -173,6 +172,7 @@ extension MainScreenViewController: ManageTimers {
 
 extension MainScreenViewController: AddTasksProtocol {
     func addTask(name: String, definition: String) {
+        
 //        Меняет видимости кнопки и вью задачи на главном экране
         mainScreen.addTaskButton.isHidden = true
         mainScreen.taskTimerView.isHidden = false

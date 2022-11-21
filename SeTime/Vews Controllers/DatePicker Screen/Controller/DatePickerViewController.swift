@@ -8,36 +8,31 @@
 import UIKit
 
 class DatePickerScreenViewController: UIViewController {
-
-//    MARK: - Экземпляр MainScreen
-        
+    
+    //    MARK: - Экземпляр MainScreen
+    
     private lazy var datePickerScreen: DatePickerScreen = {
         let view = DatePickerScreen()
         view.delegate = self
         return view
     }()
     
-
-//    MARK: - Жизненный цикл
-        
+    
+    //    MARK: - Жизненный цикл
+    
     override func loadView() {
         view = datePickerScreen
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
 }
 
 extension DatePickerScreenViewController: PresentHistory {
     func pushScreen() {
         // Календарь для вычисления даты и времени
-        lazy var calendar = Calendar.current
+        let calendar = Calendar.current
 
         // Извлечение компонентов из выбранной даты при помощи Calendar
         
-        lazy var date: [String] = []
+        var date: [String] = []
         
         if calendar.component(.day, from: datePickerScreen.datePicker.date) < 10 {
             date.append("0\(calendar.component(.day, from: datePickerScreen.datePicker.date))")
@@ -55,7 +50,7 @@ extension DatePickerScreenViewController: PresentHistory {
         
         let chosenDate = date.joined(separator: ".")
         
-        lazy var historyVC = HistoryScreenViewController()
+        let historyVC = HistoryScreenViewController()
         historyVC.date = chosenDate
         present(historyVC, animated: true)
     }

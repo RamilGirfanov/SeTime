@@ -112,7 +112,7 @@ class DefinitionTaskScreen: UIView {
     }()
     */
      
-    var button: UIButton = {
+    private var button: UIButton = {
         var button = UIButton()
         button.setTitle("Редактировать", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
