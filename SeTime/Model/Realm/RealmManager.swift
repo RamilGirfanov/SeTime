@@ -45,7 +45,10 @@ class RealmManager {
         }
     }
     
-    func deleteTask() {
-//        TODO: - Реализовать
+    func deleteTask(date: String, index: Int) {
+        let taskToDelete = localRealm.objects(Task.self).filter("date == %@", date)[index]
+        try! localRealm.write{
+            localRealm.delete(taskToDelete)
+        }
     }
 }

@@ -11,6 +11,7 @@ protocol HistoryManager: AnyObject {
     func getDay() -> Day
     func getDate() -> String
     func showTaskDifinition(index: Int)
+    func deleteTask(index: Int)
 }
 
 class HistoryScreen: UIView {
@@ -226,5 +227,18 @@ extension HistoryScreen: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.showTaskDifinition(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {_,_,_ in
+
+            self.delegate?.deleteTask(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        return swipeActions
     }
 }

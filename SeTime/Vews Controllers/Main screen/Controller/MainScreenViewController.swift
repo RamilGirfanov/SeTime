@@ -165,6 +165,10 @@ extension MainScreenViewController: ManageTimers {
         RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getDate()).first?.tasks.forEach { tasksArray.append($0) }
         return tasksArray
     }
+    
+    func deleteTask(index: Int) {
+        RealmManager.shared.deleteTask(date: model.date, index: index)
+    }
 }
 
 

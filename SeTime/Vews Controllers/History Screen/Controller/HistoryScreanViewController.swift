@@ -82,6 +82,10 @@ extension HistoryScreenViewController: HistoryManager {
         taskDefinitionVC.delegate = self
         present(taskDefinitionVC, animated: true)
     }
+    
+    func deleteTask(index: Int) {
+        RealmManager.shared.deleteTask(date: date, index: index)
+    }
 }
 
 
