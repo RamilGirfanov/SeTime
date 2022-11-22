@@ -11,7 +11,7 @@ let mainColorTheme: UIColor = .systemYellow
 
 let totalCornerRadius: CGFloat = 12
 
-let totalHeightForTappedUIobjects: CGFloat = 34
+let totalHeightForTappedUIobjects: CGFloat = 44
 
 //let totalWidthForTasksButtons: CGFloat = 80
 
@@ -27,12 +27,20 @@ let textSize4: CGFloat = 14
 
 
 extension UIButton {
-    func roundYeellowButton() {
+    func activeButton() {
         setTitleColor(.black, for: .normal)
         tintColor = .black
+//        titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         backgroundColor = mainColorTheme
         layer.cornerRadius = totalCornerRadius
-        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func inactiveButton() {
+        setTitleColor(.systemGray, for: .normal)
+        tintColor = .systemGray
+//        titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        backgroundColor = .secondarySystemBackground
+        layer.cornerRadius = totalCornerRadius
     }
 }
 

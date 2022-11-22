@@ -43,7 +43,7 @@ class MainScreen: UIView {
     
     private var viewForTimeReview: UIView = {
         var viewForTimeReview = UIView()
-        viewForTimeReview.backgroundColor = .systemGray6
+        viewForTimeReview.backgroundColor = .secondarySystemBackground
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
         viewForTimeReview.translatesAutoresizingMaskIntoConstraints = false
         return viewForTimeReview
@@ -125,37 +125,32 @@ class MainScreen: UIView {
     var workButton: UIButton = {
         var workButton = UIButton()
         workButton.setTitle("Работа", for: .normal)
-        workButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        workButton.roundYeellowButton()
+        workButton.activeButton()
+        workButton.translatesAutoresizingMaskIntoConstraints = false
         return workButton
     }()
     
     var breakButton: UIButton = {
         var breakButton = UIButton()
         breakButton.setTitle("Отдых", for: .normal)
-        breakButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
         breakButton.isHidden = true
-        breakButton.roundYeellowButton()
+        breakButton.activeButton()
+        breakButton.translatesAutoresizingMaskIntoConstraints = false
         return breakButton
     }()
     
     var stopButton: UIButton = {
         var stopButton = UIButton()
         stopButton.setTitle("Стоп", for: .normal)
-        stopButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        stopButton.roundYeellowButton()
+        stopButton.activeButton()
+        stopButton.translatesAutoresizingMaskIntoConstraints = false
         return stopButton
     }()
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
         addTaskButton.setTitle("Добавить задачу", for: .normal)
-        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
-        addTaskButton.tintColor = .systemGray
-        addTaskButton.backgroundColor = .systemGray6
-        addTaskButton.layer.borderWidth = 0.5
-        addTaskButton.layer.borderColor = UIColor.lightGray.cgColor
-        addTaskButton.layer.cornerRadius = totalCornerRadius
+        addTaskButton.inactiveButton()
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         addTaskButton.isEnabled = false
         return addTaskButton
@@ -163,11 +158,18 @@ class MainScreen: UIView {
     
     var taskTimerView: UIView = {
         var taskTimerView = UIView()
-        taskTimerView.backgroundColor = .systemGray6
         taskTimerView.layer.cornerRadius = totalCornerRadius
         taskTimerView.translatesAutoresizingMaskIntoConstraints = false
         taskTimerView.isHidden = true
         return taskTimerView
+    }()
+    
+    var taskTimerSubView: UIView = {
+        var taskTimerSubView = UIView()
+        taskTimerSubView.backgroundColor = .secondarySystemBackground
+        taskTimerSubView.layer.cornerRadius = totalCornerRadius
+        taskTimerSubView.translatesAutoresizingMaskIntoConstraints = false
+        return taskTimerSubView
     }()
     
     var taskTimeTextLabel: UILabel = {
@@ -197,15 +199,14 @@ class MainScreen: UIView {
     var stopTaskButton: UIButton = {
         var stopTaskButton = UIButton()
         stopTaskButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-        stopTaskButton.roundYeellowButton()
+        stopTaskButton.activeButton()
+        stopTaskButton.translatesAutoresizingMaskIntoConstraints = false
         return stopTaskButton
     }()
     
     lazy var tasksTableView: UITableView = {
         var tasksTableView = UITableView()
-        tasksTableView.backgroundColor = .systemGray6
-        tasksTableView.layer.borderWidth = 0.5
-        tasksTableView.layer.borderColor = UIColor.lightGray.cgColor
+        tasksTableView.backgroundColor = .secondarySystemBackground
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.dataSource = self
@@ -232,7 +233,9 @@ class MainScreen: UIView {
         [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
         [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
         
-        [stackForTaskLabel, stopTaskButton].forEach { taskTimerView.addSubview($0) }
+        [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
+        
+        taskTimerSubView.addSubview(stackForTaskLabel)
         
         [taskTimeTextLabel, taskTimeDataLabel].forEach { stackForTaskLabel.addArrangedSubview($0) }
         
@@ -289,20 +292,23 @@ class MainScreen: UIView {
             stopButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            taskTimerView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 1.5),
+            taskTimerView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             taskTimerView.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
             taskTimerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             taskTimerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            stackForTaskLabel.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
-            stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor, constant: safeIndent2),
-            stackForTaskLabel.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            taskTimerSubView.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            taskTimerSubView.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
+            taskTimerSubView.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            
+            stackForTaskLabel.centerYAnchor.constraint(equalTo: taskTimerSubView.centerYAnchor),
+            stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerSubView.leadingAnchor, constant: safeIndent2),
             
             stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            stopTaskButton.widthAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            stopTaskButton.centerYAnchor.constraint(equalTo: taskTimerView.centerYAnchor),
-            stopTaskButton.leadingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor, constant: safeIndent2),
-            stopTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor, constant: -safeIndent2),
+            stopTaskButton.widthAnchor.constraint(equalTo: stopTaskButton.heightAnchor),
+            stopTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            stopTaskButton.leadingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: safeIndent2),
+            stopTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
             
             addTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
             addTaskButton.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
@@ -331,10 +337,11 @@ class MainScreen: UIView {
     @objc private func tapForWork() {
         delegate?.startWorkTimer()
                 
-        addTaskButton.setTitleColor(.black, for: .normal)
-        addTaskButton.tintColor = .black
-        addTaskButton.backgroundColor = mainColorTheme
-        addTaskButton.layer.borderWidth = 0
+//        addTaskButton.setTitleColor(.black, for: .normal)
+//        addTaskButton.tintColor = .black
+//        addTaskButton.backgroundColor = mainColorTheme
+//        addTaskButton.layer.borderWidth = 0
+        addTaskButton.activeButton()
         
         addTaskButton.isEnabled = true
         
@@ -351,10 +358,11 @@ class MainScreen: UIView {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
-        addTaskButton.tintColor = .black
-        addTaskButton.backgroundColor = .systemGray6
-        addTaskButton.layer.borderWidth = 0.5
+//        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+//        addTaskButton.tintColor = .black
+//        addTaskButton.backgroundColor = .systemGray6
+//        addTaskButton.layer.borderWidth = 0.5
+        addTaskButton.inactiveButton()
         
         addTaskButton.isEnabled = false
     }
@@ -363,10 +371,11 @@ class MainScreen: UIView {
     @objc private func tapForStop() {
         delegate?.stop()
         
-        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
-        addTaskButton.tintColor = .black
-        addTaskButton.backgroundColor = .systemGray6
-        addTaskButton.layer.borderWidth = 0.5
+//        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
+//        addTaskButton.tintColor = .black
+//        addTaskButton.backgroundColor = .systemGray6
+//        addTaskButton.layer.borderWidth = 0.5
+        addTaskButton.inactiveButton()
         
         addTaskButton.isEnabled = false
         

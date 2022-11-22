@@ -26,8 +26,7 @@ class EditTaskScreen: UIView {
     var taskName: UITextField = {
         var taskName = UITextField()
         taskName.font = .systemFont(ofSize: textSize4)
-        taskName.backgroundColor = .systemGray6
-        taskName.borderStyle = .roundedRect
+        taskName.backgroundColor = .secondarySystemBackground
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
     }()
@@ -35,37 +34,34 @@ class EditTaskScreen: UIView {
     var taskDefinition: UITextField = {
         var taskDefinition = UITextField ()
         taskDefinition.font = .systemFont(ofSize: textSize4)
-        taskDefinition.backgroundColor = .systemGray6
-        taskDefinition.borderStyle = .roundedRect
+        taskDefinition.backgroundColor = .secondarySystemBackground
         taskDefinition.translatesAutoresizingMaskIntoConstraints = false
         return taskDefinition
     }()
     
     private var viewForTaskName: UIView = {
         var viewForTaskName = UIView()
+        viewForTaskName.backgroundColor = .secondarySystemBackground
         viewForTaskName.clipsToBounds = true
         viewForTaskName.layer.cornerRadius = totalCornerRadius
-        viewForTaskName.layer.borderWidth = 0.5
-        viewForTaskName.layer.borderColor = UIColor.lightGray.cgColor
         viewForTaskName.translatesAutoresizingMaskIntoConstraints = false
         return viewForTaskName
     }()
     
     private var viewForTaskDefinition: UIView = {
         var viewForTaskDefinition = UIView()
+        viewForTaskDefinition.backgroundColor = .secondarySystemBackground
         viewForTaskDefinition.clipsToBounds = true
         viewForTaskDefinition.layer.cornerRadius = totalCornerRadius
-        viewForTaskDefinition.layer.borderWidth = 0.5
-        viewForTaskDefinition.layer.borderColor = UIColor.lightGray.cgColor
         viewForTaskDefinition.translatesAutoresizingMaskIntoConstraints = false
         return viewForTaskDefinition
     }()
-    
+        
     private var button: UIButton = {
         var button = UIButton()
         button.setTitle("Сохранить", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        button.roundYeellowButton()
+        button.activeButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -89,24 +85,24 @@ class EditTaskScreen: UIView {
             screenLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             screenLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
-            viewForTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
+            viewForTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 1.5),
             viewForTaskName.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent2),
             viewForTaskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             viewForTaskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            viewForTaskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 3),
+            viewForTaskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
             viewForTaskDefinition.topAnchor.constraint(equalTo: viewForTaskName.bottomAnchor, constant: safeIndent2),
             viewForTaskDefinition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             viewForTaskDefinition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
             taskName.topAnchor.constraint(equalTo: viewForTaskName.topAnchor),
-            taskName.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor),
-            taskName.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor),
+            taskName.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor, constant: safeIndent2),
+            taskName.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor, constant: -safeIndent2),
             taskName.bottomAnchor.constraint(equalTo: viewForTaskName.bottomAnchor),
             
             taskDefinition.topAnchor.constraint(equalTo: viewForTaskDefinition.topAnchor),
-            taskDefinition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor),
-            taskDefinition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor),
+            taskDefinition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor, constant: safeIndent2),
+            taskDefinition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor, constant: -safeIndent2),
             taskDefinition.bottomAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor),
             
             button.topAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor, constant: safeIndent2),

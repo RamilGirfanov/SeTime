@@ -28,7 +28,6 @@ class DatePickerScreen: UIView {
         lazy var datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
-//        datePicker.tintColor = mainColorTheme
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         return datePicker
     }()
@@ -36,8 +35,8 @@ class DatePickerScreen: UIView {
     private var showButton: UIButton = {
         lazy var showButton = UIButton()
         showButton.setTitle("Показать", for: .normal)
-        showButton.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        showButton.roundYeellowButton()
+        showButton.activeButton()
+        showButton.translatesAutoresizingMaskIntoConstraints = false
         return showButton
     }()
         

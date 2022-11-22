@@ -40,7 +40,7 @@ class DefinitionTaskScreen: UIView {
     
     var startTime: UILabel = {
         var startTime = UILabel()
-        startTime.font = .systemFont(ofSize: textSize3, weight: .bold)
+        startTime.font = .systemFont(ofSize: textSize3, weight: .regular)
         startTime.translatesAutoresizingMaskIntoConstraints = false
         return startTime
     }()
@@ -55,7 +55,7 @@ class DefinitionTaskScreen: UIView {
     
     var duration: UILabel = {
         var duration = UILabel()
-        duration.font = .systemFont(ofSize: textSize3, weight: .bold)
+        duration.font = .systemFont(ofSize: textSize3, weight: .regular)
         duration.translatesAutoresizingMaskIntoConstraints = false
         return duration
     }()
@@ -63,60 +63,18 @@ class DefinitionTaskScreen: UIView {
     var definition: UITextView = {
         var definitionT = UITextView()
         definitionT.font = .systemFont(ofSize: textSize3)
-        definitionT.backgroundColor = .systemGray6
+        definitionT.backgroundColor = .secondarySystemBackground
         definitionT.layer.cornerRadius = totalCornerRadius
-//        definitionT.layer.borderWidth = 0.5
-//        definitionT.layer.borderColor = UIColor.lightGray.cgColor
         definitionT.translatesAutoresizingMaskIntoConstraints = false
         definitionT.isEditable = false
         return definitionT
     }()
     
-    /*
-    var name: UITextView = {
-        var nameT = UITextView()
-        nameT.font = .systemFont(ofSize: textSize4)
-        nameT.backgroundColor = .systemGray6
-        nameT.translatesAutoresizingMaskIntoConstraints = false
-        nameT.isEditable = false
-        return nameT
-    }()
-    
-    var definition: UITextView = {
-        var definitionT = UITextView()
-        definitionT.font = .systemFont(ofSize: textSize4)
-        definitionT.backgroundColor = .systemGray6
-        definitionT.translatesAutoresizingMaskIntoConstraints = false
-        definitionT.isEditable = false
-        return definitionT
-    }()
-    
-    var viewForTaskName: UIView = {
-        var viewForTaskName = UIView()
-        viewForTaskName.clipsToBounds = true
-        viewForTaskName.layer.cornerRadius = totalCornerRadius
-        viewForTaskName.layer.borderWidth = 0.5
-        viewForTaskName.layer.borderColor = UIColor.lightGray.cgColor
-        viewForTaskName.translatesAutoresizingMaskIntoConstraints = false
-        return viewForTaskName
-    }()
-    
-    var viewForTaskDefinition: UIView = {
-        var viewForTaskDefinition = UIView()
-        viewForTaskDefinition.clipsToBounds = true
-        viewForTaskDefinition.layer.cornerRadius = totalCornerRadius
-        viewForTaskDefinition.layer.borderWidth = 0.5
-        viewForTaskDefinition.layer.borderColor = UIColor.lightGray.cgColor
-        viewForTaskDefinition.translatesAutoresizingMaskIntoConstraints = false
-        return viewForTaskDefinition
-    }()
-    */
-     
     private var button: UIButton = {
         var button = UIButton()
         button.setTitle("Редактировать", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
-        button.roundYeellowButton()
+        button.activeButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -153,7 +111,7 @@ class DefinitionTaskScreen: UIView {
             duration.topAnchor.constraint(equalTo: durationTextLabel.bottomAnchor, constant: safeIndent2),
             duration.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
 
-            definition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 3),
+            definition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
             definition.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: safeIndent1),
             definition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             definition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),

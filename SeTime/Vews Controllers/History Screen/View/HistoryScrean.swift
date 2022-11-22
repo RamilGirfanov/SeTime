@@ -28,7 +28,7 @@ class HistoryScreen: UIView {
     
     private var viewForTimeReview: UIView = {
         var viewForTimeReview = UIView()
-        viewForTimeReview.backgroundColor = .systemGray6
+        viewForTimeReview.backgroundColor = .secondarySystemBackground
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
         viewForTimeReview.translatesAutoresizingMaskIntoConstraints = false
         return viewForTimeReview
@@ -109,9 +109,7 @@ class HistoryScreen: UIView {
     
     lazy var tasksTableView: UITableView = {
         var tasksTableView = UITableView()
-        tasksTableView.backgroundColor = .systemGray6
-        tasksTableView.layer.borderWidth = 0.5
-        tasksTableView.layer.borderColor = UIColor.lightGray.cgColor
+        tasksTableView.backgroundColor = .secondarySystemBackground
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.dataSource = self
