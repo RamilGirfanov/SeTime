@@ -27,7 +27,7 @@ class EditTaskScreenViewController: UIViewController {
         let view = EditTaskScreen()
         view.taskName.text = name
         view.taskDefinition.text = definition
-        view.delegate = self
+        view.delegate2 = self
         return view
     }()
     

@@ -15,7 +15,7 @@ class AddTaskScreen: UIView {
 
 //    MARK: - UIObjects
 
-    private var screenLabel: UILabel = {
+    var screenLabel: UILabel = {
         var screenLabel = UILabel()
         screenLabel.text = "Новая задача"
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
@@ -59,7 +59,7 @@ class AddTaskScreen: UIView {
         return viewForTaskDefinition
     }()
 
-    private var button: UIButton = {
+    var button: UIButton = {
         var button = UIButton()
         button.setTitle("Добавить", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
@@ -119,10 +119,10 @@ class AddTaskScreen: UIView {
 //    MARK: - Настройка кнопки
 
     private func setupButton() {
-        button.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
     }
     
-    @objc private func addTask() {
+    @objc func tap() {
         delegate?.addTask()
     }
 

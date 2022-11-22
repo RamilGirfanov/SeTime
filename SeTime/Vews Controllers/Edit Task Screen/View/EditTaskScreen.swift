@@ -11,6 +11,32 @@ protocol SaveTaskProtocol: AnyObject {
     func saveTask(name: String, definition: String)
 }
 
+class EditTaskScreen: AddTaskScreen {
+    
+    var delegate2: SaveTaskProtocol?
+    
+    override func tap() {
+        guard let newTaskName = taskName.text, !newTaskName.isEmpty else { return }
+        delegate2?.saveTask(name: newTaskName, definition: taskDefinition.text ?? "")
+    }
+    func overrideClass() {
+        taskName.placeholder = ""
+        taskDefinition.placeholder = ""
+        button.setTitle("Сохранить", for: .normal)
+        screenLabel.text = "Правка задачи"
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        overrideClass()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+/*
 class EditTaskScreen: UIView {
     
 //    MARK: - UIObjects
@@ -138,3 +164,4 @@ class EditTaskScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+*/
