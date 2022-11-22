@@ -98,6 +98,7 @@ class DefinitionTaskScreen: UIView {
              
             name.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
             name.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            name.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
 
             startTimeTextLabel.topAnchor.constraint(equalTo: name.bottomAnchor, constant: safeIndent1),
             startTimeTextLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
