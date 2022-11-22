@@ -23,14 +23,24 @@ class DefinitionTaskScreen: UIView {
         return screenLabel
     }()
     
+    private var nameLabel: UILabel = {
+        var startTimeTextLabel = UILabel()
+        startTimeTextLabel.text = "Название:"
+        startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
+        startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return startTimeTextLabel
+    }()
+    
     var name: UILabel = {
         var name = UILabel()
+        name.lineBreakMode = .byCharWrapping
+        name.numberOfLines = 0
         name.font = .systemFont(ofSize: textSize2, weight: .regular)
         name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
     
-    private var startTimeTextLabel: UILabel = {
+    private var startTimeLabel: UILabel = {
         var startTimeTextLabel = UILabel()
         startTimeTextLabel.text = "Начало:"
         startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
@@ -45,7 +55,7 @@ class DefinitionTaskScreen: UIView {
         return startTime
     }()
     
-    private var durationTextLabel: UILabel = {
+    private var durationLabel: UILabel = {
         var durationTextLabel = UILabel()
         durationTextLabel.text = "Продолжительность:"
         durationTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
@@ -60,14 +70,21 @@ class DefinitionTaskScreen: UIView {
         return duration
     }()
     
-    var definition: UITextView = {
-        var definitionT = UITextView()
-        definitionT.font = .systemFont(ofSize: textSize3)
-        definitionT.backgroundColor = .secondarySystemBackground
-        definitionT.layer.cornerRadius = totalCornerRadius
-        definitionT.translatesAutoresizingMaskIntoConstraints = false
-        definitionT.isEditable = false
-        return definitionT
+    private var definitionLabel: UILabel = {
+        var startTimeTextLabel = UILabel()
+        startTimeTextLabel.text = "Описание:"
+        startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
+        startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return startTimeTextLabel
+    }()
+
+    var definition: UILabel = {
+        var definition = UILabel()
+        definition.lineBreakMode = .byCharWrapping
+        definition.numberOfLines = 0
+        definition.font = .systemFont(ofSize: textSize3, weight: .regular)
+        definition.translatesAutoresizingMaskIntoConstraints = false
+        return definition
     }()
     
     private var button: UIButton = {
@@ -87,7 +104,7 @@ class DefinitionTaskScreen: UIView {
 //    MARK: - Layout
     
     private func layout() {
-        [screenLabel, name, startTimeTextLabel, startTime, durationTextLabel, duration, definition, button].forEach { addSubview($0) }
+        [screenLabel, nameLabel, name, startTimeLabel, startTime, durationLabel, duration, definitionLabel, definition, button].forEach { addSubview($0) }
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -96,24 +113,29 @@ class DefinitionTaskScreen: UIView {
             screenLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             screenLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
              
-            name.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
+            nameLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
+            nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            
+            name.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: safeIndent2),
             name.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             name.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
 
-            startTimeTextLabel.topAnchor.constraint(equalTo: name.bottomAnchor, constant: safeIndent1),
-            startTimeTextLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            startTimeLabel.topAnchor.constraint(equalTo: name.bottomAnchor, constant: safeIndent1),
+            startTimeLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
 
-            startTime.topAnchor.constraint(equalTo: startTimeTextLabel.bottomAnchor, constant: safeIndent2),
+            startTime.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor, constant: safeIndent2),
             startTime.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
 
-            durationTextLabel.topAnchor.constraint(equalTo: startTime.bottomAnchor, constant: safeIndent1),
-            durationTextLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            durationLabel.topAnchor.constraint(equalTo: startTime.bottomAnchor, constant: safeIndent1),
+            durationLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
 
-            duration.topAnchor.constraint(equalTo: durationTextLabel.bottomAnchor, constant: safeIndent2),
+            duration.topAnchor.constraint(equalTo: durationLabel.bottomAnchor, constant: safeIndent2),
             duration.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
 
-            definition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
-            definition.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: safeIndent1),
+            definitionLabel.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: safeIndent1),
+            definitionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            
+            definition.topAnchor.constraint(equalTo: definitionLabel.bottomAnchor, constant: safeIndent2),
             definition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             definition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
@@ -121,30 +143,6 @@ class DefinitionTaskScreen: UIView {
             button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
-            
-            /*
-             viewForTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
-             viewForTaskName.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent2),
-             viewForTaskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-             viewForTaskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-             
-             viewForTaskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 3),
-             viewForTaskDefinition.topAnchor.constraint(equalTo: viewForTaskName.bottomAnchor, constant: safeIndent2),
-             viewForTaskDefinition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-             viewForTaskDefinition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-             
-             name.topAnchor.constraint(equalTo: viewForTaskName.topAnchor),
-             name.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor),
-             name.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor),
-             name.bottomAnchor.constraint(equalTo: viewForTaskName.bottomAnchor),
-             
-             definition.topAnchor.constraint(equalTo: viewForTaskDefinition.topAnchor),
-             definition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor),
-             definition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor),
-             definition.bottomAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor),
-             
-             button.topAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor, constant: safeIndent2),
-             */
         ])
     }
     

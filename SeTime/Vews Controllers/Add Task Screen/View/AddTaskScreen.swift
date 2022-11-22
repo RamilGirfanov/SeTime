@@ -23,42 +23,40 @@ class AddTaskScreen: UIView {
         return screenLabel
     }()
     
-    var taskName: UITextField = {
-        var taskName = UITextField()
-        taskName.placeholder = "Название"
-        taskName.font = .systemFont(ofSize: textSize4)
+    private var taskLabel: UILabel = {
+        var taskLabel = UILabel()
+        taskLabel.text = "Название:"
+        taskLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
+        taskLabel.translatesAutoresizingMaskIntoConstraints = false
+        return taskLabel
+    }()
+    
+    var taskName: UITextView = {
+        var taskName = UITextView()
+        taskName.font = .systemFont(ofSize: textSize3)
         taskName.backgroundColor = .secondarySystemBackground
+        taskName.layer.cornerRadius = totalCornerRadius
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
     }()
     
-    var taskDefinition: UITextField = {
-        var taskDefinition = UITextField ()
-        taskDefinition.placeholder = "Описание"
-        taskDefinition.font = .systemFont(ofSize: textSize4)
+    private var definitionLabel: UILabel = {
+        var taskLabel = UILabel()
+        taskLabel.text = "Описание:"
+        taskLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
+        taskLabel.translatesAutoresizingMaskIntoConstraints = false
+        return taskLabel
+    }()
+    
+    var taskDefinition: UITextView = {
+        var taskDefinition = UITextView ()
+        taskDefinition.font = .systemFont(ofSize: textSize3)
         taskDefinition.backgroundColor = .secondarySystemBackground
+        taskDefinition.layer.cornerRadius = totalCornerRadius
         taskDefinition.translatesAutoresizingMaskIntoConstraints = false
         return taskDefinition
     }()
-      
-    private var viewForTaskName: UIView = {
-        var viewForTaskName = UIView()
-        viewForTaskName.backgroundColor = .secondarySystemBackground
-        viewForTaskName.clipsToBounds = true
-        viewForTaskName.layer.cornerRadius = totalCornerRadius
-        viewForTaskName.translatesAutoresizingMaskIntoConstraints = false
-        return viewForTaskName
-    }()
     
-    private var viewForTaskDefinition: UIView = {
-        var viewForTaskDefinition = UIView()
-        viewForTaskDefinition.backgroundColor = .secondarySystemBackground
-        viewForTaskDefinition.clipsToBounds = true
-        viewForTaskDefinition.layer.cornerRadius = totalCornerRadius
-        viewForTaskDefinition.translatesAutoresizingMaskIntoConstraints = false
-        return viewForTaskDefinition
-    }()
-
     var button: UIButton = {
         var button = UIButton()
         button.setTitle("Добавить", for: .normal)
@@ -77,9 +75,7 @@ class AddTaskScreen: UIView {
 //    MARK: - Layout
     
     private func layout() {
-        [screenLabel, viewForTaskName, viewForTaskDefinition, button].forEach { addSubview($0) }
-        viewForTaskName.addSubview(taskName)
-        viewForTaskDefinition.addSubview(taskDefinition)
+        [screenLabel, taskLabel, taskName, definitionLabel, taskDefinition, button].forEach { addSubview($0) }
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -87,28 +83,24 @@ class AddTaskScreen: UIView {
         NSLayoutConstraint.activate([
             screenLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             screenLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-             
-            viewForTaskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 1.5),
-            viewForTaskName.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent2),
-            viewForTaskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            viewForTaskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            viewForTaskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
-            viewForTaskDefinition.topAnchor.constraint(equalTo: viewForTaskName.bottomAnchor, constant: safeIndent2),
-            viewForTaskDefinition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-            viewForTaskDefinition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            taskLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
+            taskLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
-            taskName.topAnchor.constraint(equalTo: viewForTaskName.topAnchor),
-            taskName.leadingAnchor.constraint(equalTo: viewForTaskName.leadingAnchor, constant: safeIndent2),
-            taskName.trailingAnchor.constraint(equalTo: viewForTaskName.trailingAnchor, constant: -safeIndent2),
-            taskName.bottomAnchor.constraint(equalTo: viewForTaskName.bottomAnchor),
+            taskName.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 1.5),
+            taskName.topAnchor.constraint(equalTo: taskLabel.bottomAnchor, constant: safeIndent2),
+            taskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            taskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            taskDefinition.topAnchor.constraint(equalTo: viewForTaskDefinition.topAnchor),
-            taskDefinition.leadingAnchor.constraint(equalTo: viewForTaskDefinition.leadingAnchor, constant: safeIndent2),
-            taskDefinition.trailingAnchor.constraint(equalTo: viewForTaskDefinition.trailingAnchor, constant: -safeIndent2),
-            taskDefinition.bottomAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor),
+            definitionLabel.topAnchor.constraint(equalTo: taskName.bottomAnchor, constant: safeIndent1),
+            definitionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
-            button.topAnchor.constraint(equalTo: viewForTaskDefinition.bottomAnchor, constant: safeIndent2),
+            taskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
+            taskDefinition.topAnchor.constraint(equalTo: definitionLabel.bottomAnchor, constant: safeIndent2),
+            taskDefinition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            taskDefinition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            
+            button.topAnchor.constraint(equalTo: taskDefinition.bottomAnchor, constant: safeIndent2),
             button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)

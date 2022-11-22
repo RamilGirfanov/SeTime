@@ -9,19 +9,12 @@ import UIKit
 
 protocol ManageTimers: AnyObject {
     func startWorkTimer()
-    
     func startBreakTimer()
-    
     func stop()
-    
     func stopTaskTimer()
-    
     func addTask()
-    
     func showTaskDifinition(index: Int)
-        
     func getTasksData() -> [Task]
-    
     func deleteTask(index: Int)
 }
 
@@ -303,6 +296,13 @@ class MainScreen: UIView {
             
             stackForTaskLabel.centerYAnchor.constraint(equalTo: taskTimerSubView.centerYAnchor),
             stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerSubView.leadingAnchor, constant: safeIndent2),
+            stackForTaskLabel.trailingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: -safeIndent2),
+            
+            taskTimeTextLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
+            taskTimeTextLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
+            
+            taskTimeDataLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
+            taskTimeDataLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
             
             stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             stopTaskButton.widthAnchor.constraint(equalTo: stopTaskButton.heightAnchor),
@@ -337,10 +337,6 @@ class MainScreen: UIView {
     @objc private func tapForWork() {
         delegate?.startWorkTimer()
                 
-//        addTaskButton.setTitleColor(.black, for: .normal)
-//        addTaskButton.tintColor = .black
-//        addTaskButton.backgroundColor = mainColorTheme
-//        addTaskButton.layer.borderWidth = 0
         addTaskButton.activeButton()
         
         addTaskButton.isEnabled = true
@@ -358,10 +354,6 @@ class MainScreen: UIView {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-//        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
-//        addTaskButton.tintColor = .black
-//        addTaskButton.backgroundColor = .systemGray6
-//        addTaskButton.layer.borderWidth = 0.5
         addTaskButton.inactiveButton()
         
         addTaskButton.isEnabled = false
@@ -371,10 +363,6 @@ class MainScreen: UIView {
     @objc private func tapForStop() {
         delegate?.stop()
         
-//        addTaskButton.setTitleColor(UIColor.systemGray, for: .normal)
-//        addTaskButton.tintColor = .black
-//        addTaskButton.backgroundColor = .systemGray6
-//        addTaskButton.layer.borderWidth = 0.5
         addTaskButton.inactiveButton()
         
         addTaskButton.isEnabled = false
