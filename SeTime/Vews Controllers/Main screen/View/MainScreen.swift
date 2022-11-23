@@ -42,23 +42,23 @@ class MainScreen: UIView {
         return viewForTimeReview
     }()
     
-    private var workTimeTextLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "Время работы"
-        workTimeTextLabel.textColor = .systemGray
-        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
+    private var totalTimeTextLabel: UILabel = {
+        var totalTimeTextLabel = UILabel()
+        totalTimeTextLabel.text = "Общее время"
+        totalTimeTextLabel.textColor = .systemGray
+        totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        totalTimeTextLabel.textAlignment = .center
+        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeTextLabel
     }()
     
-    var workTimeDataLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "-"
-        workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
+    var totalTimeDataLabel: UILabel = {
+        var totalTimeDataLabel = UILabel()
+        totalTimeDataLabel.text = "-"
+        totalTimeDataLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
+        totalTimeDataLabel.textAlignment = .center
+        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeDataLabel
     }()
     
     private var stackForTextLabel: UIStackView = {
@@ -69,16 +69,16 @@ class MainScreen: UIView {
         return stackForTextLabel
     }()
     
-    private var totalTimeTextLabel: UILabel = {
-        var totalTimeTextLabel = UILabel()
-        totalTimeTextLabel.text = "Общее время"
-        totalTimeTextLabel.textColor = .systemGray
-        totalTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
-        totalTimeTextLabel.textAlignment = .center
-        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeTextLabel
+    private var workTimeTextLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "Время работы"
+        workTimeTextLabel.textColor = .systemGray
+        workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
     }()
-    
+   
     private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
         breakTimeTextLabel.text = "Время отдыха"
@@ -97,13 +97,13 @@ class MainScreen: UIView {
         return stackForTextLabel
     }()
     
-    var totalTimeDataLabel: UILabel = {
-        var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "-"
-        totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        totalTimeDataLabel.textAlignment = .center
-        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeDataLabel
+    var workTimeDataLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "-"
+        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
     }()
     
     var breakTimeDataLabel: UILabel = {
@@ -135,7 +135,7 @@ class MainScreen: UIView {
     var stopButton: UIButton = {
         var stopButton = UIButton()
         stopButton.setTitle("Стоп", for: .normal)
-        stopButton.activeButton()
+        stopButton.inactiveButton()
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         return stopButton
     }()
@@ -145,7 +145,6 @@ class MainScreen: UIView {
         addTaskButton.setTitle("Добавить задачу", for: .normal)
         addTaskButton.inactiveButton()
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
-        addTaskButton.isEnabled = false
         return addTaskButton
     }()
     
@@ -221,10 +220,10 @@ class MainScreen: UIView {
         
         [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { contentView.addSubview($0) }
         
-        [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
+        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
         
-        [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
-        [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
+        [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
+        [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
         
         [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
         
@@ -253,15 +252,15 @@ class MainScreen: UIView {
             viewForTimeReview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             viewForTimeReview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            workTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
-            workTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            workTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            totalTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
+            totalTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            totalTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
-            workTimeDataLabel.topAnchor.constraint(equalTo: workTimeTextLabel.bottomAnchor),
-            workTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            workTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            totalTimeDataLabel.topAnchor.constraint(equalTo: totalTimeTextLabel.bottomAnchor),
+            totalTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            totalTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
-            stackForTextLabel.topAnchor.constraint(equalTo: workTimeDataLabel.bottomAnchor, constant: safeIndent1),
+            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent1),
             stackForTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
             stackForTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
@@ -338,9 +337,8 @@ class MainScreen: UIView {
         delegate?.startWorkTimer()
                 
         addTaskButton.activeButton()
-        
-        addTaskButton.isEnabled = true
-        
+        stopButton.activeButton()
+                
         workButton.isHidden = true
         breakButton.isHidden = false
         
@@ -351,12 +349,10 @@ class MainScreen: UIView {
     @objc private func tapForBreak() {
         delegate?.startBreakTimer()
         
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        
         addTaskButton.inactiveButton()
         
-        addTaskButton.isEnabled = false
+        workButton.isHidden = false
+        breakButton.isHidden = true
     }
     
 //    Останавливает все таймеры, в том числе для задачи
@@ -364,9 +360,8 @@ class MainScreen: UIView {
         delegate?.stop()
         
         addTaskButton.inactiveButton()
-        
-        addTaskButton.isEnabled = false
-        
+        stopButton.inactiveButton()
+                
         workButton.isHidden = false
         breakButton.isHidden = true
         
