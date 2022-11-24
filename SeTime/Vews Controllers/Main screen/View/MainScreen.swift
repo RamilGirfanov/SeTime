@@ -204,6 +204,7 @@ class MainScreen: UIView {
         tasksTableView.dataSource = self
         tasksTableView.delegate = self
         tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
+        tasksTableView.separatorInset = .zero
         return tasksTableView
     }()
     
