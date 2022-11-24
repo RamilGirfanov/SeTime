@@ -18,6 +18,7 @@
 		744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */; };
 		74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E530292ACA7500A470EA /* EditTaskScreen.swift */; };
 		74C8E533292ACACD00A470EA /* EditTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */; };
+		74CCA8AA292FEF9D000D6B32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74CCA8AC292FEF9D000D6B32 /* Localizable.strings */; };
 		74E79069288AF0C8000BAC0B /* AddTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E79068288AF0C8000BAC0B /* AddTaskScreenViewController.swift */; };
 		74ED60C0286593E50008B57C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B7286593E50008B57C /* Assets.xcassets */; };
 		74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74ED60B8286593E50008B57C /* LaunchScreen.storyboard */; };
@@ -47,6 +48,8 @@
 		74AC63EB2843C6EC00CAE0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74C8E530292ACA7500A470EA /* EditTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskScreen.swift; sourceTree = "<group>"; };
 		74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskScreenViewController.swift; sourceTree = "<group>"; };
+		74CCA8AB292FEF9D000D6B32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74CCA8AD292FEFBF000D6B32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74E79068288AF0C8000BAC0B /* AddTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74ED60B7286593E50008B57C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74ED60B9286593E50008B57C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -233,6 +236,7 @@
 				74ED60BB286593E50008B57C /* SceneDelegate.swift */,
 				74ED60B8286593E50008B57C /* LaunchScreen.storyboard */,
 				74ED60B7286593E50008B57C /* Assets.xcassets */,
+				74CCA8AC292FEF9D000D6B32 /* Localizable.strings */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -312,7 +316,6 @@
 				C9BCBF1981E0CCCE69CC14F1 /* Pods-SeTime.debug.xcconfig */,
 				914C2B471223EF69D115B21B /* Pods-SeTime.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -368,6 +371,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 74AC63D12843C6EB00CAE0F5;
 			productRefGroup = 74AC63DB2843C6EB00CAE0F5 /* Products */;
@@ -385,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74ED60C0286593E50008B57C /* Assets.xcassets in Resources */,
+				74CCA8AA292FEF9D000D6B32 /* Localizable.strings in Resources */,
 				74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +469,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		74CCA8AC292FEF9D000D6B32 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74CCA8AB292FEF9D000D6B32 /* en */,
+				74CCA8AD292FEFBF000D6B32 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		74ED60B8286593E50008B57C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -479,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -539,6 +554,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

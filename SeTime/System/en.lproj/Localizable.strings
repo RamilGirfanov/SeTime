@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  SeTime
+
+  Created by Рамиль Гирфанов on 24.11.2022.
+  
+*/
+
+"mainScreenTitle" = "Today";
+"workTime" = "Work time";
+"breakTime" = "Break time";
+"totalTime" = "Total time";
+"work" = "Work";
+"break" = "Break";
+"stop" = "Stop";
+"addTask" = "Add task";
+"addTaskScreenTitle" = "New task";
+"name" = "Name:";
+"definition" = "Definition:";
+"add" = "Add";
+"definitionTaskScreenTitle" = "Task";
+"startTime" = "Start time:";
+"duration" = "Duration:";
+"edit" = "Edit";
+"editTaskScreenTitle" = "Task editing";
+"save" = "Save";
+"datePickerScreenTitle" = "Date selection";
+"show" = "Show";
+"date" = "Date";
+"localizedDateFormatter" = "MM.dd.yyyy";

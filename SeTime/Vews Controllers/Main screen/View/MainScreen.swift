@@ -44,7 +44,7 @@ class MainScreen: UIView {
     
     private var totalTimeTextLabel: UILabel = {
         var totalTimeTextLabel = UILabel()
-        totalTimeTextLabel.text = "Общее время"
+        totalTimeTextLabel.text = NSLocalizedString("totalTime", comment: "")
         totalTimeTextLabel.textColor = .secondaryLabel
         totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeTextLabel.textAlignment = .center
@@ -71,7 +71,7 @@ class MainScreen: UIView {
     
     private var workTimeTextLabel: UILabel = {
         var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "Время работы"
+        workTimeTextLabel.text = NSLocalizedString("workTime", comment: "")
         workTimeTextLabel.textColor = .secondaryLabel
         workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         workTimeTextLabel.textAlignment = .center
@@ -81,7 +81,7 @@ class MainScreen: UIView {
    
     private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
-        breakTimeTextLabel.text = "Время отдыха"
+        breakTimeTextLabel.text = NSLocalizedString("breakTime", comment: "")
         breakTimeTextLabel.textColor = .secondaryLabel
         breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         breakTimeTextLabel.textAlignment = .center
@@ -117,7 +117,7 @@ class MainScreen: UIView {
     
     var workButton: UIButton = {
         var workButton = UIButton()
-        workButton.setTitle("Работа", for: .normal)
+        workButton.setTitle(NSLocalizedString("work", comment: ""), for: .normal)
         workButton.activeButton()
         workButton.translatesAutoresizingMaskIntoConstraints = false
         return workButton
@@ -125,7 +125,7 @@ class MainScreen: UIView {
     
     var breakButton: UIButton = {
         var breakButton = UIButton()
-        breakButton.setTitle("Отдых", for: .normal)
+        breakButton.setTitle(NSLocalizedString("break", comment: ""), for: .normal)
         breakButton.isHidden = true
         breakButton.activeButton()
         breakButton.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +134,7 @@ class MainScreen: UIView {
     
     var stopButton: UIButton = {
         var stopButton = UIButton()
-        stopButton.setTitle("Стоп", for: .normal)
+        stopButton.setTitle(NSLocalizedString("stop", comment: ""), for: .normal)
         stopButton.inactiveButton()
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         return stopButton
@@ -142,7 +142,7 @@ class MainScreen: UIView {
     
     var addTaskButton: UIButton = {
         var addTaskButton = UIButton()
-        addTaskButton.setTitle("Добавить задачу", for: .normal)
+        addTaskButton.setTitle(NSLocalizedString("addTask", comment: ""), for: .normal)
         addTaskButton.inactiveButton()
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         return addTaskButton
@@ -166,7 +166,7 @@ class MainScreen: UIView {
     
     var taskTimeTextLabel: UILabel = {
         var taskTimeTextLabel = UILabel()
-        taskTimeTextLabel.text = "Название"
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         taskTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         taskTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeTextLabel
@@ -366,7 +366,7 @@ class MainScreen: UIView {
         workButton.isHidden = false
         breakButton.isHidden = true
         
-        taskTimeTextLabel.text = "Название"
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         taskTimeDataLabel.text = "-"
         
         addTaskButton.isHidden = false
@@ -379,7 +379,7 @@ class MainScreen: UIView {
     @objc private func stopTask() {
         delegate?.stopTaskTimer()
         
-        taskTimeTextLabel.text = "Название"
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         taskTimeDataLabel.text = "-"
         
         addTaskButton.isHidden = false

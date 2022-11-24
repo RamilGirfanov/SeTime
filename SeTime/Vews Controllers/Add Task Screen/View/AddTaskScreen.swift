@@ -17,7 +17,7 @@ class AddTaskScreen: UIView {
 
     var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Новая задача"
+        screenLabel.text = NSLocalizedString("addTaskScreenTitle", comment: "")
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel
@@ -25,7 +25,7 @@ class AddTaskScreen: UIView {
     
     private var taskLabel: UILabel = {
         var taskLabel = UILabel()
-        taskLabel.text = "Название:"
+        taskLabel.text = NSLocalizedString("name", comment: "")
         taskLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskLabel
@@ -42,7 +42,7 @@ class AddTaskScreen: UIView {
     
     private var definitionLabel: UILabel = {
         var taskLabel = UILabel()
-        taskLabel.text = "Описание:"
+        taskLabel.text = NSLocalizedString("definition", comment: "")
         taskLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         taskLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskLabel
@@ -59,8 +59,7 @@ class AddTaskScreen: UIView {
     
     var button: UIButton = {
         var button = UIButton()
-        button.setTitle("Добавить", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: totalSizeTextInButtons)
+        button.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
         button.activeButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

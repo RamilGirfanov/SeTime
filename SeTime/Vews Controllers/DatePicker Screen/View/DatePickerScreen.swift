@@ -18,7 +18,7 @@ class DatePickerScreen: UIView {
 
     private var calendarLabel: UILabel = {
         lazy var timeTextLabel = UILabel()
-        timeTextLabel.text = "Выбор даты"
+        timeTextLabel.text = NSLocalizedString("datePickerScreenTitle", comment: "")
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel
@@ -34,7 +34,7 @@ class DatePickerScreen: UIView {
 
     private var showButton: UIButton = {
         lazy var showButton = UIButton()
-        showButton.setTitle("Показать", for: .normal)
+        showButton.setTitle(NSLocalizedString("show", comment: ""), for: .normal)
         showButton.activeButton()
         showButton.translatesAutoresizingMaskIntoConstraints = false
         return showButton

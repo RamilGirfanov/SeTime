@@ -27,31 +27,16 @@ class DatePickerScreenViewController: UIViewController {
 
 extension DatePickerScreenViewController: PresentHistory {
     func pushScreen() {
-        // Календарь для вычисления даты и времени
-        let calendar = Calendar.current
 
-        // Извлечение компонентов из выбранной даты при помощи Calendar
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         
-        var date: [String] = []
-        
-        if calendar.component(.day, from: datePickerScreen.datePicker.date) < 10 {
-            date.append("0\(calendar.component(.day, from: datePickerScreen.datePicker.date))")
-        } else {
-            date.append("\(calendar.component(.day, from: datePickerScreen.datePicker.date))")
-        }
-        
-        if calendar.component(.month, from: datePickerScreen.datePicker.date) < 10 {
-            date.append("0\(calendar.component(.month, from: datePickerScreen.datePicker.date))")
-        } else {
-            date.append("\(calendar.component(.month, from: datePickerScreen.datePicker.date))")
-        }
-        
-        date.append("\(calendar.component(.year, from: datePickerScreen.datePicker.date))")
-        
-        let chosenDate = date.joined(separator: ".")
+        let localizedDateFormatter = DateFormatter()
+        localizedDateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")
         
         let historyVC = HistoryScreenViewController()
-        historyVC.date = chosenDate
+        historyVC.date = dateFormatter.string(from: datePickerScreen.datePicker.date)
+        historyVC.localizedData = localizedDateFormatter.string(from: datePickerScreen.datePicker.date)
         present(historyVC, animated: true)
     }
 }

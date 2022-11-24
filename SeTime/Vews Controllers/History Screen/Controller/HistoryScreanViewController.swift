@@ -12,13 +12,14 @@ class HistoryScreenViewController: UIViewController {
     
     var date = ""
     
+    var localizedData = ""
     
 //    MARK: - Экземпляр HistoryScreen
 
     private lazy var historyScreen: HistoryScreen = {
         let view = HistoryScreen()
         view.delegate = self
-        view.historyLabel.text = date
+        view.historyLabel.text = localizedData
         return view
     }()
     

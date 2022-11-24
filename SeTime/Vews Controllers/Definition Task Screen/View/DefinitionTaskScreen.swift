@@ -17,7 +17,7 @@ class DefinitionTaskScreen: UIView {
     
     private var screenLabel: UILabel = {
         var screenLabel = UILabel()
-        screenLabel.text = "Задача"
+        screenLabel.text = NSLocalizedString("definitionTaskScreenTitle", comment: "")
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel
@@ -25,7 +25,7 @@ class DefinitionTaskScreen: UIView {
     
     private var nameLabel: UILabel = {
         var startTimeTextLabel = UILabel()
-        startTimeTextLabel.text = "Название:"
+        startTimeTextLabel.text = NSLocalizedString("name", comment: "")
         startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return startTimeTextLabel
@@ -42,7 +42,7 @@ class DefinitionTaskScreen: UIView {
     
     private var startTimeLabel: UILabel = {
         var startTimeTextLabel = UILabel()
-        startTimeTextLabel.text = "Начало:"
+        startTimeTextLabel.text = NSLocalizedString("startTime", comment: "")
         startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return startTimeTextLabel
@@ -57,7 +57,7 @@ class DefinitionTaskScreen: UIView {
     
     private var durationLabel: UILabel = {
         var durationTextLabel = UILabel()
-        durationTextLabel.text = "Продолжительность:"
+        durationTextLabel.text = NSLocalizedString("duration", comment: "")
         durationTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         durationTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return durationTextLabel
@@ -72,7 +72,7 @@ class DefinitionTaskScreen: UIView {
     
     private var definitionLabel: UILabel = {
         var startTimeTextLabel = UILabel()
-        startTimeTextLabel.text = "Описание:"
+        startTimeTextLabel.text = NSLocalizedString("definition", comment: "")
         startTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .bold)
         startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return startTimeTextLabel
@@ -89,7 +89,7 @@ class DefinitionTaskScreen: UIView {
     
     private var button: UIButton = {
         var button = UIButton()
-        button.setTitle("Редактировать", for: .normal)
+        button.setTitle(NSLocalizedString("edit", comment: ""), for: .normal)
         button.activeButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

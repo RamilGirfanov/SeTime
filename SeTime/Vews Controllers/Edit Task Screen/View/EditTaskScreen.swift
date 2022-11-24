@@ -20,8 +20,8 @@ class EditTaskScreen: AddTaskScreen {
         delegate2?.saveTask(name: newTaskName, definition: taskDefinition.text ?? "")
     }
     func overrideClass() {
-        button.setTitle("Сохранить", for: .normal)
-        screenLabel.text = "Правка задачи"
+        screenLabel.text = NSLocalizedString("editTaskScreenTitle", comment: "")
+        button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
     }
     
     override init(frame: CGRect) {

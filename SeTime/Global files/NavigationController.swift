@@ -14,7 +14,7 @@ class NavigationController: UINavigationController {
         
         let mainVC = MainScreenViewController()
         mainVC.view.backgroundColor = .systemBackground
-        mainVC.title = "Сегодня"
+        mainVC.title = NSLocalizedString("mainScreenTitle", comment: "")
         viewControllers.append(mainVC)
         
 //        Настройка кнопки вызова экрана истории
@@ -26,7 +26,7 @@ class NavigationController: UINavigationController {
     
     @objc private func tap() {
         let calendarVC = DatePickerScreenViewController()
-        calendarVC.title = "Выбор даты"
+        calendarVC.title = NSLocalizedString("datePickerScreenTitle", comment: "")
         present(calendarVC, animated: true)
     }
 }

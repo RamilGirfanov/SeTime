@@ -20,7 +20,7 @@ class HistoryScreen: UIView {
     
     var historyLabel: UILabel = {
         var timeTextLabel = UILabel()
-        timeTextLabel.text = "Дата"
+        timeTextLabel.text = NSLocalizedString("date", comment: "")
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel
@@ -36,7 +36,7 @@ class HistoryScreen: UIView {
     
     private var totalTimeTextLabel: UILabel = {
         var totalTimeTextLabel = UILabel()
-        totalTimeTextLabel.text = "Общее время"
+        totalTimeTextLabel.text = NSLocalizedString("totalTime", comment: "")
         totalTimeTextLabel.textColor = .secondaryLabel
         totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeTextLabel.textAlignment = .center
@@ -63,7 +63,7 @@ class HistoryScreen: UIView {
     
     private var workTimeTextLabel: UILabel = {
         var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "Время работы"
+        workTimeTextLabel.text = NSLocalizedString("workTime", comment: "")
         workTimeTextLabel.textColor = .secondaryLabel
         workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         workTimeTextLabel.textAlignment = .center
@@ -73,7 +73,7 @@ class HistoryScreen: UIView {
    
     private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
-        breakTimeTextLabel.text = "Время отдыха"
+        breakTimeTextLabel.text = NSLocalizedString("breakTime", comment: "")
         breakTimeTextLabel.textColor = .secondaryLabel
         breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         breakTimeTextLabel.textAlignment = .center
