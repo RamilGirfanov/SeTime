@@ -6,6 +6,6 @@ target 'SeTime' do
   use_frameworks!
 
   # Pods for SeTime
-pod 'RealmSwift', '~>10'
+  pod 'RealmSwift', '~>10'
 
 end
