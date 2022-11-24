@@ -25,7 +25,6 @@
 		74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BA286593E50008B57C /* AppDelegate.swift */; };
 		74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BB286593E50008B57C /* SceneDelegate.swift */; };
 		74ED60C4286593E50008B57C /* Total properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BD286593E50008B57C /* Total properties.swift */; };
-		74ED60C6286593E50008B57C /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BF286593E50008B57C /* Identifier.swift */; };
 		74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60C9286594370008B57C /* MainScreenViewController.swift */; };
 		74ED60DA286594F10008B57C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D5286594F10008B57C /* TaskCell.swift */; };
 		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
@@ -55,7 +54,6 @@
 		74ED60BA286593E50008B57C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74ED60BB286593E50008B57C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		74ED60BD286593E50008B57C /* Total properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Total properties.swift"; sourceTree = "<group>"; };
-		74ED60BF286593E50008B57C /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		74ED60C9286594370008B57C /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		74ED60D5286594F10008B57C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 			children = (
 				74ED60F4286D76830008B57C /* NavigationController.swift */,
 				74ED60BD286593E50008B57C /* Total properties.swift */,
-				74ED60BF286593E50008B57C /* Identifier.swift */,
 			);
 			path = "Global files";
 			sourceTree = "<group>";
@@ -458,7 +455,6 @@
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
 				7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */,
-				74ED60C6286593E50008B57C /* Identifier.swift in Sources */,
 				74ED60F5286D76830008B57C /* NavigationController.swift in Sources */,
 				74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */,
 			);

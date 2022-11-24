@@ -69,6 +69,7 @@ class MainScreenViewController: UIViewController {
     static let notificationTotalTime = Notification.Name("totalTime")
     static let notificationTaskTime = Notification.Name("taskTime")
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
+    static let notificationTaskTableView = Notification.Name("tableView")
 
     private func setupNC() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
@@ -76,6 +77,7 @@ class MainScreenViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
     }
     
     @objc private func updateWorkTime() {
@@ -96,6 +98,10 @@ class MainScreenViewController: UIViewController {
     
     @objc private func stopTimers() {
         stop()
+    }
+    
+    @objc private func reloadTaskTableView() {
+        mainScreen.tasksTableView.reloadData()
     }
     
     

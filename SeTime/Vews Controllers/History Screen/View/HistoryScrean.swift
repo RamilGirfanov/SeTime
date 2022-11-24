@@ -34,23 +34,23 @@ class HistoryScreen: UIView {
         return viewForTimeReview
     }()
     
-    private var workTimeTextLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "Время работы"
-        workTimeTextLabel.textColor = .systemGray
-        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
+    private var totalTimeTextLabel: UILabel = {
+        var totalTimeTextLabel = UILabel()
+        totalTimeTextLabel.text = "Общее время"
+        totalTimeTextLabel.textColor = .secondaryLabel
+        totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        totalTimeTextLabel.textAlignment = .center
+        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeTextLabel
     }()
     
-    var workTimeDataLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "-"
-        workTimeTextLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
+    var totalTimeDataLabel: UILabel = {
+        var totalTimeDataLabel = UILabel()
+        totalTimeDataLabel.text = "-"
+        totalTimeDataLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
+        totalTimeDataLabel.textAlignment = .center
+        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return totalTimeDataLabel
     }()
     
     private var stackForTextLabel: UIStackView = {
@@ -61,20 +61,20 @@ class HistoryScreen: UIView {
         return stackForTextLabel
     }()
     
-    private var totalTimeTextLabel: UILabel = {
-        var totalTimeTextLabel = UILabel()
-        totalTimeTextLabel.text = "Общее время"
-        totalTimeTextLabel.textColor = .systemGray
-        totalTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
-        totalTimeTextLabel.textAlignment = .center
-        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeTextLabel
+    private var workTimeTextLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "Время работы"
+        workTimeTextLabel.textColor = .secondaryLabel
+        workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
     }()
-    
+   
     private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
         breakTimeTextLabel.text = "Время отдыха"
-        breakTimeTextLabel.textColor = .systemGray
+        breakTimeTextLabel.textColor = .secondaryLabel
         breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         breakTimeTextLabel.textAlignment = .center
         breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -89,13 +89,13 @@ class HistoryScreen: UIView {
         return stackForTextLabel
     }()
     
-    var totalTimeDataLabel: UILabel = {
-        var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "-"
-        totalTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        totalTimeDataLabel.textAlignment = .center
-        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeDataLabel
+    var workTimeDataLabel: UILabel = {
+        var workTimeTextLabel = UILabel()
+        workTimeTextLabel.text = "-"
+        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
+        workTimeTextLabel.textAlignment = .center
+        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeTextLabel
     }()
     
     var breakTimeDataLabel: UILabel = {
@@ -130,10 +130,10 @@ class HistoryScreen: UIView {
         
         [historyLabel, viewForTimeReview, tasksTableView].forEach { addSubview($0) }
         
-        [workTimeTextLabel, workTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
+        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
         
-        [totalTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
-        [totalTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
+        [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
+        [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
         
         
         let safeIndent1: CGFloat = 16
@@ -147,15 +147,15 @@ class HistoryScreen: UIView {
             viewForTimeReview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: safeIndent1),
             viewForTimeReview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -safeIndent1),
             
-            workTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
-            workTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            workTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            totalTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
+            totalTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            totalTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
-            workTimeDataLabel.topAnchor.constraint(equalTo: workTimeTextLabel.bottomAnchor),
-            workTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            workTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
+            totalTimeDataLabel.topAnchor.constraint(equalTo: totalTimeTextLabel.bottomAnchor),
+            totalTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
+            totalTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
-            stackForTextLabel.topAnchor.constraint(equalTo: workTimeDataLabel.bottomAnchor, constant: safeIndent1),
+            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent1),
             stackForTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
             stackForTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             
@@ -164,7 +164,7 @@ class HistoryScreen: UIView {
             stackForDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
             stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
             
-            tasksTableView.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
+            tasksTableView.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent1),
             tasksTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             tasksTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             tasksTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent2)

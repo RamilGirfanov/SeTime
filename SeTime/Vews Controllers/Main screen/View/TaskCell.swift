@@ -40,6 +40,8 @@ class TaskCell: UITableViewCell {
         let safeIndent: CGFloat = 8
         
         NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            
             taskStartTime.widthAnchor.constraint(equalToConstant: 50),
             taskStartTime.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
             taskStartTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),

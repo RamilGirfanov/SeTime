@@ -45,7 +45,7 @@ class MainScreen: UIView {
     private var totalTimeTextLabel: UILabel = {
         var totalTimeTextLabel = UILabel()
         totalTimeTextLabel.text = "Общее время"
-        totalTimeTextLabel.textColor = .systemGray
+        totalTimeTextLabel.textColor = .secondaryLabel
         totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         totalTimeTextLabel.textAlignment = .center
         totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class MainScreen: UIView {
     private var workTimeTextLabel: UILabel = {
         var workTimeTextLabel = UILabel()
         workTimeTextLabel.text = "Время работы"
-        workTimeTextLabel.textColor = .systemGray
+        workTimeTextLabel.textColor = .secondaryLabel
         workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         workTimeTextLabel.textAlignment = .center
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +82,7 @@ class MainScreen: UIView {
     private var breakTimeTextLabel: UILabel = {
         var breakTimeTextLabel = UILabel()
         breakTimeTextLabel.text = "Время отдыха"
-        breakTimeTextLabel.textColor = .systemGray
+        breakTimeTextLabel.textColor = .secondaryLabel
         breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
         breakTimeTextLabel.textAlignment = .center
         breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false

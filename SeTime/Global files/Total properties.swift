@@ -24,6 +24,12 @@ let textSize3: CGFloat = 15
 let textSize4: CGFloat = 14
 
 
+extension UIView {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
@@ -34,8 +40,8 @@ extension UIButton {
     }
     
     func inactiveButton() {
-        setTitleColor(.systemGray, for: .normal)
-        tintColor = .systemGray
+        setTitleColor(.secondaryLabel, for: .normal)
+        tintColor = .secondaryLabel
         backgroundColor = .secondarySystemBackground
         layer.cornerRadius = totalCornerRadius
         isEnabled = false
@@ -47,13 +53,6 @@ func getDate() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM.yyyy"
     let currentDate = dateFormatter.string(from: Date())
-    return currentDate
-}
-
-func updateDate(date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy"
-    let currentDate = dateFormatter.string(from: date)
     return currentDate
 }
 
@@ -102,10 +101,4 @@ func timeIntToString(time: Int) -> String {
     }
     
     return fullTime.joined(separator: ":")
-}
-
-enum TypeScreen {
-    case add
-    case edit
-    case show
 }

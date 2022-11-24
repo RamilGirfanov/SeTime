@@ -85,6 +85,7 @@ extension HistoryScreenViewController: HistoryManager {
     
     func deleteTask(index: Int) {
         RealmManager.shared.deleteTask(date: date, index: index)
+        NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTableView, object: nil)
     }
 }
 
