@@ -26,17 +26,9 @@ class DatePickerScreenViewController: UIViewController {
 }
 
 extension DatePickerScreenViewController: PresentHistory {
-    func pushScreen() {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        
-        let localizedDateFormatter = DateFormatter()
-        localizedDateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")
-        
+    func pushScreen() {        
         let historyVC = HistoryScreenViewController()
-        historyVC.date = dateFormatter.string(from: datePickerScreen.datePicker.date)
-        historyVC.localizedData = localizedDateFormatter.string(from: datePickerScreen.datePicker.date)
+        historyVC.date = getShortDate(date: datePickerScreen.datePicker.date)
         present(historyVC, animated: true)
     }
 }

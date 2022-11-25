@@ -48,11 +48,20 @@ extension UIButton {
     }
 }
 
+func getShortDate(date: Date) -> Date {
+    let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
+    let dateNow = Calendar.current.date(from: dateComponents)
+    return dateNow!
+}
+
+
+
+
 //Функция получения даты
-func getDate() -> String {
+func getStringDate(date: Date) -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy"
-    let currentDate = dateFormatter.string(from: Date())
+    dateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")
+    let currentDate = dateFormatter.string(from: date)
     return currentDate
 }
 

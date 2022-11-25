@@ -21,7 +21,7 @@ class RealmManager {
         }
     }
     
-    func updateTime(date: String, workTime: Int, breakTime: Int, totalTime: Int) {
+    func updateTime(date: Date, workTime: Int, breakTime: Int, totalTime: Int) {
         guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
         try! localRealm.write {
             dayToUpdate.workTime = workTime
@@ -30,14 +30,14 @@ class RealmManager {
         }
     }
     
-    func addTask(date: String, task: Task) {
+    func addTask(date: Date, task: Task) {
         guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
         try! localRealm.write{
             dayToUpdate.tasks.append(task)
         }
     }
     
-    func updateTask(date: String, index: Int, name: String, definition: String) {
+    func updateTask(date: Date, index: Int, name: String, definition: String) {
         let taskToUpdate = localRealm.objects(Task.self).filter("date == %@", date)[index]
         try! localRealm.write{
             taskToUpdate.name = name
@@ -45,7 +45,7 @@ class RealmManager {
         }
     }
     
-    func deleteTask(date: String, index: Int) {
+    func deleteTask(date: Date, index: Int) {
         let taskToDelete = localRealm.objects(Task.self).filter("date == %@", date)[index]
         try! localRealm.write{
             localRealm.delete(taskToDelete)

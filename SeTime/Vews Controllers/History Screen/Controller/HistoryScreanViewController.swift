@@ -10,16 +10,14 @@ import RealmSwift
 
 class HistoryScreenViewController: UIViewController {
     
-    var date = ""
-    
-    var localizedData = ""
-    
+    var date = Date()
+        
 //    MARK: - Экземпляр HistoryScreen
 
     private lazy var historyScreen: HistoryScreen = {
         let view = HistoryScreen()
         view.delegate = self
-        view.historyLabel.text = localizedData
+        view.historyLabel.text = getStringDate(date: date)
         return view
     }()
     
@@ -64,11 +62,7 @@ extension HistoryScreenViewController: HistoryManager {
     func getDay() -> Day {
         day
     }
-    
-    func getDate() -> String {
-        return date
-    }
-    
+        
     func showTaskDifinition(index: Int) {
         let taskDefinitionVC = DefinitionTaskScreenViewController()
         

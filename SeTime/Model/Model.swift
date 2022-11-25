@@ -10,7 +10,7 @@ import RealmSwift
 
 class Model {
     
-    let date = getDate()
+    let date = getShortDate(date: Date())
     
     var task = Task()
     

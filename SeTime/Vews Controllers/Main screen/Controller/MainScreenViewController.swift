@@ -29,7 +29,7 @@ class MainScreenViewController: UIViewController {
     private func checkDay() {
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
-        let currentDate = getDate()
+        let currentDate = getShortDate(date: Date())
         
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
 //            Если день в БД есть
@@ -168,7 +168,7 @@ extension MainScreenViewController: ManageTimers {
     
     func getTasksData() -> [Task] {
         var tasksArray: [Task] = []
-        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getDate()).first?.tasks.forEach { tasksArray.append($0) }
+        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.forEach { tasksArray.append($0) }
         return tasksArray
     }
     

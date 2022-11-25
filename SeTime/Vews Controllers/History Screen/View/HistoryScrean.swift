@@ -9,7 +9,6 @@ import UIKit
 
 protocol HistoryManager: AnyObject {
     func getDay() -> Day
-    func getDate() -> String
     func showTaskDifinition(index: Int)
     func deleteTask(index: Int)
 }

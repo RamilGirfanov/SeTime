@@ -8,7 +8,7 @@
 import RealmSwift
 
 class Task: Object {
-    @Persisted var date = ""
+    @Persisted var date = Date()
     @Persisted var name = ""
     @Persisted var definition = ""
     @Persisted var duration = 0
@@ -16,7 +16,7 @@ class Task: Object {
 }
 
 class Day: Object {
-    @Persisted var date = ""
+    @Persisted var date = Date()
     @Persisted var workTime = 0
     @Persisted var breakTime = 0
     @Persisted var totalTime = 0
