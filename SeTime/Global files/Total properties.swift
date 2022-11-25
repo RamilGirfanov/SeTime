@@ -13,8 +13,6 @@ let totalCornerRadius: CGFloat = 12
 
 let totalHeightForTappedUIobjects: CGFloat = 44
 
-//let totalSizeTextInButtons: CGFloat = 15
-
 let textSize1: CGFloat = 20
 
 let textSize2: CGFloat = 17

@@ -122,9 +122,9 @@ class AddTaskScreen: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemBackground
         layout()
         setupButton()
-        backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {

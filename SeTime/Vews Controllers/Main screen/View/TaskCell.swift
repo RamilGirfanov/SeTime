@@ -11,24 +11,27 @@ class TaskCell: UITableViewCell {
     
 //    MARK: - UIObjects
     
+    var taskStartTime: UILabel = {
+        var taskStartAndStop = UILabel()
+        taskStartAndStop.font = .systemFont(ofSize: textSize2, weight: .regular)
+        taskStartAndStop.textAlignment = .center
+        taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
+        return taskStartAndStop
+    }()
+    
     var taskName: UILabel = {
         var taskName = UILabel()
+        taskName.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
     }()
     
     var taskDuration: UILabel = {
         var taskDuration = UILabel()
+        taskDuration.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskDuration.textAlignment = .center
         taskDuration.translatesAutoresizingMaskIntoConstraints = false
         return taskDuration
-    }()
-    
-    var taskStartTime: UILabel = {
-        var taskStartAndStop = UILabel()
-        taskStartAndStop.textAlignment = .center
-        taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
-        return taskStartAndStop
     }()
         
     

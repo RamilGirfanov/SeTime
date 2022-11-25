@@ -50,7 +50,7 @@ class DefinitionTaskScreen: UIView {
     
     var startTime: UILabel = {
         var startTime = UILabel()
-        startTime.font = .systemFont(ofSize: textSize3, weight: .regular)
+        startTime.font = .systemFont(ofSize: textSize2, weight: .regular)
         startTime.translatesAutoresizingMaskIntoConstraints = false
         return startTime
     }()
@@ -65,7 +65,7 @@ class DefinitionTaskScreen: UIView {
     
     var duration: UILabel = {
         var duration = UILabel()
-        duration.font = .systemFont(ofSize: textSize3, weight: .regular)
+        duration.font = .systemFont(ofSize: textSize2, weight: .regular)
         duration.translatesAutoresizingMaskIntoConstraints = false
         return duration
     }()
@@ -162,9 +162,9 @@ class DefinitionTaskScreen: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemBackground
         layout()
         setupButton()
-        backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {

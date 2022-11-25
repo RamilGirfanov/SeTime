@@ -167,7 +167,7 @@ class MainScreen: UIView {
     var taskTimeTextLabel: UILabel = {
         var taskTimeTextLabel = UILabel()
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        taskTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeTextLabel
     }()
@@ -175,7 +175,7 @@ class MainScreen: UIView {
     var taskTimeDataLabel: UILabel = {
         var taskTimeDataLabel = UILabel()
         taskTimeDataLabel.text = "-"
-        taskTimeDataLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel
     }()
@@ -398,6 +398,7 @@ class MainScreen: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemBackground
         layout()
         setupButtons()
         setupToHideKeyboardOnTapOnView()
@@ -446,7 +447,7 @@ extension MainScreen: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
                 
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
 
             self.delegate?.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

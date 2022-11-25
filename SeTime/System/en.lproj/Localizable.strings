@@ -27,4 +27,5 @@
 "datePickerScreenTitle" = "Date selection";
 "show" = "Show";
 "date" = "Date";
-"localizedDateFormatter" = "MM.dd.yyyy";
+"delete" = "Delete";
+"localizedDateFormatter" = "MMM dd yyyy";

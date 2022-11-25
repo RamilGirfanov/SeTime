@@ -13,7 +13,6 @@ class NavigationController: UINavigationController {
         super.viewDidLoad()
         
         let mainVC = MainScreenViewController()
-        mainVC.view.backgroundColor = .systemBackground
         mainVC.title = NSLocalizedString("mainScreenTitle", comment: "")
         viewControllers.append(mainVC)
         

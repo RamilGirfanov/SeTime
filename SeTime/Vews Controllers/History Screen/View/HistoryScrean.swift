@@ -229,7 +229,7 @@ extension HistoryScreen: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
                 
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
 
             self.delegate?.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
