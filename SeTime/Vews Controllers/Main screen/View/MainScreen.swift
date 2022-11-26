@@ -54,7 +54,7 @@ class MainScreen: UIView {
     
     var totalTimeDataLabel: UILabel = {
         var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "-"
+        totalTimeDataLabel.text = "—"
         totalTimeDataLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
         totalTimeDataLabel.textAlignment = .center
         totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false

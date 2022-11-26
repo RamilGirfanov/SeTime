@@ -16,6 +16,8 @@
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
 		744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */; };
 		744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */; };
+		74C8C8D229321A050016F655 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 74C8C8D129321A050016F655 /* Realm */; };
+		74C8C8D429321A050016F655 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 74C8C8D329321A050016F655 /* RealmSwift */; };
 		74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E530292ACA7500A470EA /* EditTaskScreen.swift */; };
 		74C8E533292ACACD00A470EA /* EditTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8E532292ACACD00A470EA /* EditTaskScreenViewController.swift */; };
 		74CCA8AA292FEF9D000D6B32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74CCA8AC292FEF9D000D6B32 /* Localizable.strings */; };
@@ -30,11 +32,9 @@
 		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
 		74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */; };
 		74ED60F5286D76830008B57C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60F4286D76830008B57C /* NavigationController.swift */; };
-		F3C286B86A96B95FF996688A /* Pods_SeTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE43335B081B7B9B2F3DDA5 /* Pods_SeTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5BE43335B081B7B9B2F3DDA5 /* Pods_SeTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74080348290A7F9F002AB91D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7408034D290AC14F002AB91D /* AddTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
@@ -61,8 +61,6 @@
 		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreanViewController.swift; sourceTree = "<group>"; };
 		74ED60F4286D76830008B57C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		914C2B471223EF69D115B21B /* Pods-SeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.release.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.release.xcconfig"; sourceTree = "<group>"; };
-		C9BCBF1981E0CCCE69CC14F1 /* Pods-SeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeTime.debug.xcconfig"; path = "Target Support Files/Pods-SeTime/Pods-SeTime.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C286B86A96B95FF996688A /* Pods_SeTime.framework in Frameworks */,
+				74C8C8D429321A050016F655 /* RealmSwift in Frameworks */,
+				74C8C8D229321A050016F655 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +153,6 @@
 			children = (
 				74AC63DC2843C6EB00CAE0F5 /* SeTime */,
 				74AC63DB2843C6EB00CAE0F5 /* Products */,
-				7F390571FA811B1301EE07F7 /* Pods */,
-				CE0074761A5D2A288AFCB480 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,23 +307,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7F390571FA811B1301EE07F7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C9BCBF1981E0CCCE69CC14F1 /* Pods-SeTime.debug.xcconfig */,
-				914C2B471223EF69D115B21B /* Pods-SeTime.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		CE0074761A5D2A288AFCB480 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5BE43335B081B7B9B2F3DDA5 /* Pods_SeTime.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,17 +314,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74AC63EE2843C6EC00CAE0F5 /* Build configuration list for PBXNativeTarget "SeTime" */;
 			buildPhases = (
-				C130B5B93E6040AA959E2B3A /* [CP] Check Pods Manifest.lock */,
 				74AC63D62843C6EB00CAE0F5 /* Sources */,
 				74AC63D72843C6EB00CAE0F5 /* Frameworks */,
 				74AC63D82843C6EB00CAE0F5 /* Resources */,
-				0B767C69BF0F19E214788028 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SeTime;
+			packageProductDependencies = (
+				74C8C8D129321A050016F655 /* Realm */,
+				74C8C8D329321A050016F655 /* RealmSwift */,
+			);
 			productName = SeTime;
 			productReference = 74AC63DA2843C6EB00CAE0F5 /* SeTime.app */;
 			productType = "com.apple.product-type.application";
@@ -374,6 +356,9 @@
 				ru,
 			);
 			mainGroup = 74AC63D12843C6EB00CAE0F5;
+			packageReferences = (
+				74C8C8D029321A050016F655 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 74AC63DB2843C6EB00CAE0F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -395,48 +380,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0B767C69BF0F19E214788028 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SeTime/Pods-SeTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SeTime/Pods-SeTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeTime/Pods-SeTime-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C130B5B93E6040AA959E2B3A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SeTime-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		74AC63D62843C6EB00CAE0F5 /* Sources */ = {
@@ -607,7 +550,6 @@
 		};
 		74AC63EF2843C6EC00CAE0F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9BCBF1981E0CCCE69CC14F1 /* Pods-SeTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -637,7 +579,6 @@
 		};
 		74AC63F02843C6EC00CAE0F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 914C2B471223EF69D115B21B /* Pods-SeTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -687,6 +628,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		74C8C8D029321A050016F655 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.32.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		74C8C8D129321A050016F655 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74C8C8D029321A050016F655 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		74C8C8D329321A050016F655 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74C8C8D029321A050016F655 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 74AC63D22843C6EB00CAE0F5 /* Project object */;
 }
