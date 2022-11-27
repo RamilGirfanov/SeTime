@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SaveTaskProtocol: AnyObject {
-    func saveTask(name: String, definition: String)
+    func saveTask()
 }
 
 class EditTaskScreen: AddTaskScreen {
@@ -16,8 +16,7 @@ class EditTaskScreen: AddTaskScreen {
     var delegate2: SaveTaskProtocol?
     
     override func tap() {
-        guard let newTaskName = taskName.text, !newTaskName.isEmpty else { return }
-        delegate2?.saveTask(name: newTaskName, definition: taskDefinition.text ?? "")
+        delegate2?.saveTask()
     }
     func overrideClass() {
         screenLabel.text = NSLocalizedString("editTaskScreenTitle", comment: "")
