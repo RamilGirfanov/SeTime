@@ -37,9 +37,9 @@ class MainScreenViewController: UIViewController {
             model.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
             model.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
             
-            mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-            mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-            mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+            mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+            mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+            mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
             mainScreen.tasksTableView.reloadData()
         } else {
 //          Если дня в БД нет
@@ -54,9 +54,9 @@ class MainScreenViewController: UIViewController {
             mainScreen.addTaskButton.isEnabled = false
             
 //        Очистка экрана от данных
-            mainScreen.workTimeDataLabel.text = "-"
-            mainScreen.breakTimeDataLabel.text = "-"
-            mainScreen.totalTimeDataLabel.text = "-"
+            mainScreen.viewForTimeReview.workTimeDataLabel.text = "00.00.00"
+            mainScreen.viewForTimeReview.breakTimeDataLabel.text = "00.00.00"
+            mainScreen.viewForTimeReview.totalTimeDataLabel.text = "00.00.00"
             mainScreen.tasksTableView.reloadData()
         }
     }
@@ -81,15 +81,15 @@ class MainScreenViewController: UIViewController {
     }
     
     @objc private func updateWorkTime() {
-        mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
     }
     
     @objc private func updateBreakTime() {
-        mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
     }
     
     @objc private func updateTotalTime() {
-        mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
     }
     
     @objc private func updateTaskTime() {
@@ -108,13 +108,16 @@ class MainScreenViewController: UIViewController {
 //    MARK: - Жизненный цикл
     
     override func loadView() {
-        checkDay()
         view = mainScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNC()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkDay()
     }
 }
 
