@@ -54,9 +54,9 @@ class MainScreenViewController: UIViewController {
             mainScreen.addTaskButton.isEnabled = false
             
 //        Очистка экрана от данных
-            mainScreen.viewForTimeReview.workTimeDataLabel.text = "00.00.00"
-            mainScreen.viewForTimeReview.breakTimeDataLabel.text = "00.00.00"
-            mainScreen.viewForTimeReview.totalTimeDataLabel.text = "00.00.00"
+            mainScreen.viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+            mainScreen.viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
+            mainScreen.viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
             mainScreen.tasksTableView.reloadData()
         }
     }
