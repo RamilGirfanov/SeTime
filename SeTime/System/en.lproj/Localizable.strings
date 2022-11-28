@@ -29,3 +29,4 @@
 "date" = "Date";
 "delete" = "Delete";
 "localizedDateFormatter" = "MMM dd yyyy";
+"emptyFieldWarning" = "Enter the name of the task";
