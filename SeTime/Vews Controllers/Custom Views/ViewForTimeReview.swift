@@ -66,7 +66,7 @@ class ViewForTimeReview: UIView {
     
     var workTimeDataLabel: UILabel = {
         var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "00.00.00"
+        workTimeTextLabel.text = "00:00:00"
         workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         workTimeTextLabel.textAlignment = .center
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
