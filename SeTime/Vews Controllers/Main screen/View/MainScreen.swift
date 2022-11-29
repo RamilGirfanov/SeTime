@@ -99,7 +99,7 @@ class MainScreen: UIView {
     
     var taskTimeDataLabel: UILabel = {
         var taskTimeDataLabel = UILabel()
-        taskTimeDataLabel.text = "00.00.00"
+        taskTimeDataLabel.text = "00:00:00"
         taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel
@@ -271,7 +271,7 @@ class MainScreen: UIView {
         breakButton.isHidden = true
         
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00.00.00"
+        taskTimeDataLabel.text = "00:00:00"
         
         addTaskButton.isHidden = false
         taskTimerView.isHidden = true
@@ -284,7 +284,7 @@ class MainScreen: UIView {
         delegate?.stopTaskTimer()
         
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00.00.00"
+        taskTimeDataLabel.text = "00:00:00"
         
         addTaskButton.isHidden = false
         taskTimerView.isHidden = true

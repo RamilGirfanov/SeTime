@@ -21,7 +21,7 @@ class ViewForTimeReview: UIView {
     
     var totalTimeDataLabel: UILabel = {
         var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "—"
+        totalTimeDataLabel.text = "00:00:00"
         totalTimeDataLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
         totalTimeDataLabel.textAlignment = .center
         totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ class ViewForTimeReview: UIView {
     
     var breakTimeDataLabel: UILabel = {
         var breakTimeDataLabel = UILabel()
-        breakTimeDataLabel.text = "00.00.00"
+        breakTimeDataLabel.text = "00:00:00"
         breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         breakTimeDataLabel.textAlignment = .center
         breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false

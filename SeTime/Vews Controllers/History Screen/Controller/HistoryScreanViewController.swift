@@ -39,9 +39,9 @@ class HistoryScreenViewController: UIViewController {
             historyScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: day.workTime)
             historyScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
         } else {
-            historyScreen.viewForTimeReview.totalTimeDataLabel.text = "00.00.00"
-            historyScreen.viewForTimeReview.workTimeDataLabel.text = "00.00.00"
-            historyScreen.viewForTimeReview.breakTimeDataLabel.text = "00.00.00"
+            historyScreen.viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
+            historyScreen.viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+            historyScreen.viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
         }
     }
     
