@@ -23,10 +23,56 @@ class MainScreenViewController: UIViewController {
     
     lazy var model = Model()
     
-
-//    MARK: - Функционал для проверки дня
     
-    private func checkDay() {
+//    MARK: - NotificationCenter для обновления UIView
+    
+    static let notificationWorkTime = Notification.Name("workTime")
+    static let notificationBreakTime = Notification.Name("breakTime")
+    static let notificationTotalTime = Notification.Name("totalTime")
+    static let notificationTaskTime = Notification.Name("taskTime")
+    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
+    static let notificationTaskTableView = Notification.Name("tableView")
+    static let notificationCheckDay = Notification.Name("checkDay")
+
+    private func setupNC() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBreakTime), name: MainScreenViewController.notificationBreakTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkDay), name: MainScreenViewController.notificationCheckDay, object: nil)
+    }
+    
+    @objc private func updateWorkTime() {
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+    }
+    
+    @objc private func updateBreakTime() {
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+    }
+    
+    @objc private func updateTotalTime() {
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+    }
+    
+    @objc private func updateTaskTime() {
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
+    }
+    
+    @objc private func stopTimers() {
+        stop()
+    }
+    
+    @objc private func reloadTaskTableView() {
+        mainScreen.tasksTableView.reloadData()
+    }
+    
+//    Функционал для проверки дня
+    @objc private func checkDay() {
+        print("Проверка запущенных таймеров")
+        print(model.workTimer.isValid)
+        print(model.breakTimer.isValid)
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getShortDate(date: Date())
@@ -62,49 +108,6 @@ class MainScreenViewController: UIViewController {
     }
     
     
-//    MARK: - NotificationCenter для обновления UIView
-    
-    static let notificationWorkTime = Notification.Name("workTime")
-    static let notificationBreakTime = Notification.Name("breakTime")
-    static let notificationTotalTime = Notification.Name("totalTime")
-    static let notificationTaskTime = Notification.Name("taskTime")
-    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
-    static let notificationTaskTableView = Notification.Name("tableView")
-
-    private func setupNC() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBreakTime), name: MainScreenViewController.notificationBreakTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
-    }
-    
-    @objc private func updateWorkTime() {
-        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-    }
-    
-    @objc private func updateBreakTime() {
-        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-    }
-    
-    @objc private func updateTotalTime() {
-        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
-    }
-    
-    @objc private func updateTaskTime() {
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
-    }
-    
-    @objc private func stopTimers() {
-        stop()
-    }
-    
-    @objc private func reloadTaskTableView() {
-        mainScreen.tasksTableView.reloadData()
-    }
-    
-    
 //    MARK: - Жизненный цикл
     
     override func loadView() {
@@ -117,6 +120,7 @@ class MainScreenViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
         checkDay()
     }
 }
