@@ -118,11 +118,6 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupNC()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-        checkDay()
-    }
 }
 
 
