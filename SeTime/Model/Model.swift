@@ -32,13 +32,12 @@ class Model {
             guard let self = self else { return }
             self.workTime = Int(Date().timeIntervalSince(creationDate))
             self.workTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.workTime ?? 0
-                        
+            
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationWorkTime, object: nil)
-            NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
+            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -55,8 +54,7 @@ class Model {
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationBreakTime, object: nil)
-            NotificationCenter.default.post(name: MainScreenViewController.notificationTotalTime, object: nil)
+            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)

@@ -11,7 +11,7 @@ protocol AddTaskProtocol: AnyObject {
     func addTask()
 }
 
-class AddTaskScreen: UIView {
+class AddTaskScreen: UIView, UITextViewDelegate {
 
 //    MARK: - UIObjects
 
@@ -38,6 +38,15 @@ class AddTaskScreen: UIView {
         taskName.layer.cornerRadius = totalCornerRadius
         taskName.translatesAutoresizingMaskIntoConstraints = false
         return taskName
+    }()
+    
+    var worningLabel: UILabel = {
+        var worningLabel = UILabel()
+        worningLabel.font = .systemFont(ofSize: textSize4, weight: .light)
+        worningLabel.textAlignment = .center
+        worningLabel.textColor = .systemRed
+        worningLabel.translatesAutoresizingMaskIntoConstraints = false
+        return worningLabel
     }()
     
     private var definitionLabel: UILabel = {
@@ -74,7 +83,7 @@ class AddTaskScreen: UIView {
 //    MARK: - Layout
     
     private func layout() {
-        [screenLabel, taskLabel, taskName, definitionLabel, taskDefinition, button].forEach { addSubview($0) }
+        [screenLabel, taskLabel, taskName, worningLabel, definitionLabel, taskDefinition, button].forEach { addSubview($0) }
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -91,7 +100,12 @@ class AddTaskScreen: UIView {
             taskName.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             taskName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             
-            definitionLabel.topAnchor.constraint(equalTo: taskName.bottomAnchor, constant: safeIndent1),
+            worningLabel.heightAnchor.constraint(equalToConstant: safeIndent1),
+            worningLabel.topAnchor.constraint(equalTo: taskName.bottomAnchor),
+            worningLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            worningLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            
+            definitionLabel.topAnchor.constraint(equalTo: worningLabel.bottomAnchor),
             definitionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
             taskDefinition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
@@ -116,6 +130,17 @@ class AddTaskScreen: UIView {
     @objc func tap() {
         delegate?.addTask()
     }
+    
+    
+//    MARK: - Настройка TextView
+
+    private func setupTextView() {
+        taskName.delegate = self
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        worningLabel.text = ""
+    }
 
     
 //    MARK: - init
@@ -125,6 +150,7 @@ class AddTaskScreen: UIView {
         backgroundColor = .systemBackground
         layout()
         setupButton()
+        setupTextView()
     }
     
     required init?(coder: NSCoder) {

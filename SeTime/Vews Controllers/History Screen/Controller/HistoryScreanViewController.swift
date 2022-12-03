@@ -35,13 +35,13 @@ class HistoryScreenViewController: UIViewController {
             
             day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
             
-            historyScreen.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
-            historyScreen.workTimeDataLabel.text = timeIntToString(time: day.workTime)
-            historyScreen.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
+            historyScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
+            historyScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: day.workTime)
+            historyScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
         } else {
-            historyScreen.totalTimeDataLabel.text = "-"
-            historyScreen.workTimeDataLabel.text = "-"
-            historyScreen.breakTimeDataLabel.text = "-"
+            historyScreen.viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
+            historyScreen.viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+            historyScreen.viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
         }
     }
     
@@ -52,6 +52,10 @@ class HistoryScreenViewController: UIViewController {
         view = historyScreen
         setupData()
         historyScreen.tasksTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTableView, object: nil)
     }
 }
 
@@ -80,7 +84,6 @@ extension HistoryScreenViewController: HistoryManager {
     
     func deleteTask(index: Int) {
         RealmManager.shared.deleteTask(date: date, index: index)
-        NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTableView, object: nil)
     }
 }
 

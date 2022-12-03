@@ -34,85 +34,10 @@ class MainScreen: UIView {
         return contentView
     }()
     
-    private var viewForTimeReview: UIView = {
-        var viewForTimeReview = UIView()
-        viewForTimeReview.backgroundColor = .secondarySystemBackground
+    var viewForTimeReview: ViewForTimeReview = {
+        var viewForTimeReview = ViewForTimeReview()
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
-        viewForTimeReview.translatesAutoresizingMaskIntoConstraints = false
         return viewForTimeReview
-    }()
-    
-    private var totalTimeTextLabel: UILabel = {
-        var totalTimeTextLabel = UILabel()
-        totalTimeTextLabel.text = NSLocalizedString("totalTime", comment: "")
-        totalTimeTextLabel.textColor = .secondaryLabel
-        totalTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        totalTimeTextLabel.textAlignment = .center
-        totalTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeTextLabel
-    }()
-    
-    var totalTimeDataLabel: UILabel = {
-        var totalTimeDataLabel = UILabel()
-        totalTimeDataLabel.text = "—"
-        totalTimeDataLabel.font = .systemFont(ofSize: textSize1, weight: .regular)
-        totalTimeDataLabel.textAlignment = .center
-        totalTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
-        return totalTimeDataLabel
-    }()
-    
-    private var stackForTextLabel: UIStackView = {
-        var stackForTextLabel = UIStackView()
-        stackForTextLabel.axis = .horizontal
-        stackForTextLabel.distribution = .fillEqually
-        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return stackForTextLabel
-    }()
-    
-    private var workTimeTextLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = NSLocalizedString("workTime", comment: "")
-        workTimeTextLabel.textColor = .secondaryLabel
-        workTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
-    }()
-   
-    private var breakTimeTextLabel: UILabel = {
-        var breakTimeTextLabel = UILabel()
-        breakTimeTextLabel.text = NSLocalizedString("breakTime", comment: "")
-        breakTimeTextLabel.textColor = .secondaryLabel
-        breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
-        breakTimeTextLabel.textAlignment = .center
-        breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return breakTimeTextLabel
-    }()
-    
-    private var stackForDataLabel: UIStackView = {
-        var stackForTextLabel = UIStackView()
-        stackForTextLabel.axis = .horizontal
-        stackForTextLabel.distribution = .fillEqually
-        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return stackForTextLabel
-    }()
-    
-    var workTimeDataLabel: UILabel = {
-        var workTimeTextLabel = UILabel()
-        workTimeTextLabel.text = "-"
-        workTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        workTimeTextLabel.textAlignment = .center
-        workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return workTimeTextLabel
-    }()
-    
-    var breakTimeDataLabel: UILabel = {
-        var breakTimeDataLabel = UILabel()
-        breakTimeDataLabel.text = "-"
-        breakTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
-        breakTimeDataLabel.textAlignment = .center
-        breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
-        return breakTimeDataLabel
     }()
     
     var workButton: UIButton = {
@@ -174,7 +99,7 @@ class MainScreen: UIView {
     
     var taskTimeDataLabel: UILabel = {
         var taskTimeDataLabel = UILabel()
-        taskTimeDataLabel.text = "-"
+        taskTimeDataLabel.text = "00:00:00"
         taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel
@@ -213,6 +138,7 @@ class MainScreen: UIView {
     
     weak var delegate: ManageTimers?
     
+    
 //    MARK: - Layout
     
     private func layout() {
@@ -220,11 +146,6 @@ class MainScreen: UIView {
         scrollView.addSubview(contentView)
         
         [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { contentView.addSubview($0) }
-        
-        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { viewForTimeReview.addSubview($0) }
-        
-        [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
-        [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
         
         [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
         
@@ -252,24 +173,7 @@ class MainScreen: UIView {
             viewForTimeReview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
             viewForTimeReview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             viewForTimeReview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            
-            totalTimeTextLabel.topAnchor.constraint(equalTo: viewForTimeReview.topAnchor, constant: safeIndent1),
-            totalTimeTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            totalTimeTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
-            
-            totalTimeDataLabel.topAnchor.constraint(equalTo: totalTimeTextLabel.bottomAnchor),
-            totalTimeDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            totalTimeDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
-            
-            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent1),
-            stackForTextLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            stackForTextLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
-            
-            stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
-            stackForDataLabel.leadingAnchor.constraint(equalTo: viewForTimeReview.leadingAnchor),
-            stackForDataLabel.trailingAnchor.constraint(equalTo: viewForTimeReview.trailingAnchor),
-            stackForDataLabel.bottomAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: -safeIndent1),
-            
+                        
             workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
             workButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
@@ -367,7 +271,7 @@ class MainScreen: UIView {
         breakButton.isHidden = true
         
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "-"
+        taskTimeDataLabel.text = "00:00:00"
         
         addTaskButton.isHidden = false
         taskTimerView.isHidden = true
@@ -380,7 +284,7 @@ class MainScreen: UIView {
         delegate?.stopTaskTimer()
         
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "-"
+        taskTimeDataLabel.text = "00:00:00"
         
         addTaskButton.isHidden = false
         taskTimerView.isHidden = true

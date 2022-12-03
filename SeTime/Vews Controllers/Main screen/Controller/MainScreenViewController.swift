@@ -23,10 +23,43 @@ class MainScreenViewController: UIViewController {
     
     lazy var model = Model()
     
-
-//    MARK: - Функционал для проверки дня
     
-    private func checkDay() {
+//    MARK: - NotificationCenter для обновления UIView
+    
+    static let notificationUpdateTime = Notification.Name("updateTime")
+    static let notificationTaskTime = Notification.Name("taskTime")
+    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
+    static let notificationTaskTableView = Notification.Name("tableView")
+    static let notificationCheckDay = Notification.Name("checkDay")
+
+    private func setupNC() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: MainScreenViewController.notificationUpdateTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkDay), name: MainScreenViewController.notificationCheckDay, object: nil)
+    }
+    
+    @objc private func updateTime() {
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+    }
+        
+    @objc private func updateTaskTime() {
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
+    }
+    
+    @objc private func stopTimers() {
+        stop()
+    }
+    
+    @objc private func reloadTaskTableView() {
+        mainScreen.tasksTableView.reloadData()
+    }
+    
+//    Функционал для проверки дня
+    @objc private func checkDay() {
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getShortDate(date: Date())
@@ -37,9 +70,9 @@ class MainScreenViewController: UIViewController {
             model.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
             model.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
             
-            mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-            mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-            mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
+            mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
+            mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+            mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
             mainScreen.tasksTableView.reloadData()
         } else {
 //          Если дня в БД нет
@@ -54,67 +87,24 @@ class MainScreenViewController: UIViewController {
             mainScreen.addTaskButton.isEnabled = false
             
 //        Очистка экрана от данных
-            mainScreen.workTimeDataLabel.text = "-"
-            mainScreen.breakTimeDataLabel.text = "-"
-            mainScreen.totalTimeDataLabel.text = "-"
+            mainScreen.viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+            mainScreen.viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
+            mainScreen.viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
             mainScreen.tasksTableView.reloadData()
         }
-    }
-    
-    
-//    MARK: - NotificationCenter для обновления UIView
-    
-    static let notificationWorkTime = Notification.Name("workTime")
-    static let notificationBreakTime = Notification.Name("breakTime")
-    static let notificationTotalTime = Notification.Name("totalTime")
-    static let notificationTaskTime = Notification.Name("taskTime")
-    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
-    static let notificationTaskTableView = Notification.Name("tableView")
-
-    private func setupNC() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWorkTime), name: MainScreenViewController.notificationWorkTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateBreakTime), name: MainScreenViewController.notificationBreakTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalTime), name: MainScreenViewController.notificationTotalTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
-    }
-    
-    @objc private func updateWorkTime() {
-        mainScreen.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-    }
-    
-    @objc private func updateBreakTime() {
-        mainScreen.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-    }
-    
-    @objc private func updateTotalTime() {
-        mainScreen.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
-    }
-    
-    @objc private func updateTaskTime() {
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
-    }
-    
-    @objc private func stopTimers() {
-        stop()
-    }
-    
-    @objc private func reloadTaskTableView() {
-        mainScreen.tasksTableView.reloadData()
     }
     
     
 //    MARK: - Жизненный цикл
     
     override func loadView() {
-        checkDay()
         view = mainScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNC()
+        checkDay()
     }
 }
 

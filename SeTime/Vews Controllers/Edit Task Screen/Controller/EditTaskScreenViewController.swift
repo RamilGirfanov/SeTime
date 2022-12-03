@@ -41,6 +41,7 @@ class EditTaskScreenViewController: UIViewController {
     
     override func loadView() {
         view = editTaskScreen
+        setupToHideKeyboardOnTapOnView()
     }
 }
 
@@ -48,8 +49,14 @@ class EditTaskScreenViewController: UIViewController {
 //MARK: - Протокол делегата
 
 extension EditTaskScreenViewController: SaveTaskProtocol {
-    func saveTask(name: String, definition: String) {
-        delegate?.saveTask(taskIndex: taskIndex, name: name, definition: definition)
-        dismiss(animated: true)
+    func saveTask() {
+        
+//        Проверка на введеное название задачи
+        if !editTaskScreen.taskName.text.isEmpty {
+            delegate?.saveTask(taskIndex: taskIndex, name: editTaskScreen.taskName.text, definition: editTaskScreen.taskDefinition.text ?? "")
+            dismiss(animated: true)
+        } else {
+            editTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")
+        }
     }
 }
