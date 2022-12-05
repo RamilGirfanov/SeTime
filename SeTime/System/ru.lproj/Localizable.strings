@@ -32,14 +32,13 @@
 "emptyFieldWarning" = "Введите название задачи";
 
 "settings" = "Настройки";
-"notificationsAtWorkTime" = "Уведомления во время работы";
-"notificationsAtBreakTime" = "Уведомления во время перерывов";
 "enableNotifications" = "Включить уведомления";
+"breakTimeNotifications" = "Уведомления о перерывах";
+"workTimeNotifications" = "Уведомления о работе";
+"definitionSwitch" = "Разрешить приложению присылать уведомления напоминающие сделать перерыв и вернуться к работе";
+"timeToBreakTimeNotifications" = "Время до уведомления о перерыве";
+"timeToWorkTimeNotifications" = "Время до уведомления о работе";
 "allowNotifications" = "Разрешить уведомления";
-"definitionWorkSwitch" = "Разрешить приложению присылать уведомления напоминающие о перерывах";
-"timeToNotification" = "Время до уведомления";
-"timeBeforeBreak" = "Установите время до уведомления о перерыве";
-"definitionBreakSwitch" = "Разрешить приложению присылать уведомления напоминающие о работе";
-"timeBeforeWork" = "Установите время до уведомления о работе";
+
 "timeToBreak" = "Время сделать перерыв!";
 "timeToWork" = "Время работать!";

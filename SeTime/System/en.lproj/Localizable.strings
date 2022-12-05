@@ -32,14 +32,13 @@
 "emptyFieldWarning" = "Enter task name";
 
 "settings" = "Settings";
-"notificationsAtWorkTime" = "Notifications at work time";
-"notificationsAtBreakTime" = "Notifications at break time";
 "enableNotifications" = "Enable notifications";
+"breakTimeNotifications" = "Break time notifications";
+"workTimeNotifications" = "Work time notifications";
+"definitionSwitch" = "Allow the app to send notifications to remind you to take a break and get back to work";
+"timeToBreakTimeNotifications" = "Time to break notification";
+"timeToWorkTimeNotifications" = "Time to work notification";
 "allowNotifications" = "Allow notifications";
-"definitionWorkSwitch" = "Allow the app to send break reminders";
-"timeToNotification" = "Time to notification";
-"timeBeforeBreak" = "Set the time before the break notification";
-"definitionBreakSwitch" = "Allow the app to send work reminders";
-"timeBeforeWork" = "Установите время до уведомления о работе";
+
 "timeToBreak" = "Time to take a break!";
 "timeToWork" = "Time to work!";
