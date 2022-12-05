@@ -7,27 +7,29 @@
 
 import UIKit
 
+//Цвет системы
 let mainColorTheme: UIColor = .systemYellow
 
+//Радиус всех UI объектов
 let totalCornerRadius: CGFloat = 12
 
+//Высота кнопок
 let totalHeightForTappedUIobjects: CGFloat = 44
 
+//Размеры текста
 let textSize1: CGFloat = 20
-
 let textSize2: CGFloat = 17
-
 let textSize3: CGFloat = 15
-
 let textSize4: CGFloat = 14
 
-
+//Расширение для идентификатора ячеек
 extension UIView {
     static var identifier: String {
         return String(describing: self)
     }
 }
 
+//Расширение для настроек кнопок
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
@@ -47,7 +49,6 @@ extension UIButton {
 }
 
 //Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
-
 extension UIViewController {
     func setupToHideKeyboardOnTapOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -60,16 +61,14 @@ extension UIViewController {
     }
 }
 
+//Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
     let dateNow = Calendar.current.date(from: dateComponents)
     return dateNow!
 }
 
-
-
-
-//Функция получения даты
+//Функция получения даты в строке
 func getStringDate(date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")

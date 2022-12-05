@@ -14,6 +14,8 @@
 		7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408035129113EF4002AB91D /* HistoryScrean.swift */; };
 		741FDF082921653B00F36193 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DayModel.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
+		742EB7EA293BB3E5005DF234 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */; };
+		742EB7EC293BB3FF005DF234 /* SettingsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7EB293BB3FF005DF234 /* SettingsScreenViewController.swift */; };
 		744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */; };
 		744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */; };
 		74C8C8D229321A050016F655 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 74C8C8D129321A050016F655 /* Realm */; };
@@ -43,6 +45,8 @@
 		7408035129113EF4002AB91D /* HistoryScrean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScrean.swift; sourceTree = "<group>"; };
 		741FDF072921653B00F36193 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		742EB7EB293BB3FF005DF234 /* SettingsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenViewController.swift; sourceTree = "<group>"; };
 		744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreen.swift; sourceTree = "<group>"; };
 		744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,7 @@
 		7408034C290AB9AA002AB91D /* Vews Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				742EB7E6293BB39E005DF234 /* Setting Screen */,
 				74C8C8D7293416F70016F655 /* Custom Views */,
 				74ED60C7286594370008B57C /* Main Screen */,
 				74E7906C288D820F000BAC0B /* Add Task Screen */,
@@ -99,6 +104,31 @@
 				741FDF0B2921701D00F36193 /* RealmManager.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		742EB7E6293BB39E005DF234 /* Setting Screen */ = {
+			isa = PBXGroup;
+			children = (
+				742EB7E8293BB3BD005DF234 /* View */,
+				742EB7E7293BB3B1005DF234 /* Controller */,
+			);
+			path = "Setting Screen";
+			sourceTree = "<group>";
+		};
+		742EB7E7293BB3B1005DF234 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				742EB7EB293BB3FF005DF234 /* SettingsScreenViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		742EB7E8293BB3BD005DF234 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		744F56AA292586D800D242F7 /* History Screen */ = {
@@ -415,8 +445,10 @@
 				74E79069288AF0C8000BAC0B /* AddTaskScreenViewController.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
+				742EB7EA293BB3E5005DF234 /* SettingsScreen.swift in Sources */,
 				7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */,
 				74ED60F5286D76830008B57C /* NavigationController.swift in Sources */,
+				742EB7EC293BB3FF005DF234 /* SettingsScreenViewController.swift in Sources */,
 				74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

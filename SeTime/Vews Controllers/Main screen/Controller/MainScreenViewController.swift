@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class MainScreenViewController: UIViewController {
     
@@ -31,13 +32,32 @@ class MainScreenViewController: UIViewController {
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
     static let notificationTaskTableView = Notification.Name("tableView")
     static let notificationCheckDay = Notification.Name("checkDay")
-
+    
     private func setupNC() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTime), name: MainScreenViewController.notificationUpdateTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTaskTime), name: MainScreenViewController.notificationTaskTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopTimers), name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTaskTableView), name: MainScreenViewController.notificationTaskTableView, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(checkDay), name: MainScreenViewController.notificationCheckDay, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTime),
+                                               name: MainScreenViewController.notificationUpdateTime,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTaskTime),
+                                               name: MainScreenViewController.notificationTaskTime,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(stopTimers),
+                                               name: MainScreenViewController.notificationSceneDidDisconnect,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTaskTableView),
+                                               name: MainScreenViewController.notificationTaskTableView,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkDay),
+                                               name: MainScreenViewController.notificationCheckDay,
+                                               object: nil)
     }
     
     @objc private func updateTime() {
@@ -95,6 +115,65 @@ class MainScreenViewController: UIViewController {
     }
     
     
+//    MARK: - Уведомления о времени работы
+    
+    private func notificationWorkTime() {
+        if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") {
+            let content: UNMutableNotificationContent = {
+                let content = UNMutableNotificationContent()
+                content.title = "SeTime"
+                content.body = NSLocalizedString("timeToBreak", comment: "")
+                content.sound = UNNotificationSound.default
+                content.badge = 1
+                return content
+            }()
+            
+            let timeInterval = Double(UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            
+            let workTimeRequest = UNNotificationRequest(identifier: "Work notification", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(workTimeRequest)
+        }
+    }
+    
+    private func notificationBreakTime() {
+        if UserDefaults.standard.bool(forKey: "notificationBreakTolerance") {
+            let content: UNMutableNotificationContent = {
+                let content = UNMutableNotificationContent()
+                content.title = "SeTime"
+                content.body = NSLocalizedString("timeToWork", comment: "")
+                content.sound = UNNotificationSound.default
+                content.badge = 1
+                return content
+            }()
+            
+            let timeInterval = Double(UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            
+            let breakTimeRequest = UNNotificationRequest(identifier: "Break notification", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(breakTimeRequest)
+        }
+    }
+    
+    private enum NotificationType {
+        case Work
+        case Break
+        case All
+    }
+
+    private func cancelNotification(notificationType: NotificationType) {
+        switch notificationType {
+        case .Work:
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Work notification"])
+        case .Break:
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Break notification"])
+        case .All:
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        }
+    }
+    
 //    MARK: - Жизненный цикл
     
     override func loadView() {
@@ -121,15 +200,32 @@ extension MainScreenViewController: ManageTimers {
         }
         
         model.pauseBreakTimer()
+        
+//        Уведоления
+//        TODO: - Перенести это в настройку
+        UserDefaults.standard.set(5, forKey: "workTimeToNotice")
+
+        notificationWorkTime()
+        cancelNotification(notificationType: .Break)
     }
     
     func startBreakTimer() {
         model.startBreakTimer()
         model.pauseWorkTimer()
+        
+//        Уведоления
+//        TODO: - Перенести это в настройку
+        UserDefaults.standard.set(5, forKey: "breakTimeToNotice")
+
+        notificationBreakTime()
+        cancelNotification(notificationType: .Work)
     }
     
     func stop() {
         model.stop()
+        
+//        Уведоления
+        cancelNotification(notificationType: .All)
     }
         
     func stopTaskTimer() {
@@ -143,7 +239,6 @@ extension MainScreenViewController: ManageTimers {
     }
     
     func showTaskDifinition(index: Int) {
-        
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
         
         let definitionTaskVC = DefinitionTaskScreenViewController()

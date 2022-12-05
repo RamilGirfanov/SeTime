@@ -11,21 +11,34 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let mainVC = MainScreenViewController()
-        mainVC.title = NSLocalizedString("mainScreenTitle", comment: "")
-        viewControllers.append(mainVC)
-        
-//        Настройка кнопки вызова экрана истории
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(tap))
-        mainVC.navigationItem.leftBarButtonItem = barButton
-        
-        mainVC.navigationItem.largeTitleDisplayMode = .automatic
+        setupNC()
     }
     
-    @objc private func tap() {
+    private func setupNC() {
+        let mainVC = MainScreenViewController()
+        mainVC.title = NSLocalizedString("mainScreenTitle", comment: "")
+        mainVC.navigationItem.largeTitleDisplayMode = .automatic
+        
+//        Настройка кнопок вызова экрана истории
+        let barButtonCalendar = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(datePickerScreen))
+        
+        let barButtonSettings = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsScreen))
+        
+        mainVC.navigationItem.leftBarButtonItem = barButtonCalendar
+        mainVC.navigationItem.rightBarButtonItem = barButtonSettings
+        
+        viewControllers.append(mainVC)
+    }
+    
+    @objc private func datePickerScreen() {
         let calendarVC = DatePickerScreenViewController()
         calendarVC.title = NSLocalizedString("datePickerScreenTitle", comment: "")
         present(calendarVC, animated: true)
+        }
+    
+    @objc private func settingsScreen() {
+        let settingsSC = SettingsScreenViewController()
+        settingsSC.title = NSLocalizedString("settings", comment: "")
+        present(settingsSC, animated: true)
     }
 }

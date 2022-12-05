@@ -29,4 +29,14 @@
 "date" = "Date";
 "delete" = "Delete";
 "localizedDateFormatter" = "MMM dd yyyy";
-"emptyFieldWarning" = "Enter the name of the task";
+"emptyFieldWarning" = "Enter task name";
+
+"settings" = "Settings";
+"notificationsAtWorkTime" = "Notifications at work time";
+"notificationsAtBreakTime" = "Notifications at break time";
+"enableNotifications" = "Enable notifications";
+"allowNotifications" = "Allow notifications";
+"definitionWorkSwitch" = "Allow the app to send break reminders";
+"definitionBreakSwitch" = "Allow the app to send work reminders";
+"timeToBreak" = "Time to take a break!";
+"timeToWork" = "Time to work!";

@@ -139,6 +139,77 @@ class MainScreen: UIView {
     weak var delegate: ManageTimers?
     
     
+//    MARK: - Настройка кнопок
+    
+    private func setupButtons() {
+        workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
+        breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
+        stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
+        stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
+        addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+    }
+    
+//    Запускает таймер работы, в том числе для задачи
+    @objc private func tapForWork() {
+        delegate?.startWorkTimer()
+        
+        addTaskButton.activeButton()
+        stopButton.activeButton()
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
+        
+        stopTaskButton.isEnabled = true
+    }
+    
+//    Запускает таймер перерывов, в том числе для задачи
+    @objc private func tapForBreak() {
+        delegate?.startBreakTimer()
+        
+        addTaskButton.inactiveButton()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+    }
+    
+//    Останавливает все таймеры, в том числе для задачи
+    @objc private func tapForStop() {
+        delegate?.stop()
+        
+        addTaskButton.inactiveButton()
+        stopButton.inactiveButton()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        taskTimeDataLabel.text = "00:00:00"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        tasksTableView.reloadData()
+    }
+    
+//    Останавливает таймер задачи и переносит задачу в таблицу
+    @objc private func stopTask() {
+        delegate?.stopTaskTimer()
+        
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        taskTimeDataLabel.text = "00:00:00"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        tasksTableView.reloadData()
+    }
+    
+//    Вызывает экран запуска задачи
+    @objc private func addTask() {
+        delegate?.addTask()
+    }
+    
+    
 //    MARK: - Layout
     
     private func layout() {
@@ -224,77 +295,6 @@ class MainScreen: UIView {
             tasksTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent2)
         ])
-    }
-    
-    
-//    MARK: - Настройка кнопок
-    
-    private func setupButtons() {
-        workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
-        breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
-        stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
-        stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
-        addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
-    }
-    
-//    Запускает таймер работы, в том числе для задачи
-    @objc private func tapForWork() {
-        delegate?.startWorkTimer()
-                
-        addTaskButton.activeButton()
-        stopButton.activeButton()
-                
-        workButton.isHidden = true
-        breakButton.isHidden = false
-        
-        stopTaskButton.isEnabled = true
-    }
-    
-//    Запускает таймер перерывов, в том числе для задачи
-    @objc private func tapForBreak() {
-        delegate?.startBreakTimer()
-        
-        addTaskButton.inactiveButton()
-        
-        workButton.isHidden = false
-        breakButton.isHidden = true
-    }
-    
-//    Останавливает все таймеры, в том числе для задачи
-    @objc private func tapForStop() {
-        delegate?.stop()
-        
-        addTaskButton.inactiveButton()
-        stopButton.inactiveButton()
-                
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        
-        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00:00:00"
-        
-        addTaskButton.isHidden = false
-        taskTimerView.isHidden = true
-        
-        tasksTableView.reloadData()
-    }
-    
-//    Останавливает таймер задачи и переносит задачу в таблицу
-    @objc private func stopTask() {
-        delegate?.stopTaskTimer()
-        
-        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00:00:00"
-        
-        addTaskButton.isHidden = false
-        taskTimerView.isHidden = true
-        
-        tasksTableView.reloadData()
-    }
-    
-//    Вызывает экран запуска задачи
-    @objc private func addTask() {
-        delegate?.addTask()
     }
     
     
