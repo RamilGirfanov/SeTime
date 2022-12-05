@@ -9,7 +9,7 @@
 	<key>notificationBreakTolerance</key>
 	<false/>
 	<key>workTimeToNotice</key>
-	<integer>10</integer>
+	<integer>0</integer>
 	<key>breakTimeToNotice</key>
 	<integer>900</integer>
 	<key>UIApplicationSceneManifest</key>

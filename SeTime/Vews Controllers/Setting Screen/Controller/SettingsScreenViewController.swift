@@ -15,6 +15,8 @@ class SettingsScreenViewController: UIViewController {
     private lazy var settingsScreen: SettingsScreen = {
        var view = SettingsScreen()
         view.delegate = self
+        view.workDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+        view.breakDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
         return view
     }()
     
@@ -23,6 +25,14 @@ class SettingsScreenViewController: UIViewController {
     
     override func loadView() {
         view = settingsScreen
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
+        UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
+        
+        let breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
+        UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
     }
 }
 

@@ -37,6 +37,9 @@
 "enableNotifications" = "Enable notifications";
 "allowNotifications" = "Allow notifications";
 "definitionWorkSwitch" = "Allow the app to send break reminders";
+"timeToNotification" = "Time to notification";
+"timeBeforeBreak" = "Set the time before the break notification";
 "definitionBreakSwitch" = "Allow the app to send work reminders";
+"timeBeforeWork" = "Установите время до уведомления о работе";
 "timeToBreak" = "Time to take a break!";
 "timeToWork" = "Time to work!";

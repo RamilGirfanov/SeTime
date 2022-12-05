@@ -130,7 +130,7 @@ class MainScreenViewController: UIViewController {
             
             let timeInterval = Double(UserDefaults.standard.integer(forKey: "workTimeToNotice"))
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
             
             let workTimeRequest = UNNotificationRequest(identifier: "Work notification", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(workTimeRequest)
@@ -184,6 +184,7 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupNC()
         checkDay()
+        UNUserNotificationCenter.current().delegate = self
     }
 }
 
@@ -203,7 +204,7 @@ extension MainScreenViewController: ManageTimers {
         
 //        Уведоления
 //        TODO: - Перенести это в настройку
-        UserDefaults.standard.set(5, forKey: "workTimeToNotice")
+        UserDefaults.standard.set(60, forKey: "workTimeToNotice")
 
         notificationWorkTime()
         cancelNotification(notificationType: .Break)
@@ -309,5 +310,14 @@ extension MainScreenViewController: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {
         RealmManager.shared.updateTask(date: model.date, index: taskIndex, name: name, definition: definition)
         mainScreen.tasksTableView.reloadData()
+    }
+}
+
+
+//MARK: - Расширение для UNUserNotificationCenter
+
+extension MainScreenViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
     }
 }
