@@ -78,11 +78,14 @@ class DefinitionTaskScreen: UIView {
         return startTimeTextLabel
     }()
 
-    var definition: UILabel = {
-        var definition = UILabel()
-        definition.lineBreakMode = .byCharWrapping
-        definition.numberOfLines = 0
+    var definition: UITextView = {
+        var definition = UITextView()
+//        definition.lineBreakMode = .byCharWrapping
+//        definition.numberOfLines = 0
+        definition.isEditable = false
+        definition.backgroundColor = .secondarySystemBackground
         definition.font = .systemFont(ofSize: textSize3, weight: .regular)
+        definition.layer.cornerRadius = totalCornerRadius
         definition.translatesAutoresizingMaskIntoConstraints = false
         return definition
     }()
@@ -135,6 +138,7 @@ class DefinitionTaskScreen: UIView {
             definitionLabel.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: safeIndent1),
             definitionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
+            definition.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects * 2),
             definition.topAnchor.constraint(equalTo: definitionLabel.bottomAnchor, constant: safeIndent2),
             definition.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             definition.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
