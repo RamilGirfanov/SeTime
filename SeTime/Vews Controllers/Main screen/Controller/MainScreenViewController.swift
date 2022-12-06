@@ -255,6 +255,23 @@ extension MainScreenViewController: ManageTimers {
     func deleteTask(index: Int) {
         RealmManager.shared.deleteTask(date: model.date, index: index)
     }
+    
+    func restartTask(index: Int) {
+        guard model.workTimer.isValid else { return }
+
+//        Получает Задачу из архива
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
+
+//        Передает задачу в модель
+        model.restartTaskTimer(index: index, duration: task.duration)
+
+//        Меняет видимости кнопки и вью задачи на главном экране
+        mainScreen.addTaskButton.isHidden = true
+        mainScreen.taskTimerView.isHidden = false
+
+//        Устанавливает в лейбл задачи ее название
+        mainScreen.taskTimeTextLabel.text = task.name
+    }
 }
 
 

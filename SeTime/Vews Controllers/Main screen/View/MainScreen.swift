@@ -16,6 +16,7 @@ protocol ManageTimers: AnyObject {
     func showTaskDifinition(index: Int)
     func getTasksData() -> [Task]
     func deleteTask(index: Int)
+    func restartTask(index: Int)
 }
 
 class MainScreen: UIView {
@@ -331,6 +332,22 @@ extension MainScreen: UITableViewDelegate {
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let restart = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
+            self.delegate?.restartTask(index: indexPath.row)
+            completionHandler(true)
+
+        }
+        restart.backgroundColor = mainColorTheme
+        restart.image = UIImage(systemName: "play.fill")
+        
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [restart])
 
         return swipeActions
     }
