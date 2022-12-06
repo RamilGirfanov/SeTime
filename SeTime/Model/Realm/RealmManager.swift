@@ -46,6 +46,13 @@ class RealmManager {
         }
     }
     
+    func updateTaskDuration(date: Date, index: Int, duration: Int) {
+        let taskToUpdate = localRealm.objects(Task.self).filter("date == %@", date)[index]
+        try! localRealm.write{
+            taskToUpdate.duration = duration
+        }
+    }
+    
     func deleteTask(date: Date, index: Int) {
         let taskToDelete = localRealm.objects(Task.self).filter("date == %@", date)[index]
         try! localRealm.write{
