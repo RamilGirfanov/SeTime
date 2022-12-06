@@ -126,8 +126,6 @@ class Model {
     }
     
     func restartTaskTimer(index: Int, duration: Int) {
-        stopTaskTimer()
-
         taskWasRestart = true
         taskIndex = index
         

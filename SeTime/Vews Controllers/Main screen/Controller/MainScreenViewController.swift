@@ -299,8 +299,16 @@ extension MainScreenViewController: ManageTimers {
 //        Получает Задачу из архива
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
 
+//        Управляет запуском и остановкой таймеров
+        if model.taskTimer.isValid {
+            stopTaskTimer()
+        }
+        
+        if !model.workTimer.isValid {
+            startWorkTimer()
+        }
+        
 //        Передает задачу в модель
-        startWorkTimer()
         model.restartTaskTimer(index: index, duration: task.duration)
 
 //        Меняет видимости кнопки и вью задачи на главном экране
@@ -309,6 +317,7 @@ extension MainScreenViewController: ManageTimers {
 
 //        Устанавливает в лейбл задачи ее название
         mainScreen.taskTimeTextLabel.text = task.name
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: task.duration)
     }
 }
 
