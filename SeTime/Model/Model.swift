@@ -22,6 +22,9 @@ class Model {
     var breakTime = 0
     var totalTime = 0
     var taskTime = 0
+    
+    var taskWasRestart = false
+    var taskIndex = 0
           
     
 //    MARK: - Функции для управления WorkTimeManager
@@ -104,12 +107,30 @@ class Model {
         
 //        Проверка на пустое значение времени начала задачи, если пусто - не сохранять данные и не добавлять в таблицу
         if task.duration != 0 {
-            task.date = date
-            RealmManager.shared.addTask(date: date, task: task)
+            if taskWasRestart == false {
+                task.date = date
+                
+                RealmManager.shared.addTask(date: date, task: task)
 
-            task = Task()
-            taskTimer = Timer()
-            taskTime = 0
+                task = Task()
+                taskTimer = Timer()
+                taskTime = 0
+            } else {
+                RealmManager.shared.updateTaskDuration(date: task.date, index: taskIndex, duration: task.duration)
+                task = Task()
+                taskTimer = Timer()
+                taskTime = 0
+            }
         }
+        taskWasRestart = false
+    }
+    
+    func restartTaskTimer(index: Int, duration: Int) {
+        taskWasRestart = true
+        taskIndex = index
+        
+        task.date = date
+        task.duration = duration
+        startTaskTimer()
     }
 }

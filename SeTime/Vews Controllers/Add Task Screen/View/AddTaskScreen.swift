@@ -148,9 +148,9 @@ class AddTaskScreen: UIView, UITextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        layout()
         setupButton()
         setupTextView()
+        layout()
     }
     
     required init?(coder: NSCoder) {

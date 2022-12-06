@@ -102,10 +102,7 @@ extension HistoryScreen: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
-//        TODO: - разобраться с background
-        cell.backgroundColor = .clear
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell        
         if let day = delegate?.getDay() {
             cell.pullCell(taskData: day.tasks[indexPath.row])
             return cell
