@@ -140,3 +140,9 @@ func timeIntToString(time: Int) -> String {
     
     return fullTime.joined(separator: ":")
 }
+
+//Функция очистки строк от переносов строк и лишних пробелов
+func clearString(string: String) -> String {
+    let components = string.components(separatedBy: .whitespacesAndNewlines)
+    return components.filter { i in !i.isEmpty }.joined(separator: " ")
+}

@@ -43,7 +43,12 @@ extension AddTaskScreenViewController: AddTaskProtocol {
         
 //        Проверка на введеное название задачи
         if !addTaskScreen.taskName.text.isEmpty {
-            delegate?.addTask(name: addTaskScreen.taskName.text!, definition: addTaskScreen.taskDefinition.text ?? "")
+            
+//            Очистка строк от переносов строк лишних пробелов
+            let name = clearString(string: addTaskScreen.taskName.text)
+            let definition = clearString(string: addTaskScreen.taskDefinition.text ?? "")
+            
+            delegate?.addTask(name: name, definition: definition)
             dismiss(animated: true)
         } else {
             addTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")
