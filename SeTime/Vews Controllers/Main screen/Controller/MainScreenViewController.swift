@@ -205,6 +205,15 @@ extension MainScreenViewController: ManageTimers {
 //        Уведоления
         notificationWorkTime()
         cancelNotification(notificationType: .Break)
+        
+        mainScreen.addTaskButton.activeButton()
+        mainScreen.stopButton.activeButton()
+        
+//        Работа с View
+        mainScreen.workButton.isHidden = true
+        mainScreen.breakButton.isHidden = false
+        
+        mainScreen.stopTaskButton.isEnabled = true
     }
     
     func startBreakTimer() {
@@ -214,6 +223,12 @@ extension MainScreenViewController: ManageTimers {
 //        Уведоления
         notificationBreakTime()
         cancelNotification(notificationType: .Work)
+        
+//        Работа с View
+        mainScreen.addTaskButton.inactiveButton()
+        
+        mainScreen.workButton.isHidden = false
+        mainScreen.breakButton.isHidden = true
     }
     
     func stop() {
@@ -221,10 +236,34 @@ extension MainScreenViewController: ManageTimers {
         
 //        Уведоления
         cancelNotification(notificationType: .All)
+        
+//        Работа с View
+        mainScreen.addTaskButton.inactiveButton()
+        mainScreen.stopButton.inactiveButton()
+        
+        mainScreen.workButton.isHidden = false
+        mainScreen.breakButton.isHidden = true
+        
+        mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        mainScreen.taskTimeDataLabel.text = "00:00:00"
+        
+        mainScreen.addTaskButton.isHidden = false
+        mainScreen.taskTimerView.isHidden = true
+        
+        mainScreen.tasksTableView.reloadData()
     }
         
     func stopTaskTimer() {
         model.stopTaskTimer()
+        
+//        Работа с View
+        mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        mainScreen.taskTimeDataLabel.text = ""
+        
+        mainScreen.addTaskButton.isHidden = false
+        mainScreen.taskTimerView.isHidden = true
+        
+        mainScreen.tasksTableView.reloadData()
     }
     
     func addTask() {
@@ -257,12 +296,11 @@ extension MainScreenViewController: ManageTimers {
     }
     
     func restartTask(index: Int) {
-        guard model.workTimer.isValid else { return }
-
 //        Получает Задачу из архива
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
 
 //        Передает задачу в модель
+        startWorkTimer()
         model.restartTaskTimer(index: index, duration: task.duration)
 
 //        Меняет видимости кнопки и вью задачи на главном экране

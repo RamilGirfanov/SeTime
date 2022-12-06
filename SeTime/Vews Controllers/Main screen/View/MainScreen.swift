@@ -88,7 +88,7 @@ class MainScreen: UIView {
     
     var taskTimeDataLabel: UILabel = {
         var taskTimeDataLabel = UILabel()
-        taskTimeDataLabel.text = "00:00:00"
+        taskTimeDataLabel.text = ""
         taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel
@@ -141,56 +141,21 @@ class MainScreen: UIView {
 //    Запускает таймер работы, в том числе для задачи
     @objc private func tapForWork() {
         delegate?.startWorkTimer()
-        
-        addTaskButton.activeButton()
-        stopButton.activeButton()
-        
-        workButton.isHidden = true
-        breakButton.isHidden = false
-        
-        stopTaskButton.isEnabled = true
     }
     
 //    Запускает таймер перерывов, в том числе для задачи
     @objc private func tapForBreak() {
         delegate?.startBreakTimer()
-        
-        addTaskButton.inactiveButton()
-        
-        workButton.isHidden = false
-        breakButton.isHidden = true
     }
     
 //    Останавливает все таймеры, в том числе для задачи
     @objc private func tapForStop() {
         delegate?.stop()
-        
-        addTaskButton.inactiveButton()
-        stopButton.inactiveButton()
-        
-        workButton.isHidden = false
-        breakButton.isHidden = true
-        
-        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00:00:00"
-        
-        addTaskButton.isHidden = false
-        taskTimerView.isHidden = true
-        
-        tasksTableView.reloadData()
     }
     
 //    Останавливает таймер задачи и переносит задачу в таблицу
     @objc private func stopTask() {
         delegate?.stopTaskTimer()
-        
-        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        taskTimeDataLabel.text = "00:00:00"
-        
-        addTaskButton.isHidden = false
-        taskTimerView.isHidden = true
-        
-        tasksTableView.reloadData()
     }
     
 //    Вызывает экран запуска задачи
