@@ -47,7 +47,6 @@ extension AddTaskScreenViewController: AddTaskProtocol {
             dismiss(animated: true)
         } else {
             addTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")
-
         }
     }
 }

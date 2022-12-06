@@ -30,3 +30,15 @@
 "delete" = "Удалить";
 "localizedDateFormatter" = "dd MMM yyyy";
 "emptyFieldWarning" = "Введите название задачи";
+
+"settings" = "Настройки";
+"enableNotifications" = "Включить уведомления";
+"breakTimeNotifications" = "Уведомления о перерывах";
+"workTimeNotifications" = "Уведомления о работе";
+"definitionSwitch" = "Разрешить приложению присылать уведомления напоминающие сделать перерыв и вернуться к работе";
+"timeToBreakTimeNotifications" = "Время до уведомления о перерыве";
+"timeToWorkTimeNotifications" = "Время до уведомления о работе";
+"allowNotifications" = "Разрешить уведомления";
+
+"timeToBreak" = "Время сделать перерыв!";
+"timeToWork" = "Время работать!";

@@ -7,27 +7,29 @@
 
 import UIKit
 
+//Цвет системы
 let mainColorTheme: UIColor = .systemYellow
 
+//Радиус всех UI объектов
 let totalCornerRadius: CGFloat = 12
 
+//Высота кнопок
 let totalHeightForTappedUIobjects: CGFloat = 44
 
+//Размеры текста
 let textSize1: CGFloat = 20
-
 let textSize2: CGFloat = 17
-
 let textSize3: CGFloat = 15
-
 let textSize4: CGFloat = 14
 
-
+//Расширение для идентификатора ячеек
 extension UIView {
     static var identifier: String {
         return String(describing: self)
     }
 }
 
+//Расширение для настроек кнопок
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
@@ -47,7 +49,6 @@ extension UIButton {
 }
 
 //Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
-
 extension UIViewController {
     func setupToHideKeyboardOnTapOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -60,21 +61,37 @@ extension UIViewController {
     }
 }
 
+//Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
     let dateNow = Calendar.current.date(from: dateComponents)
     return dateNow!
 }
 
-
-
-
-//Функция получения даты
+//Функция получения даты в строке
 func getStringDate(date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")
     let currentDate = dateFormatter.string(from: date)
     return currentDate
+}
+
+func timeDateToInt(date: Date) -> Int {
+    let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+    let time = (dateComponents.hour ?? 0) * 3600 + (dateComponents.minute ?? 0) * 60
+    return time
+}
+
+func timeToDate(time: Int) -> Date {
+    let minutes = time / 60 % 60
+    let hours = time / 3600
+
+    var dateComponents = DateComponents()
+    dateComponents.hour = hours
+    dateComponents.minute = minutes
+    
+    let date = Calendar.current.date(from: dateComponents)
+    return date!
 }
 
 //Функция получения времени
@@ -88,11 +105,11 @@ func getTime() -> String {
 //Функция перевода числа Int в String формат "00:00:00"
 func timeIntToString(time: Int) -> String {
     
-    lazy var seconds = time % 60
-    lazy var minutes = time / 60 % 60
-    lazy var hours = time / 3600
+    let seconds = time % 60
+    let minutes = time / 60 % 60
+    let hours = time / 3600
 
-    lazy var fullTime: [String] = []
+    var fullTime: [String] = []
     
     switch hours {
     case 1...9:

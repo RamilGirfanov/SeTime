@@ -163,8 +163,8 @@ class DefinitionTaskScreen: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        layout()
         setupButton()
+        layout()
     }
     
     required init?(coder: NSCoder) {

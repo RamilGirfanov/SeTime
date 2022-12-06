@@ -21,19 +21,7 @@ protocol ManageTimers: AnyObject {
 class MainScreen: UIView {
     
 //    MARK: - UIObjects
-    
-    private var scrollView: UIScrollView = {
-        var scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private var contentView: UIView = {
-        var contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        return contentView
-    }()
-    
+        
     var viewForTimeReview: ViewForTimeReview = {
         var viewForTimeReview = ViewForTimeReview()
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
@@ -139,94 +127,6 @@ class MainScreen: UIView {
     weak var delegate: ManageTimers?
     
     
-//    MARK: - Layout
-    
-    private func layout() {
-        addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        
-        [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { contentView.addSubview($0) }
-        
-        [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
-        
-        taskTimerSubView.addSubview(stackForTaskLabel)
-        
-        [taskTimeTextLabel, taskTimeDataLabel].forEach { stackForTaskLabel.addArrangedSubview($0) }
-        
-        
-        let safeIndent1: CGFloat = 16
-        let safeIndent2: CGFloat = 8
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            viewForTimeReview.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
-            viewForTimeReview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            viewForTimeReview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-                        
-            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
-            workButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            workButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            
-            breakButton.topAnchor.constraint(equalTo: workButton.topAnchor),
-            breakButton.leadingAnchor.constraint(equalTo: workButton.leadingAnchor),
-            breakButton.trailingAnchor.constraint(equalTo: workButton.trailingAnchor),
-            breakButton.bottomAnchor.constraint(equalTo: workButton.bottomAnchor),
-            
-            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            stopButton.topAnchor.constraint(equalTo: workButton.bottomAnchor, constant: safeIndent2),
-            stopButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            stopButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            
-            taskTimerView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            taskTimerView.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
-            taskTimerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            taskTimerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            
-            taskTimerSubView.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
-            taskTimerSubView.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
-            taskTimerSubView.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
-            
-            stackForTaskLabel.centerYAnchor.constraint(equalTo: taskTimerSubView.centerYAnchor),
-            stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerSubView.leadingAnchor, constant: safeIndent2),
-            stackForTaskLabel.trailingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: -safeIndent2),
-            
-            taskTimeTextLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
-            taskTimeTextLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
-            
-            taskTimeDataLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
-            taskTimeDataLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
-            
-            stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            stopTaskButton.widthAnchor.constraint(equalTo: stopTaskButton.heightAnchor),
-            stopTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
-            stopTaskButton.leadingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: safeIndent2),
-            stopTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
-            
-            addTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
-            addTaskButton.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
-            addTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
-            addTaskButton.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
-            
-            tasksTableView.topAnchor.constraint(equalTo: taskTimerView.bottomAnchor, constant: safeIndent2),
-            tasksTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            tasksTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            tasksTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent2)
-        ])
-    }
-    
-    
 //    MARK: - Настройка кнопок
     
     private func setupButtons() {
@@ -240,10 +140,10 @@ class MainScreen: UIView {
 //    Запускает таймер работы, в том числе для задачи
     @objc private func tapForWork() {
         delegate?.startWorkTimer()
-                
+        
         addTaskButton.activeButton()
         stopButton.activeButton()
-                
+        
         workButton.isHidden = true
         breakButton.isHidden = false
         
@@ -266,7 +166,7 @@ class MainScreen: UIView {
         
         addTaskButton.inactiveButton()
         stopButton.inactiveButton()
-                
+        
         workButton.isHidden = false
         breakButton.isHidden = true
         
@@ -298,14 +198,87 @@ class MainScreen: UIView {
     }
     
     
+//    MARK: - Layout
+    
+    private func layout() {
+        [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { addSubview($0) }
+        
+        [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
+        
+        taskTimerSubView.addSubview(stackForTaskLabel)
+        
+        [taskTimeTextLabel, taskTimeDataLabel].forEach { stackForTaskLabel.addArrangedSubview($0) }
+        
+        
+        let safeIndent1: CGFloat = 16
+        let safeIndent2: CGFloat = 8
+        
+        NSLayoutConstraint.activate([
+            viewForTimeReview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
+            viewForTimeReview.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            viewForTimeReview.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+                        
+            workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
+            workButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            workButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            
+            breakButton.topAnchor.constraint(equalTo: workButton.topAnchor),
+            breakButton.leadingAnchor.constraint(equalTo: workButton.leadingAnchor),
+            breakButton.trailingAnchor.constraint(equalTo: workButton.trailingAnchor),
+            breakButton.bottomAnchor.constraint(equalTo: workButton.bottomAnchor),
+            
+            stopButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopButton.topAnchor.constraint(equalTo: workButton.bottomAnchor, constant: safeIndent2),
+            stopButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            stopButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            
+            taskTimerView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            taskTimerView.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: safeIndent1 * 2),
+            taskTimerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            taskTimerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            
+            taskTimerSubView.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            taskTimerSubView.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
+            taskTimerSubView.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            
+            stackForTaskLabel.centerYAnchor.constraint(equalTo: taskTimerSubView.centerYAnchor),
+            stackForTaskLabel.leadingAnchor.constraint(equalTo: taskTimerSubView.leadingAnchor, constant: safeIndent2),
+            stackForTaskLabel.trailingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: -safeIndent2),
+            
+            taskTimeTextLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
+            taskTimeTextLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
+            
+            taskTimeDataLabel.leadingAnchor.constraint(equalTo: stackForTaskLabel.leadingAnchor),
+            taskTimeDataLabel.trailingAnchor.constraint(equalTo: stackForTaskLabel.trailingAnchor),
+            
+            stopTaskButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
+            stopTaskButton.widthAnchor.constraint(equalTo: stopTaskButton.heightAnchor),
+            stopTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            stopTaskButton.leadingAnchor.constraint(equalTo: taskTimerSubView.trailingAnchor, constant: safeIndent2),
+            stopTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
+            
+            addTaskButton.topAnchor.constraint(equalTo: taskTimerView.topAnchor),
+            addTaskButton.leadingAnchor.constraint(equalTo: taskTimerView.leadingAnchor),
+            addTaskButton.trailingAnchor.constraint(equalTo: taskTimerView.trailingAnchor),
+            addTaskButton.bottomAnchor.constraint(equalTo: taskTimerView.bottomAnchor),
+            
+            tasksTableView.topAnchor.constraint(equalTo: taskTimerView.bottomAnchor, constant: safeIndent2),
+            tasksTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
+            tasksTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
+            tasksTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent2)
+        ])
+    }
+    
+    
 //    MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        layout()
         setupButtons()
         setupToHideKeyboardOnTapOnView()
+        layout()
     }
     
     required init?(coder: NSCoder) {
