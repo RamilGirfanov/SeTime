@@ -276,9 +276,9 @@ class MainScreen: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        layout()
         setupButtons()
         setupToHideKeyboardOnTapOnView()
+        layout()
     }
     
     required init?(coder: NSCoder) {

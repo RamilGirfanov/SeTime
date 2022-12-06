@@ -85,8 +85,8 @@
 		7408034C290AB9AA002AB91D /* Vews Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				742EB7E6293BB39E005DF234 /* Setting Screen */,
 				74C8C8D7293416F70016F655 /* Custom Views */,
+				742EB7E6293BB39E005DF234 /* Setting Screen */,
 				74ED60C7286594370008B57C /* Main Screen */,
 				74E7906C288D820F000BAC0B /* Add Task Screen */,
 				744F56AF29258A2600D242F7 /* Definition Task Screen */,

@@ -203,9 +203,6 @@ extension MainScreenViewController: ManageTimers {
         model.pauseBreakTimer()
         
 //        Уведоления
-//        TODO: - Перенести это в настройку
-        UserDefaults.standard.set(60, forKey: "workTimeToNotice")
-
         notificationWorkTime()
         cancelNotification(notificationType: .Break)
     }
@@ -215,9 +212,6 @@ extension MainScreenViewController: ManageTimers {
         model.pauseWorkTimer()
         
 //        Уведоления
-//        TODO: - Перенести это в настройку
-        UserDefaults.standard.set(5, forKey: "breakTimeToNotice")
-
         notificationBreakTime()
         cancelNotification(notificationType: .Work)
     }

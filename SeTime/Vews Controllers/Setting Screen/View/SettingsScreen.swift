@@ -37,13 +37,6 @@ class SettingsScreen: UIView {
         return screenLabel
     }()
     
-    
-    
-    
-    
-    
-    
-    
     private let switchLabel: UILabel = {
         let switchLabel = UILabel()
         switchLabel.text = NSLocalizedString("enableNotifications", comment: "")
@@ -130,33 +123,6 @@ class SettingsScreen: UIView {
         return datePicker
     }()
     
-//    private let definitionWorkTime: UILabel = {
-//        let definitionWorkTime = UILabel()
-//        definitionWorkTime.text = NSLocalizedString("timeBeforeBreak", comment: "")
-//        definitionWorkTime.numberOfLines = 0
-//        definitionWorkTime.font = .systemFont(ofSize: textSize4)
-//        definitionWorkTime.translatesAutoresizingMaskIntoConstraints = false
-//        return definitionWorkTime
-//    }()
-
-//    private let breakSwitchLabel: UILabel = {
-//        let screenLabel = UILabel()
-//        screenLabel.text = NSLocalizedString("notificationsAtBreakTime", comment: "")
-//        screenLabel.font = .systemFont(ofSize: textSize2)
-//        screenLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return screenLabel
-//    }()
-    
-    
-//    private let definitionBreakSwitch: UILabel = {
-//        let definitionBreakSwitch = UILabel()
-//        definitionBreakSwitch.text = NSLocalizedString("definitionBreakSwitch", comment: "")
-//        definitionBreakSwitch.numberOfLines = 0
-//        definitionBreakSwitch.font = .systemFont(ofSize: textSize4)
-//        definitionBreakSwitch.translatesAutoresizingMaskIntoConstraints = false
-//        return definitionBreakSwitch
-//    }()
-    
     private let breakTimeLabel: UILabel = {
         let breakTimeLabel = UILabel()
         breakTimeLabel.text = NSLocalizedString("timeToWorkTimeNotifications", comment: "")
@@ -171,15 +137,6 @@ class SettingsScreen: UIView {
         breakDatePicker.translatesAutoresizingMaskIntoConstraints = false
         return breakDatePicker
     }()
-    
-//    private let definitionBreakTime: UILabel = {
-//        let definitionBreakTime = UILabel()
-//        definitionBreakTime.text = NSLocalizedString("timeBeforeWork", comment: "")
-//        definitionBreakTime.numberOfLines = 0
-//        definitionBreakTime.font = .systemFont(ofSize: textSize4)
-//        definitionBreakTime.translatesAutoresizingMaskIntoConstraints = false
-//        return definitionBreakTime
-//    }()
     
     private var button: UIButton = {
         var button = UIButton()
@@ -222,6 +179,8 @@ class SettingsScreen: UIView {
 //        Настройка видимости кнопки разрешения уведомлений
         if UserDefaults.standard.bool(forKey: "notificationTolerance") == true {
             button.isHidden = true
+            spetialSafeIndent = 0
+            spetialHeighForButton = 0
         } else {
             button.isHidden = false
         }
@@ -242,6 +201,9 @@ class SettingsScreen: UIView {
 
     
 //    MARK: - Layout
+
+    var spetialSafeIndent: CGFloat = 8
+    var spetialHeighForButton = totalHeightForTappedUIobjects
 
     private func layout() {
         addSubview(scrollView)
@@ -301,11 +263,14 @@ class SettingsScreen: UIView {
             breakSwitch.trailingAnchor.constraint(equalTo: viewForBreakSwitch.trailingAnchor, constant: -safeIndent1),
             breakSwitch.bottomAnchor.constraint(equalTo: viewForBreakSwitch.bottomAnchor, constant: -safeIndent2),
             
-            definitionSwitch.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: safeIndent2),
+            button.heightAnchor.constraint(equalToConstant: spetialHeighForButton),
+            button.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: spetialSafeIndent),
+            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            
+            definitionSwitch.topAnchor.constraint(equalTo: button.bottomAnchor, constant: safeIndent2),
             definitionSwitch.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             definitionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
-            
-            
             
             workTimeLabel.topAnchor.constraint(equalTo: definitionSwitch.bottomAnchor, constant: safeIndent1),
             workTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
@@ -314,28 +279,22 @@ class SettingsScreen: UIView {
             workDatePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             workDatePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            
             breakTimeLabel.topAnchor.constraint(equalTo: workDatePicker.bottomAnchor, constant: safeIndent1),
             breakTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
             breakDatePicker.topAnchor.constraint(equalTo: breakTimeLabel.bottomAnchor, constant: safeIndent2),
             breakDatePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             breakDatePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-
-            button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
-            button.topAnchor.constraint(equalTo: breakDatePicker.bottomAnchor, constant: safeIndent1),
-            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
+            breakDatePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
         ])
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        layout()
-        setupTargrt()
         setupScreen()
+        setupTargrt()
+        layout()
     }
     
     required init?(coder: NSCoder) {
