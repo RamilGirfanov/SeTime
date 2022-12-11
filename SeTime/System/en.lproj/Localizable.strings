@@ -37,8 +37,8 @@
 "workTimeNotifications" = "Work time notifications";
 "definitionSwitch" = "Allow the application to send notifications";
 "setupTime" = "Set notification time";
-"timeToBreakTimeNotifications" = "To break";
-"timeToWorkTimeNotifications" = "To work";
+"timeToBreakTimeNotifications" = "Take a break";
+"timeToWorkTimeNotifications" = "Back to work";
 "definitionTime" = "The time after which the application will send a notification to take a break or return to work";
 
 "timeToBreak" = "Time to take a break!";
