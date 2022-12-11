@@ -35,7 +35,7 @@
 "enableNotifications" = "Включить уведомления";
 "breakTimeNotifications" = "Уведомления о перерывах";
 "workTimeNotifications" = "Уведомления о работе";
-"definitionSwitch" = "Разрешить приложению присылать уведомления напоминающие сделать перерыв и вернуться к работе";
+"definitionSwitch" = "Разрешить приложению присылать уведомления напоминающие сделать перерыв или вернуться к работе";
 "timeToBreakTimeNotifications" = "Время до уведомления о перерыве";
 "timeToWorkTimeNotifications" = "Время до уведомления о работе";
 "allowNotifications" = "Разрешить уведомления";

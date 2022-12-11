@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SetupsProtocol: AnyObject {
-    func allowNotifications()
     func changeWorkSwitch()
     func changeBreakSwitch()
 }
@@ -102,6 +101,7 @@ class SettingsScreen: UIView {
     private let definitionSwitch: UILabel = {
         let definitionSwitch = UILabel()
         definitionSwitch.text = NSLocalizedString("definitionSwitch", comment: "")
+        definitionSwitch.textColor = .secondaryLabel
         definitionSwitch.numberOfLines = 0
         definitionSwitch.font = .systemFont(ofSize: textSize4)
         definitionSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -155,13 +155,8 @@ class SettingsScreen: UIView {
 //    MARK: - Настройка Target
     
     private func setupTargrt() {
-        button.addTarget(self, action: #selector(allowNotifications), for: .touchUpInside)
         workSwitch.addTarget(self, action: #selector(workSwitchDidCanged), for: .valueChanged)
         breakSwitch.addTarget(self, action: #selector(breakSwitchDidCanged), for: .valueChanged)
-    }
-    
-    @objc private func allowNotifications() {
-        delegate?.allowNotifications()
     }
     
     @objc private func workSwitchDidCanged() {
@@ -176,15 +171,6 @@ class SettingsScreen: UIView {
 //    MARK: - Настройка settingsScreen
     
     private func setupScreen() {
-//        Настройка видимости кнопки разрешения уведомлений
-        if UserDefaults.standard.bool(forKey: "notificationTolerance") == true {
-            button.isHidden = true
-            spetialSafeIndent = 0
-            spetialHeighForButton = 0
-        } else {
-            button.isHidden = false
-        }
-        
 //        Настройка переключателей
         if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") == true {
             workSwitch.isOn = true
@@ -202,14 +188,11 @@ class SettingsScreen: UIView {
     
 //    MARK: - Layout
 
-    var spetialSafeIndent: CGFloat = 8
-    var spetialHeighForButton = totalHeightForTappedUIobjects
-
     private func layout() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [screenLabel, switchLabel, stack, definitionSwitch, workTimeLabel, workDatePicker, breakTimeLabel, breakDatePicker, button].forEach { contentView.addSubview($0) }
+        [screenLabel, switchLabel, stack, definitionSwitch, workTimeLabel, workDatePicker, breakTimeLabel, breakDatePicker].forEach { contentView.addSubview($0) }
         
         [viewForWorkSwitch, viewForBreakSwitch].forEach { stack.addSubview($0) }
         [textForWorkSwitch, workSwitch].forEach { viewForWorkSwitch.addSubview($0) }
@@ -263,12 +246,7 @@ class SettingsScreen: UIView {
             breakSwitch.trailingAnchor.constraint(equalTo: viewForBreakSwitch.trailingAnchor, constant: -safeIndent1),
             breakSwitch.bottomAnchor.constraint(equalTo: viewForBreakSwitch.bottomAnchor, constant: -safeIndent2),
             
-            button.heightAnchor.constraint(equalToConstant: spetialHeighForButton),
-            button.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: spetialSafeIndent),
-            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            
-            definitionSwitch.topAnchor.constraint(equalTo: button.bottomAnchor, constant: safeIndent2),
+            definitionSwitch.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: safeIndent2),
             definitionSwitch.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             definitionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
             
