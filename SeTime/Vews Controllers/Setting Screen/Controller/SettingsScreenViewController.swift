@@ -17,6 +17,8 @@ class SettingsScreenViewController: UIViewController {
         view.delegate = self
         view.workDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
         view.breakDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
+        view.workTimeDataLabel.text = timeIntToStringShort(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+        view.breakTimeDataLabel.text = timeIntToStringShort(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
         return view
     }()
     
@@ -58,6 +60,7 @@ class SettingsScreenViewController: UIViewController {
         }
     }
     
+    
     //    MARK: - Жизненный цикл
     
     override func loadView() {
@@ -69,11 +72,7 @@ class SettingsScreenViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
-        UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
-        
-        let breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
-        UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
+        updateTimeToNotice()
     }
 }
 
@@ -101,5 +100,15 @@ extension SettingsScreenViewController: SetupsProtocol {
                 self.showiPhoneSetups()
             }
         }
+    }
+    
+    func updateTimeToNotice() {
+        let workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
+        UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
+        settingsScreen.workTimeDataLabel.text = timeIntToStringShort(time: workTime)
+        
+        let breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
+        UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
+        settingsScreen.breakTimeDataLabel.text = timeIntToStringShort(time: breakTime)
     }
 }

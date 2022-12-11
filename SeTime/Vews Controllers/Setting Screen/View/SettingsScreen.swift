@@ -10,6 +10,7 @@ import UIKit
 protocol SetupsProtocol: AnyObject {
     func changeWorkSwitch()
     func changeBreakSwitch()
+    func updateTimeToNotice()
 }
 
 class SettingsScreen: UIView {
@@ -44,14 +45,14 @@ class SettingsScreen: UIView {
         return switchLabel
     }()
     
-    private let stack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-        stack.layer.cornerRadius = totalCornerRadius
-        stack.clipsToBounds = true
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private let switchStack: UIStackView = {
+        let switchStack = UIStackView()
+        switchStack.axis = .vertical
+        switchStack.distribution = .fillEqually
+        switchStack.layer.cornerRadius = totalCornerRadius
+        switchStack.clipsToBounds = true
+        switchStack.translatesAutoresizingMaskIntoConstraints = false
+        return switchStack
     }()
     
     private var viewForWorkSwitch: UIView = {
@@ -108,6 +109,32 @@ class SettingsScreen: UIView {
         return definitionSwitch
     }()
     
+    private let timeStack: UIStackView = {
+        let timeStack = UIStackView()
+        timeStack.axis = .vertical
+        timeStack.distribution = .fillEqually
+        timeStack.layer.cornerRadius = totalCornerRadius
+        timeStack.clipsToBounds = true
+        timeStack.translatesAutoresizingMaskIntoConstraints = false
+        return timeStack
+    }()
+
+    private let timeLabel: UILabel = {
+        let timeLabel = UILabel()
+        timeLabel.text = NSLocalizedString("setupTime", comment: "")
+        timeLabel.font = .systemFont(ofSize: textSize2)
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        return timeLabel
+    }()
+
+    private let viewForWorkDatePicker: UIView = {
+        let viewForWorkDatePicker = UIView()
+        viewForWorkDatePicker.backgroundColor = .secondarySystemBackground
+        viewForWorkDatePicker.translatesAutoresizingMaskIntoConstraints = false
+        viewForWorkDatePicker.isUserInteractionEnabled = true
+        return viewForWorkDatePicker
+    }()
+    
     private let workTimeLabel: UILabel = {
         let workTimeLabel = UILabel()
         workTimeLabel.text = NSLocalizedString("timeToBreakTimeNotifications", comment: "")
@@ -116,11 +143,26 @@ class SettingsScreen: UIView {
         return workTimeLabel
     }()
     
+    let workTimeDataLabel: UILabel = {
+        let workTimeDataLabel = UILabel()
+        workTimeDataLabel.font = .systemFont(ofSize: textSize2)
+        workTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return workTimeDataLabel
+    }()
+    
     var workDatePicker: UIDatePicker = {
         var datePicker = UIDatePicker()
         datePicker.datePickerMode = .countDownTimer
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         return datePicker
+    }()
+    
+    private let viewForBreakDatePicker: UIView = {
+        let viewForBreakDatePicker = UIView()
+        viewForBreakDatePicker.backgroundColor = .secondarySystemBackground
+        viewForBreakDatePicker.translatesAutoresizingMaskIntoConstraints = false
+        viewForBreakDatePicker.isUserInteractionEnabled = true
+        return viewForBreakDatePicker
     }()
     
     private let breakTimeLabel: UILabel = {
@@ -131,21 +173,20 @@ class SettingsScreen: UIView {
         return breakTimeLabel
     }()
     
+    let breakTimeDataLabel: UILabel = {
+        let breakTimeDataLabel = UILabel()
+        breakTimeDataLabel.font = .systemFont(ofSize: textSize2)
+        breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        return breakTimeDataLabel
+    }()
+    
     var breakDatePicker: UIDatePicker = {
         var breakDatePicker = UIDatePicker()
         breakDatePicker.datePickerMode = .countDownTimer
         breakDatePicker.translatesAutoresizingMaskIntoConstraints = false
         return breakDatePicker
     }()
-    
-    private var button: UIButton = {
-        var button = UIButton()
-        button.setTitle(NSLocalizedString("allowNotifications", comment: ""), for: .normal)
-        button.activeButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+        
     
 //    MARK: - Delegade
     
@@ -157,6 +198,11 @@ class SettingsScreen: UIView {
     private func setupTargrt() {
         workSwitch.addTarget(self, action: #selector(workSwitchDidCanged), for: .valueChanged)
         breakSwitch.addTarget(self, action: #selector(breakSwitchDidCanged), for: .valueChanged)
+        let tapWorkView = UITapGestureRecognizer(target: self, action: #selector(showWorkDatePicker))
+        viewForWorkDatePicker.addGestureRecognizer(tapWorkView)
+        
+        let tapBreakView = UITapGestureRecognizer(target: self, action: #selector(showBreakDatePicker))
+        viewForBreakDatePicker.addGestureRecognizer(tapBreakView)
     }
     
     @objc private func workSwitchDidCanged() {
@@ -167,6 +213,13 @@ class SettingsScreen: UIView {
         delegate?.changeBreakSwitch()
     }
     
+    @objc private func showWorkDatePicker() {
+        changeViewForWorkDatePicker()
+    }
+    
+    @objc private func showBreakDatePicker() {
+        changeViewForBreakDatePicker()
+    }
     
 //    MARK: - Настройка settingsScreen
     
@@ -187,16 +240,26 @@ class SettingsScreen: UIView {
 
     
 //    MARK: - Layout
+    
+    private var heightWorkPicker = NSLayoutConstraint()
+    private var heightBreakPicker = NSLayoutConstraint()
 
     private func layout() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [screenLabel, switchLabel, stack, definitionSwitch, workTimeLabel, workDatePicker, breakTimeLabel, breakDatePicker].forEach { contentView.addSubview($0) }
+        [screenLabel, switchLabel, switchStack, definitionSwitch, timeLabel, timeStack].forEach { contentView.addSubview($0) }
         
-        [viewForWorkSwitch, viewForBreakSwitch].forEach { stack.addSubview($0) }
+        [viewForWorkSwitch, viewForBreakSwitch].forEach { switchStack.addSubview($0) }
         [textForWorkSwitch, workSwitch].forEach { viewForWorkSwitch.addSubview($0) }
         [textForBreakSwitch, breakSwitch].forEach { viewForBreakSwitch.addSubview($0) }
+        
+        [viewForWorkDatePicker, viewForBreakDatePicker].forEach { timeStack.addSubview($0) }
+        [workTimeLabel, workTimeDataLabel, workDatePicker].forEach { viewForWorkDatePicker.addSubview($0) }
+        [breakTimeLabel, breakTimeDataLabel, breakDatePicker].forEach { viewForBreakDatePicker.addSubview($0) }
+
+        heightWorkPicker = workDatePicker.heightAnchor.constraint(equalToConstant: 0)
+        heightBreakPicker = breakDatePicker.heightAnchor.constraint(equalToConstant: 0)
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
@@ -219,13 +282,13 @@ class SettingsScreen: UIView {
             switchLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
             switchLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
-            stack.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: safeIndent2),
-            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            switchStack.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: safeIndent2),
+            switchStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            switchStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            viewForWorkSwitch.topAnchor.constraint(equalTo: stack.topAnchor),
-            viewForWorkSwitch.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            viewForWorkSwitch.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+            viewForWorkSwitch.topAnchor.constraint(equalTo: switchStack.topAnchor),
+            viewForWorkSwitch.leadingAnchor.constraint(equalTo: switchStack.leadingAnchor),
+            viewForWorkSwitch.trailingAnchor.constraint(equalTo: switchStack.trailingAnchor),
             
             textForWorkSwitch.centerYAnchor.constraint(equalTo: viewForWorkSwitch.centerYAnchor),
             textForWorkSwitch.leadingAnchor.constraint(equalTo: viewForWorkSwitch.leadingAnchor, constant: safeIndent1),
@@ -235,9 +298,9 @@ class SettingsScreen: UIView {
             workSwitch.bottomAnchor.constraint(equalTo: viewForWorkSwitch.bottomAnchor, constant: -safeIndent2),
             
             viewForBreakSwitch.topAnchor.constraint(equalTo: viewForWorkSwitch.bottomAnchor),
-            viewForBreakSwitch.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            viewForBreakSwitch.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
-            viewForBreakSwitch.bottomAnchor.constraint(equalTo: stack.bottomAnchor),
+            viewForBreakSwitch.leadingAnchor.constraint(equalTo: switchStack.leadingAnchor),
+            viewForBreakSwitch.trailingAnchor.constraint(equalTo: switchStack.trailingAnchor),
+            viewForBreakSwitch.bottomAnchor.constraint(equalTo: switchStack.bottomAnchor),
             
             textForBreakSwitch.centerYAnchor.constraint(equalTo: viewForBreakSwitch.centerYAnchor),
             textForBreakSwitch.leadingAnchor.constraint(equalTo: viewForBreakSwitch.leadingAnchor, constant: safeIndent1),
@@ -246,26 +309,86 @@ class SettingsScreen: UIView {
             breakSwitch.trailingAnchor.constraint(equalTo: viewForBreakSwitch.trailingAnchor, constant: -safeIndent1),
             breakSwitch.bottomAnchor.constraint(equalTo: viewForBreakSwitch.bottomAnchor, constant: -safeIndent2),
             
-            definitionSwitch.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: safeIndent2),
+            definitionSwitch.topAnchor.constraint(equalTo: switchStack.bottomAnchor, constant: safeIndent2),
             definitionSwitch.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             definitionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
             
-            workTimeLabel.topAnchor.constraint(equalTo: definitionSwitch.bottomAnchor, constant: safeIndent1),
-            workTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
-            workDatePicker.topAnchor.constraint(equalTo: workTimeLabel.bottomAnchor, constant: safeIndent2),
-            workDatePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            workDatePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
             
-            breakTimeLabel.topAnchor.constraint(equalTo: workDatePicker.bottomAnchor, constant: safeIndent1),
-            breakTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
-            breakDatePicker.topAnchor.constraint(equalTo: breakTimeLabel.bottomAnchor, constant: safeIndent2),
-            breakDatePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-            breakDatePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            breakDatePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
+            timeLabel.topAnchor.constraint(equalTo: definitionSwitch.bottomAnchor, constant: safeIndent1),
+            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            
+            timeStack.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: safeIndent2),
+            timeStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            timeStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
+            timeStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1),
+            
+            viewForWorkDatePicker.topAnchor.constraint(equalTo: timeStack.topAnchor),
+            viewForWorkDatePicker.leadingAnchor.constraint(equalTo: timeStack.leadingAnchor),
+            viewForWorkDatePicker.trailingAnchor.constraint(equalTo: timeStack.trailingAnchor),
+            
+            workTimeLabel.topAnchor.constraint(equalTo: viewForWorkDatePicker.topAnchor, constant: 12),
+            workTimeLabel.leadingAnchor.constraint(equalTo: viewForWorkDatePicker.leadingAnchor, constant: safeIndent1),
+            
+            workTimeDataLabel.centerYAnchor.constraint(equalTo: workTimeLabel.centerYAnchor),
+            workTimeDataLabel.trailingAnchor.constraint(equalTo: viewForWorkDatePicker.trailingAnchor, constant: -safeIndent1),
+            
+            workDatePicker.topAnchor.constraint(equalTo: workTimeLabel.bottomAnchor),
+            workDatePicker.centerXAnchor.constraint(equalTo: viewForWorkDatePicker.centerXAnchor),
+            workDatePicker.bottomAnchor.constraint(equalTo: viewForWorkDatePicker.bottomAnchor, constant: -12),
+            heightWorkPicker,
+            
+            viewForBreakDatePicker.topAnchor.constraint(equalTo: viewForWorkDatePicker.bottomAnchor),
+            viewForBreakDatePicker.leadingAnchor.constraint(equalTo: timeStack.leadingAnchor),
+            viewForBreakDatePicker.trailingAnchor.constraint(equalTo: timeStack.trailingAnchor),
+            viewForBreakDatePicker.bottomAnchor.constraint(equalTo: timeStack.bottomAnchor),
+            
+            breakTimeLabel.topAnchor.constraint(equalTo: viewForBreakDatePicker.topAnchor, constant: 12),
+            breakTimeLabel.leadingAnchor.constraint(equalTo: viewForBreakDatePicker.leadingAnchor, constant: safeIndent1),
+            
+            breakTimeDataLabel.centerYAnchor.constraint(equalTo: breakTimeLabel.centerYAnchor),
+            breakTimeDataLabel.trailingAnchor.constraint(equalTo: viewForBreakDatePicker.trailingAnchor, constant: -safeIndent1),
+            
+            breakDatePicker.topAnchor.constraint(equalTo: breakTimeLabel.bottomAnchor),
+            breakDatePicker.centerXAnchor.constraint(equalTo: viewForBreakDatePicker.centerXAnchor),
+            breakDatePicker.bottomAnchor.constraint(equalTo: viewForBreakDatePicker.bottomAnchor, constant: -12),
+            heightBreakPicker
         ])
     }
+    
+//    функции и свойства для изменения видимости datePicker
+    private var workDatePickerShow = false
+    private var breakDatePickerShow = false
+
+    private func changeViewForWorkDatePicker() {
+        if workDatePickerShow {
+            heightWorkPicker.constant = 0
+            layoutIfNeeded()
+            delegate?.updateTimeToNotice()
+            workDatePickerShow = false
+        } else {
+            heightWorkPicker.constant = 200
+            layoutIfNeeded()
+            workDatePickerShow = true
+        }
+    }
+    
+    private func changeViewForBreakDatePicker() {
+        if breakDatePickerShow {
+            heightBreakPicker.constant = 0
+            layoutIfNeeded()
+            delegate?.updateTimeToNotice()
+            breakDatePickerShow = false
+        } else {
+            heightBreakPicker.constant = 200
+            layoutIfNeeded()
+            breakDatePickerShow = true
+        }
+    }
+    
+    
+//    MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
