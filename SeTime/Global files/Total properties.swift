@@ -141,6 +141,35 @@ func timeIntToString(time: Int) -> String {
     return fullTime.joined(separator: ":")
 }
 
+//Функция перевода числа Int в String формат "00:00"
+func timeIntToStringShort(time: Int) -> String {
+    
+    let minutes = time / 60 % 60
+    let hours = time / 3600
+
+    var fullTime: [String] = []
+    
+    switch hours {
+    case 1...9:
+        fullTime.append("0\(hours)")
+    case 10...24:
+        fullTime.append("\(hours)")
+    default:
+        fullTime.append("00")
+    }
+    
+    switch minutes {
+    case 1...9:
+        fullTime.append("0\(minutes)")
+    case 10...59:
+        fullTime.append("\(minutes)")
+    default:
+        fullTime.append("00")
+    }
+    
+    return fullTime.joined(separator: ":")
+}
+
 //Функция очистки строк от переносов строк и лишних пробелов
 func clearString(string: String) -> String {
     let components = string.components(separatedBy: .whitespacesAndNewlines)

@@ -35,10 +35,11 @@
 "enableNotifications" = "Enable notifications";
 "breakTimeNotifications" = "Break time notifications";
 "workTimeNotifications" = "Work time notifications";
-"definitionSwitch" = "Allow the app to send notifications to remind you to take a break and get back to work";
-"timeToBreakTimeNotifications" = "Time to break notification";
-"timeToWorkTimeNotifications" = "Time to work notification";
-"allowNotifications" = "Allow notifications";
+"definitionSwitch" = "Allow the application to send notifications";
+"setupTime" = "Set notification time";
+"timeToBreakTimeNotifications" = "Take a break";
+"timeToWorkTimeNotifications" = "Back to work";
+"definitionTime" = "The time after which the application will send a notification to take a break or return to work";
 
 "timeToBreak" = "Time to take a break!";
 "timeToWork" = "Time to work!";
