@@ -186,6 +186,16 @@ class SettingsScreen: UIView {
         breakDatePicker.translatesAutoresizingMaskIntoConstraints = false
         return breakDatePicker
     }()
+    
+    private let definitionTime: UILabel = {
+        let definitionTime = UILabel()
+        definitionTime.text = NSLocalizedString("definitionTime", comment: "")
+        definitionTime.textColor = .secondaryLabel
+        definitionTime.numberOfLines = 0
+        definitionTime.font = .systemFont(ofSize: textSize4)
+        definitionTime.translatesAutoresizingMaskIntoConstraints = false
+        return definitionTime
+    }()
         
     
 //    MARK: - Delegade
@@ -248,7 +258,7 @@ class SettingsScreen: UIView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [screenLabel, switchLabel, switchStack, definitionSwitch, timeLabel, timeStack].forEach { contentView.addSubview($0) }
+        [screenLabel, switchLabel, switchStack, definitionSwitch, timeLabel, timeStack, definitionTime].forEach { contentView.addSubview($0) }
         
         [viewForWorkSwitch, viewForBreakSwitch].forEach { switchStack.addSubview($0) }
         [textForWorkSwitch, workSwitch].forEach { viewForWorkSwitch.addSubview($0) }
@@ -313,16 +323,12 @@ class SettingsScreen: UIView {
             definitionSwitch.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             definitionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
             
-            
-            
-            
             timeLabel.topAnchor.constraint(equalTo: definitionSwitch.bottomAnchor, constant: safeIndent1),
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             
             timeStack.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: safeIndent2),
             timeStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
             timeStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1),
-            timeStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1),
             
             viewForWorkDatePicker.topAnchor.constraint(equalTo: timeStack.topAnchor),
             viewForWorkDatePicker.leadingAnchor.constraint(equalTo: timeStack.leadingAnchor),
@@ -353,7 +359,12 @@ class SettingsScreen: UIView {
             breakDatePicker.topAnchor.constraint(equalTo: breakTimeLabel.bottomAnchor),
             breakDatePicker.centerXAnchor.constraint(equalTo: viewForBreakDatePicker.centerXAnchor),
             breakDatePicker.bottomAnchor.constraint(equalTo: viewForBreakDatePicker.bottomAnchor, constant: -12),
-            heightBreakPicker
+            heightBreakPicker,
+            
+            definitionTime.topAnchor.constraint(equalTo: timeStack.bottomAnchor, constant: safeIndent2),
+            definitionTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
+            definitionTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
+            definitionTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
         ])
     }
     
