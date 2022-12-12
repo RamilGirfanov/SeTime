@@ -11,7 +11,7 @@ class DatePickerScreenViewController: UIViewController {
     
     //    MARK: - Экземпляр MainScreen
     
-    private lazy var datePickerScreen: DatePickerScreen = {
+    lazy var datePickerScreen: DatePickerScreen = {
         let view = DatePickerScreen()
         view.delegate = self
         return view
@@ -22,13 +22,5 @@ class DatePickerScreenViewController: UIViewController {
     
     override func loadView() {
         view = datePickerScreen
-    }
-}
-
-extension DatePickerScreenViewController: PresentHistory {
-    func pushScreen() {        
-        let historyVC = HistoryScreenViewController()
-        historyVC.date = getShortDate(date: datePickerScreen.datePicker.date)
-        present(historyVC, animated: true)
     }
 }
