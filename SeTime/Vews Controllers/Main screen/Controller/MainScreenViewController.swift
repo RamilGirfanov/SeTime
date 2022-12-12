@@ -13,7 +13,7 @@ class MainScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр MainScreen
     
-    private lazy var mainScreen: MainScreen = {
+    lazy var mainScreen: MainScreen = {
         let view = MainScreen()
         view.delegate = self
         return view
@@ -117,7 +117,7 @@ class MainScreenViewController: UIViewController {
     
 //    MARK: - Уведомления о времени работы
     
-    private func notificationWorkTime() {
+    func notificationWorkTime() {
         if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") {
             let content: UNMutableNotificationContent = {
                 let content = UNMutableNotificationContent()
@@ -137,7 +137,7 @@ class MainScreenViewController: UIViewController {
         }
     }
     
-    private func notificationBreakTime() {
+    func notificationBreakTime() {
         if UserDefaults.standard.bool(forKey: "notificationBreakTolerance") {
             let content: UNMutableNotificationContent = {
                 let content = UNMutableNotificationContent()
@@ -157,19 +157,19 @@ class MainScreenViewController: UIViewController {
         }
     }
     
-    private enum NotificationType {
-        case Work
-        case Break
-        case All
+    enum NotificationType {
+        case workNotice
+        case breakNotice
+        case allNotice
     }
 
-    private func cancelNotification(notificationType: NotificationType) {
+    func cancelNotification(notificationType: NotificationType) {
         switch notificationType {
-        case .Work:
+        case .workNotice:
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Work notification"])
-        case .Break:
+        case .breakNotice:
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Break notification"])
-        case .All:
+        case .allNotice:
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         }
     }
@@ -185,189 +185,6 @@ class MainScreenViewController: UIViewController {
         setupNC()
         checkDay()
         UNUserNotificationCenter.current().delegate = self
-    }
-}
-
-
-//MARK: - Протокол делегата MainScreen
-
-extension MainScreenViewController: ManageTimers {
-    
-    func startWorkTimer() {
-        model.startWorkTimer()
-        
-        if model.task.duration != 0 {
-            model.startTaskTimer()
-        }
-        
-        model.pauseBreakTimer()
-        
-//        Уведоления
-        notificationWorkTime()
-        cancelNotification(notificationType: .Break)
-        
-        mainScreen.addTaskButton.activeButton()
-        mainScreen.stopButton.activeButton()
-        
-//        Работа с View
-        mainScreen.workButton.isHidden = true
-        mainScreen.breakButton.isHidden = false
-        
-        mainScreen.stopTaskButton.isEnabled = true
-    }
-    
-    func startBreakTimer() {
-        model.startBreakTimer()
-        model.pauseWorkTimer()
-        
-//        Уведоления
-        notificationBreakTime()
-        cancelNotification(notificationType: .Work)
-        
-//        Работа с View
-        mainScreen.addTaskButton.inactiveButton()
-        
-        mainScreen.workButton.isHidden = false
-        mainScreen.breakButton.isHidden = true
-    }
-    
-    func stop() {
-        model.stop()
-        
-//        Уведоления
-        cancelNotification(notificationType: .All)
-        
-//        Работа с View
-        mainScreen.addTaskButton.inactiveButton()
-        mainScreen.stopButton.inactiveButton()
-        
-        mainScreen.workButton.isHidden = false
-        mainScreen.breakButton.isHidden = true
-        
-        mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        mainScreen.taskTimeDataLabel.text = "00:00:00"
-        
-        mainScreen.addTaskButton.isHidden = false
-        mainScreen.taskTimerView.isHidden = true
-        
-        mainScreen.tasksTableView.reloadData()
-    }
-        
-    func stopTaskTimer() {
-        model.stopTaskTimer()
-        
-//        Работа с View
-        mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        mainScreen.taskTimeDataLabel.text = ""
-        
-        mainScreen.addTaskButton.isHidden = false
-        mainScreen.taskTimerView.isHidden = true
-        
-        mainScreen.tasksTableView.reloadData()
-    }
-    
-    func addTask() {
-        let taskAddVC = AddTaskScreenViewController()
-        taskAddVC.delegate = self
-        present(taskAddVC, animated: true)
-    }
-    
-    func showTaskDifinition(index: Int) {
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
-        
-        let definitionTaskVC = DefinitionTaskScreenViewController()
-        definitionTaskVC.taskIndex = index
-        definitionTaskVC.name = task.name
-        definitionTaskVC.startTime = task.startTime
-        definitionTaskVC.duration = timeIntToString(time: task.duration)
-        definitionTaskVC.definition = task.definition
-        definitionTaskVC.delegate = self
-        present(definitionTaskVC, animated: true)
-    }
-    
-    func getTasksData() -> [Task] {
-        var tasksArray: [Task] = []
-        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.forEach { tasksArray.append($0) }
-        return tasksArray
-    }
-    
-    func deleteTask(index: Int) {
-        RealmManager.shared.deleteTask(date: model.date, index: index)
-    }
-    
-    func restartTask(index: Int) {
-//        Получает Задачу из архива
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
-
-//        Управляет запуском и остановкой таймеров
-        if model.taskTimer.isValid {
-            stopTaskTimer()
-        }
-        
-        if !model.workTimer.isValid {
-            startWorkTimer()
-        }
-        
-//        Передает задачу в модель
-        model.restartTaskTimer(index: index, duration: task.duration)
-
-//        Меняет видимости кнопки и вью задачи на главном экране
-        mainScreen.addTaskButton.isHidden = true
-        mainScreen.taskTimerView.isHidden = false
-
-//        Устанавливает в лейбл задачи ее название
-        mainScreen.taskTimeTextLabel.text = task.name
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: task.duration)
-    }
-}
-
-
-//MARK: - Протокол делегата AddTaskScreen
-
-extension MainScreenViewController: AddTasksProtocol {
-    func addTask(name: String, definition: String) {
-        
-//        Меняет видимости кнопки и вью задачи на главном экране
-        mainScreen.addTaskButton.isHidden = true
-        mainScreen.taskTimerView.isHidden = false
-        
-//        Устанавливает в лейбл задачи ее название
-        mainScreen.taskTimeTextLabel.text = name
-        
-//        Устанавливает название и описание задачи в объект задачи
-        model.task.name = name
-        model.task.definition = definition
-        
-//        Запускает таймер задачи
-        model.startTaskTimer()
-        model.task.startTime = getTime()
-    }
-}
-
-
-//MARK: - Протокол делегата DefinitionTaskScreen
-
-extension MainScreenViewController: EditTasksProtocol {
-    func editTask(taskIndex: Int) {
-        
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[taskIndex]
-        
-        let editTaskVC = EditTaskScreenViewController()
-        editTaskVC.taskIndex = taskIndex
-        editTaskVC.name = task.name
-        editTaskVC.definition = task.definition
-        editTaskVC.delegate = self
-        present(editTaskVC, animated: true)
-    }
-}
-
-
-//MARK: - Протокол делегата EditTaskScreen
-
-extension MainScreenViewController: SaveTasksProtocol {
-    func saveTask(taskIndex: Int, name: String, definition: String) {
-        RealmManager.shared.updateTask(date: model.date, index: taskIndex, name: name, definition: definition)
-        mainScreen.tasksTableView.reloadData()
     }
 }
 

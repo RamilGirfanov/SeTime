@@ -15,7 +15,7 @@ class AddTaskScreenViewController: UIViewController {
 
 //    MARK: - Экземпляр AddTaskScreen
     
-    private lazy var addTaskScreen: AddTaskScreen = {
+    lazy var addTaskScreen: AddTaskScreen = {
         let view = AddTaskScreen()
         view.delegate = self
         return view
@@ -32,26 +32,5 @@ class AddTaskScreenViewController: UIViewController {
     override func loadView() {
         view = addTaskScreen
         setupToHideKeyboardOnTapOnView()
-    }
-}
-
-
-//MARK: - Протокол делегата
-
-extension AddTaskScreenViewController: AddTaskProtocol {
-    func addTask() {
-        
-//        Проверка на введеное название задачи
-        if !addTaskScreen.taskName.text.isEmpty {
-            
-//            Очистка строк от переносов строк лишних пробелов
-            let name = clearString(string: addTaskScreen.taskName.text)
-            let definition = clearString(string: addTaskScreen.taskDefinition.text ?? "")
-            
-            delegate?.addTask(name: name, definition: definition)
-            dismiss(animated: true)
-        } else {
-            addTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")
-        }
     }
 }

@@ -25,7 +25,7 @@ class DefinitionTaskScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр DefinitionTaskScreen
     
-    private lazy var taskDefinitionScreen: DefinitionTaskScreen = {
+    lazy var taskDefinitionScreen: DefinitionTaskScreen = {
         let view = DefinitionTaskScreen()
         view.name.text = name
         view.startTime.text = startTime
@@ -45,15 +45,5 @@ class DefinitionTaskScreenViewController: UIViewController {
     
     override func loadView() {
         view = taskDefinitionScreen
-    }
-}
-
-
-//MARK: - Протокол делегата
-
-extension DefinitionTaskScreenViewController: EditTaskProtocol {
-    func editTask() {
-        dismiss(animated: true)
-        delegate?.editTask(taskIndex: taskIndex)
     }
 }

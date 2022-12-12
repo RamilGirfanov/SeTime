@@ -88,7 +88,7 @@ class MainScreen: UIView {
     
     var taskTimeDataLabel: UILabel = {
         var taskTimeDataLabel = UILabel()
-        taskTimeDataLabel.text = ""
+        taskTimeDataLabel.text = "00:00:00"
         taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel

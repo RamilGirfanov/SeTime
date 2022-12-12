@@ -12,7 +12,7 @@ class SettingsScreenViewController: UIViewController {
     
     //    MARK: - Экземпляр AddTaskScreen
     
-    private lazy var settingsScreen: SettingsScreen = {
+    lazy var settingsScreen: SettingsScreen = {
         var view = SettingsScreen()
         view.delegate = self
         view.workDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
@@ -25,7 +25,7 @@ class SettingsScreenViewController: UIViewController {
     
 //    MARK: - Методы VC
     
-    private func showiPhoneSetups() {
+    func showiPhoneSetups() {
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
         
         if UIApplication.shared.canOpenURL(settingsUrl) {
@@ -35,7 +35,7 @@ class SettingsScreenViewController: UIViewController {
         }
     }
     
-    private func workSwitch() {
+    func workSwitch() {
         if self.settingsScreen.workSwitch.isOn {
             UserDefaults.standard.set(true, forKey: "notificationWorkTolerance")
         } else {
@@ -43,7 +43,7 @@ class SettingsScreenViewController: UIViewController {
         }
     }
     
-    private func breakSwitch() {
+    func breakSwitch() {
         if settingsScreen.breakSwitch.isOn {
             UserDefaults.standard.set(true, forKey: "notificationBreakTolerance")
         } else {
@@ -51,7 +51,7 @@ class SettingsScreenViewController: UIViewController {
         }
     }
     
-    private func allowNotifications() {
+    func allowNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             guard granted else { return }
             UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -73,42 +73,5 @@ class SettingsScreenViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         updateTimeToNotice()
-    }
-}
-
-
-//MARK: - Протокол делегата
-
-extension SettingsScreenViewController: SetupsProtocol {
-    func changeWorkSwitch() {
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
-            guard let self = self else { return }
-            if settings.authorizationStatus == .authorized {
-                self.workSwitch()
-            } else {
-                self.showiPhoneSetups()
-            }
-        }
-    }
-    
-    func changeBreakSwitch() {
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
-            guard let self = self else { return }
-            if settings.authorizationStatus == .authorized {
-                self.breakSwitch()
-            } else {
-                self.showiPhoneSetups()
-            }
-        }
-    }
-    
-    func updateTimeToNotice() {
-        let workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
-        UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
-        settingsScreen.workTimeDataLabel.text = timeIntToStringShort(time: workTime)
-        
-        let breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
-        UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
-        settingsScreen.breakTimeDataLabel.text = timeIntToStringShort(time: breakTime)
     }
 }
