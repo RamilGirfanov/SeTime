@@ -1,5 +1,5 @@
 //
-//  Total properties.swift
+//  Constants.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 19.06.2022.
