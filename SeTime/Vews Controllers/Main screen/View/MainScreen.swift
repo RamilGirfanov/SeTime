@@ -1,8 +1,8 @@
 //
-//  UIViewMainScreen.swift
+//  MainScreen.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 27.10.2022.
+//  Created by Рамиль Гирфанов on 16.12.2022.
 //
 
 import UIKit

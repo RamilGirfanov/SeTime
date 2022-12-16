@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74080349290A7F9F002AB91D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74080348290A7F9F002AB91D /* MainScreen.swift */; };
 		7408034B290AA260002AB91D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* Model.swift */; };
 		7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034D290AC14F002AB91D /* AddTaskScreen.swift */; };
 		7408035029113820002AB91D /* DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034F29113820002AB91D /* DatePickerScreen.swift */; };
@@ -19,6 +18,7 @@
 		744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */; };
 		744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */; };
 		74722CE1294D0B0D0089EBE9 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */; };
+		74722CE3294D0CCE0089EBE9 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74722CE2294D0CCE0089EBE9 /* MainScreen.swift */; };
 		74C5F3C529469D40008F0E5B /* MainScreen Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5F3C429469D40008F0E5B /* MainScreen Protocol.swift */; };
 		74C5F3C729469F11008F0E5B /* AddTaskScreenVC Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5F3C629469F11008F0E5B /* AddTaskScreenVC Protocol.swift */; };
 		74C5F3C929469F35008F0E5B /* DefinitionTaskScreenVC Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5F3C829469F35008F0E5B /* DefinitionTaskScreenVC Protocol.swift */; };
@@ -43,7 +43,6 @@
 		74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BA286593E50008B57C /* AppDelegate.swift */; };
 		74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BB286593E50008B57C /* SceneDelegate.swift */; };
 		74ED60C4286593E50008B57C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60BD286593E50008B57C /* Constants.swift */; };
-		74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60C9286594370008B57C /* MainScreenViewController.swift */; };
 		74ED60DA286594F10008B57C /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60D5286594F10008B57C /* TaskCell.swift */; };
 		74ED60EE286D350C0008B57C /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60ED286D350C0008B57C /* DatePickerViewController.swift */; };
 		74ED60F0286D35430008B57C /* HistoryScreanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */; };
@@ -51,7 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		74080348290A7F9F002AB91D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7408034D290AC14F002AB91D /* AddTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
 		7408034F29113820002AB91D /* DatePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerScreen.swift; sourceTree = "<group>"; };
@@ -63,6 +61,7 @@
 		744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreen.swift; sourceTree = "<group>"; };
 		744F56B72926EFD700D242F7 /* DefinitionTaskScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreenVC.swift; path = "SeTime/Vews Controllers/Main screen/Controller/MainScreenVC.swift"; sourceTree = SOURCE_ROOT; };
+		74722CE2294D0CCE0089EBE9 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreen.swift; path = "SeTime/Vews Controllers/Main screen/View/MainScreen.swift"; sourceTree = SOURCE_ROOT; };
 		74AC63DA2843C6EB00CAE0F5 /* SeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AC63EB2843C6EC00CAE0F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74C5F3C429469D40008F0E5B /* MainScreen Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MainScreen Protocol.swift"; path = "SeTime/Vews Controllers/Main screen/Controller/MainScreen Protocol.swift"; sourceTree = SOURCE_ROOT; };
@@ -88,7 +87,6 @@
 		74ED60BA286593E50008B57C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74ED60BB286593E50008B57C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		74ED60BD286593E50008B57C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		74ED60C9286594370008B57C /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		74ED60D5286594F10008B57C /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		74ED60ED286D350C0008B57C /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		74ED60EF286D35430008B57C /* HistoryScreanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreanViewController.swift; sourceTree = "<group>"; };
@@ -326,7 +324,7 @@
 		74ED60C8286594370008B57C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				74080348290A7F9F002AB91D /* MainScreen.swift */,
+				74722CE2294D0CCE0089EBE9 /* MainScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,7 +341,6 @@
 		74ED60CC286594C10008B57C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				74ED60C9286594370008B57C /* MainScreenViewController.swift */,
 				74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */,
 				74C5F3C429469D40008F0E5B /* MainScreen Protocol.swift */,
 				74C5F3C629469F11008F0E5B /* AddTaskScreenVC Protocol.swift */,
@@ -459,12 +456,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				74C5F3C729469F11008F0E5B /* AddTaskScreenVC Protocol.swift in Sources */,
-				74080349290A7F9F002AB91D /* MainScreen.swift in Sources */,
 				74C5F3DB2946A257008F0E5B /* SettingsScreen Protocol.swift in Sources */,
 				74C5F3CB29469F68008F0E5B /* EditTaskScreenVC Protocol.swift in Sources */,
 				74C5F3CF2946A0D0008F0E5B /* DefinitionTaskScreen Protocol.swift in Sources */,
 				741FDF082921653B00F36193 /* DayModel.swift in Sources */,
-				74ED60CA286594370008B57C /* MainScreenViewController.swift in Sources */,
 				74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */,
 				744F56B82926EFD700D242F7 /* DefinitionTaskScreenViewController.swift in Sources */,
 				744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */,
@@ -483,6 +478,7 @@
 				74C5F3D92946A1E6008F0E5B /* EditTaskScreenVC2 Protocol.swift in Sources */,
 				74ED60DA286594F10008B57C /* TaskCell.swift in Sources */,
 				7408034B290AA260002AB91D /* Model.swift in Sources */,
+				74722CE3294D0CCE0089EBE9 /* MainScreen.swift in Sources */,
 				74C5F3D72946A1B8008F0E5B /* DefinitionTaskScreenVC2 Protocol.swift in Sources */,
 				74E79069288AF0C8000BAC0B /* AddTaskScreenViewController.swift in Sources */,
 				74722CE1294D0B0D0089EBE9 /* MainScreenVC.swift in Sources */,
