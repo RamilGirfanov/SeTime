@@ -1,5 +1,5 @@
 //
-//  EditTaskScreenViewController.swift
+//  EditTaskScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 20.11.2022.
@@ -11,7 +11,7 @@ protocol SaveTasksProtocol: AnyObject {
     func saveTask (taskIndex: Int, name: String, definition: String)
 }
 
-class EditTaskScreenViewController: UIViewController {
+class EditTaskScreenVC: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     

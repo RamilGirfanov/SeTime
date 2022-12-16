@@ -15,7 +15,7 @@ class NavigationController: UINavigationController {
     }
     
     private func setupNC() {
-        let mainVC = MainScreenViewController()
+        let mainVC = MainScreenVC()
         mainVC.title = NSLocalizedString("mainScreenTitle", comment: "")
         mainVC.navigationItem.largeTitleDisplayMode = .automatic
         
@@ -31,7 +31,7 @@ class NavigationController: UINavigationController {
     }
     
     @objc private func datePickerScreen() {
-        let calendarVC = DatePickerScreenViewController()
+        let calendarVC = DatePickerScreenVC()
         calendarVC.title = NSLocalizedString("datePickerScreenTitle", comment: "")
         present(calendarVC, animated: true)
         }

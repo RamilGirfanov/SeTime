@@ -48,19 +48,6 @@ extension UIButton {
     }
 }
 
-//Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
-extension UIViewController {
-    func setupToHideKeyboardOnTapOnView() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
 //Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)

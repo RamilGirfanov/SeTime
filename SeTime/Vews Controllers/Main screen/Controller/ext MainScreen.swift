@@ -1,17 +1,16 @@
 //
-//  MainScreen Protocol.swift
+//  ext MainScreen.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 //MARK: - Протокол делегата MainScreen
 
-extension MainScreenViewController: ManageTimers {
-    
+extension MainScreenVC: ManageTimers {
     func startWorkTimer() {
         model.startWorkTimer()
         
@@ -86,15 +85,19 @@ extension MainScreenViewController: ManageTimers {
     }
     
     func addTask() {
-        let taskAddVC = AddTaskScreenViewController()
+        let taskAddVC = AddTaskScreenVC()
         taskAddVC.delegate = self
         present(taskAddVC, animated: true)
     }
-    
+}
+
+//MARK: - Расширение функционала для MainScreen
+
+extension MainScreenVC {
     func showTaskDifinition(index: Int) {
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[index]
         
-        let definitionTaskVC = DefinitionTaskScreenViewController()
+        let definitionTaskVC = DefinitionTaskScreenVC()
         definitionTaskVC.taskIndex = index
         definitionTaskVC.name = task.name
         definitionTaskVC.startTime = task.startTime
@@ -137,5 +140,68 @@ extension MainScreenViewController: ManageTimers {
 //        Устанавливает в лейбл задачи ее название
         mainScreen.taskTimeTextLabel.text = task.name
         mainScreen.taskTimeDataLabel.text = timeIntToString(time: task.duration)
+    }
+}
+
+//    MARK: - Расширение UITableViewDataSource
+
+extension MainScreenVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        
+        var tasks: [Task] = []
+        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.forEach { tasks.append($0) }
+        
+        cell.pullCell(taskData: tasks[indexPath.row])
+        
+        return cell
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDelegate
+
+extension MainScreenVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showTaskDifinition(index: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
+            self.deleteTask(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let restart = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
+            self.restartTask(index: indexPath.row)
+            completionHandler(true)
+        }
+        
+        restart.backgroundColor = mainColorTheme
+        restart.image = UIImage(systemName: "play.fill")
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [restart])
+
+        return swipeActions
     }
 }

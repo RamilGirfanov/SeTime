@@ -1,5 +1,5 @@
 //
-//  AddTaskScreen Protocol.swift
+//  ext AddTaskScreen.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.
@@ -10,7 +10,7 @@ import Foundation
 
 //MARK: - Протокол делегата AddTaskScreen
 
-extension AddTaskScreenViewController: AddTaskProtocol {
+extension AddTaskScreenVC: AddTaskProtocol {
     func addTask() {
         
 //        Проверка на введеное название задачи

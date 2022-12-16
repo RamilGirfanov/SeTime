@@ -1,5 +1,5 @@
 //
-//  EditTaskScreenVC2 Protocol.swift
+//  ext SaveTasksProtocol.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.
@@ -10,9 +10,9 @@ import RealmSwift
 
 //MARK: - Протокол делегата EditTaskScreen
 
-extension HistoryScreenViewController: SaveTasksProtocol {
+extension MainScreenVC: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {
-        RealmManager.shared.updateTask(date: date, index: taskIndex, name: name, definition: definition)
-        historyScreen.tasksTableView.reloadData()
+        RealmManager.shared.updateTask(date: model.date, index: taskIndex, name: name, definition: definition)
+        mainScreen.tasksTableView.reloadData()
     }
 }

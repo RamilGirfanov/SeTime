@@ -1,5 +1,5 @@
 //
-//  SettingsScreen Protocol.swift
+//  ext SettingsScreen.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.

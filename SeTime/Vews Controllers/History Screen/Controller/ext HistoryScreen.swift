@@ -1,5 +1,5 @@
 //
-//  HistoryScreen Protocol.swift
+//  ext HistoryScreen.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.
@@ -10,13 +10,13 @@ import RealmSwift
 
 //MARK: - Протокол делегата HistoryScreen
 
-extension HistoryScreenViewController: HistoryManager {
+extension HistoryScreenVC: HistoryManager {
     func getDay() -> Day {
         day
     }
         
     func showTaskDifinition(index: Int) {
-        let taskDefinitionVC = DefinitionTaskScreenViewController()
+        let taskDefinitionVC = DefinitionTaskScreenVC()
         
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!.tasks[index]
         

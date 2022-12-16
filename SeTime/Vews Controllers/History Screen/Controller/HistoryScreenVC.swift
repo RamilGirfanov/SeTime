@@ -1,5 +1,5 @@
 //
-//  HistoryScreanViewController.swift
+//  HistoryScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 30.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryScreenViewController: UIViewController {
+class HistoryScreenVC: UIViewController {
     
     var date = Date()
         
@@ -54,6 +54,6 @@ class HistoryScreenViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTableView, object: nil)
+        NotificationCenter.default.post(name: MainScreenVC.notificationTaskTableView, object: nil)
     }
 }
