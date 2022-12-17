@@ -37,7 +37,7 @@ class NavigationController: UINavigationController {
         }
     
     @objc private func settingsScreen() {
-        let settingsSC = SettingsScreenViewController()
+        let settingsSC = SettingsScreenVC()
         settingsSC.title = NSLocalizedString("settings", comment: "")
         present(settingsSC, animated: true)
     }

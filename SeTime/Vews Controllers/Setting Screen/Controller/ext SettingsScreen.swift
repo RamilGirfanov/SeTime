@@ -10,7 +10,7 @@ import UserNotifications
 
 //MARK: - Протокол делегата SettingsScreen
 
-extension SettingsScreenViewController: SetupsProtocol {
+extension SettingsScreenVC: SetupsProtocol {
     func changeWorkSwitch() {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             guard let self = self else { return }
