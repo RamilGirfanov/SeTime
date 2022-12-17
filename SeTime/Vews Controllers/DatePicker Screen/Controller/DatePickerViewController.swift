@@ -1,5 +1,5 @@
 //
-//  DatePickerViewController.swift
+//  DatePickerScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 30.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DatePickerScreenViewController: UIViewController {
+class DatePickerScreenVC: UIViewController {
     
     //    MARK: - Экземпляр MainScreen
     

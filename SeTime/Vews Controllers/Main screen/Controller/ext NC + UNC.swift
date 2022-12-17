@@ -1,85 +1,45 @@
 //
-//  ViewController.swift
+//  ext NC + UNC.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 30.05.2022.
+//  Created by Рамиль Гирфанов on 17.12.2022.
 //
 
-import UIKit
-import RealmSwift
+import Foundation
 import UserNotifications
 
-class MainScreenViewController: UIViewController {
-    
-//    MARK: - Экземпляр MainScreen
-    
-    lazy var mainScreen: MainScreen = {
-        let view = MainScreen()
-        view.delegate = self
-        return view
-    }()
-    
-    
-//    MARK: - Экземпляр модели
-    
-    lazy var model = Model()
-    
+extension MainScreenVC {
     
 //    MARK: - NotificationCenter для обновления UIView
     
-    static let notificationUpdateTime = Notification.Name("updateTime")
-    static let notificationTaskTime = Notification.Name("taskTime")
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
     static let notificationTaskTableView = Notification.Name("tableView")
     static let notificationCheckDay = Notification.Name("checkDay")
     
-    private func setupNC() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateTime),
-                                               name: MainScreenViewController.notificationUpdateTime,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateTaskTime),
-                                               name: MainScreenViewController.notificationTaskTime,
-                                               object: nil)
-        
+    func setupNC() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimers),
-                                               name: MainScreenViewController.notificationSceneDidDisconnect,
+                                               name: MainScreenVC.notificationSceneDidDisconnect,
                                                object: nil)
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTaskTableView),
-                                               name: MainScreenViewController.notificationTaskTableView,
+                                               name: MainScreenVC.notificationTaskTableView,
                                                object: nil)
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDay),
-                                               name: MainScreenViewController.notificationCheckDay,
+                                               name: MainScreenVC.notificationCheckDay,
                                                object: nil)
     }
     
-    @objc private func updateTime() {
-        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
-        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-    }
-        
-    @objc private func updateTaskTime() {
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
-    }
-    
-    @objc private func stopTimers() {
+    @objc func stopTimers() {
         stop()
     }
     
-    @objc private func reloadTaskTableView() {
+    @objc func reloadTaskTableView() {
         mainScreen.tasksTableView.reloadData()
     }
     
-//    Функционал для проверки дня
-    @objc private func checkDay() {
+    @objc func checkDay() {
         guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
         
         let currentDate = getShortDate(date: Date())
@@ -162,7 +122,7 @@ class MainScreenViewController: UIViewController {
         case breakNotice
         case allNotice
     }
-
+    
     func cancelNotification(notificationType: NotificationType) {
         switch notificationType {
         case .workNotice:
@@ -173,25 +133,12 @@ class MainScreenViewController: UIViewController {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         }
     }
-    
-//    MARK: - Жизненный цикл
-    
-    override func loadView() {
-        view = mainScreen
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNC()
-        checkDay()
-        UNUserNotificationCenter.current().delegate = self
-    }
 }
 
 
 //MARK: - Расширение для UNUserNotificationCenter
 
-extension MainScreenViewController: UNUserNotificationCenterDelegate {
+extension MainScreenVC: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound])
     }

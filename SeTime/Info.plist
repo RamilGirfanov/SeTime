@@ -9,7 +9,7 @@
 	<key>workTimeToNotice</key>
 	<integer>0</integer>
 	<key>breakTimeToNotice</key>
-	<integer>900</integer>
+	<integer>0</integer>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
