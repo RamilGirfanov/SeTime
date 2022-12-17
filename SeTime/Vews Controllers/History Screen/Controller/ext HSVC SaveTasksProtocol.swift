@@ -12,7 +12,10 @@ import RealmSwift
 
 extension HistoryScreenVC: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {
-        RealmManager.shared.updateTask(date: date, index: taskIndex, name: name, definition: definition)
+        RealmManager.shared.updateTask(date: date,
+                                       index: taskIndex,
+                                       name: name,
+                                       definition: definition)
         historyScreen.tasksTableView.reloadData()
     }
 }
