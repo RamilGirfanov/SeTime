@@ -8,6 +8,11 @@
 import Foundation
 import RealmSwift
 
+protocol UpdateTime: AnyObject {
+    func updateTime()
+    func updateTaskTime()
+}
+
 class Model {
     
     let date = getShortDate(date: Date())
@@ -27,6 +32,8 @@ class Model {
     var taskIndex = 0
           
     
+    weak var delegate: UpdateTime?
+    
 //    MARK: - Функции для управления WorkTimeManager
     
     func startWorkTimer() {
@@ -38,9 +45,8 @@ class Model {
             
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
-            
-//            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
+                        
+            self.delegate?.updateTime()
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -56,8 +62,7 @@ class Model {
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
-//            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
+            self.delegate?.updateTime()
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -65,13 +70,19 @@ class Model {
 
     func pauseWorkTimer() {
         workTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
         pauseTaskTimer()
     }
     
     func pauseBreakTimer() {
         breakTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
     }
 
     func stop() {
@@ -90,8 +101,7 @@ class Model {
             self.taskTime = Int(Date().timeIntervalSince(creationDate))
             self.taskTime += self.task.duration
                         
-//            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTime, object: nil)
+            self.delegate?.updateTaskTime()
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)
@@ -110,13 +120,16 @@ class Model {
             if taskWasRestart == false {
                 task.date = date
                 
-                RealmManager.shared.addTask(date: date, task: task)
+                RealmManager.shared.addTask(date: date,
+                                            task: task)
 
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0
             } else {
-                RealmManager.shared.updateTaskDuration(date: task.date, index: taskIndex, duration: task.duration)
+                RealmManager.shared.updateTaskDuration(date: task.date,
+                                                       index: taskIndex,
+                                                       duration: task.duration)
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0

@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
         
 //       Останавливает все таймеры
-        NotificationCenter.default.post(name: MainScreenViewController.notificationSceneDidDisconnect, object: nil)
+        NotificationCenter.default.post(name: MainScreenVC.notificationSceneDidDisconnect, object: nil)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        NotificationCenter.default.post(name: MainScreenViewController.notificationCheckDay, object: nil)
+        NotificationCenter.default.post(name: MainScreenVC.notificationCheckDay, object: nil)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

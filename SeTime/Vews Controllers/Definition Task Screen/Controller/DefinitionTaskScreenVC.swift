@@ -1,5 +1,5 @@
 //
-//  DefinitionTaskScreenViewController.swift
+//  DefinitionTaskScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 18.11.2022.
@@ -11,7 +11,7 @@ protocol EditTasksProtocol: AnyObject {
     func editTask(taskIndex: Int)
 }
 
-class DefinitionTaskScreenViewController: UIViewController {
+class DefinitionTaskScreenVC: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     

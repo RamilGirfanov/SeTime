@@ -1,5 +1,5 @@
 //
-//  TaskViewController.swift
+//  AddTaskScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 22.07.2022.
@@ -11,7 +11,7 @@ protocol AddTasksProtocol: AnyObject {
     func addTask (name: String, definition: String)
 }
 
-class AddTaskScreenViewController: UIViewController {
+class AddTaskScreenVC: UIViewController {
 
 //    MARK: - Экземпляр AddTaskScreen
     

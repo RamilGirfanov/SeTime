@@ -1,5 +1,5 @@
 //
-//  AddTaskScreenVC Protocol.swift
+//  ext AddTasksProtocol.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 12.12.2022.
@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - Протокол делегата AddTaskScreen
 
-extension MainScreenViewController: AddTasksProtocol {
+extension MainScreenVC: AddTasksProtocol {
     func addTask(name: String, definition: String) {
         
 //        Меняет видимости кнопки и вью задачи на главном экране
