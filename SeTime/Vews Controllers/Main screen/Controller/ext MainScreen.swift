@@ -114,7 +114,8 @@ extension MainScreenVC {
     }
     
     func deleteTask(index: Int) {
-        RealmManager.shared.deleteTask(date: model.date, index: index)
+        RealmManager.shared.deleteTask(date: model.date,
+                                       index: index)
     }
     
     func restartTask(index: Int) {
@@ -131,7 +132,8 @@ extension MainScreenVC {
         }
         
 //        Передает задачу в модель
-        model.restartTaskTimer(index: index, duration: task.duration)
+        model.restartTaskTimer(index: index,
+                               duration: task.duration)
 
 //        Меняет видимости кнопки и вью задачи на главном экране
         mainScreen.addTaskButton.isHidden = true

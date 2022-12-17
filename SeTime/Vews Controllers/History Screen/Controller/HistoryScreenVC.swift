@@ -15,7 +15,8 @@ class HistoryScreenVC: UIViewController {
 
     lazy var historyScreen: HistoryScreen = {
         let view = HistoryScreen()
-        view.delegate = self
+        view.tasksTableView.dataSource = self
+        view.tasksTableView.delegate = self
         view.historyLabel.text = getStringDate(date: date)
         return view
     }()

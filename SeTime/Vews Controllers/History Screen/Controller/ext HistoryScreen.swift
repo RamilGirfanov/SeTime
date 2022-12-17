@@ -5,16 +5,12 @@
 //  Created by Рамиль Гирфанов on 12.12.2022.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 //MARK: - Протокол делегата HistoryScreen
 
-extension HistoryScreenVC: HistoryManager {
-    func getDay() -> Day {
-        day
-    }
-        
+extension HistoryScreenVC {
     func showTaskDifinition(index: Int) {
         let taskDefinitionVC = DefinitionTaskScreenVC()
         
@@ -32,5 +28,51 @@ extension HistoryScreenVC: HistoryManager {
     
     func deleteTask(index: Int) {
         RealmManager.shared.deleteTask(date: date, index: index)
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDataSource
+
+extension HistoryScreenVC: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        day.tasks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        cell.pullCell(taskData: day.tasks[indexPath.row])
+        return cell
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDelegate
+
+extension HistoryScreenVC: UITableViewDelegate {
+    //    Возвращает динамическую высоту ячейки
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showTaskDifinition(index: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
+            self.deleteTask(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+
+        return swipeActions
     }
 }

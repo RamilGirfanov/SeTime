@@ -70,13 +70,19 @@ class Model {
 
     func pauseWorkTimer() {
         workTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
         pauseTaskTimer()
     }
     
     func pauseBreakTimer() {
         breakTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
     }
 
     func stop() {
@@ -114,13 +120,16 @@ class Model {
             if taskWasRestart == false {
                 task.date = date
                 
-                RealmManager.shared.addTask(date: date, task: task)
+                RealmManager.shared.addTask(date: date,
+                                            task: task)
 
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0
             } else {
-                RealmManager.shared.updateTaskDuration(date: task.date, index: taskIndex, duration: task.duration)
+                RealmManager.shared.updateTaskDuration(date: task.date,
+                                                       index: taskIndex,
+                                                       duration: task.duration)
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0
