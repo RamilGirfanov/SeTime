@@ -34,11 +34,17 @@ extension SettingsScreenVC: SetupsProtocol {
     }
     
     func updateTimeToNotice() {
-        let workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
+        var workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
+        if workTime == 0 {
+            workTime = 2400
+        }
         UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
         settingsScreen.workTimeDataLabel.text = timeIntToStringShort(time: workTime)
         
-        let breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
+        var breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
+        if breakTime == 0 {
+            breakTime = 900
+        }
         UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
         settingsScreen.breakTimeDataLabel.text = timeIntToStringShort(time: breakTime)
     }
