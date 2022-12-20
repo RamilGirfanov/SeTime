@@ -12,11 +12,21 @@ extension MainScreenVC {
     
 //    MARK: - NotificationCenter для обновления UIView
     
+    static let notificationUpdateTime = Notification.Name("updateTime")
+    static let notificationTaskTime = Notification.Name("taskTime")
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
     static let notificationTaskTableView = Notification.Name("tableView")
     static let notificationCheckDay = Notification.Name("checkDay")
     
     func setupNC() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTime),
+                                               name: MainScreenVC.notificationUpdateTime,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTaskTime),
+                                               name: MainScreenVC.notificationTaskTime,
+                                               object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stopTimers),
                                                name: MainScreenVC.notificationSceneDidDisconnect,
@@ -31,6 +41,16 @@ extension MainScreenVC {
                                                object: nil)
     }
     
+    @objc private func updateTime() {
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: Model.shared.totalTime)
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: Model.shared.workTime)
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: Model.shared.breakTime)
+    }
+        
+    @objc private func updateTaskTime() {
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: Model.shared.taskTime)
+    }
+
     @objc func stopTimers() {
         stop()
     }

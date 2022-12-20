@@ -15,7 +15,6 @@
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
 		742EB7EA293BB3E5005DF234 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */; };
 		742EB7EC293BB3FF005DF234 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7EB293BB3FF005DF234 /* SettingsScreenVC.swift */; };
-		7438FFEF294D2C2F00EB250A /* ext Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFEE294D2C2F00EB250A /* ext Model.swift */; };
 		7438FFF1294D2D7D00EB250A /* ext NC + UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF0294D2D7D00EB250A /* ext NC + UNC.swift */; };
 		7438FFF3294D320D00EB250A /* Keyboarb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF2294D320D00EB250A /* Keyboarb.swift */; };
 		7438FFF5294D3E2A00EB250A /* ext UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF4294D3E2A00EB250A /* ext UNC.swift */; };
@@ -63,7 +62,6 @@
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		742EB7EB293BB3FF005DF234 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
-		7438FFEE294D2C2F00EB250A /* ext Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ext Model.swift"; path = "SeTime/Vews Controllers/Main screen/Controller/ext Model.swift"; sourceTree = SOURCE_ROOT; };
 		7438FFF0294D2D7D00EB250A /* ext NC + UNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ext NC + UNC.swift"; path = "SeTime/Vews Controllers/Main screen/Controller/ext NC + UNC.swift"; sourceTree = SOURCE_ROOT; };
 		7438FFF2294D320D00EB250A /* Keyboarb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboarb.swift; sourceTree = "<group>"; };
 		7438FFF4294D3E2A00EB250A /* ext UNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext UNC.swift"; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 			children = (
 				74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */,
 				74C5F3C429469D40008F0E5B /* ext MainScreen.swift */,
-				7438FFEE294D2C2F00EB250A /* ext Model.swift */,
 				7438FFF0294D2D7D00EB250A /* ext NC + UNC.swift */,
 				74C5F3C629469F11008F0E5B /* ext AddTasksProtocol.swift */,
 				74C5F3C829469F35008F0E5B /* ext EditTasksProtocol.swift */,
@@ -483,7 +480,6 @@
 				74C5F3CD2946A071008F0E5B /* ext AddTaskScreen.swift in Sources */,
 				74C5F3D32946A15E008F0E5B /* ext DatePickerScreen.swift in Sources */,
 				74C5F3D12946A0FD008F0E5B /* ext EditTaskScreen.swift in Sources */,
-				7438FFEF294D2C2F00EB250A /* ext Model.swift in Sources */,
 				7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */,
 				74C8E533292ACACD00A470EA /* EditTaskScreenVC.swift in Sources */,
 				74ED60C4286593E50008B57C /* Constants.swift in Sources */,

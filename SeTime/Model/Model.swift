@@ -8,11 +8,6 @@
 import Foundation
 import RealmSwift
 
-protocol UpdateTime: AnyObject {
-    func updateTime()
-    func updateTaskTime()
-}
-
 class Model {
     
     static let shared = Model()
@@ -49,7 +44,6 @@ class Model {
         taskIndex = 0
     }
     
-    weak var delegate: UpdateTime?
     
 //    MARK: - Функции для управления WorkTimeManager
     
@@ -63,7 +57,8 @@ class Model {
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
                         
-            self.delegate?.updateTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -79,7 +74,8 @@ class Model {
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
-            self.delegate?.updateTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -118,7 +114,8 @@ class Model {
             self.taskTime = Int(Date().timeIntervalSince(creationDate))
             self.taskTime += self.task.duration
                         
-            self.delegate?.updateTaskTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationTaskTime, object: nil)
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)
