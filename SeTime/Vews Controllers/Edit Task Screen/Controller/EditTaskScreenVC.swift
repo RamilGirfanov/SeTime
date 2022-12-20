@@ -37,7 +37,7 @@ class EditTaskScreenVC: UIViewController {
     weak var delegate: SaveTasksProtocol?
     
     
-//    MARK: - Жизненный цикл
+//    MARK: - Lifecycle
     
     override func loadView() {
         view = editTaskScreen

@@ -224,11 +224,15 @@ class SettingsScreen: UIView {
     }
     
     @objc private func showWorkDatePicker() {
-        changeViewForWorkDatePicker()
+        UIView.animate(withDuration: 0.3) { [self] in
+            changeViewForWorkDatePicker()
+        }
     }
     
     @objc private func showBreakDatePicker() {
-        changeViewForBreakDatePicker()
+        UIView.animate(withDuration: 0.3) { [self] in
+            changeViewForBreakDatePicker()
+        }
     }
     
 //    MARK: - Настройка settingsScreen
@@ -253,6 +257,7 @@ class SettingsScreen: UIView {
     
     private var heightWorkPicker = NSLayoutConstraint()
     private var heightBreakPicker = NSLayoutConstraint()
+//    private var heightViewForBreakPicker = NSLayoutConstraint()
 
     private func layout() {
         addSubview(scrollView)
@@ -374,11 +379,13 @@ class SettingsScreen: UIView {
 
     private func changeViewForWorkDatePicker() {
         if workDatePickerShow {
+            workDatePicker.isHidden = true
             heightWorkPicker.constant = 0
             layoutIfNeeded()
             delegate?.updateTimeToNotice()
             workDatePickerShow = false
         } else {
+            workDatePicker.isHidden = false
             heightWorkPicker.constant = 200
             layoutIfNeeded()
             workDatePickerShow = true
@@ -387,11 +394,13 @@ class SettingsScreen: UIView {
     
     private func changeViewForBreakDatePicker() {
         if breakDatePickerShow {
+            breakDatePicker.isHidden = true
             heightBreakPicker.constant = 0
             layoutIfNeeded()
             delegate?.updateTimeToNotice()
             breakDatePickerShow = false
         } else {
+            breakDatePicker.isHidden = false
             heightBreakPicker.constant = 200
             layoutIfNeeded()
             breakDatePickerShow = true

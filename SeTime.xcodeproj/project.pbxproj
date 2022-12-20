@@ -11,7 +11,7 @@
 		7408034E290AC14F002AB91D /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034D290AC14F002AB91D /* AddTaskScreen.swift */; };
 		7408035029113820002AB91D /* DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034F29113820002AB91D /* DatePickerScreen.swift */; };
 		7408035229113EF4002AB91D /* HistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408035129113EF4002AB91D /* HistoryScrean.swift */; };
-		741FDF082921653B00F36193 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DayModel.swift */; };
+		741FDF082921653B00F36193 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DataObjects.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
 		742EB7EA293BB3E5005DF234 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */; };
 		742EB7EC293BB3FF005DF234 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EB7EB293BB3FF005DF234 /* SettingsScreenVC.swift */; };
@@ -19,6 +19,7 @@
 		7438FFF1294D2D7D00EB250A /* ext NC + UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF0294D2D7D00EB250A /* ext NC + UNC.swift */; };
 		7438FFF3294D320D00EB250A /* Keyboarb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF2294D320D00EB250A /* Keyboarb.swift */; };
 		7438FFF5294D3E2A00EB250A /* ext UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF4294D3E2A00EB250A /* ext UNC.swift */; };
+		7438FFF7294FC95A00EB250A /* Notifications Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7438FFF6294FC95A00EB250A /* Notifications Settings.plist */; };
 		744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */; };
 		744F56B82926EFD700D242F7 /* DefinitionTaskScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744F56B72926EFD700D242F7 /* DefinitionTaskScreenVC.swift */; };
 		74722CE1294D0B0D0089EBE9 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */; };
@@ -58,7 +59,7 @@
 		7408034D290AC14F002AB91D /* AddTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
 		7408034F29113820002AB91D /* DatePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerScreen.swift; sourceTree = "<group>"; };
 		7408035129113EF4002AB91D /* HistoryScrean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScrean.swift; sourceTree = "<group>"; };
-		741FDF072921653B00F36193 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
+		741FDF072921653B00F36193 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		742EB7E9293BB3E5005DF234 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		742EB7EB293BB3FF005DF234 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		7438FFF0294D2D7D00EB250A /* ext NC + UNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ext NC + UNC.swift"; path = "SeTime/Vews Controllers/Main screen/Controller/ext NC + UNC.swift"; sourceTree = SOURCE_ROOT; };
 		7438FFF2294D320D00EB250A /* Keyboarb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboarb.swift; sourceTree = "<group>"; };
 		7438FFF4294D3E2A00EB250A /* ext UNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext UNC.swift"; sourceTree = "<group>"; };
+		7438FFF6294FC95A00EB250A /* Notifications Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Notifications Settings.plist"; sourceTree = "<group>"; };
 		744F56B229258B9500D242F7 /* DefinitionTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreen.swift; sourceTree = "<group>"; };
 		744F56B72926EFD700D242F7 /* DefinitionTaskScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenVC.swift; sourceTree = "<group>"; };
 		74722CE0294D0B0D0089EBE9 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainScreenVC.swift; path = "SeTime/Vews Controllers/Main screen/Controller/MainScreenVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -132,7 +134,7 @@
 		741FDF0A2921654E00F36193 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				741FDF072921653B00F36193 /* DayModel.swift */,
+				741FDF072921653B00F36193 /* DataObjects.swift */,
 				741FDF0B2921701D00F36193 /* RealmManager.swift */,
 			);
 			path = Realm;
@@ -317,6 +319,7 @@
 			children = (
 				74ED60B8286593E50008B57C /* LaunchScreen.storyboard */,
 				74ED60B7286593E50008B57C /* Assets.xcassets */,
+				7438FFF6294FC95A00EB250A /* Notifications Settings.plist */,
 				74CCA8AC292FEF9D000D6B32 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -456,6 +459,7 @@
 			files = (
 				74ED60C0286593E50008B57C /* Assets.xcassets in Resources */,
 				74CCA8AA292FEF9D000D6B32 /* Localizable.strings in Resources */,
+				7438FFF7294FC95A00EB250A /* Notifications Settings.plist in Resources */,
 				74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,7 +475,7 @@
 				74C5F3DB2946A257008F0E5B /* ext SettingsScreen.swift in Sources */,
 				74C5F3CB29469F68008F0E5B /* ext SaveTasksProtocol.swift in Sources */,
 				74C5F3CF2946A0D0008F0E5B /* ext DefinitionTaskScreen.swift in Sources */,
-				741FDF082921653B00F36193 /* DayModel.swift in Sources */,
+				741FDF082921653B00F36193 /* DataObjects.swift in Sources */,
 				74C8E531292ACA7500A470EA /* EditTaskScreen.swift in Sources */,
 				744F56B82926EFD700D242F7 /* DefinitionTaskScreenVC.swift in Sources */,
 				744F56B329258B9500D242F7 /* DefinitionTaskScreen.swift in Sources */,
@@ -671,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = Ramil.Girfanov.SeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -708,7 +712,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = Ramil.Girfanov.SeTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

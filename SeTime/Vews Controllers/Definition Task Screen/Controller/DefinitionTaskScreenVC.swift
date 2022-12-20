@@ -41,7 +41,7 @@ class DefinitionTaskScreenVC: UIViewController {
     weak var delegate: EditTasksProtocol?
     
     
-//    MARK: - Жизненный цикл
+//    MARK: - Lifecycle
     
     override func loadView() {
         view = taskDefinitionScreen

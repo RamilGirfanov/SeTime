@@ -12,7 +12,6 @@ import RealmSwift
 
 extension HistoryScreenVC: EditTasksProtocol {
     func editTask(taskIndex: Int) {
-        
         let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!.tasks[taskIndex]
         
         let taskEditVC = EditTaskScreenVC()

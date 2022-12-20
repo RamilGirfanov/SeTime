@@ -12,7 +12,7 @@ import RealmSwift
 
 extension MainScreenVC: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {
-        RealmManager.shared.updateTask(date: model.date, index: taskIndex, name: name, definition: definition)
+        RealmManager.shared.updateTask(date: Model.shared.date, index: taskIndex, name: name, definition: definition)
         mainScreen.tasksTableView.reloadData()
     }
 }

@@ -40,37 +40,25 @@ extension MainScreenVC {
     }
     
     @objc func checkDay() {
-        guard !model.workTimer.isValid && !model.breakTimer.isValid else { return }
+        guard !Model.shared.workTimer.isValid && !Model.shared.breakTimer.isValid else { return }
         
         let currentDate = getShortDate(date: Date())
         
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
 //            Если день в БД есть
-            model.workTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.workTime
-            model.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
-            model.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
+            Model.shared.workTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.workTime
+            Model.shared.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
+            Model.shared.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
             
-            mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-            mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
-            mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
-            mainScreen.tasksTableView.reloadData()
+            mainScreen.currentDay(workTime: Model.shared.workTime, breakTime: Model.shared.breakTime, totalTime: Model.shared.totalTime)
         } else {
 //          Если дня в БД нет
             let day = Day()
             day.date = currentDate
             RealmManager.shared.saveDay(day: day)
-            model = Model()
+            Model.shared.reloadModel()
             
-//        Настройка видимости кнопок
-            mainScreen.workButton.isHidden = false
-            mainScreen.breakButton.isHidden = true
-            mainScreen.addTaskButton.isEnabled = false
-            
-//        Очистка экрана от данных
-            mainScreen.viewForTimeReview.workTimeDataLabel.text = "00:00:00"
-            mainScreen.viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
-            mainScreen.viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
-            mainScreen.tasksTableView.reloadData()
+            mainScreen.newDay()
         }
     }
     

@@ -15,7 +15,11 @@ protocol UpdateTime: AnyObject {
 
 class Model {
     
-    let date = getShortDate(date: Date())
+    static let shared = Model()
+    
+    private init() {}
+
+    var date = getShortDate(date: Date())
     
     var task = Task()
     
@@ -30,7 +34,20 @@ class Model {
     
     var taskWasRestart = false
     var taskIndex = 0
-          
+    
+    func reloadModel() {
+        date = getShortDate(date: Date())
+        task = Task()
+        workTimer = Timer()
+        breakTimer = Timer()
+        taskTimer = Timer()
+        workTime = 0
+        breakTime = 0
+        totalTime = 0
+        taskTime = 0
+        taskWasRestart = false
+        taskIndex = 0
+    }
     
     weak var delegate: UpdateTime?
     

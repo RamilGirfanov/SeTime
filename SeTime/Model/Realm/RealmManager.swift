@@ -22,6 +22,12 @@ class RealmManager {
         }
     }
     
+    func getTasks(date: Date) -> [Task] {
+        var tasks: [Task] = []
+        localRealm.objects(Day.self).filter("date == %@", date).first?.tasks.forEach { tasks.append($0) }
+        return tasks
+    }
+    
     func updateTime(date: Date, workTime: Int, breakTime: Int, totalTime: Int) {
         guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
         try! localRealm.write {

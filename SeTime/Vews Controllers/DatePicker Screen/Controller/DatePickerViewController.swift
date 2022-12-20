@@ -18,7 +18,7 @@ class DatePickerScreenVC: UIViewController {
     }()
     
     
-    //    MARK: - Жизненный цикл
+    //    MARK: - Lifecycle
     
     override func loadView() {
         view = datePickerScreen

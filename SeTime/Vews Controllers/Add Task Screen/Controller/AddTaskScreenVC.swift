@@ -27,7 +27,7 @@ class AddTaskScreenVC: UIViewController {
     weak var delegate: AddTasksProtocol?
     
     
-    //    MARK: - Жизненный цикл
+    //    MARK: - Lifecycle
     
     override func loadView() {
         view = addTaskScreen

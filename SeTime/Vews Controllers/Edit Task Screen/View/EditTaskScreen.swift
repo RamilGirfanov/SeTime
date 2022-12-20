@@ -18,6 +18,7 @@ class EditTaskScreen: AddTaskScreen {
     override func tap() {
         delegate2?.saveTask()
     }
+    
     func overrideClass() {
         screenLabel.text = NSLocalizedString("editTaskScreenTitle", comment: "")
         button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)

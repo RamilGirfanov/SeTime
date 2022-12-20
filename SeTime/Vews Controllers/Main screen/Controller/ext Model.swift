@@ -12,12 +12,12 @@ import Foundation
 
 extension MainScreenVC: UpdateTime {
     func updateTime() {
-        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: model.totalTime)
-        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: model.workTime)
-        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: model.breakTime)
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: Model.shared.totalTime)
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: Model.shared.workTime)
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: Model.shared.breakTime)
     }
     
     func updateTaskTime() {
-        mainScreen.taskTimeDataLabel.text = timeIntToString(time: model.taskTime)
+        mainScreen.taskTimeDataLabel.text = timeIntToString(time: Model.shared.taskTime)
     }
 }
