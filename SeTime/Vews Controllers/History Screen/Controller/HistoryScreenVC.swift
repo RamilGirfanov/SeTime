@@ -30,7 +30,6 @@ class HistoryScreenVC: UIViewController {
 //    MARK: - Настройка данных
     
     func setupData() {
-        
         if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
             
             day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
@@ -46,7 +45,7 @@ class HistoryScreenVC: UIViewController {
     }
     
     
-//    MARK: - Жизненный цикл
+//    MARK: - Lifecycle
             
     override func loadView() {
         view = historyScreen

@@ -35,7 +35,6 @@ extension HistoryScreenVC {
 //    MARK: - Расширение UITableViewDataSource
 
 extension HistoryScreenVC: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }

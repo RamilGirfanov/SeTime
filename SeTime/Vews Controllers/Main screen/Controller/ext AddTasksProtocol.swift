@@ -20,11 +20,11 @@ extension MainScreenVC: AddTasksProtocol {
         mainScreen.taskTimeTextLabel.text = name
         
 //        Устанавливает название и описание задачи в объект задачи
-        model.task.name = name
-        model.task.definition = definition
+        Model.shared.task.name = name
+        Model.shared.task.definition = definition
         
 //        Запускает таймер задачи
-        model.startTaskTimer()
-        model.task.startTime = getTime()
+        Model.shared.startTaskTimer()
+        Model.shared.task.startTime = getTime()
     }
 }

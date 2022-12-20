@@ -33,6 +33,7 @@ extension UIView {
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
+        setTitleColor(.secondaryLabel, for: .disabled)
         tintColor = .black
         backgroundColor = mainColorTheme
         layer.cornerRadius = totalCornerRadius
@@ -40,7 +41,8 @@ extension UIButton {
     }
     
     func inactiveButton() {
-        setTitleColor(.secondaryLabel, for: .normal)
+        setTitleColor(.black, for: .normal)
+        setTitleColor(.secondaryLabel, for: .disabled)
         tintColor = .secondaryLabel
         backgroundColor = .secondarySystemBackground
         layer.cornerRadius = totalCornerRadius

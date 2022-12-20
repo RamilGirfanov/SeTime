@@ -8,14 +8,13 @@
 import Foundation
 import RealmSwift
 
-protocol UpdateTime: AnyObject {
-    func updateTime()
-    func updateTaskTime()
-}
-
 class Model {
     
-    let date = getShortDate(date: Date())
+    static let shared = Model()
+    
+    private init() {}
+
+    var date = getShortDate(date: Date())
     
     var task = Task()
     
@@ -30,9 +29,21 @@ class Model {
     
     var taskWasRestart = false
     var taskIndex = 0
-          
     
-    weak var delegate: UpdateTime?
+    func reloadModel() {
+        date = getShortDate(date: Date())
+        task = Task()
+        workTimer = Timer()
+        breakTimer = Timer()
+        taskTimer = Timer()
+        workTime = 0
+        breakTime = 0
+        totalTime = 0
+        taskTime = 0
+        taskWasRestart = false
+        taskIndex = 0
+    }
+    
     
 //    MARK: - Функции для управления WorkTimeManager
     
@@ -46,7 +57,8 @@ class Model {
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
                         
-            self.delegate?.updateTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -62,7 +74,8 @@ class Model {
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
-            self.delegate?.updateTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -101,7 +114,8 @@ class Model {
             self.taskTime = Int(Date().timeIntervalSince(creationDate))
             self.taskTime += self.task.duration
                         
-            self.delegate?.updateTaskTime()
+//            Обновление UIView через NSNotificationCenter
+            NotificationCenter.default.post(name: MainScreenVC.notificationTaskTime, object: nil)
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)

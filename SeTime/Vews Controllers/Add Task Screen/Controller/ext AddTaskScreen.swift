@@ -12,7 +12,6 @@ import Foundation
 
 extension AddTaskScreenVC: AddTaskProtocol {
     func addTask() {
-        
 //        Проверка на введеное название задачи
         if !addTaskScreen.taskName.text.isEmpty {
             

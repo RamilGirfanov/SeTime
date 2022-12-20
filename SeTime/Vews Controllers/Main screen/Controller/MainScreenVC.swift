@@ -21,12 +21,7 @@ class MainScreenVC: UIViewController {
         return view
     }()
     
-    lazy var model: Model = {
-        let model = Model()
-        model.delegate = self
-        return model
-    }()
-
+    
 //    MARK: - Lifecycle
     
     override func loadView() {

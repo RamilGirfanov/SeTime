@@ -243,4 +243,25 @@ class MainScreen: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    Функции для инициирования нового или текущего дня
+    func newDay() {
+//        Настройка видимости кнопок
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        addTaskButton.isEnabled = false
+            
+//        Очистка экрана от данных
+        viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+        viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
+        viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
+        tasksTableView.reloadData()
+    }
+    
+    func currentDay(workTime: Int, breakTime: Int, totalTime: Int) {
+        viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: workTime)
+        viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: breakTime)
+        viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: totalTime)
+        tasksTableView.reloadData()
+    }
 }

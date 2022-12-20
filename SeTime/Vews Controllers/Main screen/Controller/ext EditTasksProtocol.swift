@@ -13,7 +13,7 @@ import RealmSwift
 extension MainScreenVC: EditTasksProtocol {
     func editTask(taskIndex: Int) {
         
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", model.date).first!.tasks[taskIndex]
+        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", Model.shared.date).first!.tasks[taskIndex]
         
         let editTaskVC = EditTaskScreenVC()
         editTaskVC.taskIndex = taskIndex

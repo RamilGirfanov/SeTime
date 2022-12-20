@@ -35,16 +35,20 @@ extension SettingsScreenVC: SetupsProtocol {
     
     func updateTimeToNotice() {
         var workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
+        
         if workTime == 0 {
             workTime = 2400
         }
+        
         UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
         settingsScreen.workTimeDataLabel.text = timeIntToStringShort(time: workTime)
         
         var breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
+        
         if breakTime == 0 {
             breakTime = 900
         }
+        
         UserDefaults.standard.set(breakTime, forKey: "breakTimeToNotice")
         settingsScreen.breakTimeDataLabel.text = timeIntToStringShort(time: breakTime)
     }
