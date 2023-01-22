@@ -97,6 +97,7 @@ extension MainScreenVC {
             }()
             
             let timeInterval = Double(UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+            print(timeInterval)
             
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
             
@@ -118,7 +119,7 @@ extension MainScreenVC {
             
             let timeInterval = Double(UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
             
             let breakTimeRequest = UNNotificationRequest(identifier: "Break notification", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(breakTimeRequest)
@@ -128,7 +129,6 @@ extension MainScreenVC {
     enum NotificationType {
         case workNotice
         case breakNotice
-        case allNotice
     }
     
     func cancelNotification(notificationType: NotificationType) {
@@ -137,8 +137,6 @@ extension MainScreenVC {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Work notification"])
         case .breakNotice:
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Break notification"])
-        case .allNotice:
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         }
     }
 }

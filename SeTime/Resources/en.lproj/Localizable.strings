@@ -33,13 +33,20 @@
 
 "settings" = "Settings";
 "enableNotifications" = "Enable notifications";
+"startWorkNotifications" = "Get started notifications";
 "breakTimeNotifications" = "Break time notifications";
 "workTimeNotifications" = "Work time notifications";
 "definitionSwitch" = "Allow the application to send notifications";
+
 "setupTime" = "Set notification time";
+
+"startWorkTimeNotifications" = "Getting started";
+"definitionWorkTime" = "The time when the application will remind you to get started";
+
 "timeToBreakTimeNotifications" = "Take a break";
 "timeToWorkTimeNotifications" = "Back to work";
 "definitionTime" = "The time after which the application will send a notification to take a break or return to work";
 
+"startWorkTime" = "It's time to get to work!";
 "timeToBreak" = "Time to take a break!";
 "timeToWork" = "Time to work!";

@@ -11,6 +11,17 @@ import UserNotifications
 //MARK: - Протокол делегата SettingsScreen
 
 extension SettingsScreenVC: SetupsProtocol {
+    func changeStartWorkSwitch() {
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            guard let self = self else { return }
+            if settings.authorizationStatus == .authorized {
+                self.startWorkSwitch()
+            } else {
+                self.showiPhoneSetups()
+            }
+        }
+    }
+    
     func changeWorkSwitch() {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             guard let self = self else { return }
@@ -34,6 +45,12 @@ extension SettingsScreenVC: SetupsProtocol {
     }
     
     func updateTimeToNotice() {
+        let startTime = timeDateToInt(date: settingsScreen.startWorkTimeDatePicker.date)
+                
+        UserDefaults.standard.set(startTime, forKey: "startTimeNotice")
+        settingsScreen.startWorkTimeDataLabel.text = timeIntToStringShort(time: startTime)
+        notificationStartWorkTime()
+        
         var workTime = timeDateToInt(date: settingsScreen.workDatePicker.date)
         
         if workTime == 0 {
@@ -42,6 +59,7 @@ extension SettingsScreenVC: SetupsProtocol {
         
         UserDefaults.standard.set(workTime, forKey: "workTimeToNotice")
         settingsScreen.workTimeDataLabel.text = timeIntToStringShort(time: workTime)
+        
         
         var breakTime = timeDateToInt(date: settingsScreen.breakDatePicker.date)
         

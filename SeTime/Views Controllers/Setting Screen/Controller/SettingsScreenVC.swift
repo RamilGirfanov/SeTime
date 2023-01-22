@@ -10,20 +10,22 @@ import UserNotifications
 
 final class SettingsScreenVC: UIViewController {
     
-    //    MARK: - Экземпляр AddTaskScreen
+//    MARK: - Экземпляр SettingScreen
     
     lazy var settingsScreen: SettingsScreen = {
         var view = SettingsScreen()
         view.delegate = self
+        view.startWorkTimeDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "startTimeNotice"))
+        view.startWorkTimeDataLabel.text = timeIntToStringShort(time: UserDefaults.standard.integer(forKey: "startTimeNotice"))
         view.workDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
-        view.breakDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
         view.workTimeDataLabel.text = timeIntToStringShort(time: UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+        view.breakDatePicker.date = timeToDate(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
         view.breakTimeDataLabel.text = timeIntToStringShort(time: UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
         return view
     }()
     
     
-    //    MARK: - Жизненный цикл
+//    MARK: - Lifecykle
     
     override func loadView() {
         view = settingsScreen

@@ -120,7 +120,8 @@ extension MainScreenVC: ManageTimers {
         Model.shared.stop()
         
 //        Уведоления
-        cancelNotification(notificationType: .allNotice)
+        cancelNotification(notificationType: .workNotice)
+        cancelNotification(notificationType: .breakNotice)
         
 //        Работа с View
         mainScreen.addTaskButton.inactiveButton()
