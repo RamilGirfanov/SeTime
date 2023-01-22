@@ -1,5 +1,5 @@
 //
-//  DefinitionTaskScreenViewController.swift
+//  DefinitionTaskScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 18.11.2022.
@@ -11,7 +11,7 @@ protocol EditTasksProtocol: AnyObject {
     func editTask(taskIndex: Int)
 }
 
-class DefinitionTaskScreenViewController: UIViewController {
+final class DefinitionTaskScreenVC: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     
@@ -25,7 +25,7 @@ class DefinitionTaskScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр DefinitionTaskScreen
     
-    private lazy var taskDefinitionScreen: DefinitionTaskScreen = {
+    lazy var taskDefinitionScreen: DefinitionTaskScreen = {
         let view = DefinitionTaskScreen()
         view.name.text = name
         view.startTime.text = startTime
@@ -41,19 +41,9 @@ class DefinitionTaskScreenViewController: UIViewController {
     weak var delegate: EditTasksProtocol?
     
     
-//    MARK: - Жизненный цикл
+//    MARK: - Lifecycle
     
     override func loadView() {
         view = taskDefinitionScreen
-    }
-}
-
-
-//MARK: - Протокол делегата
-
-extension DefinitionTaskScreenViewController: EditTaskProtocol {
-    func editTask() {
-        dismiss(animated: true)
-        delegate?.editTask(taskIndex: taskIndex)
     }
 }

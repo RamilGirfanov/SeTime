@@ -10,7 +10,11 @@ import RealmSwift
 
 class Model {
     
-    let date = getShortDate(date: Date())
+    static let shared = Model()
+    
+    private init() {}
+
+    var date = getShortDate(date: Date())
     
     var task = Task()
     
@@ -25,7 +29,21 @@ class Model {
     
     var taskWasRestart = false
     var taskIndex = 0
-          
+    
+    func reloadModel() {
+        date = getShortDate(date: Date())
+        task = Task()
+        workTimer = Timer()
+        breakTimer = Timer()
+        taskTimer = Timer()
+        workTime = 0
+        breakTime = 0
+        totalTime = 0
+        taskTime = 0
+        taskWasRestart = false
+        taskIndex = 0
+    }
+    
     
 //    MARK: - Функции для управления WorkTimeManager
     
@@ -38,9 +56,9 @@ class Model {
             
             self.totalTime = Int(Date().timeIntervalSince(creationDate))
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
-            
+                        
 //            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         workTimer.tolerance = 0.2
         RunLoop.current.add(workTimer, forMode: .common)
@@ -57,7 +75,7 @@ class Model {
             self.totalTime += RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", self.date).first?.totalTime ?? 0
             
 //            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationUpdateTime, object: nil)
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
         breakTimer.tolerance = 0.2
         RunLoop.current.add(breakTimer, forMode: .common)
@@ -65,13 +83,19 @@ class Model {
 
     func pauseWorkTimer() {
         workTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
         pauseTaskTimer()
     }
     
     func pauseBreakTimer() {
         breakTimer.invalidate()
-        RealmManager.shared.updateTime(date: date, workTime: workTime, breakTime: breakTime, totalTime: totalTime)
+        RealmManager.shared.updateTime(date: date,
+                                       workTime: workTime,
+                                       breakTime: breakTime,
+                                       totalTime: totalTime)
     }
 
     func stop() {
@@ -91,7 +115,7 @@ class Model {
             self.taskTime += self.task.duration
                         
 //            Обновление UIView через NSNotificationCenter
-            NotificationCenter.default.post(name: MainScreenViewController.notificationTaskTime, object: nil)
+            NotificationCenter.default.post(name: MainScreenVC.notificationTaskTime, object: nil)
         }
         taskTimer.tolerance = 0.2
         RunLoop.current.add(taskTimer, forMode: .common)
@@ -110,13 +134,16 @@ class Model {
             if taskWasRestart == false {
                 task.date = date
                 
-                RealmManager.shared.addTask(date: date, task: task)
+                RealmManager.shared.addTask(date: date,
+                                            task: task)
 
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0
             } else {
-                RealmManager.shared.updateTaskDuration(date: task.date, index: taskIndex, duration: task.duration)
+                RealmManager.shared.updateTaskDuration(date: task.date,
+                                                       index: taskIndex,
+                                                       duration: task.duration)
                 task = Task()
                 taskTimer = Timer()
                 taskTime = 0

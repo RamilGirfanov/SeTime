@@ -11,13 +11,14 @@ protocol SaveTaskProtocol: AnyObject {
     func saveTask()
 }
 
-class EditTaskScreen: AddTaskScreen {
+final class EditTaskScreen: AddTaskScreen {
     
     var delegate2: SaveTaskProtocol?
     
     override func tap() {
         delegate2?.saveTask()
     }
+    
     func overrideClass() {
         screenLabel.text = NSLocalizedString("editTaskScreenTitle", comment: "")
         button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)

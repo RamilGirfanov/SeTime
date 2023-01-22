@@ -11,7 +11,7 @@ protocol PresentHistory: AnyObject {
     func pushScreen()
 }
 
-class DatePickerScreen: UIView {
+final class DatePickerScreen: UIView {
 
     
 //    MARK: - UIObjects

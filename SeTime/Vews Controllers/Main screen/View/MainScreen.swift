@@ -1,8 +1,8 @@
 //
-//  UIViewMainScreen.swift
+//  MainScreen.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 27.10.2022.
+//  Created by Рамиль Гирфанов on 16.12.2022.
 //
 
 import UIKit
@@ -13,32 +13,28 @@ protocol ManageTimers: AnyObject {
     func stop()
     func stopTaskTimer()
     func addTask()
-    func showTaskDifinition(index: Int)
-    func getTasksData() -> [Task]
-    func deleteTask(index: Int)
-    func restartTask(index: Int)
 }
 
-class MainScreen: UIView {
+final class MainScreen: UIView {
     
 //    MARK: - UIObjects
         
-    var viewForTimeReview: ViewForTimeReview = {
-        var viewForTimeReview = ViewForTimeReview()
+    let viewForTimeReview: ViewForTimeReview = {
+        let viewForTimeReview = ViewForTimeReview()
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
         return viewForTimeReview
     }()
     
-    var workButton: UIButton = {
-        var workButton = UIButton()
+    let workButton: UIButton = {
+        let workButton = UIButton()
         workButton.setTitle(NSLocalizedString("work", comment: ""), for: .normal)
         workButton.activeButton()
         workButton.translatesAutoresizingMaskIntoConstraints = false
         return workButton
     }()
     
-    var breakButton: UIButton = {
-        var breakButton = UIButton()
+    let breakButton: UIButton = {
+        let breakButton = UIButton()
         breakButton.setTitle(NSLocalizedString("break", comment: ""), for: .normal)
         breakButton.isHidden = true
         breakButton.activeButton()
@@ -46,64 +42,64 @@ class MainScreen: UIView {
         return breakButton
     }()
     
-    var stopButton: UIButton = {
-        var stopButton = UIButton()
+    let stopButton: UIButton = {
+        let stopButton = UIButton()
         stopButton.setTitle(NSLocalizedString("stop", comment: ""), for: .normal)
         stopButton.inactiveButton()
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         return stopButton
     }()
     
-    var addTaskButton: UIButton = {
-        var addTaskButton = UIButton()
+    let addTaskButton: UIButton = {
+        let addTaskButton = UIButton()
         addTaskButton.setTitle(NSLocalizedString("addTask", comment: ""), for: .normal)
         addTaskButton.inactiveButton()
         addTaskButton.translatesAutoresizingMaskIntoConstraints = false
         return addTaskButton
     }()
     
-    var taskTimerView: UIView = {
-        var taskTimerView = UIView()
+    let taskTimerView: UIView = {
+        let taskTimerView = UIView()
         taskTimerView.layer.cornerRadius = totalCornerRadius
         taskTimerView.translatesAutoresizingMaskIntoConstraints = false
         taskTimerView.isHidden = true
         return taskTimerView
     }()
     
-    var taskTimerSubView: UIView = {
-        var taskTimerSubView = UIView()
+    let taskTimerSubView: UIView = {
+        let taskTimerSubView = UIView()
         taskTimerSubView.backgroundColor = .secondarySystemBackground
         taskTimerSubView.layer.cornerRadius = totalCornerRadius
         taskTimerSubView.translatesAutoresizingMaskIntoConstraints = false
         return taskTimerSubView
     }()
     
-    var taskTimeTextLabel: UILabel = {
-        var taskTimeTextLabel = UILabel()
+    let taskTimeTextLabel: UILabel = {
+        let taskTimeTextLabel = UILabel()
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         taskTimeTextLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeTextLabel
     }()
     
-    var taskTimeDataLabel: UILabel = {
-        var taskTimeDataLabel = UILabel()
-        taskTimeDataLabel.text = ""
+    let taskTimeDataLabel: UILabel = {
+        let taskTimeDataLabel = UILabel()
+        taskTimeDataLabel.text = "00:00:00"
         taskTimeDataLabel.font = .systemFont(ofSize: textSize2, weight: .regular)
         taskTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return taskTimeDataLabel
     }()
     
-    private var stackForTaskLabel: UIStackView = {
-        var stackForTaskLabel = UIStackView()
+    private let stackForTaskLabel: UIStackView = {
+        let stackForTaskLabel = UIStackView()
         stackForTaskLabel.axis = .vertical
         stackForTaskLabel.distribution = .fillEqually
         stackForTaskLabel.translatesAutoresizingMaskIntoConstraints = false
         return stackForTaskLabel
     }()
     
-    var stopTaskButton: UIButton = {
-        var stopTaskButton = UIButton()
+    let stopTaskButton: UIButton = {
+        let stopTaskButton = UIButton()
         stopTaskButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
         stopTaskButton.activeButton()
         stopTaskButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,8 +111,6 @@ class MainScreen: UIView {
         tasksTableView.backgroundColor = .secondarySystemBackground
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
-        tasksTableView.dataSource = self
-        tasksTableView.delegate = self
         tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
         tasksTableView.separatorInset = .zero
         return tasksTableView
@@ -166,7 +160,7 @@ class MainScreen: UIView {
     
 //    MARK: - Layout
     
-    private func layout() {
+    func layout() {
         [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { addSubview($0) }
         
         [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
@@ -243,101 +237,31 @@ class MainScreen: UIView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         setupButtons()
-        setupToHideKeyboardOnTapOnView()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-
-//    MARK: - Расширение UITableViewDataSource
-
-extension MainScreen: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        delegate?.getTasksData().count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
-        
-        guard let tasks = delegate?.getTasksData() else { return cell }
-        cell.pullCell(taskData: tasks[indexPath.row])
-        
-        return cell
-    }
-}
-
-
-//    MARK: - Расширение UITableViewDelegate
-
-extension MainScreen: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+//    Функции для инициирования нового или текущего дня
+    func newDay() {
+//        Настройка видимости кнопок
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        addTaskButton.isEnabled = false
+            
+//        Очистка экрана от данных
+        viewForTimeReview.workTimeDataLabel.text = "00:00:00"
+        viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
+        viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
+        tasksTableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.showTaskDifinition(index: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-                
-        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
-
-            self.delegate?.deleteTask(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-
-        return swipeActions
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let restart = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
-            self.delegate?.restartTask(index: indexPath.row)
-            completionHandler(true)
-
-        }
-        restart.backgroundColor = mainColorTheme
-        restart.image = UIImage(systemName: "play.fill")
-        
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [restart])
-
-        return swipeActions
-    }
-}
-
-
-//  MARK: - Расширение для клавиатуры что бы она скрывалась по нажанию на return
-
-extension MainScreen: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        endEditing(true)
-        return true
-    }
-}
-
-//  MARK: - Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
-
-extension MainScreen {
-    func setupToHideKeyboardOnTapOnView() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        addGestureRecognizer(tap)
-    }
-
-    @objc private func dismissKeyboard() {
-        endEditing(true)
+    func currentDay(workTime: Int, breakTime: Int, totalTime: Int) {
+        viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: workTime)
+        viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: breakTime)
+        viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: totalTime)
+        tasksTableView.reloadData()
     }
 }

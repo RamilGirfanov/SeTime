@@ -11,7 +11,7 @@ protocol EditTaskProtocol: AnyObject {
     func editTask()
 }
 
-class DefinitionTaskScreen: UIView {
+final class DefinitionTaskScreen: UIView {
 
 //    MARK: - UIObjects
     

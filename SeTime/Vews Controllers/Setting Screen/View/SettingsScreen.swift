@@ -13,9 +13,9 @@ protocol SetupsProtocol: AnyObject {
     func updateTimeToNotice()
 }
 
-class SettingsScreen: UIView {
+final class SettingsScreen: UIView {
     
-    //    MARK: - UIObjects
+//    MARK: - UIObjects
     
     private var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -224,11 +224,15 @@ class SettingsScreen: UIView {
     }
     
     @objc private func showWorkDatePicker() {
-        changeViewForWorkDatePicker()
+        UIView.animate(withDuration: 0.3) { [self] in
+            changeViewForWorkDatePicker()
+        }
     }
     
     @objc private func showBreakDatePicker() {
-        changeViewForBreakDatePicker()
+        UIView.animate(withDuration: 0.3) { [self] in
+            changeViewForBreakDatePicker()
+        }
     }
     
 //    MARK: - Настройка settingsScreen
@@ -253,6 +257,7 @@ class SettingsScreen: UIView {
     
     private var heightWorkPicker = NSLayoutConstraint()
     private var heightBreakPicker = NSLayoutConstraint()
+//    private var heightViewForBreakPicker = NSLayoutConstraint()
 
     private func layout() {
         addSubview(scrollView)
@@ -363,8 +368,8 @@ class SettingsScreen: UIView {
             
             definitionTime.topAnchor.constraint(equalTo: timeStack.bottomAnchor, constant: safeIndent2),
             definitionTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
-            definitionTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
-            definitionTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
+            definitionTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2)
+//            definitionTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
         ])
     }
     
@@ -374,11 +379,13 @@ class SettingsScreen: UIView {
 
     private func changeViewForWorkDatePicker() {
         if workDatePickerShow {
+            workDatePicker.isHidden = true
             heightWorkPicker.constant = 0
             layoutIfNeeded()
             delegate?.updateTimeToNotice()
             workDatePickerShow = false
         } else {
+            workDatePicker.isHidden = false
             heightWorkPicker.constant = 200
             layoutIfNeeded()
             workDatePickerShow = true
@@ -387,11 +394,13 @@ class SettingsScreen: UIView {
     
     private func changeViewForBreakDatePicker() {
         if breakDatePickerShow {
+            breakDatePicker.isHidden = true
             heightBreakPicker.constant = 0
             layoutIfNeeded()
             delegate?.updateTimeToNotice()
             breakDatePickerShow = false
         } else {
+            breakDatePicker.isHidden = false
             heightBreakPicker.constant = 200
             layoutIfNeeded()
             breakDatePickerShow = true

@@ -1,5 +1,5 @@
 //
-//  EditTaskScreenViewController.swift
+//  EditTaskScreenVC.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 20.11.2022.
@@ -11,7 +11,7 @@ protocol SaveTasksProtocol: AnyObject {
     func saveTask (taskIndex: Int, name: String, definition: String)
 }
 
-class EditTaskScreenViewController: UIViewController {
+final class EditTaskScreenVC: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     
@@ -23,7 +23,7 @@ class EditTaskScreenViewController: UIViewController {
     
 //    MARK: - Экземпляр TaskAddScreen
     
-    private lazy var editTaskScreen: EditTaskScreen = {
+    lazy var editTaskScreen: EditTaskScreen = {
         let view = EditTaskScreen()
         view.taskName.text = name
         view.taskDefinition.text = definition
@@ -37,26 +37,10 @@ class EditTaskScreenViewController: UIViewController {
     weak var delegate: SaveTasksProtocol?
     
     
-//    MARK: - Жизненный цикл
+//    MARK: - Lifecycle
     
     override func loadView() {
         view = editTaskScreen
         setupToHideKeyboardOnTapOnView()
-    }
-}
-
-
-//MARK: - Протокол делегата
-
-extension EditTaskScreenViewController: SaveTaskProtocol {
-    func saveTask() {
-        
-//        Проверка на введеное название задачи
-        if !editTaskScreen.taskName.text.isEmpty {
-            delegate?.saveTask(taskIndex: taskIndex, name: editTaskScreen.taskName.text, definition: editTaskScreen.taskDefinition.text ?? "")
-            dismiss(animated: true)
-        } else {
-            editTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")
-        }
     }
 }

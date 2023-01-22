@@ -7,13 +7,7 @@
 
 import UIKit
 
-protocol HistoryManager: AnyObject {
-    func getDay() -> Day
-    func showTaskDifinition(index: Int)
-    func deleteTask(index: Int)
-}
-
-class HistoryScreen: UIView {
+final class HistoryScreen: UIView {
 
 //    MARK: - UIObjects
     
@@ -36,17 +30,10 @@ class HistoryScreen: UIView {
         tasksTableView.backgroundColor = .secondarySystemBackground
         tasksTableView.layer.cornerRadius = totalCornerRadius
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
-        tasksTableView.dataSource = self
-        tasksTableView.delegate = self
         tasksTableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
         tasksTableView.separatorInset = .zero
         return tasksTableView
     }()
-    
-    
-//    MARK: - Delegate
-    
-    weak var delegate: HistoryManager?
     
 
 //    MARK: - Layout
@@ -84,58 +71,5 @@ class HistoryScreen: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
-//    MARK: - Расширение UITableViewDataSource
-
-extension HistoryScreen: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let day = delegate?.getDay()
-        return day?.tasks.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell        
-        if let day = delegate?.getDay() {
-            cell.pullCell(taskData: day.tasks[indexPath.row])
-            return cell
-        } else {
-            return cell
-        }
-    }
-}
-
-
-//    MARK: - Расширение UITableViewDelegate
-
-extension HistoryScreen: UITableViewDelegate {
-    //    Возвращает динамическую высоту ячейки
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.showTaskDifinition(index: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-                
-        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
-
-            self.delegate?.deleteTask(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-
-        return swipeActions
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Total properties.swift
+//  Constants.swift
 //  SeTime
 //
 //  Created by Рамиль Гирфанов on 19.06.2022.
@@ -33,6 +33,7 @@ extension UIView {
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
+        setTitleColor(.secondaryLabel, for: .disabled)
         tintColor = .black
         backgroundColor = mainColorTheme
         layer.cornerRadius = totalCornerRadius
@@ -40,24 +41,12 @@ extension UIButton {
     }
     
     func inactiveButton() {
-        setTitleColor(.secondaryLabel, for: .normal)
+        setTitleColor(.black, for: .normal)
+        setTitleColor(.secondaryLabel, for: .disabled)
         tintColor = .secondaryLabel
         backgroundColor = .secondarySystemBackground
         layer.cornerRadius = totalCornerRadius
         isEnabled = false
-    }
-}
-
-//Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
-extension UIViewController {
-    func setupToHideKeyboardOnTapOnView() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
 
