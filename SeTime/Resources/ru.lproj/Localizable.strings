@@ -33,13 +33,20 @@
 
 "settings" = "Настройки";
 "enableNotifications" = "Включить уведомления";
+"startWorkNotifications" = "Уведомления о работе";
 "breakTimeNotifications" = "Уведомления о перерывах";
 "workTimeNotifications" = "Уведомления о работе";
 "definitionSwitch" = "Разрешить приложению присылать уведомления";
-"setupTime" = "Настроить время до уведомлений";
+
+"setupTime" = "Настроить время уведомлений";
+
+"startWorkTimeNotifications" = "Начало работы";
+"definitionWorkTime" = "Время когда приложение напомнит приступить к работе";
+
 "timeToBreakTimeNotifications" = "Сделать перерыв";
 "timeToWorkTimeNotifications" = "Вернуться к работе";
 "definitionTime" = "Время по прошествии которого приложение пришлет уведомление сделать перерыв или вернуться к работе";
 
+"startWorkTime" = "Пора взяться за работу!";
 "timeToBreak" = "Время сделать перерыв!";
 "timeToWork" = "Время работать!";
