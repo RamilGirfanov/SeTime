@@ -65,7 +65,6 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
     
     func notificationStartWorkTime() {
         if UserDefaults.standard.bool(forKey: "notificationStartWorkTolerance") {
-            print("JDBVJSBDVLJKSDBVLDJSKVBJLSDVBDLJVBJDV")
             let content: UNMutableNotificationContent = {
                 let content = UNMutableNotificationContent()
                 content.title = "SeTime"
