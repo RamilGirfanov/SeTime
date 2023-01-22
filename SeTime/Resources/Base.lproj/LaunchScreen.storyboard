@@ -40,7 +40,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LSImage" width="1770" height="3955"/>
+        <image name="LSImage" width="1605" height="3956"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
