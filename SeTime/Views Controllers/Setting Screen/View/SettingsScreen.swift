@@ -32,7 +32,7 @@ final class SettingsScreen: UIView {
     
     private let screenLabel: UILabel = {
         let screenLabel = UILabel()
-        screenLabel.text = NSLocalizedString("settings", comment: "")
+        screenLabel.text = NSLocalizedString("settingsScreenTitle", comment: "")
         screenLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         screenLabel.translatesAutoresizingMaskIntoConstraints = false
         return screenLabel
@@ -151,7 +151,7 @@ final class SettingsScreen: UIView {
     
     private let startWorkTimeLabel: UILabel = {
         let startWorkTimeLabel = UILabel()
-        startWorkTimeLabel.text = NSLocalizedString("startWorkTimeNotifications", comment: "")
+        startWorkTimeLabel.text = NSLocalizedString("startWorkNotifications", comment: "")
         startWorkTimeLabel.font = .systemFont(ofSize: textSize2)
         startWorkTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         return startWorkTimeLabel
@@ -202,7 +202,7 @@ final class SettingsScreen: UIView {
     
     private let workTimeLabel: UILabel = {
         let workTimeLabel = UILabel()
-        workTimeLabel.text = NSLocalizedString("timeToBreakTimeNotifications", comment: "")
+        workTimeLabel.text = NSLocalizedString("breakTimeNotifications", comment: "")
         workTimeLabel.font = .systemFont(ofSize: textSize2)
         workTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         return workTimeLabel
@@ -232,7 +232,7 @@ final class SettingsScreen: UIView {
     
     private let breakTimeLabel: UILabel = {
         let breakTimeLabel = UILabel()
-        breakTimeLabel.text = NSLocalizedString("timeToWorkTimeNotifications", comment: "")
+        breakTimeLabel.text = NSLocalizedString("workTimeNotifications", comment: "")
         breakTimeLabel.font = .systemFont(ofSize: textSize2)
         breakTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         return breakTimeLabel

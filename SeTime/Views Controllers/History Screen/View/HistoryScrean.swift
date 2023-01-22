@@ -13,7 +13,6 @@ final class HistoryScreen: UIView {
     
     var historyLabel: UILabel = {
         var timeTextLabel = UILabel()
-        timeTextLabel.text = NSLocalizedString("date", comment: "")
         timeTextLabel.font = .systemFont(ofSize: textSize1, weight: .bold)
         timeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeTextLabel

@@ -65,4 +65,23 @@ class RealmManager {
             localRealm.delete(taskToDelete)
         }
     }
+    
+    func getTaskList() -> [TaskList] {
+        var tasks: [TaskList] = []
+        localRealm.objects(TaskList.self).forEach { tasks.append($0) }
+        return tasks
+    }
+    
+    func addTaskList(task: TaskList) {
+        try! localRealm.write {
+            localRealm.add(task)
+        }
+    }
+    
+    func deleteTaskList(index: Int) {
+        let taskListToDelete = localRealm.objects(TaskList.self)[index]
+        try! localRealm.write {
+            localRealm.delete(taskListToDelete)
+        }
+    }
 }

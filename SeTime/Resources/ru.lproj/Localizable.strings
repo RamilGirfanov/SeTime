@@ -6,7 +6,14 @@
   
 */
 
-"mainScreenTitle" = "Сегодня";
+//MARK: - Тайтлы
+"addTaskScreenTitle" = "Новая задача";
+"definitionTaskScreenTitle" = "Задача";
+"datePickerScreenTitle" = "Выбор даты";
+"editTaskScreenTitle" = "Правка задачи";
+"settingsScreenTitle" = "Настройки";
+
+//MARK: - Main Screen
 "workTime" = "Время работы";
 "breakTime" = "Время отдыха";
 "totalTime" = "Общее время";
@@ -14,39 +21,37 @@
 "break" = "Отдых";
 "stop" = "Стоп";
 "addTask" = "Добавить задачу";
-"addTaskScreenTitle" = "Новая задача";
+
+//MARK: - Add, Edit & Definition Screens
 "name" = "Название:";
 "definition" = "Описание:";
-"add" = "Добавить";
-"definitionTaskScreenTitle" = "Задача";
 "startTime" = "Время начала:";
 "duration" = "Продолжительность:";
 "edit" = "Редактировать";
-"editTaskScreenTitle" = "Правка задачи";
+"add" = "Добавить";
 "save" = "Сохранить";
-"datePickerScreenTitle" = "Выбор даты";
-"show" = "Показать";
-"date" = "Дата";
-"delete" = "Удалить";
-"localizedDateFormatter" = "dd MMM yyyy";
 "emptyFieldWarning" = "Введите название задачи";
 
-"settings" = "Настройки";
+//MARK: - DatePicker Screen
+"show" = "Показать";
+
+//MARK: - History Screen
+"localizedDateFormatter" = "dd MMM yyyy";
+
+//MARK: - Settings Screen
 "enableNotifications" = "Включить уведомления";
-"startWorkNotifications" = "Уведомления о работе";
-"breakTimeNotifications" = "Уведомления о перерывах";
-"workTimeNotifications" = "Уведомления о работе";
+"startWorkNotifications" = "Начало работы";
+"breakTimeNotifications" = "Сделать перерыв";
+"workTimeNotifications" = "Вернуться к работе";
 "definitionSwitch" = "Разрешить приложению присылать уведомления";
-
 "setupTime" = "Настроить время уведомлений";
-
-"startWorkTimeNotifications" = "Начало работы";
 "definitionWorkTime" = "Время когда приложение напомнит приступить к работе";
-
-"timeToBreakTimeNotifications" = "Сделать перерыв";
-"timeToWorkTimeNotifications" = "Вернуться к работе";
 "definitionTime" = "Время по прошествии которого приложение пришлет уведомление сделать перерыв или вернуться к работе";
 
+//MARK: - List Screen
+"listScreenTitle" = "План задач";
+
+//MARK: - Уведомления
 "startWorkTime" = "Пора взяться за работу!";
 "timeToBreak" = "Время сделать перерыв!";
 "timeToWork" = "Время работать!";

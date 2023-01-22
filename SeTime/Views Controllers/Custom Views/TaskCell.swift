@@ -47,21 +47,16 @@ final class TaskCell: UITableViewCell {
             
             taskStartTime.widthAnchor.constraint(equalToConstant: 50),
             taskStartTime.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            taskStartTime.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
             taskStartTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),
-//            taskStartTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent),
             
-//            taskName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
             taskName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             taskName.leadingAnchor.constraint(equalTo: taskStartTime.trailingAnchor, constant: safeIndent),
-//            taskName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent),
+            taskName.trailingAnchor.constraint(equalTo: taskDuration.leadingAnchor, constant: -safeIndent),
             
             taskDuration.widthAnchor.constraint(equalToConstant: 90),
             taskDuration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            taskDuration.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent),
             taskDuration.leadingAnchor.constraint(equalTo: taskName.trailingAnchor, constant: safeIndent),
             taskDuration.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent)
-//            taskDuration.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent)
         ])
     }
         
