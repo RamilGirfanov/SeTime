@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryScreen: UIView {
+final class HistoryScreen: UIView {
 
 //    MARK: - UIObjects
     

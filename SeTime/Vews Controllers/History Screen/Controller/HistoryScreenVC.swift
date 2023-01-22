@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HistoryScreenVC: UIViewController {
+final class HistoryScreenVC: UIViewController {
     
     var date = Date()
         

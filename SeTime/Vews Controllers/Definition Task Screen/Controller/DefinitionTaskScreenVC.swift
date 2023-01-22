@@ -11,7 +11,7 @@ protocol EditTasksProtocol: AnyObject {
     func editTask(taskIndex: Int)
 }
 
-class DefinitionTaskScreenVC: UIViewController {
+final class DefinitionTaskScreenVC: UIViewController {
     
 //    MARK: - Хранимые свойства для настройки экрана
     

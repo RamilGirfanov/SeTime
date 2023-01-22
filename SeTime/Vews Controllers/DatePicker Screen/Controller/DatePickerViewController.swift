@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DatePickerScreenVC: UIViewController {
+final class DatePickerScreenVC: UIViewController {
     
     //    MARK: - Экземпляр MainScreen
     

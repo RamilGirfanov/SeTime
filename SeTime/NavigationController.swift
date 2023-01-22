@@ -34,7 +34,7 @@ class NavigationController: UINavigationController {
         let calendarVC = DatePickerScreenVC()
         calendarVC.title = NSLocalizedString("datePickerScreenTitle", comment: "")
         present(calendarVC, animated: true)
-        }
+    }
     
     @objc private func settingsScreen() {
         let settingsSC = SettingsScreenVC()

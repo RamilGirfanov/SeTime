@@ -15,7 +15,7 @@ protocol ManageTimers: AnyObject {
     func addTask()
 }
 
-class MainScreen: UIView {
+final class MainScreen: UIView {
     
 //    MARK: - UIObjects
         

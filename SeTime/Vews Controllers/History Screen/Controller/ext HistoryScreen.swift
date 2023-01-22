@@ -44,9 +44,12 @@ extension HistoryScreenVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
-        cell.pullCell(taskData: day.tasks[indexPath.row])
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell
+        
+        guard let tableViewCell = cell else { return UITableViewCell() }
+
+        tableViewCell.pullCell(taskData: day.tasks[indexPath.row])
+        return tableViewCell
     }
 }
 

@@ -9,9 +9,9 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class MainScreenVC: UIViewController {
+final class MainScreenVC: UIViewController {
     
-//    MARK: - Экземпляры MainScreen и Model
+//    MARK: - Экземпляр MainScreen
     
     lazy var mainScreen: MainScreen = {
         let view = MainScreen()

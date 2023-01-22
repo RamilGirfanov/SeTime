@@ -18,20 +18,19 @@ extension MainScreenVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let currentDate = getShortDate(date: Date())
         return RealmManager.shared.getTasks(date: currentDate).count
-        //        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell
         
-        //        var tasks: [Task] = []
-        //        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.forEach { tasks.append($0) }
+        guard let tableViewCell = cell else { return UITableViewCell() }
+
         let currentDate = getShortDate(date: Date())
-        var tasks = RealmManager.shared.getTasks(date: currentDate)
+        let tasks = RealmManager.shared.getTasks(date: currentDate)
         
-        cell.pullCell(taskData: tasks[indexPath.row])
+        tableViewCell.pullCell(taskData: tasks[indexPath.row])
         
-        return cell
+        return tableViewCell
     }
 }
 
@@ -49,11 +48,12 @@ extension MainScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("delete", comment: "")) {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") {_,_,_ in
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+        
+        deleteAction.image = UIImage(systemName: "trash.fill")
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         
@@ -161,7 +161,7 @@ extension MainScreenVC: ManageTimers {
 }
 
 
-//MARK: - Расширение функционала для MainScreen
+//MARK: - Расширение функционала для TableView MainScreen
 
 extension MainScreenVC {
     func showTaskDifinition(index: Int) {
@@ -209,10 +209,4 @@ extension MainScreenVC {
         mainScreen.taskTimeTextLabel.text = task.name
         mainScreen.taskTimeDataLabel.text = timeIntToString(time: task.duration)
     }
-
-//    func getTasksData() -> [Task] {
-//        var tasksArray: [Task] = []
-//        RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", getShortDate(date: Date())).first?.tasks.forEach { tasksArray.append($0) }
-//        return tasksArray
-//    }
 }

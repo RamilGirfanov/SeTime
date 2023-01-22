@@ -11,7 +11,7 @@ protocol SaveTaskProtocol: AnyObject {
     func saveTask()
 }
 
-class EditTaskScreen: AddTaskScreen {
+final class EditTaskScreen: AddTaskScreen {
     
     var delegate2: SaveTaskProtocol?
     

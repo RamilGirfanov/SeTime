@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class SettingsScreenVC: UIViewController {
+final class SettingsScreenVC: UIViewController {
     
     //    MARK: - Экземпляр AddTaskScreen
     

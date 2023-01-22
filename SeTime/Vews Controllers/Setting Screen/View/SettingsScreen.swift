@@ -13,9 +13,9 @@ protocol SetupsProtocol: AnyObject {
     func updateTimeToNotice()
 }
 
-class SettingsScreen: UIView {
+final class SettingsScreen: UIView {
     
-    //    MARK: - UIObjects
+//    MARK: - UIObjects
     
     private var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -368,8 +368,8 @@ class SettingsScreen: UIView {
             
             definitionTime.topAnchor.constraint(equalTo: timeStack.bottomAnchor, constant: safeIndent2),
             definitionTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
-            definitionTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
-            definitionTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
+            definitionTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2)
+//            definitionTime.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -safeIndent1)
         ])
     }
     

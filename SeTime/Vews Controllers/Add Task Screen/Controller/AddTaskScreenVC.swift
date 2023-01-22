@@ -11,7 +11,7 @@ protocol AddTasksProtocol: AnyObject {
     func addTask (name: String, definition: String)
 }
 
-class AddTaskScreenVC: UIViewController {
+final class AddTaskScreenVC: UIViewController {
 
 //    MARK: - Экземпляр AddTaskScreen
     
