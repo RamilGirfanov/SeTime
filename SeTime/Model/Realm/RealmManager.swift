@@ -78,6 +78,14 @@ class RealmManager {
         }
     }
     
+    func updateTaskList(index: Int, name: String, definition: String) {
+        let taskListToUpdate = localRealm.objects(TaskList.self)[index]
+        try! localRealm.write {
+            taskListToUpdate.name = name
+            taskListToUpdate.definition = definition
+        }
+    }
+    
     func deleteTaskList(index: Int) {
         let taskListToDelete = localRealm.objects(TaskList.self)[index]
         try! localRealm.write {

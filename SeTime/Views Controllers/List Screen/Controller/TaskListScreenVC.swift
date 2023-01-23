@@ -21,13 +21,19 @@ class TaskListScreenVC: UIViewController {
     
 //    MARK: - Массив задач
     
-    var tasks = RealmManager.shared.getTaskList()
+    var tasks: [TaskList] = []
+    
+    private func setupData() {
+        tasks = RealmManager.shared.getTaskList()
+    }
     
     
 //    MARK: - Lifecycle
     
     override func loadView() {
         view = taskListScreen
+        setupData()
+        taskListScreen.tasksTableView.reloadData()
     }
     
     override func viewDidLoad() {

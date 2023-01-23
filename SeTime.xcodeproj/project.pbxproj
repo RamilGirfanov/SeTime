@@ -42,6 +42,9 @@
 		74052C1F297DD8090079E533 /* TaskListScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C1E297DD8090079E533 /* TaskListScreenVC.swift */; };
 		74052C21297DD9110079E533 /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C20297DD9110079E533 /* TaskListScreen.swift */; };
 		74052C23297DEA650079E533 /* ext TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C22297DEA650079E533 /* ext TaskListScreen.swift */; };
+		74052C27297DFC110079E533 /* ext AddTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */; };
+		74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */; };
+		74052C2B297E008F0079E533 /* ext SaveTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */; };
 		7408034B290AA260002AB91D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* Model.swift */; };
 		741FDF082921653B00F36193 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DataObjects.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
@@ -93,6 +96,9 @@
 		74052C1E297DD8090079E533 /* TaskListScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreenVC.swift; sourceTree = "<group>"; };
 		74052C20297DD9110079E533 /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
 		74052C22297DEA650079E533 /* ext TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext TaskListScreen.swift"; sourceTree = "<group>"; };
+		74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext AddTaskListProtocol.swift"; sourceTree = "<group>"; };
+		74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext EditTaskListProtocol.swift"; sourceTree = "<group>"; };
+		74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext SaveTaskListProtocol.swift"; sourceTree = "<group>"; };
 		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		741FDF072921653B00F36193 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -323,8 +329,8 @@
 				74052BBB297DA1F90079E533 /* ext MainScreen.swift */,
 				74052BBF297DA1F90079E533 /* ext AddTasksProtocol.swift */,
 				74052BBA297DA1F90079E533 /* ext EditTasksProtocol.swift */,
-				74052BBC297DA1F90079E533 /* ext NC + UNC.swift */,
 				74052BBE297DA1F90079E533 /* ext SaveTasksProtocol.swift */,
+				74052BBC297DA1F90079E533 /* ext NC + UNC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,6 +357,9 @@
 			children = (
 				74052C1E297DD8090079E533 /* TaskListScreenVC.swift */,
 				74052C22297DEA650079E533 /* ext TaskListScreen.swift */,
+				74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */,
+				74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */,
+				74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 				74052BFC297DA4390079E533 /* DefinitionTaskScreen.swift in Sources */,
 				74052BDB297DA1F90079E533 /* ext MainScreen.swift in Sources */,
 				74052BEC297DA3530079E533 /* HistoryScrean.swift in Sources */,
+				74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */,
 				74052BDA297DA1F90079E533 /* ext EditTasksProtocol.swift in Sources */,
 				741FDF082921653B00F36193 /* DataObjects.swift in Sources */,
 				74052C02297DA46F0079E533 /* SettingsScreen.swift in Sources */,
@@ -525,6 +535,7 @@
 				74052BFA297DA3F20079E533 /* ext DatePickerScreen.swift in Sources */,
 				741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */,
 				74052BE4297DA2C70079E533 /* AddTaskScreenVC.swift in Sources */,
+				74052C27297DFC110079E533 /* ext AddTaskListProtocol.swift in Sources */,
 				74052C04297DA4C10079E533 /* SettingsScreenVC.swift in Sources */,
 				74052BFF297DA4430079E533 /* DefinitionTaskScreenVC.swift in Sources */,
 				74052C0A297DA57D0079E533 /* EditTaskScreen.swift in Sources */,
@@ -546,6 +557,7 @@
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74052C23297DEA650079E533 /* ext TaskListScreen.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
+				74052C2B297E008F0079E533 /* ext SaveTaskListProtocol.swift in Sources */,
 				74052C00297DA4430079E533 /* ext DefinitionTaskScreen.swift in Sources */,
 				74052BF0297DA36C0079E533 /* ext HistoryScreen.swift in Sources */,
 				74052C08297DA5240079E533 /* ext UNC.swift in Sources */,

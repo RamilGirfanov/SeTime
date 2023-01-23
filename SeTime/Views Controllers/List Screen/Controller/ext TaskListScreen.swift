@@ -72,22 +72,34 @@ extension TaskListScreenVC: UITableViewDelegate {
 
 extension TaskListScreenVC {
     func showTaskDifinition(index: Int) {
-        
+        let definitionTaskVC = DefinitionTaskScreenVC()
+        definitionTaskVC.taskIndex = index
+        definitionTaskVC.name = tasks[index].name
+        definitionTaskVC.definition = tasks[index].definition
+        definitionTaskVC.delegate = self
+        present(definitionTaskVC, animated: true)
     }
     
     func startTask(index: Int) {
-        
+        let task = tasks[index]
+        NotificationCenter.default.post(name: MainScreenVC.notificationStartTask, object: nil, userInfo: ["task": task])
+        RealmManager.shared.deleteTaskList(index: index)
+        tasks = RealmManager.shared.getTaskList()
+        taskListScreen.tasksTableView.reloadData()
     }
     
     func deleteTask(index: Int) {
-        
+        RealmManager.shared.deleteTaskList(index: index)
+        tasks = RealmManager.shared.getTaskList()
     }
 }
 
 
 extension TaskListScreenVC: TaskListProtocol {
     func addTask() {
-        
+        let taskAddVC = AddTaskScreenVC()
+        taskAddVC.delegate = self
+        present(taskAddVC, animated: true)
     }
 }
 

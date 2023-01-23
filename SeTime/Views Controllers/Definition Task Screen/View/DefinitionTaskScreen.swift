@@ -102,6 +102,17 @@ final class DefinitionTaskScreen: UIView {
 //    MARK: - Delegate
     
     weak var delegate: EditTaskProtocol?
+        
+    
+//    MARK: - Настройка кнопки
+
+    private func setupButton() {
+        button.addTarget(self, action: #selector(editTask), for: .touchUpInside)
+    }
+    
+    @objc private func editTask() {
+        delegate?.editTask()
+    }
     
     
 //    MARK: - Layout
@@ -149,17 +160,7 @@ final class DefinitionTaskScreen: UIView {
             button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
         ])
     }
-    
-    
-//    MARK: - Настройка кнопки
 
-    private func setupButton() {
-        button.addTarget(self, action: #selector(editTask), for: .touchUpInside)
-    }
-    
-    @objc private func editTask() {
-        delegate?.editTask()
-    }
 
     
 //    MARK: - init
