@@ -11,7 +11,7 @@
 "definitionTaskScreenTitle" = "Task";
 "datePickerScreenTitle" = "Date selection";
 "editTaskScreenTitle" = "Task editing";
-"settingsTitle" = "Settings";
+"settingsScreenTitle" = "Settings";
 
 //MARK: - Main Screen
 "workTime" = "Work time";
