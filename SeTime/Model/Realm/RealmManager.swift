@@ -39,14 +39,14 @@ class RealmManager {
     
     func addTask(date: Date, task: Task) {
         guard let dayToUpdate = localRealm.objects(Day.self).filter("date == %@", date).first else {return}
-        try! localRealm.write{
+        try! localRealm.write {
             dayToUpdate.tasks.append(task)
         }
     }
     
     func updateTask(date: Date, index: Int, name: String, definition: String) {
         let taskToUpdate = localRealm.objects(Task.self).filter("date == %@", date)[index]
-        try! localRealm.write{
+        try! localRealm.write {
             taskToUpdate.name = name
             taskToUpdate.definition = definition
         }
@@ -54,15 +54,42 @@ class RealmManager {
     
     func updateTaskDuration(date: Date, index: Int, duration: Int) {
         let taskToUpdate = localRealm.objects(Task.self).filter("date == %@", date)[index]
-        try! localRealm.write{
+        try! localRealm.write {
             taskToUpdate.duration = duration
         }
     }
     
     func deleteTask(date: Date, index: Int) {
         let taskToDelete = localRealm.objects(Task.self).filter("date == %@", date)[index]
-        try! localRealm.write{
+        try! localRealm.write {
             localRealm.delete(taskToDelete)
+        }
+    }
+    
+    func getTaskList() -> [TaskList] {
+        var tasks: [TaskList] = []
+        localRealm.objects(TaskList.self).forEach { tasks.append($0) }
+        return tasks
+    }
+    
+    func addTaskList(task: TaskList) {
+        try! localRealm.write {
+            localRealm.add(task)
+        }
+    }
+    
+    func updateTaskList(index: Int, name: String, definition: String) {
+        let taskListToUpdate = localRealm.objects(TaskList.self)[index]
+        try! localRealm.write {
+            taskListToUpdate.name = name
+            taskListToUpdate.definition = definition
+        }
+    }
+    
+    func deleteTaskList(index: Int) {
+        let taskListToDelete = localRealm.objects(TaskList.self)[index]
+        try! localRealm.write {
+            localRealm.delete(taskListToDelete)
         }
     }
 }
