@@ -17,6 +17,7 @@ extension MainScreenVC {
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
     static let notificationTaskTableView = Notification.Name("tableView")
     static let notificationCheckDay = Notification.Name("checkDay")
+    static let notificationStartTask = Notification.Name("startTask")
     
     func setupNC() {
         NotificationCenter.default.addObserver(self,
@@ -38,6 +39,10 @@ extension MainScreenVC {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDay),
                                                name: MainScreenVC.notificationCheckDay,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(startTask(notification:)),
+                                               name: MainScreenVC.notificationStartTask,
                                                object: nil)
     }
     
@@ -80,6 +85,34 @@ extension MainScreenVC {
             
             mainScreen.newDay()
         }
+    }
+    
+    @objc private func startTask(notification: Notification) {
+        guard let task = notification.userInfo?["task"] as? TaskList else { return }
+        
+//        Управляет запуском и остановкой таймеров
+        if Model.shared.taskTimer.isValid {
+            stopTaskTimer()
+        }
+        
+        if !Model.shared.workTimer.isValid {
+            startWorkTimer()
+        }
+                
+//        Меняет видимости кнопки и вью задачи на главном экране
+        mainScreen.addTaskButton.isHidden = true
+        mainScreen.taskTimerView.isHidden = false
+        
+//        Устанавливает в лейбл задачи ее название
+        mainScreen.taskTimeTextLabel.text = task.name
+        
+//        Устанавливает название и описание задачи в объект задачи
+        Model.shared.task.name = task.name
+        Model.shared.task.definition = task.definition
+        
+//        Запускает таймер задачи
+        Model.shared.startTaskTimer()
+        Model.shared.task.startTime = getTime()
     }
     
     

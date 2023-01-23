@@ -24,3 +24,8 @@ class Day: Object {
     
     @Persisted var tasks = List<Task>()
 }
+
+class TaskList: Object {
+    @Persisted var name = ""
+    @Persisted var definition = ""
+}
