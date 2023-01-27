@@ -92,4 +92,22 @@ class RealmManager {
             localRealm.delete(taskListToDelete)
         }
     }
+    
+    func updateSortTasksList(tasks: [TaskList]) {
+        var newSortTaskListArray = [(name: String, definition: String)]()
+        tasks.forEach { newSortTaskListArray.append((name: $0.name, definition: $0.definition)) }
+        
+        var endIndex = tasks.count - 1
+        repeat {
+            deleteTaskList(index: endIndex)
+            endIndex -= 1
+        } while endIndex >= 0
+        
+        newSortTaskListArray.forEach {
+            let taskList = TaskList()
+            taskList.name = $0.name
+            taskList.definition = $0.definition
+            RealmManager.shared.addTaskList(task: taskList)
+        }
+    }
 }

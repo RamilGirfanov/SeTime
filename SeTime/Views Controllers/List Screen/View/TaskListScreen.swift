@@ -30,6 +30,7 @@ class TaskListScreen: UIView {
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.register(TaskListCell.self, forCellReuseIdentifier: TaskListCell.identifier)
         tasksTableView.separatorInset = .zero
+        tasksTableView.dragInteractionEnabled = true
         return tasksTableView
     }()
     
