@@ -88,7 +88,7 @@ extension TaskListScreenVC: UITableViewDragDelegate {
 }
 
 
-//    MARK: - Расширение UITableViewDragDelegate
+//    MARK: - Расширение UITableViewDropDelegate
 
 extension TaskListScreenVC: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
