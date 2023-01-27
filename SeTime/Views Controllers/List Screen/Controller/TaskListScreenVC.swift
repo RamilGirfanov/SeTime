@@ -16,6 +16,8 @@ class TaskListScreenVC: UIViewController {
         taskListScreen.delegate = self
         taskListScreen.tasksTableView.dataSource = self
         taskListScreen.tasksTableView.delegate = self
+        taskListScreen.tasksTableView.dragDelegate = self
+        taskListScreen.tasksTableView.dropDelegate = self
         return taskListScreen
     }()
     

@@ -30,6 +30,7 @@ class TaskListScreen: UIView {
         tasksTableView.translatesAutoresizingMaskIntoConstraints = false
         tasksTableView.register(TaskListCell.self, forCellReuseIdentifier: TaskListCell.identifier)
         tasksTableView.separatorInset = .zero
+        tasksTableView.dragInteractionEnabled = true
         return tasksTableView
     }()
     
@@ -51,6 +52,9 @@ class TaskListScreen: UIView {
     
     private func setupButton() {
         addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+        
+        let addGesture = UITapGestureRecognizer(target: self, action: #selector(addTask))
+        tasksTableView.addGestureRecognizer(addGesture)
     }
     
     @objc private func addTask() {

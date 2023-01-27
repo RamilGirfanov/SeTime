@@ -80,13 +80,12 @@ final class DefinitionTaskScreen: UIView {
 
     var definition: UITextView = {
         var definition = UITextView()
-//        definition.lineBreakMode = .byCharWrapping
-//        definition.numberOfLines = 0
         definition.isEditable = false
         definition.backgroundColor = .secondarySystemBackground
         definition.font = .systemFont(ofSize: textSize3, weight: .regular)
         definition.layer.cornerRadius = totalCornerRadius
         definition.translatesAutoresizingMaskIntoConstraints = false
+        definition.dataDetectorTypes = .link
         return definition
     }()
     

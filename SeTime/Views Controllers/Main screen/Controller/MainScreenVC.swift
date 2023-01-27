@@ -34,4 +34,8 @@ final class MainScreenVC: UIViewController {
         checkDay()
         UNUserNotificationCenter.current().delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mainScreen.tasksTableView.reloadData()
+    }
 }

@@ -22,17 +22,17 @@ extension TaskListScreenVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.identifier, for: indexPath) as? TaskListCell
         
         guard let tableViewCell = cell else { return UITableViewCell() }
-        
+                
         tableViewCell.pullCell(taskData: tasks[indexPath.row])
         
         return tableViewCell
     }
 }
 
+
 //    MARK: - Расширение UITableViewDelegate
 
 extension TaskListScreenVC: UITableViewDelegate {
-    //    Возвращает динамическую высоту ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
@@ -47,28 +47,77 @@ extension TaskListScreenVC: UITableViewDelegate {
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
         deleteAction.image = UIImage(systemName: "trash.fill")
-        
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        
         return swipeActions
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let restart = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
+        let start = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
             self.startTask(index: indexPath.row)
             completionHandler(true)
         }
-        
-        restart.backgroundColor = mainColorTheme
-        restart.image = UIImage(systemName: "play.fill")
-        
-        let swipeActions = UISwipeActionsConfiguration(actions: [restart])
-        
+        start.backgroundColor = mainColorTheme
+        start.image = UIImage(systemName: "play.fill")
+        let swipeActions = UISwipeActionsConfiguration(actions: [start])
         return swipeActions
     }
+    
+    
+    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        let elementToMove = tasks[fromIndexPath.row]
+        tasks.remove(at: fromIndexPath.row)
+        tasks.insert(elementToMove, at: to.row)
+        
+        RealmManager.shared.updateSortTasksList(tasks: tasks)
+        tasks = RealmManager.shared.getTaskList()
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
+
+
+//    MARK: - Расширение UITableViewDragDelegate
+
+extension TaskListScreenVC: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return [UIDragItem(itemProvider: NSItemProvider())]
+    }
+}
+
+
+//    MARK: - Расширение UITableViewDragDelegate
+
+extension TaskListScreenVC: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+
+        if session.localDragSession != nil {
+            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+
+        return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
+    }
+
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        
+    }
+}
+
+
+//    MARK: - Протокол делегата TaskListScreen
+
+extension TaskListScreenVC: TaskListProtocol {
+    func addTask() {
+        let taskAddVC = AddTaskScreenVC()
+        taskAddVC.delegate = self
+        present(taskAddVC, animated: true)
+    }
+}
+
+
+//MARK: - Расширение функционала для TableView TaskListScreen
 
 extension TaskListScreenVC {
     func showTaskDifinition(index: Int) {
@@ -93,14 +142,4 @@ extension TaskListScreenVC {
         tasks = RealmManager.shared.getTaskList()
     }
 }
-
-
-extension TaskListScreenVC: TaskListProtocol {
-    func addTask() {
-        let taskAddVC = AddTaskScreenVC()
-        taskAddVC.delegate = self
-        present(taskAddVC, animated: true)
-    }
-}
-
 

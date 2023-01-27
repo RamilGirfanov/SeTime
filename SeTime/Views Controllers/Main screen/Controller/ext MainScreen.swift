@@ -25,7 +25,7 @@ extension MainScreenVC: UITableViewDataSource {
         
         guard let tableViewCell = cell else { return UITableViewCell() }
 
-        let currentDate = getShortDate(date: Date())
+        let currentDate = Model.shared.date
         let tasks = RealmManager.shared.getTasks(date: currentDate)
         
         tableViewCell.pullCell(taskData: tasks[indexPath.row])
