@@ -52,6 +52,9 @@ class TaskListScreen: UIView {
     
     private func setupButton() {
         addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
+        
+        let addGesture = UITapGestureRecognizer(target: self, action: #selector(addTask))
+        tasksTableView.addGestureRecognizer(addGesture)
     }
     
     @objc private func addTask() {
