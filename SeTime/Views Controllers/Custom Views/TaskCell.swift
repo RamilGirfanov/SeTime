@@ -11,12 +11,19 @@ final class TaskCell: UITableViewCell {
     
 //    MARK: - UIObjects
     
+    private let subView: UIView = {
+        let subView = UIView()
+        subView.backgroundColor = .clear
+        subView.translatesAutoresizingMaskIntoConstraints = false
+        return subView
+    }()
+    
     var taskStartTime: UILabel = {
-        var taskStartAndStop = UILabel()
-        taskStartAndStop.font = .systemFont(ofSize: textSize2, weight: .regular)
-        taskStartAndStop.textAlignment = .center
-        taskStartAndStop.translatesAutoresizingMaskIntoConstraints = false
-        return taskStartAndStop
+        var taskStartTime = UILabel()
+        taskStartTime.font = .systemFont(ofSize: textSize3, weight: .regular)
+        taskStartTime.textColor = .secondaryLabel
+        taskStartTime.translatesAutoresizingMaskIntoConstraints = false
+        return taskStartTime
     }()
     
     var taskName: UILabel = {
@@ -33,33 +40,38 @@ final class TaskCell: UITableViewCell {
         taskDuration.translatesAutoresizingMaskIntoConstraints = false
         return taskDuration
     }()
-        
+    
     
 //    MARK: - Layout
 
     private func layout() {
-        [taskName, taskDuration, taskStartTime].forEach { contentView.addSubview($0) }
-        
+        contentView.addSubview(subView)
+        [taskName, taskStartTime, taskDuration].forEach { subView.addSubview($0) }
+
         let safeIndent: CGFloat = 8
         
         NSLayoutConstraint.activate([
             contentView.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             
-            taskStartTime.widthAnchor.constraint(equalToConstant: 50),
-            taskStartTime.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            taskStartTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),
+            subView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            subView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent),
+            subView.trailingAnchor.constraint(equalTo: taskDuration.leadingAnchor, constant: -safeIndent),
+
+            taskName.topAnchor.constraint(equalTo: subView.topAnchor),
+            taskName.leadingAnchor.constraint(equalTo: subView.leadingAnchor),
+            taskName.trailingAnchor.constraint(equalTo: subView.trailingAnchor),
             
-            taskName.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            taskName.leadingAnchor.constraint(equalTo: taskStartTime.trailingAnchor, constant: safeIndent),
-            taskName.trailingAnchor.constraint(equalTo: taskDuration.leadingAnchor, constant: -safeIndent),
+            taskStartTime.topAnchor.constraint(equalTo: taskName.bottomAnchor),
+            taskStartTime.leadingAnchor.constraint(equalTo: subView.leadingAnchor),
+            taskStartTime.trailingAnchor.constraint(equalTo: subView.trailingAnchor),
+            taskStartTime.bottomAnchor.constraint(equalTo: subView.bottomAnchor),
             
             taskDuration.widthAnchor.constraint(equalToConstant: 90),
             taskDuration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            taskDuration.leadingAnchor.constraint(equalTo: taskName.trailingAnchor, constant: safeIndent),
             taskDuration.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent)
         ])
     }
-        
+    
     
 //    MARK: - Заполнение ячеек данными
     
