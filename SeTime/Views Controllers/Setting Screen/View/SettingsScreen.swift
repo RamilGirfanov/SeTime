@@ -41,7 +41,8 @@ final class SettingsScreen: UIView {
     private let switchLabel: UILabel = {
         let switchLabel = UILabel()
         switchLabel.text = NSLocalizedString("enableNotifications", comment: "")
-        switchLabel.font = .systemFont(ofSize: textSize2)
+        switchLabel.textColor = .secondaryLabel
+        switchLabel.font = .systemFont(ofSize: textSize4)
         switchLabel.translatesAutoresizingMaskIntoConstraints = false
         return switchLabel
     }()
@@ -125,9 +126,9 @@ final class SettingsScreen: UIView {
     private let definitionSwitch: UILabel = {
         let definitionSwitch = UILabel()
         definitionSwitch.text = NSLocalizedString("definitionSwitch", comment: "")
+        definitionSwitch.font = .systemFont(ofSize: textSize4)
         definitionSwitch.textColor = .secondaryLabel
         definitionSwitch.numberOfLines = 0
-        definitionSwitch.font = .systemFont(ofSize: textSize4)
         definitionSwitch.translatesAutoresizingMaskIntoConstraints = false
         return definitionSwitch
     }()
@@ -135,7 +136,8 @@ final class SettingsScreen: UIView {
     private let timeLabel: UILabel = {
         let timeLabel = UILabel()
         timeLabel.text = NSLocalizedString("setupTime", comment: "")
-        timeLabel.font = .systemFont(ofSize: textSize2)
+        timeLabel.font = .systemFont(ofSize: textSize4)
+        timeLabel.textColor = .secondaryLabel
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         return timeLabel
     }()
@@ -175,9 +177,9 @@ final class SettingsScreen: UIView {
     private let definitionWorkTime: UILabel = {
         let definitionWorkTime = UILabel()
         definitionWorkTime.text = NSLocalizedString("definitionWorkTime", comment: "")
+        definitionWorkTime.font = .systemFont(ofSize: textSize4)
         definitionWorkTime.textColor = .secondaryLabel
         definitionWorkTime.numberOfLines = 0
-        definitionWorkTime.font = .systemFont(ofSize: textSize4)
         definitionWorkTime.translatesAutoresizingMaskIntoConstraints = false
         return definitionWorkTime
     }()
@@ -383,7 +385,7 @@ final class SettingsScreen: UIView {
             screenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
 
             switchLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
-            switchLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            switchLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             
             switchStack.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: safeIndent2),
             switchStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
@@ -428,7 +430,7 @@ final class SettingsScreen: UIView {
             definitionSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent1 * 2),
             
             timeLabel.topAnchor.constraint(equalTo: definitionSwitch.bottomAnchor, constant: safeIndent1),
-            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
+            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             
             viewForStartWorkDatePicker.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: safeIndent2),
             viewForStartWorkDatePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),

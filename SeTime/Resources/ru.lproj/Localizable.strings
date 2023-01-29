@@ -39,12 +39,12 @@
 "localizedDateFormatter" = "dd MMM yyyy";
 
 //MARK: - Settings Screen
-"enableNotifications" = "Включить уведомления";
+"enableNotifications" = "ВКЛЮЧИТЬ УВЕДОМЛЕНИЯ";
 "startWorkNotifications" = "Начало работы";
 "breakTimeNotifications" = "Сделать перерыв";
 "workTimeNotifications" = "Вернуться к работе";
 "definitionSwitch" = "Разрешить приложению присылать уведомления";
-"setupTime" = "Настроить время уведомлений";
+"setupTime" = "НАСТРОИТЬ ВРЕМЯ УВЕДОМЛЕНИЙ";
 "definitionWorkTime" = "Время когда приложение напомнит приступить к работе";
 "definitionTime" = "Время по прошествии которого приложение пришлет уведомление сделать перерыв или вернуться к работе";
 
