@@ -11,7 +11,9 @@ import Foundation
 
 extension TaskListScreenVC: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {
-        RealmManager.shared.updateTaskList(index: taskIndex, name: name, definition: definition)
+        RealmManager.shared.updateTaskList(index: taskIndex,
+                                           name: name,
+                                           definition: definition)
         tasks = RealmManager.shared.getTaskList()
         taskListScreen.tasksTableView.reloadData()
     }

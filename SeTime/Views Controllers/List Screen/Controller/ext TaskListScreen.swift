@@ -131,7 +131,9 @@ extension TaskListScreenVC {
     
     func startTask(index: Int) {
         let task = tasks[index]
-        NotificationCenter.default.post(name: MainScreenVC.notificationStartTask, object: nil, userInfo: ["task": task])
+        NotificationCenter.default.post(name: MainScreenVC.notificationStartTask,
+                                        object: nil,
+                                        userInfo: ["task": task])
         RealmManager.shared.deleteTaskList(index: index)
         tasks = RealmManager.shared.getTaskList()
         taskListScreen.tasksTableView.reloadData()

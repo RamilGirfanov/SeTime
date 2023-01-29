@@ -82,7 +82,9 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
             
-            let startWorkTimeRequest = UNNotificationRequest(identifier: "Start work notification", content: content, trigger: trigger)
+            let startWorkTimeRequest = UNNotificationRequest(identifier: "Start work notification",
+                                                             content: content,
+                                                             trigger: trigger)
             UNUserNotificationCenter.current().add(startWorkTimeRequest)
         }
     }

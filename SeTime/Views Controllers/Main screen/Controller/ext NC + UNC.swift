@@ -15,7 +15,6 @@ extension MainScreenVC {
     static let notificationUpdateTime = Notification.Name("updateTime")
     static let notificationTaskTime = Notification.Name("taskTime")
     static let notificationSceneDidDisconnect = Notification.Name("disconnect")
-//    static let notificationTaskTableView = Notification.Name("tableView")
     static let notificationCheckDay = Notification.Name("checkDay")
     static let notificationStartTask = Notification.Name("startTask")
     
@@ -32,10 +31,6 @@ extension MainScreenVC {
                                                selector: #selector(stopTimers),
                                                name: MainScreenVC.notificationSceneDidDisconnect,
                                                object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(reloadTaskTableView),
-//                                               name: MainScreenVC.notificationTaskTableView,
-//                                               object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDay),
                                                name: MainScreenVC.notificationCheckDay,
@@ -60,9 +55,6 @@ extension MainScreenVC {
         stop()
     }
     
-//    @objc func reloadTaskTableView() {
-//        mainScreen.tasksTableView.reloadData()
-//    }
     
     @objc func checkDay() {
         guard !Model.shared.workTimer.isValid && !Model.shared.breakTimer.isValid else { return }

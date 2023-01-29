@@ -53,7 +53,4 @@ final class HistoryScreenVC: UIViewController {
         historyScreen.tasksTableView.reloadData()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        NotificationCenter.default.post(name: MainScreenVC.notificationTaskTableView, object: nil)
-//    }
 }

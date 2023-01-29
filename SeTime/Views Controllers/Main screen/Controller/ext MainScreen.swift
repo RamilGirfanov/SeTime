@@ -52,11 +52,8 @@ extension MainScreenVC: UITableViewDelegate {
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
         deleteAction.image = UIImage(systemName: "trash.fill")
-        
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        
         return swipeActions
     }
     
@@ -65,12 +62,9 @@ extension MainScreenVC: UITableViewDelegate {
             self.restartTask(index: indexPath.row)
             completionHandler(true)
         }
-        
         restart.backgroundColor = mainColorTheme
         restart.image = UIImage(systemName: "play.fill")
-        
         let swipeActions = UISwipeActionsConfiguration(actions: [restart])
-        
         return swipeActions
     }
 }
@@ -146,7 +140,7 @@ extension MainScreenVC: ManageTimers {
         
 //        Работа с View
         mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
-        mainScreen.taskTimeDataLabel.text = ""
+        mainScreen.taskTimeDataLabel.text = "00:00:00"
         
         mainScreen.addTaskButton.isHidden = false
         mainScreen.taskTimerView.isHidden = true
