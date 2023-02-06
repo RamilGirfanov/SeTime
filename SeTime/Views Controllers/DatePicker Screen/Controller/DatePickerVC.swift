@@ -23,4 +23,8 @@ final class DatePickerScreenVC: UIViewController {
     override func loadView() {
         view = datePickerScreen
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        datePickerScreen.datePicker.date = Model.shared.date
+    }
 }
