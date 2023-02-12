@@ -8,9 +8,21 @@
 import UIKit
 
 class TaskListCell: UITableViewCell {
+    // MARK: - init
     
-//    MARK: - UIObjects
-
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
+    
     private var taskName: UILabel = {
         var taskName = UILabel()
         taskName.font = .systemFont(ofSize: textSize2, weight: .regular)
@@ -18,8 +30,9 @@ class TaskListCell: UITableViewCell {
         return taskName
     }()
     
-//    MARK: - Layout
-
+    
+    // MARK: - Layout
+    
     private func layout() {
         contentView.addSubview(taskName)
         
@@ -34,22 +47,10 @@ class TaskListCell: UITableViewCell {
         ])
     }
     
-//    MARK: - Заполнение ячеек данными
+    
+    // MARK: - Заполнение ячеек данными
     
     func pullCell(taskData: TaskList) {
         taskName.text = taskData.name
-    }
-    
-        
-//    MARK: - init
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .clear
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

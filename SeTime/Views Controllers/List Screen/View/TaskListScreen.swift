@@ -12,8 +12,21 @@ protocol TaskListProtocol: AnyObject {
 }
 
 class TaskListScreen: UIView {
+    // MARK: - init
     
-//    MARK: - UIObjects
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        setupButton()
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
     
     private let listLabel: UILabel = {
         let timeTextLabel = UILabel()
@@ -43,12 +56,12 @@ class TaskListScreen: UIView {
     }()
     
     
-//    MARK: - Delegate
+    // MARK: - Delegate
     
     weak var delegate: TaskListProtocol?
     
     
-//    MARK: - Настройка кнопок
+    // MARK: - Настройка кнопок
     
     private func setupButton() {
         addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
@@ -59,10 +72,9 @@ class TaskListScreen: UIView {
     }
     
     
-//    MARK: - Layout
+    // MARK: - Layout
     
     private func layout() {
-        
         [listLabel, tasksTableView, addTaskButton].forEach { addSubview($0) }
         
         let safeIndent: CGFloat = 16
@@ -81,19 +93,5 @@ class TaskListScreen: UIView {
             addTaskButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent),
             addTaskButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent)
         ])
-    }
-    
-    
-//    MARK: - init
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        setupButton()
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -10,8 +10,7 @@ import RealmSwift
 import UserNotifications
 
 final class MainScreenVC: UIViewController {
-    
-//    MARK: - Экземпляр MainScreen
+    // MARK: - Экземпляр MainScreen
     
     lazy var mainScreen: MainScreen = {
         let view = MainScreen()
@@ -22,7 +21,7 @@ final class MainScreenVC: UIViewController {
     }()
     
     
-//    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = mainScreen
@@ -36,6 +35,7 @@ final class MainScreenVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         mainScreen.tasksTableView.reloadData()
     }
 }

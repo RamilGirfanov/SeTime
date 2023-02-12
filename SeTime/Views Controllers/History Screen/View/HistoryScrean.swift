@@ -8,8 +8,20 @@
 import UIKit
 
 final class HistoryScreen: UIView {
-
-//    MARK: - UIObjects
+    // MARK: - init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
     
     var historyLabel: UILabel = {
         var timeTextLabel = UILabel()
@@ -23,7 +35,7 @@ final class HistoryScreen: UIView {
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
         return viewForTimeReview
     }()
-        
+    
     lazy var tasksTableView: UITableView = {
         var tasksTableView = UITableView()
         tasksTableView.backgroundColor = .secondarySystemBackground
@@ -34,13 +46,12 @@ final class HistoryScreen: UIView {
         return tasksTableView
     }()
     
-
-//    MARK: - Layout
+    
+    // MARK: - Layout
     
     private func layout() {
-        
         [historyLabel, viewForTimeReview, tasksTableView].forEach { addSubview($0) }
-    
+        
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
         
@@ -57,18 +68,5 @@ final class HistoryScreen: UIView {
             tasksTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             tasksTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -safeIndent2)
         ])
-    }
-
-    
-//    MARK: - init
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

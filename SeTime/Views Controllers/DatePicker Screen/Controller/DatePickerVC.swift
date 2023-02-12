@@ -8,8 +8,7 @@
 import UIKit
 
 final class DatePickerScreenVC: UIViewController {
-    
-    //    MARK: - Экземпляр MainScreen
+    // MARK: - Экземпляр MainScreen
     
     lazy var datePickerScreen: DatePickerScreen = {
         let view = DatePickerScreen()
@@ -18,13 +17,14 @@ final class DatePickerScreenVC: UIViewController {
     }()
     
     
-    //    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = datePickerScreen
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        datePickerScreen.datePicker.date = Model.shared.date
+        super.viewWillAppear(animated)
+        datePickerScreen.updateDatePicker()
     }
 }

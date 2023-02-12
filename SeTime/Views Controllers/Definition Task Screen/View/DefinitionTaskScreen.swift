@@ -12,8 +12,21 @@ protocol EditTaskProtocol: AnyObject {
 }
 
 final class DefinitionTaskScreen: UIView {
-
-//    MARK: - UIObjects
+    // MARK: - init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        setupButton()
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
     
     private var screenLabel: UILabel = {
         var screenLabel = UILabel()
@@ -77,7 +90,7 @@ final class DefinitionTaskScreen: UIView {
         startTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return startTimeTextLabel
     }()
-
+    
     var definition: UITextView = {
         var definition = UITextView()
         definition.isEditable = false
@@ -98,13 +111,13 @@ final class DefinitionTaskScreen: UIView {
     }()
     
     
-//    MARK: - Delegate
+    // MARK: - Delegate
     
     weak var delegate: EditTaskProtocol?
-        
     
-//    MARK: - Настройка кнопки
-
+    
+    // MARK: - Настройка кнопки
+    
     private func setupButton() {
         button.addTarget(self, action: #selector(editTask), for: .touchUpInside)
     }
@@ -114,37 +127,37 @@ final class DefinitionTaskScreen: UIView {
     }
     
     
-//    MARK: - Layout
+    // MARK: - Layout
     
     private func layout() {
         [screenLabel, nameLabel, name, startTimeLabel, startTime, durationLabel, duration, definitionLabel, definition, button].forEach { addSubview($0) }
         
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
-
+        
         NSLayoutConstraint.activate([
             screenLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             screenLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-             
+            
             nameLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
             nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
             name.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: safeIndent2),
             name.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             name.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-
+            
             startTimeLabel.topAnchor.constraint(equalTo: name.bottomAnchor, constant: safeIndent1),
             startTimeLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-
+            
             startTime.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor, constant: safeIndent2),
             startTime.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-
+            
             durationLabel.topAnchor.constraint(equalTo: startTime.bottomAnchor, constant: safeIndent1),
             durationLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-
+            
             duration.topAnchor.constraint(equalTo: durationLabel.bottomAnchor, constant: safeIndent2),
             duration.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
-
+            
             definitionLabel.topAnchor.constraint(equalTo: duration.bottomAnchor, constant: safeIndent1),
             definitionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             
@@ -158,20 +171,5 @@ final class DefinitionTaskScreen: UIView {
             button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
             button.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects)
         ])
-    }
-
-
-    
-//    MARK: - init
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        setupButton()
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

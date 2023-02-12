@@ -9,8 +9,7 @@ import UIKit
 import UserNotifications
 
 final class SettingsScreenVC: UIViewController {
-    
-//    MARK: - Экземпляр SettingScreen
+    // MARK: - Экземпляр SettingScreen
     
     lazy var settingsScreen: SettingsScreen = {
         var view = SettingsScreen()
@@ -25,17 +24,19 @@ final class SettingsScreenVC: UIViewController {
     }()
     
     
-//    MARK: - Lifecykle
+    // MARK: - Lifecykle
     
     override func loadView() {
         view = settingsScreen
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         allowNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         updateTimeToNotice()
     }
 }

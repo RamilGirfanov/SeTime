@@ -7,15 +7,17 @@
 
 import Foundation
 
-//MARK: - Протокол делегата EditTaskScreen
+// MARK: - Протокол делегата EditTaskScreen
 
 extension EditTaskScreenVC: SaveTaskProtocol {
     func saveTask() {
-//        Проверка на введеное название задачи
+        // Проверка на введеное название задачи
         if !editTaskScreen.taskName.text.isEmpty {
-            delegate?.saveTask(taskIndex: taskIndex,
-                               name: editTaskScreen.taskName.text,
-                               definition: editTaskScreen.taskDefinition.text ?? "")
+            delegate?.saveTask(
+                taskIndex: taskIndex,
+                name: editTaskScreen.taskName.text,
+                definition: editTaskScreen.taskDefinition.text ?? ""
+            )
             dismiss(animated: true)
         } else {
             editTaskScreen.worningLabel.text = NSLocalizedString("emptyFieldWarning", comment: "")

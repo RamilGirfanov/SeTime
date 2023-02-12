@@ -8,12 +8,11 @@
 import Foundation
 import RealmSwift
 
-//MARK: - Протокол делегата DefinitionTaskScreen
+// MARK: - Протокол делегата DefinitionTaskScreen
 
 extension MainScreenVC: EditTasksProtocol {
     func editTask(taskIndex: Int) {
-        
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", Model.shared.date).first!.tasks[taskIndex]
+        guard let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", Model.shared.date).first?.tasks[taskIndex] else { return }
         
         let editTaskVC = EditTaskScreenVC()
         editTaskVC.taskIndex = taskIndex

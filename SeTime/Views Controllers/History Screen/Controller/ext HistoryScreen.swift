@@ -8,13 +8,13 @@
 import UIKit
 import RealmSwift
 
-//MARK: - Протокол делегата HistoryScreen
+// MARK: - Протокол делегата HistoryScreen
 
 extension HistoryScreenVC {
     func showTaskDifinition(index: Int) {
         let taskDefinitionVC = DefinitionTaskScreenVC()
         
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!.tasks[index]
+        guard let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first?.tasks[index] else { return }
         
         taskDefinitionVC.taskIndex = index
         
@@ -32,7 +32,7 @@ extension HistoryScreenVC {
 }
 
 
-//    MARK: - Расширение UITableViewDataSource
+// MARK: - Расширение UITableViewDataSource
 
 extension HistoryScreenVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,14 +47,14 @@ extension HistoryScreenVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell
         
         guard let tableViewCell = cell else { return UITableViewCell() }
-
+        
         tableViewCell.pullCell(taskData: day.tasks[indexPath.row])
         return tableViewCell
     }
 }
 
 
-//    MARK: - Расширение UITableViewDelegate
+// MARK: - Расширение UITableViewDelegate
 
 extension HistoryScreenVC: UITableViewDelegate {
     //    Возвращает динамическую высоту ячейки
@@ -68,7 +68,7 @@ extension HistoryScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") {_, _, _ in
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }

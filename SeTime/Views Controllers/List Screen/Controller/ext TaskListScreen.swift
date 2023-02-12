@@ -7,7 +7,7 @@
 
 import UIKit
 
-//    MARK: - Расширение UITableViewDataSource
+// MARK: - Расширение UITableViewDataSource
 
 extension TaskListScreenVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -17,12 +17,12 @@ extension TaskListScreenVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tasks.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.identifier, for: indexPath) as? TaskListCell
         
         guard let tableViewCell = cell else { return UITableViewCell() }
-                
+        
         tableViewCell.pullCell(taskData: tasks[indexPath.row])
         
         return tableViewCell
@@ -30,7 +30,7 @@ extension TaskListScreenVC: UITableViewDataSource {
 }
 
 
-//    MARK: - Расширение UITableViewDelegate
+// MARK: - Расширение UITableViewDelegate
 
 extension TaskListScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -41,9 +41,9 @@ extension TaskListScreenVC: UITableViewDelegate {
         showTaskDifinition(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") {_, _, _ in
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -53,7 +53,7 @@ extension TaskListScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let start = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
+        let start = UIContextualAction(style: .normal, title: "") {_, _, completionHandler in
             self.startTask(index: indexPath.row)
             completionHandler(true)
         }
@@ -79,7 +79,7 @@ extension TaskListScreenVC: UITableViewDelegate {
 }
 
 
-//    MARK: - Расширение UITableViewDragDelegate
+// MARK: - Расширение UITableViewDragDelegate
 
 extension TaskListScreenVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
@@ -88,25 +88,23 @@ extension TaskListScreenVC: UITableViewDragDelegate {
 }
 
 
-//    MARK: - Расширение UITableViewDropDelegate
+// MARK: - Расширение UITableViewDropDelegate
 
 extension TaskListScreenVC: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
-
         if session.localDragSession != nil {
             return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         }
-
+        
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
     }
-
+    
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-        
     }
 }
 
 
-//    MARK: - Протокол делегата TaskListScreen
+// MARK: - Протокол делегата TaskListScreen
 
 extension TaskListScreenVC: TaskListProtocol {
     func addTask() {
@@ -117,7 +115,7 @@ extension TaskListScreenVC: TaskListProtocol {
 }
 
 
-//MARK: - Расширение функционала для TableView TaskListScreen
+// MARK: - Расширение функционала для TableView TaskListScreen
 
 extension TaskListScreenVC {
     func showTaskDifinition(index: Int) {
@@ -131,9 +129,11 @@ extension TaskListScreenVC {
     
     func startTask(index: Int) {
         let task = tasks[index]
-        NotificationCenter.default.post(name: MainScreenVC.notificationStartTask,
-                                        object: nil,
-                                        userInfo: ["task": task])
+        NotificationCenter.default.post(
+            name: MainScreenVC.notificationStartTask,
+            object: nil,
+            userInfo: ["task": task]
+        )
         RealmManager.shared.deleteTaskList(index: index)
         tasks = RealmManager.shared.getTaskList()
         taskListScreen.tasksTableView.reloadData()
@@ -144,4 +144,3 @@ extension TaskListScreenVC {
         tasks = RealmManager.shared.getTaskList()
     }
 }
-

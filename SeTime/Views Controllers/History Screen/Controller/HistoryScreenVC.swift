@@ -8,11 +8,10 @@
 import UIKit
 
 final class HistoryScreenVC: UIViewController {
-    
     var date = Date()
-        
-//    MARK: - Экземпляр HistoryScreen
-
+    
+    // MARK: - Экземпляр HistoryScreen
+    
     lazy var historyScreen: HistoryScreen = {
         let view = HistoryScreen()
         view.tasksTableView.dataSource = self
@@ -22,18 +21,15 @@ final class HistoryScreenVC: UIViewController {
     }()
     
     
-//    MARK: - Экземпляр модели
+    // MARK: - Экземпляр модели
     
     var day = Day()
     
     
-//    MARK: - Настройка данных
+    // MARK: - Настройка данных
     
     func setupData() {
-        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first) != nil {
-            
-            day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first!
-            
+        if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first {
             historyScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
             historyScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: day.workTime)
             historyScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
@@ -45,12 +41,11 @@ final class HistoryScreenVC: UIViewController {
     }
     
     
-//    MARK: - Lifecycle
-            
+    // MARK: - Lifecycle
+    
     override func loadView() {
         view = historyScreen
         setupData()
         historyScreen.tasksTableView.reloadData()
     }
-    
 }

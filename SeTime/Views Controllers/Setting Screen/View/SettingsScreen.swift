@@ -15,8 +15,22 @@ protocol SetupsProtocol: AnyObject {
 }
 
 final class SettingsScreen: UIView {
+    // MARK: - init
     
-//    MARK: - UIObjects
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        setupScreen()
+        setupTargrt()
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
     
     private var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -263,14 +277,14 @@ final class SettingsScreen: UIView {
         definitionTime.translatesAutoresizingMaskIntoConstraints = false
         return definitionTime
     }()
-        
     
-//    MARK: - Delegade
+    
+    // MARK: - Delegade
     
     weak var delegate: SetupsProtocol?
     
     
-//    MARK: - Настройка Target
+    // MARK: - Настройка Target
     
     private func setupTargrt() {
         startWorkSwitch.addTarget(self, action: #selector(startWorkSwitchDidCanged), for: .valueChanged)
@@ -317,10 +331,10 @@ final class SettingsScreen: UIView {
         }
     }
     
-//    MARK: - Настройка settingsScreen
+    // MARK: - Настройка settingsScreen
     
     private func setupScreen() {
-//        Настройка переключателей
+        // Настройка переключателей
         if UserDefaults.standard.bool(forKey: "notificationStartWorkTolerance") == true {
             startWorkSwitch.isOn = true
         } else {
@@ -341,7 +355,7 @@ final class SettingsScreen: UIView {
     }
     
     
-//    MARK: - Layout
+    // MARK: - Layout
     private var heightStartTimePicker = NSLayoutConstraint()
     private var heightWorkPicker = NSLayoutConstraint()
     private var heightBreakPicker = NSLayoutConstraint()
@@ -383,7 +397,7 @@ final class SettingsScreen: UIView {
             
             screenLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: safeIndent1),
             screenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1),
-
+            
             switchLabel.topAnchor.constraint(equalTo: screenLabel.bottomAnchor, constant: safeIndent1),
             switchLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: safeIndent1 * 2),
             
@@ -408,7 +422,7 @@ final class SettingsScreen: UIView {
             
             textForWorkSwitch.centerYAnchor.constraint(equalTo: viewForWorkSwitch.centerYAnchor),
             textForWorkSwitch.leadingAnchor.constraint(equalTo: viewForWorkSwitch.leadingAnchor, constant: safeIndent1),
-
+            
             workSwitch.topAnchor.constraint(equalTo: viewForWorkSwitch.topAnchor, constant: safeIndent2),
             workSwitch.trailingAnchor.constraint(equalTo: viewForWorkSwitch.trailingAnchor, constant: -safeIndent1),
             workSwitch.bottomAnchor.constraint(equalTo: viewForWorkSwitch.bottomAnchor, constant: -safeIndent2),
@@ -493,7 +507,7 @@ final class SettingsScreen: UIView {
         ])
     }
     
-//    функции и свойства для изменения видимости datePicker
+    // функции и свойства для изменения видимости datePicker
     private var startTimeDatePickerShow = false
     private var workDatePickerShow = false
     private var breakDatePickerShow = false
@@ -541,20 +555,5 @@ final class SettingsScreen: UIView {
             layoutIfNeeded()
             breakDatePickerShow = true
         }
-    }
-    
-    
-//    MARK: - init
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        setupScreen()
-        setupTargrt()
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

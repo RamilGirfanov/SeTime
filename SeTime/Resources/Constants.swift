@@ -7,29 +7,29 @@
 
 import UIKit
 
-//Цвет системы
+// Цвет системы
 let mainColorTheme: UIColor = .systemYellow
 
-//Радиус всех UI объектов
+// Радиус всех UI объектов
 let totalCornerRadius: CGFloat = 12
 
-//Высота кнопок
+// Высота кнопок
 let totalHeightForTappedUIobjects: CGFloat = 44
 
-//Размеры текста
+// Размеры текста
 let textSize1: CGFloat = 20
 let textSize2: CGFloat = 17
 let textSize3: CGFloat = 15
 let textSize4: CGFloat = 14
 
-//Расширение для идентификатора ячеек
+// Расширение для идентификатора ячеек
 extension UIView {
     static var identifier: String {
         return String(describing: self)
     }
 }
 
-//Расширение для настроек кнопок
+// Расширение для настроек кнопок
 extension UIButton {
     func activeButton() {
         setTitleColor(.black, for: .normal)
@@ -50,14 +50,14 @@ extension UIButton {
     }
 }
 
-//Функция получения короткого формата даты
+// Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
     let dateNow = Calendar.current.date(from: dateComponents)
     return dateNow!
 }
 
-//Функция получения даты в строке
+// Функция получения даты в строке
 func getStringDate(date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = NSLocalizedString("localizedDateFormatter", comment: "")
@@ -74,7 +74,7 @@ func timeDateToInt(date: Date) -> Int {
 func timeToDate(time: Int) -> Date {
     let minutes = time / 60 % 60
     let hours = time / 3600
-
+    
     var dateComponents = DateComponents()
     dateComponents.hour = hours
     dateComponents.minute = minutes
@@ -83,7 +83,7 @@ func timeToDate(time: Int) -> Date {
     return date!
 }
 
-//Функция получения времени
+// Функция получения времени
 func getTime() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
@@ -91,13 +91,12 @@ func getTime() -> String {
     return currentTime
 }
 
-//Функция перевода числа Int в String формат "00:00:00"
+// Функция перевода числа Int в String формат "00:00:00"
 func timeIntToString(time: Int) -> String {
-    
     let seconds = time % 60
     let minutes = time / 60 % 60
     let hours = time / 3600
-
+    
     var fullTime: [String] = []
     
     switch hours {
@@ -130,12 +129,11 @@ func timeIntToString(time: Int) -> String {
     return fullTime.joined(separator: ":")
 }
 
-//Функция перевода числа Int в String формат "00:00"
+// Функция перевода числа Int в String формат "00:00"
 func timeIntToStringShort(time: Int) -> String {
-    
     let minutes = time / 60 % 60
     let hours = time / 3600
-
+    
     var fullTime: [String] = []
     
     switch hours {
@@ -159,8 +157,8 @@ func timeIntToStringShort(time: Int) -> String {
     return fullTime.joined(separator: ":")
 }
 
-//Функция очистки строк от переносов строк и лишних пробелов
+// Функция очистки строк от переносов строк и лишних пробелов
 func clearString(string: String) -> String {
     let components = string.components(separatedBy: .whitespacesAndNewlines)
-    return components.filter { i in !i.isEmpty }.joined(separator: " ")
+    return components.filter { item in !item.isEmpty }.joined(separator: " ")
 }

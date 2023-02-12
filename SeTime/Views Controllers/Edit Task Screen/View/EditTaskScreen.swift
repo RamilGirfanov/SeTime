@@ -12,7 +12,6 @@ protocol SaveTaskProtocol: AnyObject {
 }
 
 final class EditTaskScreen: AddTaskScreen {
-    
     var delegate2: SaveTaskProtocol?
     
     override func tap() {

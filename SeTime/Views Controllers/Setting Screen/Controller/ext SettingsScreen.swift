@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-//MARK: - Протокол делегата SettingsScreen
+// MARK: - Протокол делегата SettingsScreen
 
 extension SettingsScreenVC: SetupsProtocol {
     func changeStartWorkSwitch() {
@@ -46,7 +46,7 @@ extension SettingsScreenVC: SetupsProtocol {
     
     func updateTimeToNotice() {
         let startTime = timeDateToInt(date: settingsScreen.startWorkTimeDatePicker.date)
-                
+        
         UserDefaults.standard.set(startTime, forKey: "startTimeNotice")
         settingsScreen.startWorkTimeDataLabel.text = timeIntToStringShort(time: startTime)
         notificationStartWorkTime()

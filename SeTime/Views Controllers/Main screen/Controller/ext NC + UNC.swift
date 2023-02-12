@@ -9,8 +9,7 @@ import Foundation
 import UserNotifications
 
 extension MainScreenVC {
-    
-//    MARK: - NotificationCenter для обновления UIView
+    // MARK: - NotificationCenter для обновления UIView
     
     static let notificationUpdateTime = Notification.Name("updateTime")
     static let notificationTaskTime = Notification.Name("taskTime")
@@ -19,26 +18,36 @@ extension MainScreenVC {
     static let notificationStartTask = Notification.Name("startTask")
     
     func setupNC() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateTime),
-                                               name: MainScreenVC.notificationUpdateTime,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateTaskTime),
-                                               name: MainScreenVC.notificationTaskTime,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(stopTimers),
-                                               name: MainScreenVC.notificationSceneDidDisconnect,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkDay),
-                                               name: MainScreenVC.notificationCheckDay,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(startTask(notification:)),
-                                               name: MainScreenVC.notificationStartTask,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateTime),
+            name: MainScreenVC.notificationUpdateTime,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateTaskTime),
+            name: MainScreenVC.notificationTaskTime,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(stopTimers),
+            name: MainScreenVC.notificationSceneDidDisconnect,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(checkDay),
+            name: MainScreenVC.notificationCheckDay,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(startTask(notification:)),
+            name: MainScreenVC.notificationStartTask,
+            object: nil
+        )
     }
     
     @objc private func updateTime() {
@@ -46,11 +55,11 @@ extension MainScreenVC {
         mainScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: Model.shared.workTime)
         mainScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: Model.shared.breakTime)
     }
-        
+    
     @objc private func updateTaskTime() {
         mainScreen.taskTimeDataLabel.text = timeIntToString(time: Model.shared.taskTime)
     }
-
+    
     @objc func stopTimers() {
         stop()
     }
@@ -61,15 +70,15 @@ extension MainScreenVC {
         
         let currentDate = getShortDate(date: Date())
         
-        if (RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first) != nil {
-//            Если день в БД есть
-            Model.shared.workTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.workTime
-            Model.shared.breakTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.breakTime
-            Model.shared.totalTime = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.totalTime
+        if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first {
+            // Если день в БД есть
+            Model.shared.workTime = day.workTime
+            Model.shared.breakTime = day.breakTime
+            Model.shared.totalTime = day.totalTime
             
             mainScreen.currentDay(workTime: Model.shared.workTime, breakTime: Model.shared.breakTime, totalTime: Model.shared.totalTime)
         } else {
-//          Если дня в БД нет
+            // Если дня в БД нет
             let day = Day()
             day.date = currentDate
             RealmManager.shared.saveDay(day: day)
@@ -82,7 +91,7 @@ extension MainScreenVC {
     @objc private func startTask(notification: Notification) {
         guard let task = notification.userInfo?["task"] as? TaskList else { return }
         
-//        Управляет запуском и остановкой таймеров
+        // Управляет запуском и остановкой таймеров
         if Model.shared.taskTimer.isValid {
             stopTaskTimer()
         }
@@ -90,25 +99,25 @@ extension MainScreenVC {
         if !Model.shared.workTimer.isValid {
             startWorkTimer()
         }
-                
-//        Меняет видимости кнопки и вью задачи на главном экране
+        
+        // Меняет видимости кнопки и вью задачи на главном экране
         mainScreen.addTaskButton.isHidden = true
         mainScreen.taskTimerView.isHidden = false
         
-//        Устанавливает в лейбл задачи ее название
+        // Устанавливает в лейбл задачи ее название
         mainScreen.taskTimeTextLabel.text = task.name
         
-//        Устанавливает название и описание задачи в объект задачи
+        // Устанавливает название и описание задачи в объект задачи
         Model.shared.task.name = task.name
         Model.shared.task.definition = task.definition
         
-//        Запускает таймер задачи
+        //        Запускает таймер задачи
         Model.shared.startTaskTimer()
         Model.shared.task.startTime = getTime()
     }
     
     
-//    MARK: - Уведомления о времени работы
+    // MARK: - Уведомления о времени работы
     
     func notificationWorkTime() {
         if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") {
@@ -167,7 +176,7 @@ extension MainScreenVC {
 }
 
 
-//MARK: - Расширение для UNUserNotificationCenter
+// MARK: - Расширение для UNUserNotificationCenter
 
 extension MainScreenVC: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

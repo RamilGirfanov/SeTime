@@ -6,15 +6,14 @@
 //
 
 import UIKit
-
-//Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
+// Расширение для клавиатуры что бы она скрывалась по нажанию на любое место экрана
 extension UIViewController {
     func setupToHideKeyboardOnTapOnView() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

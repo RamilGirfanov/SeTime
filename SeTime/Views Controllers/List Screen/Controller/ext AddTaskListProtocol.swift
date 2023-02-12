@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: - Протокол делегата AddTaskScreen
+// MARK: - Протокол делегата AddTaskScreen
 
 extension TaskListScreenVC: AddTasksProtocol {
     func addTask(name: String, definition: String) {

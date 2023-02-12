@@ -12,8 +12,7 @@ protocol EditTasksProtocol: AnyObject {
 }
 
 final class DefinitionTaskScreenVC: UIViewController {
-    
-//    MARK: - Хранимые свойства для настройки экрана
+    // MARK: - Хранимые свойства для настройки экрана
     
     var taskIndex = 0
     
@@ -23,7 +22,7 @@ final class DefinitionTaskScreenVC: UIViewController {
     var definition = ""
     
     
-//    MARK: - Экземпляр DefinitionTaskScreen
+    // MARK: - Экземпляр DefinitionTaskScreen
     
     lazy var taskDefinitionScreen: DefinitionTaskScreen = {
         let view = DefinitionTaskScreen()
@@ -36,12 +35,12 @@ final class DefinitionTaskScreenVC: UIViewController {
     }()
     
     
-//    MARK: - Delegate
+    // MARK: - Delegate
     
     weak var delegate: EditTasksProtocol?
     
     
-//    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = taskDefinitionScreen

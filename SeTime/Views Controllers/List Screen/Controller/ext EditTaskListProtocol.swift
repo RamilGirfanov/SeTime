@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: - Протокол делегата DefinitionTaskScreen
+// MARK: - Протокол делегата DefinitionTaskScreen
 
 extension TaskListScreenVC: EditTasksProtocol {
     func editTask(taskIndex: Int) {

@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-//    MARK: - Расширение UITableViewDataSource
+// MARK: - Расширение UITableViewDataSource
 
 extension MainScreenVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -24,7 +24,7 @@ extension MainScreenVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell
         
         guard let tableViewCell = cell else { return UITableViewCell() }
-
+        
         let currentDate = Model.shared.date
         let tasks = RealmManager.shared.getTasks(date: currentDate)
         
@@ -35,7 +35,7 @@ extension MainScreenVC: UITableViewDataSource {
 }
 
 
-//    MARK: - Расширение UITableViewDelegate
+// MARK: - Расширение UITableViewDelegate
 
 extension MainScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -48,7 +48,7 @@ extension MainScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") {_,_,_ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") {_, _, _ in
             self.deleteTask(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -58,7 +58,7 @@ extension MainScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let restart = UIContextualAction(style: .normal, title: "") {action, view, completionHandler in
+        let restart = UIContextualAction(style: .normal, title: "") {_, _, completionHandler in
             self.restartTask(index: indexPath.row)
             completionHandler(true)
         }
@@ -69,7 +69,7 @@ extension MainScreenVC: UITableViewDelegate {
     }
 }
 
-//MARK: - Протокол делегата MainScreen
+// MARK: - Протокол делегата MainScreen
 
 extension MainScreenVC: ManageTimers {
     func startWorkTimer() {
@@ -81,14 +81,14 @@ extension MainScreenVC: ManageTimers {
         
         Model.shared.pauseBreakTimer()
         
-//        Уведоления
+        // Уведоления
         notificationWorkTime()
         cancelNotification(notificationType: .breakNotice)
         
         mainScreen.addTaskButton.activeButton()
         mainScreen.stopButton.activeButton()
         
-//        Работа с View
+        // Работа с View
         mainScreen.workButton.isHidden = true
         mainScreen.breakButton.isHidden = false
         
@@ -99,11 +99,11 @@ extension MainScreenVC: ManageTimers {
         Model.shared.startBreakTimer()
         Model.shared.pauseWorkTimer()
         
-//        Уведоления
+        // Уведоления
         notificationBreakTime()
         cancelNotification(notificationType: .workNotice)
         
-//        Работа с View
+        // Работа с View
         mainScreen.addTaskButton.inactiveButton()
         
         mainScreen.workButton.isHidden = false
@@ -113,11 +113,11 @@ extension MainScreenVC: ManageTimers {
     func stop() {
         Model.shared.stop()
         
-//        Уведоления
+        // Уведоления
         cancelNotification(notificationType: .workNotice)
         cancelNotification(notificationType: .breakNotice)
         
-//        Работа с View
+        // Работа с View
         mainScreen.addTaskButton.inactiveButton()
         mainScreen.stopButton.inactiveButton()
         
@@ -134,11 +134,11 @@ extension MainScreenVC: ManageTimers {
         
         checkDay()
     }
-        
+    
     func stopTaskTimer() {
         Model.shared.stopTaskTimer()
         
-//        Работа с View
+        // Работа с View
         mainScreen.taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         mainScreen.taskTimeDataLabel.text = "00:00:00"
         
@@ -156,13 +156,13 @@ extension MainScreenVC: ManageTimers {
 }
 
 
-//MARK: - Расширение функционала для TableView MainScreen
+// MARK: - Расширение функционала для TableView MainScreen
 
 extension MainScreenVC {
     func showTaskDifinition(index: Int) {
         let currentDate = getShortDate(date: Date())
-
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first!.tasks[index]
+        
+        guard let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first?.tasks[index] else { return }
         
         let definitionTaskVC = DefinitionTaskScreenVC()
         definitionTaskVC.taskIndex = index
@@ -175,15 +175,17 @@ extension MainScreenVC {
     }
     
     func deleteTask(index: Int) {
-        RealmManager.shared.deleteTask(date: Model.shared.date,
-                                       index: index)
+        RealmManager.shared.deleteTask(
+            date: Model.shared.date,
+            index: index
+        )
     }
     
     func restartTask(index: Int) {
-//        Получает Задачу из архива
-        let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", Model.shared.date).first!.tasks[index]
-
-//        Управляет запуском и остановкой таймеров
+        // Получает Задачу из архива
+        guard let task = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", Model.shared.date).first?.tasks[index] else { return }
+        
+        // Управляет запуском и остановкой таймеров
         if Model.shared.taskTimer.isValid {
             stopTaskTimer()
         }
@@ -192,15 +194,17 @@ extension MainScreenVC {
             startWorkTimer()
         }
         
-//        Передает задачу в модель
-        Model.shared.restartTaskTimer(index: index,
-                               duration: task.duration)
-
-//        Меняет видимости кнопки и вью задачи на главном экране
+        // Передает задачу в модель
+        Model.shared.restartTaskTimer(
+            index: index,
+            duration: task.duration
+        )
+        
+        // Меняет видимости кнопки и вью задачи на главном экране
         mainScreen.addTaskButton.isHidden = true
         mainScreen.taskTimerView.isHidden = false
-
-//        Устанавливает в лейбл задачи ее название
+        
+        // Устанавливает в лейбл задачи ее название
         mainScreen.taskTimeTextLabel.text = task.name
         mainScreen.taskTimeDataLabel.text = timeIntToString(time: task.duration)
     }

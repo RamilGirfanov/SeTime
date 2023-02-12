@@ -8,8 +8,9 @@
 import Foundation
 import RealmSwift
 
+// swiftlint:disable force_try
+
 class RealmManager {
-    
     static let shared = RealmManager()
     
     private init() {}
@@ -94,7 +95,7 @@ class RealmManager {
     }
     
     func updateSortTasksList(tasks: [TaskList]) {
-        var newSortTaskListArray = [(name: String, definition: String)]()
+        var newSortTaskListArray: [(name: String, definition: String)] = []
         tasks.forEach { newSortTaskListArray.append((name: $0.name, definition: $0.definition)) }
         
         var endIndex = tasks.count - 1
@@ -111,3 +112,4 @@ class RealmManager {
         }
     }
 }
+// swiftlint:enable force_try

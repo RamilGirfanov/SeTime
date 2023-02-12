@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-//MARK: - Протокол делегата EditTaskScreen
+// MARK: - Протокол делегата EditTaskScreen
 
 extension MainScreenVC: SaveTasksProtocol {
     func saveTask(taskIndex: Int, name: String, definition: String) {

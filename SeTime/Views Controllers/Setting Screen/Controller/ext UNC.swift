@@ -8,14 +8,13 @@
 import UIKit
 
 extension SettingsScreenVC: UNUserNotificationCenterDelegate {
-    
     func showiPhoneSetups() {
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
         
         if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+            UIApplication.shared.open(settingsUrl) { success in
                 print("Settings opened: \(success)")
-            })
+            }
         }
     }
     
@@ -52,7 +51,7 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
     }
     
     func allowNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             guard granted else { return }
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 guard settings.authorizationStatus == .authorized else { return }
@@ -61,7 +60,7 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
     }
     
     
-//    MARK: - Уведомление о времени работы
+    // MARK: - Уведомление о времени работы
     
     func notificationStartWorkTime() {
         if UserDefaults.standard.bool(forKey: "notificationStartWorkTolerance") {
@@ -82,17 +81,19 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
             
-            let startWorkTimeRequest = UNNotificationRequest(identifier: "Start work notification",
-                                                             content: content,
-                                                             trigger: trigger)
+            let startWorkTimeRequest = UNNotificationRequest(
+                identifier: "Start work notification",
+                content: content,
+                trigger: trigger
+            )
             UNUserNotificationCenter.current().add(startWorkTimeRequest)
         }
     }
     
     func cancelStartWorkNotification() {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Start work notification"])
-        }
-
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Start work notification"])
+    }
+    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound])

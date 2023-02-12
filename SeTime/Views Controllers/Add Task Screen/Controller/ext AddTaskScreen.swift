@@ -7,15 +7,13 @@
 
 import Foundation
 
-
-//MARK: - Протокол делегата AddTaskScreen
+// MARK: - Протокол делегата AddTaskScreen
 
 extension AddTaskScreenVC: AddTaskProtocol {
     func addTask() {
-//        Проверка на введеное название задачи
+        // Проверка на введеное название задачи
         if !addTaskScreen.taskName.text.isEmpty {
-            
-//            Очистка строк от переносов строк лишних пробелов
+            // Очистка строк от переносов строк лишних пробелов
             let name = clearString(string: addTaskScreen.taskName.text)
             let definition = clearString(string: addTaskScreen.taskDefinition.text ?? "")
             

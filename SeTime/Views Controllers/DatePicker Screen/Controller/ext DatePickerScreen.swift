@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: - Протокол делегата DatePickerScreen
+// MARK: - Протокол делегата DatePickerScreen
 
 extension DatePickerScreenVC: PresentHistory {
     func pushScreen() {
