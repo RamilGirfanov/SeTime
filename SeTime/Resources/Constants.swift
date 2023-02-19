@@ -50,7 +50,7 @@ extension UIButton {
     }
 }
 
-// Функция получения короткого формата даты
+//  Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
     let dateNow = Calendar.current.date(from: dateComponents)

@@ -136,10 +136,7 @@ class Model {
             if taskWasRestart == false {
                 task.date = date
                 
-                RealmManager.shared.addTask(
-                    date: date,
-                    task: task
-                )
+                RealmManager.shared.addTask(date: date, task: task)
                 
                 task = Task()
                 taskTimer = Timer()

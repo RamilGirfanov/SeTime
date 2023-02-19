@@ -30,6 +30,7 @@ final class HistoryScreenVC: UIViewController {
     
     func setupData() {
         if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first {
+            self.day = day
             historyScreen.viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
             historyScreen.viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: day.workTime)
             historyScreen.viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)

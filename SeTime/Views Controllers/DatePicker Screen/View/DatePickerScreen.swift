@@ -91,13 +91,13 @@ final class DatePickerScreen: UIView {
         delegate?.pushScreen()
     }
     
-    func updateDatePicker() {
-        datePicker = {
-            lazy var datePicker = UIDatePicker()
-            datePicker.preferredDatePickerStyle = .inline
-            datePicker.datePickerMode = .date
-            datePicker.translatesAutoresizingMaskIntoConstraints = false
-            return datePicker
-        }()
-    }
+//    func updateDatePicker() {
+//        datePicker = {
+//            lazy var datePicker = UIDatePicker()
+//            datePicker.preferredDatePickerStyle = .inline
+//            datePicker.datePickerMode = .date
+//            datePicker.translatesAutoresizingMaskIntoConstraints = false
+//            return datePicker
+//        }()
+//    }
 }

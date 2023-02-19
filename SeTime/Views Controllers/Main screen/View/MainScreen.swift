@@ -248,12 +248,12 @@ final class MainScreen: UIView {
     // Функции для инициирования нового или текущего дня
     
     func newDay() {
-        //        Настройка видимости кнопок
+        // Настройка видимости кнопок
         workButton.isHidden = false
         breakButton.isHidden = true
         addTaskButton.isEnabled = false
         
-        //        Очистка экрана от данных
+        // Очистка экрана от данных
         viewForTimeReview.workTimeDataLabel.text = "00:00:00"
         viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
         viewForTimeReview.totalTimeDataLabel.text = "00:00:00"
