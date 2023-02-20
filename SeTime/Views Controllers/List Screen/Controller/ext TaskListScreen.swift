@@ -63,7 +63,6 @@ extension TaskListScreenVC: UITableViewDelegate {
         return swipeActions
     }
     
-    
     func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let elementToMove = tasks[fromIndexPath.row]
         tasks.remove(at: fromIndexPath.row)

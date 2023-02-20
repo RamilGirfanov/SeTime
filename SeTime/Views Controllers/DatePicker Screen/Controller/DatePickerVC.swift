@@ -8,7 +8,6 @@
 import UIKit
 
 final class DatePickerScreenVC: UIViewController {
-    
     // MARK: - Экземпляр MainScreen
     
     lazy var datePickerScreen: DatePickerScreen = {

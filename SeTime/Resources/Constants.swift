@@ -52,9 +52,12 @@ extension UIButton {
 
 //  Функция получения короткого формата даты
 func getShortDate(date: Date) -> Date {
+    var shortDate = Date()
     let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
-    let dateNow = Calendar.current.date(from: dateComponents)
-    return dateNow!
+    if let newDate = Calendar.current.date(from: dateComponents) {
+        shortDate = newDate
+    }
+    return shortDate
 }
 
 // Функция получения даты в строке
@@ -78,9 +81,11 @@ func timeToDate(time: Int) -> Date {
     var dateComponents = DateComponents()
     dateComponents.hour = hours
     dateComponents.minute = minutes
-    
-    let date = Calendar.current.date(from: dateComponents)
-    return date!
+    var date = Date()
+    if let newDate = Calendar.current.date(from: dateComponents) {
+        date = newDate
+    }
+    return date
 }
 
 // Функция получения времени
