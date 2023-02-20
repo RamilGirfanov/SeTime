@@ -8,8 +8,7 @@
 import UIKit
 
 class TaskListScreenVC: UIViewController {
-    
-//    MARK: - Экземпляр TaskListScreen
+    // MARK: - Экземпляр TaskListScreen
     
     lazy var taskListScreen: TaskListScreen = {
         let taskListScreen = TaskListScreen()
@@ -21,7 +20,7 @@ class TaskListScreenVC: UIViewController {
         return taskListScreen
     }()
     
-//    MARK: - Массив задач
+    // MARK: - Массив задач
     
     var tasks: [TaskList] = []
     
@@ -30,7 +29,7 @@ class TaskListScreenVC: UIViewController {
     }
     
     
-//    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = taskListScreen
@@ -40,6 +39,5 @@ class TaskListScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 }

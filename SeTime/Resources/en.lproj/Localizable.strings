@@ -39,12 +39,12 @@
 "localizedDateFormatter" = "MMM dd yyyy";
 
 //MARK: - Settings Screen
-"enableNotifications" = "Enable notifications";
+"enableNotifications" = "ENABLE NOTIFICATIONS";
 "startWorkNotifications" = "Getting started";
 "breakTimeNotifications" = "Take a break";
 "workTimeNotifications" = "Back to work";
 "definitionSwitch" = "Allow the application to send notifications";
-"setupTime" = "Set notification time";
+"setupTime" = "SET NOTIFICATION TIME";
 "definitionWorkTime" = "The time when the application will remind you to get started";
 "definitionTime" = "The time after which the application will send a notification to take a break or return to work";
 

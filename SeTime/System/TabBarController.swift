@@ -8,7 +8,6 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
     private func setupVC() {
         let datePickerVC = DatePickerScreenVC()
         datePickerVC.tabBarItem.image = UIImage(systemName: "calendar")
@@ -25,7 +24,6 @@ class TabBarController: UITabBarController {
         viewControllers = [datePickerVC, listScreenVC, mainScreenVC, settingsScreenVC]
         selectedViewController = mainScreenVC
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

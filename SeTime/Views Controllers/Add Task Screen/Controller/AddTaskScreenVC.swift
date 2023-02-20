@@ -12,8 +12,7 @@ protocol AddTasksProtocol: AnyObject {
 }
 
 final class AddTaskScreenVC: UIViewController {
-
-//    MARK: - Экземпляр AddTaskScreen
+    // MARK: - Экземпляр AddTaskScreen
     
     lazy var addTaskScreen: AddTaskScreen = {
         let view = AddTaskScreen()
@@ -22,12 +21,12 @@ final class AddTaskScreenVC: UIViewController {
     }()
     
     
-    //    MARK: - Delegate
-
+    // MARK: - Delegate
+    
     weak var delegate: AddTasksProtocol?
     
     
-    //    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = addTaskScreen

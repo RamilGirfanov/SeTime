@@ -16,9 +16,22 @@ protocol ManageTimers: AnyObject {
 }
 
 final class MainScreen: UIView {
+    // MARK: - init
     
-//    MARK: - UIObjects
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .systemBackground
+        setupButtons()
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
+    
     let viewForTimeReview: ViewForTimeReview = {
         let viewForTimeReview = ViewForTimeReview()
         viewForTimeReview.layer.cornerRadius = totalCornerRadius
@@ -117,12 +130,12 @@ final class MainScreen: UIView {
     }()
     
     
-//    MARK: - Delegate
+    // MARK: - Delegate
     
     weak var delegate: ManageTimers?
     
     
-//    MARK: - Настройка кнопок
+    // MARK: - Настройка кнопок
     
     private func setupButtons() {
         workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
@@ -132,33 +145,33 @@ final class MainScreen: UIView {
         addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
     }
     
-//    Запускает таймер работы, в том числе для задачи
+    // Запускает таймер работы, в том числе для задачи
     @objc private func tapForWork() {
         delegate?.startWorkTimer()
     }
     
-//    Запускает таймер перерывов, в том числе для задачи
+    // Запускает таймер перерывов, в том числе для задачи
     @objc private func tapForBreak() {
         delegate?.startBreakTimer()
     }
     
-//    Останавливает все таймеры, в том числе для задачи
+    // Останавливает все таймеры, в том числе для задачи
     @objc private func tapForStop() {
         delegate?.stop()
     }
     
-//    Останавливает таймер задачи и переносит задачу в таблицу
+    // Останавливает таймер задачи и переносит задачу в таблицу
     @objc private func stopTask() {
         delegate?.stopTaskTimer()
     }
     
-//    Вызывает экран запуска задачи
+    // Вызывает экран запуска задачи
     @objc private func addTask() {
         delegate?.addTask()
     }
     
     
-//    MARK: - Layout
+    // MARK: - Layout
     
     func layout() {
         [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { addSubview($0) }
@@ -177,7 +190,7 @@ final class MainScreen: UIView {
             viewForTimeReview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: safeIndent1),
             viewForTimeReview.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
             viewForTimeReview.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -safeIndent1),
-                        
+            
             workButton.heightAnchor.constraint(equalToConstant: totalHeightForTappedUIobjects),
             workButton.topAnchor.constraint(equalTo: viewForTimeReview.bottomAnchor, constant: safeIndent2),
             workButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: safeIndent1),
@@ -231,27 +244,16 @@ final class MainScreen: UIView {
     }
     
     
-//    MARK: - init
+    // MARK: - Functionality
+    // Функции для инициирования нового или текущего дня
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        setupButtons()
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-//    Функции для инициирования нового или текущего дня
     func newDay() {
-//        Настройка видимости кнопок
+        // Настройка видимости кнопок
         workButton.isHidden = false
         breakButton.isHidden = true
         addTaskButton.isEnabled = false
-            
-//        Очистка экрана от данных
+        
+        // Очистка экрана от данных
         viewForTimeReview.workTimeDataLabel.text = "00:00:00"
         viewForTimeReview.breakTimeDataLabel.text = "00:00:00"
         viewForTimeReview.totalTimeDataLabel.text = "00:00:00"

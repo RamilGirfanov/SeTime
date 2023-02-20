@@ -8,7 +8,22 @@
 import UIKit
 
 class ViewForTimeReview: UIView {
-
+    // MARK: - init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .secondarySystemBackground
+        translatesAutoresizingMaskIntoConstraints = false
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - UIObjects
+    
     private var totalTimeTextLabel: UILabel = {
         var totalTimeTextLabel = UILabel()
         totalTimeTextLabel.text = NSLocalizedString("totalTime", comment: "")
@@ -82,8 +97,11 @@ class ViewForTimeReview: UIView {
         return breakTimeDataLabel
     }()
     
+    
+// MARK: - Layout
+    
     private func layout() {
-        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach {addSubview($0)}
+        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { addSubview($0) }
         
         [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
         [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
@@ -106,18 +124,7 @@ class ViewForTimeReview: UIView {
             stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
             stackForDataLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackForDataLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackForDataLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent),
+            stackForDataLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent)
         ])
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .secondarySystemBackground
-        translatesAutoresizingMaskIntoConstraints = false
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

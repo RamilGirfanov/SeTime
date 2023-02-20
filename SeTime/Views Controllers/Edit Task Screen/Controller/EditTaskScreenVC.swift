@@ -12,8 +12,7 @@ protocol SaveTasksProtocol: AnyObject {
 }
 
 final class EditTaskScreenVC: UIViewController {
-    
-//    MARK: - Хранимые свойства для настройки экрана
+    // MARK: - Хранимые свойства для настройки экрана
     
     var taskIndex = 0
     
@@ -21,7 +20,7 @@ final class EditTaskScreenVC: UIViewController {
     var definition = ""
     
     
-//    MARK: - Экземпляр TaskAddScreen
+    // MARK: - Экземпляр TaskAddScreen
     
     lazy var editTaskScreen: EditTaskScreen = {
         let view = EditTaskScreen()
@@ -32,12 +31,12 @@ final class EditTaskScreenVC: UIViewController {
     }()
     
     
-//    MARK: - Delegate
+    // MARK: - Delegate
     
     weak var delegate: SaveTasksProtocol?
     
     
-//    MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func loadView() {
         view = editTaskScreen
