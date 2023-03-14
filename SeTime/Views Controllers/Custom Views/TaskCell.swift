@@ -48,7 +48,7 @@ final class TaskCell: UITableViewCell {
     var taskDuration: UILabel = {
         var taskDuration = UILabel()
         taskDuration.font = .systemFont(ofSize: textSize2, weight: .regular)
-        taskDuration.textAlignment = .center
+        taskDuration.textAlignment = .right
         taskDuration.translatesAutoresizingMaskIntoConstraints = false
         return taskDuration
     }()
@@ -78,7 +78,6 @@ final class TaskCell: UITableViewCell {
             taskStartTime.trailingAnchor.constraint(equalTo: subView.trailingAnchor),
             taskStartTime.bottomAnchor.constraint(equalTo: subView.bottomAnchor),
             
-            taskDuration.widthAnchor.constraint(equalToConstant: 90),
             taskDuration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             taskDuration.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -safeIndent)
         ])
