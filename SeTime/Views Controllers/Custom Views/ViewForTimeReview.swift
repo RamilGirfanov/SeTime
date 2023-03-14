@@ -97,19 +97,38 @@ class ViewForTimeReview: UIView {
         return breakTimeDataLabel
     }()
     
+    let leftFocusView: UIView = {
+        let leftFocusView = UIView()
+        leftFocusView.backgroundColor = .tertiarySystemBackground
+        leftFocusView.layer.cornerRadius = totalCornerRadius
+        leftFocusView.translatesAutoresizingMaskIntoConstraints = false
+        leftFocusView.isHidden = true
+        return leftFocusView
+    }()
+    
+    let rightFocusView: UIView = {
+        let rightFocusView = UIView()
+        rightFocusView.backgroundColor = .tertiarySystemBackground
+        rightFocusView.layer.cornerRadius = totalCornerRadius
+        rightFocusView.translatesAutoresizingMaskIntoConstraints = false
+        rightFocusView.isHidden = true
+        return rightFocusView
+    }()
+
     
 // MARK: - Layout
     
     private func layout() {
-        [totalTimeTextLabel, totalTimeDataLabel, stackForTextLabel, stackForDataLabel].forEach { addSubview($0) }
+        [totalTimeTextLabel, totalTimeDataLabel, leftFocusView, rightFocusView, stackForTextLabel, stackForDataLabel].forEach { addSubview($0) }
         
         [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
         [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
 
-        let safeIndent: CGFloat = 16
+        let safeIndent1: CGFloat = 16
+        let safeIndent2: CGFloat = 8
 
         NSLayoutConstraint.activate([
-            totalTimeTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: safeIndent),
+            totalTimeTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: safeIndent1),
             totalTimeTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             totalTimeTextLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
@@ -117,14 +136,24 @@ class ViewForTimeReview: UIView {
             totalTimeDataLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             totalTimeDataLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent),
+            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent1),
             stackForTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackForTextLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
             stackForDataLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackForDataLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackForDataLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent)
+            stackForDataLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent1),
+            
+            leftFocusView.topAnchor.constraint(equalTo: stackForTextLabel.topAnchor, constant: -safeIndent2),
+            leftFocusView.leadingAnchor.constraint(equalTo: stackForTextLabel.leadingAnchor, constant: safeIndent2),
+            leftFocusView.bottomAnchor.constraint(equalTo: stackForDataLabel.bottomAnchor, constant: safeIndent2),
+            
+            rightFocusView.topAnchor.constraint(equalTo: stackForTextLabel.topAnchor, constant: -safeIndent2),
+            rightFocusView.leadingAnchor.constraint(equalTo: leftFocusView.trailingAnchor, constant: safeIndent1),
+            rightFocusView.trailingAnchor.constraint(equalTo: stackForTextLabel.trailingAnchor, constant: -safeIndent2),
+            rightFocusView.bottomAnchor.constraint(equalTo: stackForDataLabel.bottomAnchor, constant: safeIndent2),
+            rightFocusView.widthAnchor.constraint(equalTo: leftFocusView.widthAnchor)
         ])
     }
 }

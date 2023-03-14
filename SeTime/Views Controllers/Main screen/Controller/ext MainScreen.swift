@@ -92,6 +92,9 @@ extension MainScreenVC: ManageTimers {
         mainScreen.workButton.isHidden = true
         mainScreen.breakButton.isHidden = false
         
+        mainScreen.viewForTimeReview.leftFocusView.isHidden = false
+        mainScreen.viewForTimeReview.rightFocusView.isHidden = true
+        
         mainScreen.stopTaskButton.isEnabled = true
     }
     
@@ -108,6 +111,9 @@ extension MainScreenVC: ManageTimers {
         
         mainScreen.workButton.isHidden = false
         mainScreen.breakButton.isHidden = true
+        
+        mainScreen.viewForTimeReview.leftFocusView.isHidden = true
+        mainScreen.viewForTimeReview.rightFocusView.isHidden = false
     }
     
     func stop() {
@@ -129,6 +135,9 @@ extension MainScreenVC: ManageTimers {
         
         mainScreen.addTaskButton.isHidden = false
         mainScreen.taskTimerView.isHidden = true
+        
+        mainScreen.viewForTimeReview.leftFocusView.isHidden = true
+        mainScreen.viewForTimeReview.rightFocusView.isHidden = true
         
         mainScreen.tasksTableView.reloadData()
         
