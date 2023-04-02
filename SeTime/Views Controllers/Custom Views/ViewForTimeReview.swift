@@ -43,12 +43,12 @@ class ViewForTimeReview: UIView {
         return totalTimeDataLabel
     }()
     
-    private var stackForTextLabel: UIStackView = {
-        var stackForTextLabel = UIStackView()
-        stackForTextLabel.axis = .horizontal
-        stackForTextLabel.distribution = .fillEqually
-        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return stackForTextLabel
+    private var stackForTotalTime: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
     private var workTimeTextLabel: UILabel = {
@@ -60,24 +60,6 @@ class ViewForTimeReview: UIView {
         workTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return workTimeTextLabel
     }()
-   
-    private var breakTimeTextLabel: UILabel = {
-        var breakTimeTextLabel = UILabel()
-        breakTimeTextLabel.text = NSLocalizedString("breakTime", comment: "")
-        breakTimeTextLabel.textColor = .secondaryLabel
-        breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
-        breakTimeTextLabel.textAlignment = .center
-        breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return breakTimeTextLabel
-    }()
-    
-    private var stackForDataLabel: UIStackView = {
-        var stackForTextLabel = UIStackView()
-        stackForTextLabel.axis = .horizontal
-        stackForTextLabel.distribution = .fillEqually
-        stackForTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        return stackForTextLabel
-    }()
     
     var workTimeDataLabel: UILabel = {
         var workTimeTextLabel = UILabel()
@@ -88,6 +70,24 @@ class ViewForTimeReview: UIView {
         return workTimeTextLabel
     }()
     
+    private var stackForWorkTime: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private var breakTimeTextLabel: UILabel = {
+        var breakTimeTextLabel = UILabel()
+        breakTimeTextLabel.text = NSLocalizedString("breakTime", comment: "")
+        breakTimeTextLabel.textColor = .secondaryLabel
+        breakTimeTextLabel.font = .systemFont(ofSize: textSize3, weight: .regular)
+        breakTimeTextLabel.textAlignment = .center
+        breakTimeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        return breakTimeTextLabel
+    }()
+    
     var breakTimeDataLabel: UILabel = {
         var breakTimeDataLabel = UILabel()
         breakTimeDataLabel.text = "00:00:00"
@@ -95,6 +95,22 @@ class ViewForTimeReview: UIView {
         breakTimeDataLabel.textAlignment = .center
         breakTimeDataLabel.translatesAutoresizingMaskIntoConstraints = false
         return breakTimeDataLabel
+    }()
+    
+    private var stackForBreakTime: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private var stackForWBTime: UIStackView = {
+        var stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
     let leftFocusView: UIView = {
@@ -114,45 +130,42 @@ class ViewForTimeReview: UIView {
         rightFocusView.isHidden = true
         return rightFocusView
     }()
-
     
-// MARK: - Layout
+    
+    // MARK: - Layout
     
     private func layout() {
-        [totalTimeTextLabel, totalTimeDataLabel, leftFocusView, rightFocusView, stackForTextLabel, stackForDataLabel].forEach { addSubview($0) }
+        [stackForTotalTime, leftFocusView, rightFocusView, stackForWBTime].forEach { addSubview($0) }
         
-        [workTimeTextLabel, breakTimeTextLabel].forEach { stackForTextLabel.addArrangedSubview($0) }
-        [workTimeDataLabel, breakTimeDataLabel].forEach { stackForDataLabel.addArrangedSubview($0) }
-
+        [totalTimeTextLabel, totalTimeDataLabel].forEach { stackForTotalTime.addArrangedSubview($0) }
+        
+        [stackForWorkTime, stackForBreakTime].forEach { stackForWBTime.addArrangedSubview($0) }
+        
+        [workTimeTextLabel, workTimeDataLabel].forEach { stackForWorkTime.addArrangedSubview($0) }
+        
+        [breakTimeTextLabel, breakTimeDataLabel].forEach { stackForBreakTime.addArrangedSubview($0) }
+        
         let safeIndent1: CGFloat = 16
         let safeIndent2: CGFloat = 8
-
+        
         NSLayoutConstraint.activate([
-            totalTimeTextLabel.topAnchor.constraint(equalTo: topAnchor, constant: safeIndent1),
-            totalTimeTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            totalTimeTextLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackForTotalTime.topAnchor.constraint(equalTo: topAnchor, constant: safeIndent1),
+            stackForTotalTime.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackForTotalTime.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            totalTimeDataLabel.topAnchor.constraint(equalTo: totalTimeTextLabel.bottomAnchor),
-            totalTimeDataLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            totalTimeDataLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackForWBTime.topAnchor.constraint(equalTo: stackForTotalTime.bottomAnchor, constant: safeIndent1),
+            stackForWBTime.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackForWBTime.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackForWBTime.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent1),
             
-            stackForTextLabel.topAnchor.constraint(equalTo: totalTimeDataLabel.bottomAnchor, constant: safeIndent1),
-            stackForTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackForTextLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            leftFocusView.topAnchor.constraint(equalTo: stackForWorkTime.topAnchor, constant: -safeIndent2),
+            leftFocusView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: safeIndent2),
+            leftFocusView.bottomAnchor.constraint(equalTo: stackForWorkTime.bottomAnchor, constant: safeIndent2),
             
-            stackForDataLabel.topAnchor.constraint(equalTo: stackForTextLabel.bottomAnchor),
-            stackForDataLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackForDataLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackForDataLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeIndent1),
-            
-            leftFocusView.topAnchor.constraint(equalTo: stackForTextLabel.topAnchor, constant: -safeIndent2),
-            leftFocusView.leadingAnchor.constraint(equalTo: stackForTextLabel.leadingAnchor, constant: safeIndent2),
-            leftFocusView.bottomAnchor.constraint(equalTo: stackForDataLabel.bottomAnchor, constant: safeIndent2),
-            
-            rightFocusView.topAnchor.constraint(equalTo: stackForTextLabel.topAnchor, constant: -safeIndent2),
+            rightFocusView.topAnchor.constraint(equalTo: stackForBreakTime.topAnchor, constant: -safeIndent2),
             rightFocusView.leadingAnchor.constraint(equalTo: leftFocusView.trailingAnchor, constant: safeIndent1),
-            rightFocusView.trailingAnchor.constraint(equalTo: stackForTextLabel.trailingAnchor, constant: -safeIndent2),
-            rightFocusView.bottomAnchor.constraint(equalTo: stackForDataLabel.bottomAnchor, constant: safeIndent2),
+            rightFocusView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -safeIndent2),
+            rightFocusView.bottomAnchor.constraint(equalTo: stackForBreakTime.bottomAnchor, constant: safeIndent2),
             rightFocusView.widthAnchor.constraint(equalTo: leftFocusView.widthAnchor)
         ])
     }
