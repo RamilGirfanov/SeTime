@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		74052BC2297DA1F90079E533 /* ext AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052B8F297DA1F90079E533 /* ext AddTaskScreen.swift */; };
 		74052BC4297DA1F90079E533 /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052B92297DA1F90079E533 /* AddTaskScreen.swift */; };
-		74052BD9297DA1F90079E533 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BB9297DA1F90079E533 /* MainScreenVC.swift */; };
+		74052BD9297DA1F90079E533 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BB9297DA1F90079E533 /* MainScreenViewController.swift */; };
 		74052BDA297DA1F90079E533 /* ext EditTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BBA297DA1F90079E533 /* ext EditTasksProtocol.swift */; };
-		74052BDB297DA1F90079E533 /* ext MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BBB297DA1F90079E533 /* ext MainScreen.swift */; };
 		74052BDC297DA1F90079E533 /* ext NC + UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BBC297DA1F90079E533 /* ext NC + UNC.swift */; };
 		74052BDE297DA1F90079E533 /* ext SaveTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BBE297DA1F90079E533 /* ext SaveTasksProtocol.swift */; };
 		74052BDF297DA1F90079E533 /* ext AddTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BBF297DA1F90079E533 /* ext AddTasksProtocol.swift */; };
-		74052BE0297DA1F90079E533 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BC1297DA1F90079E533 /* MainScreen.swift */; };
+		74052BE0297DA1F90079E533 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BC1297DA1F90079E533 /* MainScreenView.swift */; };
 		74052BE4297DA2C70079E533 /* AddTaskScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE1297DA2C70079E533 /* AddTaskScreenVC.swift */; };
 		74052BE9297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE7297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift */; };
 		74052BEA297DA3270079E533 /* ext HSVC EditTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE8297DA3270079E533 /* ext HSVC EditTasksProtocol.swift */; };
@@ -45,7 +44,10 @@
 		74052C27297DFC110079E533 /* ext AddTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */; };
 		74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */; };
 		74052C2B297E008F0079E533 /* ext SaveTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */; };
-		7408034B290AA260002AB91D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* Model.swift */; };
+		7405476B2A2A6A010018C9DF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7405476A2A2A6A010018C9DF /* ViewModel.swift */; };
+		7405476D2A2A6A0D0018C9DF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7405476C2A2A6A0D0018C9DF /* Model.swift */; };
+		740547702A2A9DCD0018C9DF /* Timer Status.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7405476F2A2A9DCD0018C9DF /* Timer Status.plist */; };
+		7408034B290AA260002AB91D /* ModelOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7408034A290AA260002AB91D /* ModelOld.swift */; };
 		741FDF082921653B00F36193 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DataObjects.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
 		7438FFF3294D320D00EB250A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF2294D320D00EB250A /* Keyboard.swift */; };
@@ -63,13 +65,12 @@
 /* Begin PBXFileReference section */
 		74052B8F297DA1F90079E533 /* ext AddTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext AddTaskScreen.swift"; sourceTree = "<group>"; };
 		74052B92297DA1F90079E533 /* AddTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
-		74052BB9297DA1F90079E533 /* MainScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
+		74052BB9297DA1F90079E533 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		74052BBA297DA1F90079E533 /* ext EditTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext EditTasksProtocol.swift"; sourceTree = "<group>"; };
-		74052BBB297DA1F90079E533 /* ext MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext MainScreen.swift"; sourceTree = "<group>"; };
 		74052BBC297DA1F90079E533 /* ext NC + UNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext NC + UNC.swift"; sourceTree = "<group>"; };
 		74052BBE297DA1F90079E533 /* ext SaveTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext SaveTasksProtocol.swift"; sourceTree = "<group>"; };
 		74052BBF297DA1F90079E533 /* ext AddTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext AddTasksProtocol.swift"; sourceTree = "<group>"; };
-		74052BC1297DA1F90079E533 /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		74052BC1297DA1F90079E533 /* MainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		74052BE1297DA2C70079E533 /* AddTaskScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskScreenVC.swift; sourceTree = "<group>"; };
 		74052BE7297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext HSVC SaveTasksProtocol.swift"; sourceTree = "<group>"; };
 		74052BE8297DA3270079E533 /* ext HSVC EditTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext HSVC EditTasksProtocol.swift"; sourceTree = "<group>"; };
@@ -99,7 +100,10 @@
 		74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext AddTaskListProtocol.swift"; sourceTree = "<group>"; };
 		74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext EditTaskListProtocol.swift"; sourceTree = "<group>"; };
 		74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext SaveTaskListProtocol.swift"; sourceTree = "<group>"; };
-		7408034A290AA260002AB91D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7405476A2A2A6A010018C9DF /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		7405476C2A2A6A0D0018C9DF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		7405476F2A2A9DCD0018C9DF /* Timer Status.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Timer Status.plist"; sourceTree = "<group>"; };
+		7408034A290AA260002AB91D /* ModelOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelOld.swift; sourceTree = "<group>"; };
 		741FDF072921653B00F36193 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		7438FFF2294D320D00EB250A /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
@@ -325,12 +329,6 @@
 		74052BB8297DA1F90079E533 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				74052BB9297DA1F90079E533 /* MainScreenVC.swift */,
-				74052BBB297DA1F90079E533 /* ext MainScreen.swift */,
-				74052BBF297DA1F90079E533 /* ext AddTasksProtocol.swift */,
-				74052BBA297DA1F90079E533 /* ext EditTasksProtocol.swift */,
-				74052BBE297DA1F90079E533 /* ext SaveTasksProtocol.swift */,
-				74052BBC297DA1F90079E533 /* ext NC + UNC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -338,7 +336,6 @@
 		74052BC0297DA1F90079E533 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				74052BC1297DA1F90079E533 /* MainScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,6 +366,37 @@
 			children = (
 				74052C1A297DD4CC0079E533 /* TaskListCell.swift */,
 				74052C20297DD9110079E533 /* TaskListScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		740547682A2A69A90018C9DF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				740547692A2A69BE0018C9DF /* MainScrreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		740547692A2A69BE0018C9DF /* MainScrreen */ = {
+			isa = PBXGroup;
+			children = (
+				7405476C2A2A6A0D0018C9DF /* Model.swift */,
+				7405476A2A2A6A010018C9DF /* ViewModel.swift */,
+				7405476E2A2A6A450018C9DF /* View */,
+			);
+			path = MainScrreen;
+			sourceTree = "<group>";
+		};
+		7405476E2A2A6A450018C9DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74052BC1297DA1F90079E533 /* MainScreenView.swift */,
+				74052BB9297DA1F90079E533 /* MainScreenViewController.swift */,
+				74052BBF297DA1F90079E533 /* ext AddTasksProtocol.swift */,
+				74052BBA297DA1F90079E533 /* ext EditTasksProtocol.swift */,
+				74052BBE297DA1F90079E533 /* ext SaveTasksProtocol.swift */,
+				74052BBC297DA1F90079E533 /* ext NC + UNC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +440,7 @@
 		74AC63DC2843C6EB00CAE0F5 /* SeTime */ = {
 			isa = PBXGroup;
 			children = (
+				740547682A2A69A90018C9DF /* Screens */,
 				74378176297D60760082EAD7 /* System */,
 				74ED60B6286593E50008B57C /* Resources */,
 				74ED60CB286594C10008B57C /* Model */,
@@ -428,6 +457,7 @@
 				74ED60B8286593E50008B57C /* LaunchScreen.storyboard */,
 				74ED60B7286593E50008B57C /* Assets.xcassets */,
 				7438FFF6294FC95A00EB250A /* Notifications Settings.plist */,
+				7405476F2A2A9DCD0018C9DF /* Timer Status.plist */,
 				74CCA8AC292FEF9D000D6B32 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -436,7 +466,7 @@
 		74ED60CB286594C10008B57C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7408034A290AA260002AB91D /* Model.swift */,
+				7408034A290AA260002AB91D /* ModelOld.swift */,
 				741FDF0A2921654E00F36193 /* Realm */,
 			);
 			path = Model;
@@ -512,6 +542,7 @@
 				74ED60C0286593E50008B57C /* Assets.xcassets in Resources */,
 				74CCA8AA292FEF9D000D6B32 /* Localizable.strings in Resources */,
 				7438FFF7294FC95A00EB250A /* Notifications Settings.plist in Resources */,
+				740547702A2A9DCD0018C9DF /* Timer Status.plist in Resources */,
 				74ED60C1286593E50008B57C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,10 +574,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74052BD9297DA1F90079E533 /* MainScreenVC.swift in Sources */,
+				74052BD9297DA1F90079E533 /* MainScreenViewController.swift in Sources */,
 				74052C21297DD9110079E533 /* TaskListScreen.swift in Sources */,
 				74052BFC297DA4390079E533 /* DefinitionTaskScreen.swift in Sources */,
-				74052BDB297DA1F90079E533 /* ext MainScreen.swift in Sources */,
+				7405476D2A2A6A0D0018C9DF /* Model.swift in Sources */,
 				74052BEC297DA3530079E533 /* HistoryScrean.swift in Sources */,
 				74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */,
 				74052BDA297DA1F90079E533 /* ext EditTasksProtocol.swift in Sources */,
@@ -561,7 +592,7 @@
 				74052BFF297DA4430079E533 /* DefinitionTaskScreenVC.swift in Sources */,
 				74052C0A297DA57D0079E533 /* EditTaskScreen.swift in Sources */,
 				74052BEA297DA3270079E533 /* ext HSVC EditTasksProtocol.swift in Sources */,
-				74052BE0297DA1F90079E533 /* MainScreen.swift in Sources */,
+				74052BE0297DA1F90079E533 /* MainScreenView.swift in Sources */,
 				74052BDE297DA1F90079E533 /* ext SaveTasksProtocol.swift in Sources */,
 				74052BDC297DA1F90079E533 /* ext NC + UNC.swift in Sources */,
 				74ED60C4286593E50008B57C /* Constants.swift in Sources */,
@@ -571,7 +602,8 @@
 				74052BC4297DA1F90079E533 /* AddTaskScreen.swift in Sources */,
 				74052BDF297DA1F90079E533 /* ext AddTasksProtocol.swift in Sources */,
 				74052BE9297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift in Sources */,
-				7408034B290AA260002AB91D /* Model.swift in Sources */,
+				7405476B2A2A6A010018C9DF /* ViewModel.swift in Sources */,
+				7408034B290AA260002AB91D /* ModelOld.swift in Sources */,
 				7438FFF3294D320D00EB250A /* Keyboard.swift in Sources */,
 				74052C0D297DA58E0079E533 /* ext EditTaskScreen.swift in Sources */,
 				74052C14297DC8840079E533 /* TabBarController.swift in Sources */,

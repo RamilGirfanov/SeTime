@@ -7,28 +7,18 @@
 
 import UIKit
 
-protocol ManageTimers: AnyObject {
-    func startWorkTimer()
-    func startBreakTimer()
-    func stop()
-    func stopTaskTimer()
-    func addTask()
-}
-
 final class MainScreen: UIView {
     // MARK: - init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        setupButtons()
         layout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - UIObjects
     
@@ -129,51 +119,9 @@ final class MainScreen: UIView {
         return tasksTableView
     }()
     
+    // MARK: - Private Methods
     
-    // MARK: - Delegate
-    
-    weak var delegate: ManageTimers?
-    
-    
-    // MARK: - Настройка кнопок
-    
-    private func setupButtons() {
-        workButton.addTarget(self, action: #selector(tapForWork), for: .touchUpInside)
-        breakButton.addTarget(self, action: #selector(tapForBreak), for: .touchUpInside)
-        stopButton.addTarget(self, action: #selector(tapForStop), for: .touchUpInside)
-        stopTaskButton.addTarget(self, action: #selector(stopTask), for: .touchUpInside)
-        addTaskButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
-    }
-    
-    // Запускает таймер работы, в том числе для задачи
-    @objc private func tapForWork() {
-        delegate?.startWorkTimer()
-    }
-    
-    // Запускает таймер перерывов, в том числе для задачи
-    @objc private func tapForBreak() {
-        delegate?.startBreakTimer()
-    }
-    
-    // Останавливает все таймеры, в том числе для задачи
-    @objc private func tapForStop() {
-        delegate?.stop()
-    }
-    
-    // Останавливает таймер задачи и переносит задачу в таблицу
-    @objc private func stopTask() {
-        delegate?.stopTaskTimer()
-    }
-    
-    // Вызывает экран запуска задачи
-    @objc private func addTask() {
-        delegate?.addTask()
-    }
-    
-    
-    // MARK: - Layout
-    
-    func layout() {
+    private func layout() {
         [viewForTimeReview, workButton, breakButton, stopButton, addTaskButton, taskTimerView, tasksTableView].forEach { addSubview($0) }
         
         [taskTimerSubView, stopTaskButton].forEach { taskTimerView.addSubview($0) }
@@ -243,10 +191,69 @@ final class MainScreen: UIView {
         ])
     }
     
+    // MARK: - Public Methods
     
-    // MARK: - Functionality
-    // Функции для инициирования нового или текущего дня
+    func activateWorkMode() {
+        addTaskButton.activeButton()
+        stopButton.activeButton()
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
+        
+        viewForTimeReview.leftFocusView.isHidden = false
+        viewForTimeReview.rightFocusView.isHidden = true
+        
+        stopTaskButton.isEnabled = true
+    }
     
+    func activateBreakMode() {
+        addTaskButton.inactiveButton()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        
+        viewForTimeReview.leftFocusView.isHidden = true
+        viewForTimeReview.rightFocusView.isHidden = false
+    }
+    
+    func activateStopMode() {
+        addTaskButton.inactiveButton()
+        stopButton.inactiveButton()
+        
+        workButton.isHidden = false
+        breakButton.isHidden = true
+        
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        taskTimeDataLabel.text = "00:00:00"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        viewForTimeReview.leftFocusView.isHidden = true
+        viewForTimeReview.rightFocusView.isHidden = true
+        
+        tasksTableView.reloadData()
+    }
+    
+    func activateTaskMode() {
+        taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
+        taskTimeDataLabel.text = "00:00:00"
+        
+        addTaskButton.isHidden = false
+        taskTimerView.isHidden = true
+        
+        tasksTableView.reloadData()
+    }
+    
+    func activateRestartTaskMode(name: String, time: Int) {
+        addTaskButton.isHidden = true
+        taskTimerView.isHidden = false
+        
+        taskTimeTextLabel.text = name
+        taskTimeDataLabel.text = timeIntToString(time: time)
+    }
+    
+    // Функция для инициирования нового дня
     func newDay() {
         // Настройка видимости кнопок
         workButton.isHidden = false
@@ -260,6 +267,7 @@ final class MainScreen: UIView {
         tasksTableView.reloadData()
     }
     
+    // Функция для инициирования текущего дня
     func currentDay(workTime: Int, breakTime: Int, totalTime: Int) {
         viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: workTime)
         viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: breakTime)
