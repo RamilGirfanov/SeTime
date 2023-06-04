@@ -1,13 +1,57 @@
 //
-//  ext TaskListScreen.swift
+//  TaskListScreenVC.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 23.01.2023.
+//  Created by Рамиль Гирфанов on 22.01.2023.
 //
 
 import UIKit
 
-// MARK: - Расширение UITableViewDataSource
+protocol StartTasksProtocol: AnyObject {
+    func startTask(name: String, definition: String)
+}
+
+class TaskListScreenVC: UIViewController {
+    
+    // MARK: - Экземпляр TaskListScreen
+    
+    lazy var taskListScreen: TaskListScreen = {
+        let taskListScreen = TaskListScreen()
+        taskListScreen.delegate = self
+        taskListScreen.tasksTableView.dataSource = self
+        taskListScreen.tasksTableView.delegate = self
+        taskListScreen.tasksTableView.dragDelegate = self
+        taskListScreen.tasksTableView.dropDelegate = self
+        return taskListScreen
+    }()
+    
+    // MARK: - Массив задач
+    
+    var tasks: [TaskList] = []
+    
+    private func setupData() {
+        tasks = RealmManager.shared.getTaskList()
+    }
+    
+    
+    // MARK: - Lifecycle
+    
+    override func loadView() {
+        view = taskListScreen
+        setupData()
+        taskListScreen.tasksTableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // MARK: - Delegate
+    
+    weak var delegate: StartTasksProtocol?
+}
+
+// MARK: - UITableViewDataSource
 
 extension TaskListScreenVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -29,8 +73,7 @@ extension TaskListScreenVC: UITableViewDataSource {
     }
 }
 
-
-// MARK: - Расширение UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension TaskListScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -77,8 +120,7 @@ extension TaskListScreenVC: UITableViewDelegate {
     }
 }
 
-
-// MARK: - Расширение UITableViewDragDelegate
+// MARK: - UITableViewDragDelegate
 
 extension TaskListScreenVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
@@ -86,8 +128,7 @@ extension TaskListScreenVC: UITableViewDragDelegate {
     }
 }
 
-
-// MARK: - Расширение UITableViewDropDelegate
+// MARK: - UITableViewDropDelegate
 
 extension TaskListScreenVC: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
@@ -102,7 +143,6 @@ extension TaskListScreenVC: UITableViewDropDelegate {
     }
 }
 
-
 // MARK: - Протокол делегата TaskListScreen
 
 extension TaskListScreenVC: TaskListProtocol {
@@ -112,7 +152,6 @@ extension TaskListScreenVC: TaskListProtocol {
         present(taskAddVC, animated: true)
     }
 }
-
 
 // MARK: - Расширение функционала для TableView TaskListScreen
 
@@ -128,11 +167,9 @@ extension TaskListScreenVC {
     
     func startTask(index: Int) {
         let task = tasks[index]
-        NotificationCenter.default.post(
-            name: MainScreenVC.notificationStartTask,
-            object: nil,
-            userInfo: ["task": task]
-        )
+        
+        delegate?.startTask(name: task.name, definition: task.definition)
+        
         RealmManager.shared.deleteTaskList(index: index)
         tasks = RealmManager.shared.getTaskList()
         taskListScreen.tasksTableView.reloadData()
@@ -141,5 +178,6 @@ extension TaskListScreenVC {
     func deleteTask(index: Int) {
         RealmManager.shared.deleteTaskList(index: index)
         tasks = RealmManager.shared.getTaskList()
+        taskListScreen.tasksTableView.reloadData()
     }
 }

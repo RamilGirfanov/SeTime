@@ -15,6 +15,7 @@ protocol SetupsProtocol: AnyObject {
 }
 
 final class SettingsScreen: UIView {
+    
     // MARK: - init
     
     override init(frame: CGRect) {
@@ -314,20 +315,23 @@ final class SettingsScreen: UIView {
     }
     
     @objc private func showStartWorkDatePicker() {
-        UIView.animate(withDuration: 0.3) { [self] in
-            changeViewForStartWorkDatePicker()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
+            self.changeViewForStartWorkDatePicker()
         }
     }
     
     @objc private func showWorkDatePicker() {
-        UIView.animate(withDuration: 0.3) { [self] in
-            changeViewForWorkDatePicker()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
+            self.changeViewForWorkDatePicker()
         }
     }
     
     @objc private func showBreakDatePicker() {
-        UIView.animate(withDuration: 0.3) { [self] in
-            changeViewForBreakDatePicker()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
+            self.changeViewForBreakDatePicker()
         }
     }
     

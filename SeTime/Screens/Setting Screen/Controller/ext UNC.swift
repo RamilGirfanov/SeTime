@@ -12,8 +12,7 @@ extension SettingsScreenVC: UNUserNotificationCenterDelegate {
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
         
         if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl) { success in
-                print("Settings opened: \(success)")
+            UIApplication.shared.open(settingsUrl) { _ in
             }
         }
     }

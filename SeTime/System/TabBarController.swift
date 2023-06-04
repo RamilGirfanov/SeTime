@@ -20,6 +20,8 @@ class TabBarController: UITabBarController {
         
         let settingsScreenVC = SettingsScreenVC()
         settingsScreenVC.tabBarItem.image = UIImage(systemName: "gear")
+                
+        listScreenVC.delegate = mainScreenVC
         
         viewControllers = [datePickerVC, listScreenVC, mainScreenVC, settingsScreenVC]
         selectedViewController = mainScreenVC
