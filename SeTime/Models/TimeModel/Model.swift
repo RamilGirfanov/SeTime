@@ -10,55 +10,75 @@ import Foundation
 // MARK: - Protocols
 
 protocol TimeTracker {
-    func startWorkTimer(completionHandler: @escaping (Int) -> Void)
+    func startWorkTimer()
     func pauseWorkTimer()
-
-    func startBreakTimer(completionHandler: @escaping (Int) -> Void)
+    
+    func startBreakTimer()
     func pauseBreakTimer()
-
+    
     func stopAllTimers()
 }
 
 protocol TaskTracker {
-    func startTaskTimer(completionHandler: @escaping (Int) -> Void)
+    func addTask(name: String, definition: String)
+    func startTaskTimer()
     func pauseTaskTimer()
     func stopTaskTimer()
-    func restartTaskTimer(task: Task, taskIndex: Int)
-}
-
-protocol TrakerManager {
-    func addTask() -> Task
-    func contuneTask() -> Task
-    func checkNewDay() -> Bool
-    func reloadDay()
+    func restartTaskTimer(duration: Int, taskIndex: Int)
 }
 
 // MARK: - Class
 
 final class TimeManager: TimeTracker, TaskTracker {
-    // MARK: - Properties
     
-    private var day = Day()
-    private var task = Task()
-    private var date = getShortDate(date: Date())
+    // MARK: - Private Propertiees
     
     private var workTimer = Timer()
     private var breakTimer = Timer()
     private var taskTimer = Timer()
-
+    
     private var workTime = 0
     private var breakTime = 0
-    private var totalTime: Int {
-        workTime + breakTime
-    }
+    private var totalTime = 0
     private var taskTime = 0
-    
+
     private var restartStatus = false
     private var taskIndex = 0
     
+    // MARK: - Public Properties
+    
+    var day: Day {
+        didSet {
+            workTime = day.workTime
+            breakTime = day.breakTime
+            totalTime = day.totalTime
+        }
+    }
+    
+    var task = Task() {
+        didSet {
+            taskTime = task.duration
+        }
+    }
+    
+    var date = getShortDate(date: Date())
+    
+    // Для обновления данных во ViewModel
+    var updateTimeInViewModel: (Int, Int, Int) -> Void = { _, _, _ in }
+    var updateTaskTimeInViewModel: (Int) -> Void = { _ in }
+    
+    // MARK: - Init
+    
+    init(
+        day: Day
+    ) {
+        self.day = day
+    }
+        
     // MARK: - TimeTracker Methods
     
-    func startWorkTimer(completionHandler: @escaping (Int) -> Void) {
+    func startWorkTimer() {
+        updateTimeInManager()
         UserDefaults.standard.set(true, forKey: "workTimerIsActive")
         let savedTime = day.workTime
         let creationDate = Date()
@@ -67,24 +87,18 @@ final class TimeManager: TimeTracker, TaskTracker {
             repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 workTime = Int(Date().timeIntervalSince(creationDate)) + savedTime
-                completionHandler(workTime)
+                totalTime = workTime + breakTime
+                updateTimeInViewModel(workTime, breakTime, totalTime)
         }
         workTimer.tolerance = 0.2
+        
+        if taskTime != 0 {
+            startTaskTimer()
+        }
     }
     
-    func pauseWorkTimer() {
-        workTimer.invalidate()
-        UserDefaults.standard.set(false, forKey: "workTimerIsActive")
-        RealmManager.shared.updateTime(
-            date: date,
-            workTime: workTime,
-            breakTime: breakTime,
-            totalTime: totalTime
-        )
-        pauseTaskTimer()
-    }
-    
-    func startBreakTimer(completionHandler: @escaping (Int) -> Void) {
+    func startBreakTimer() {
+        updateTimeInManager()
         UserDefaults.standard.set(true, forKey: "breakTimerIsActive")
         let savedTime = day.breakTime
         let creationDate = Date()
@@ -93,9 +107,22 @@ final class TimeManager: TimeTracker, TaskTracker {
             repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 breakTime = Int(Date().timeIntervalSince(creationDate)) + savedTime
-                completionHandler(breakTime)
+                totalTime = workTime + breakTime
+                updateTimeInViewModel(workTime, breakTime, totalTime)
         }
         breakTimer.tolerance = 0.2
+    }
+    
+    func pauseWorkTimer() {
+        workTimer.invalidate()
+        pauseTaskTimer()
+        UserDefaults.standard.set(false, forKey: "workTimerIsActive")
+        RealmManager.shared.updateTime(
+            date: date,
+            workTime: workTime,
+            breakTime: breakTime,
+            totalTime: totalTime
+        )
     }
     
     func pauseBreakTimer() {
@@ -117,7 +144,13 @@ final class TimeManager: TimeTracker, TaskTracker {
     
     // MARK: - TaskTraker Methods
     
-    func startTaskTimer(completionHandler: @escaping (Int) -> Void) {
+    func addTask(name: String, definition: String) {
+        task.name = name
+        task.definition = definition
+        task.startTime = getTime()
+    }
+    
+    func startTaskTimer() {
         UserDefaults.standard.set(true, forKey: "taskTimerIsActive")
         let savedTime = task.duration
         let creationDate = Date()
@@ -126,7 +159,7 @@ final class TimeManager: TimeTracker, TaskTracker {
             repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 taskTime = Int(Date().timeIntervalSince(creationDate)) + savedTime
-                completionHandler(taskTime)
+                updateTaskTimeInViewModel(taskTime)
         }
         taskTimer.tolerance = 0.2
     }
@@ -138,39 +171,45 @@ final class TimeManager: TimeTracker, TaskTracker {
     }
     
     func stopTaskTimer() {
+        guard taskTime != 0 else { return }
         pauseTaskTimer()
-        restartStatus ? updateTask() : saveTask()
+        if restartStatus {
+            updateTask()
+        } else {
+            saveTask()
+        }
+        task = Task()
+        taskTimer = Timer()
+        taskTime = 0
     }
     
-    func restartTaskTimer(task: Task, taskIndex: Int) {
-        self.task = task
+    func restartTaskTimer(duration: Int, taskIndex: Int) {
+        stopTaskTimer()
         restartStatus = true
         self.taskIndex = taskIndex
-        startTaskTimer(completionHandler: <#T##(Int) -> Void#>)
+        self.task.duration = duration
+        startTaskTimer()
     }
     
     // MARK: - Private Methods
     
+    private func updateTimeInManager() {
+        if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", date).first {
+            self.day = day
+        }
+    }
+    
     private func saveTask() {
         task.date = date
-        
         RealmManager.shared.addTask(date: date, task: task)
-        
-        task = Task()
-        taskTimer = Timer()
-        taskTime = 0
     }
     
     private func updateTask() {
         RealmManager.shared.updateTaskDuration(
-            date: task.date,
+            date: date,
             index: taskIndex,
             duration: task.duration
         )
-        
-        task = Task()
-        taskTimer = Timer()
-        taskTime = 0
         restartStatus = false
     }
 }

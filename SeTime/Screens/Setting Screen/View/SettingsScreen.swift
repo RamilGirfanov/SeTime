@@ -15,6 +15,7 @@ protocol SetupsProtocol: AnyObject {
 }
 
 final class SettingsScreen: UIView {
+    
     // MARK: - init
     
     override init(frame: CGRect) {

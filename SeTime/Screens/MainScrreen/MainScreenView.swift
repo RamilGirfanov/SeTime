@@ -8,6 +8,7 @@
 import UIKit
 
 final class MainScreen: UIView {
+    
     // MARK: - init
     
     override init(frame: CGRect) {
@@ -235,22 +236,54 @@ final class MainScreen: UIView {
         tasksTableView.reloadData()
     }
     
-    func activateTaskMode() {
+    func activateAddTaskMode(taskName: String) {
+        stopButton.activeButton()
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
+        
+        viewForTimeReview.leftFocusView.isHidden = false
+        viewForTimeReview.rightFocusView.isHidden = true
+        
+        stopTaskButton.isEnabled = true
+
+        addTaskButton.isHidden = true
+        taskTimerView.isHidden = false
+        
+        taskTimeTextLabel.text = taskName
+        tasksTableView.reloadData()
+    }
+    
+    func activateStopTaskMode() {
         taskTimeTextLabel.text = NSLocalizedString("name", comment: "")
         taskTimeDataLabel.text = "00:00:00"
         
         addTaskButton.isHidden = false
         taskTimerView.isHidden = true
         
+        addTaskButton.activeButton()
+        
         tasksTableView.reloadData()
     }
     
-    func activateRestartTaskMode(name: String, time: Int) {
+    func activateRestartTaskMode(taskName: String, time: Int) {
+        stopButton.activeButton()
+        
+        workButton.isHidden = true
+        breakButton.isHidden = false
+        
+        viewForTimeReview.leftFocusView.isHidden = false
+        viewForTimeReview.rightFocusView.isHidden = true
+        
+        stopTaskButton.isEnabled = true
+
         addTaskButton.isHidden = true
         taskTimerView.isHidden = false
         
-        taskTimeTextLabel.text = name
+        taskTimeTextLabel.text = taskName
         taskTimeDataLabel.text = timeIntToString(time: time)
+        
+        tasksTableView.reloadData()
     }
     
     // Функция для инициирования нового дня
@@ -268,10 +301,10 @@ final class MainScreen: UIView {
     }
     
     // Функция для инициирования текущего дня
-    func currentDay(workTime: Int, breakTime: Int, totalTime: Int) {
-        viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: workTime)
-        viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: breakTime)
-        viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: totalTime)
+    func currentDay(day: Day) {
+        viewForTimeReview.workTimeDataLabel.text = timeIntToString(time: day.workTime)
+        viewForTimeReview.breakTimeDataLabel.text = timeIntToString(time: day.breakTime)
+        viewForTimeReview.totalTimeDataLabel.text = timeIntToString(time: day.totalTime)
         tasksTableView.reloadData()
     }
 }

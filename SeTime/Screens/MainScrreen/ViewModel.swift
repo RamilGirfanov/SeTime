@@ -10,106 +10,113 @@ import Foundation
 // MARK: - Protocol
 
 protocol MainScreenViewModelProtocol {
-    var updateWorkView: (Int) -> Void { get set }
-    var updateBreakView: (Int) -> Void { get set }
-    var updateTotalView: (Int) -> Void { get set }
-    var updateTaskView: (Int) -> Void { get set }
-    
     func startWork()
     func startBreak()
     func stopAll()
+    func addTask(name: String, definition: String)
     func startTask()
     func stopTask()
-    func restartTask(task: Task, taskIndex: Int)
+    func restartTask(duration: Int, taskIndex: Int)
+    func setDay(day: Day)
 }
 
 // MARK: - Class
 
 final class MainScreenViewModel: MainScreenViewModelProtocol {
+    
     // MARK: - Model
     
-    private let model = TimeManager()
+    private let model: TimeManager
     
-    // MARK: - Class Properties
+    // MARK: - Public Properties
+        
+    var date = getShortDate(date: Date())
     
-    private var workTime = 0 {
+    var workTime = "" {
         didSet {
-            updateWorkView(workTime)
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
     }
     
-    private var breakTime = 0 {
+    var breakTime = "" {
         didSet {
-            updateBreakView(breakTime)
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
     }
     
-    private var totalTime = 0 {
+    var totalTime = "" {
         didSet {
-            updateTotalView(totalTime)
+            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
         }
     }
     
-    private var taskTime = 0 {
+    var taskTime = "" {
         didSet {
-            updateTaskView(taskTime)
+            NotificationCenter.default.post(name: MainScreenVC.notificationTaskTime, object: nil)
         }
     }
     
-    // MARK: - Protocol Properties
+    // MARK: - Init
     
-    var updateWorkView: (Int) -> Void = { _ in }
-    var updateBreakView: (Int) -> Void = { _ in }
-    var updateTotalView: (Int) -> Void = { _ in }
-    var updateTaskView: (Int) -> Void = { _ in }
+    init(model: TimeManager) {
+        self.model = model
+        
+        self.model.updateTimeInViewModel = { [weak self] workTime, breakTime, totalTime in
+            self?.workTime = timeIntToString(time: workTime)
+            self?.breakTime = timeIntToString(time: breakTime)
+            self?.totalTime = timeIntToString(time: totalTime)
+        }
+        
+        self.model.updateTaskTimeInViewModel = { [weak self] taskTime in
+            self?.taskTime = timeIntToString(time: taskTime)
+        }
+    }
     
     // MARK: - Protocol Methods
     
     func startWork() {
-        model.startWorkTimer { [weak self] time in
-            self?.workTime = time
-            self?.totalTime += time
-        }
-        
         model.pauseBreakTimer()
-        
-        if taskTime != 0 {
-            startTask()
-        }
+        model.startWorkTimer()
     }
     
     func startBreak() {
-        model.startBreakTimer { [weak self] time in
-            self?.breakTime = time
-            self?.totalTime += time
-        }
-        
         model.pauseWorkTimer()
+        model.startBreakTimer()
     }
     
     func stopAll() {
         model.stopAllTimers()
     }
     
-    func startTask() {
-        model.startTaskTimer { [weak self] time in
-            self?.taskTime = time
+    func addTask(name: String, definition: String) {
+        if !UserDefaults.standard.bool(forKey: "workTimerIsActive") {
+            startWork()
         }
+        
+        if UserDefaults.standard.bool(forKey: "taskTimerIsActive") {
+            model.stopTaskTimer()
+        }
+
+        model.addTask(name: name, definition: definition)
+        startTask()
+    }
+    
+    func startTask() {
+        model.startTaskTimer()
     }
     
     func stopTask() {
         model.stopTaskTimer()
     }
     
-    func restartTask(task: Task, taskIndex: Int) {
-        if UserDefaults.standard.bool(forKey: "taskTimerIsActive") {
-            model.stopTaskTimer()
-        }
-        
+    func restartTask(duration: Int, taskIndex: Int) {
         if !UserDefaults.standard.bool(forKey: "workTimerIsActive") {
             startWork()
         }
-        
-        model.restartTaskTimer(task: task, taskIndex: taskIndex)
+        model.restartTaskTimer(duration: duration, taskIndex: taskIndex)
+    }
+    
+    func setDay(day: Day) {
+        model.day = day
     }
 }

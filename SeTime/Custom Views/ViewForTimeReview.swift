@@ -168,5 +168,5 @@ class ViewForTimeReview: UIView {
             rightFocusView.bottomAnchor.constraint(equalTo: stackForBreakTime.bottomAnchor, constant: safeIndent2),
             rightFocusView.widthAnchor.constraint(equalTo: leftFocusView.widthAnchor)
         ])
-    }
+    }    
 }
