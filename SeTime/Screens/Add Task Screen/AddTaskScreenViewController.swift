@@ -1,13 +1,40 @@
 //
-//  ext AddTaskScreen.swift
+//  AddTaskScreenVC.swift
 //  SeTime
 //
-//  Created by Рамиль Гирфанов on 12.12.2022.
+//  Created by Рамиль Гирфанов on 22.07.2022.
 //
 
-import Foundation
+import UIKit
 
-// MARK: - Протокол делегата AddTaskScreen
+protocol AddTasksProtocol: AnyObject {
+    func addTask (name: String, definition: String)
+}
+
+final class AddTaskScreenVC: UIViewController {
+    // MARK: - Экземпляр AddTaskScreen
+    
+    lazy var addTaskScreen: AddTaskScreen = {
+        let view = AddTaskScreen()
+        view.delegate = self
+        return view
+    }()
+    
+    
+    // MARK: - Delegate
+    
+    weak var delegate: AddTasksProtocol?
+    
+    
+    // MARK: - Lifecycle
+    
+    override func loadView() {
+        view = addTaskScreen
+        setupToHideKeyboardOnTapOnView()
+    }
+}
+
+// MARK: - AddTaskScreen Delegate
 
 extension AddTaskScreenVC: AddTaskProtocol {
     func addTask() {

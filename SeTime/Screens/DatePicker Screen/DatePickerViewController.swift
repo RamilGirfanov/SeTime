@@ -33,3 +33,13 @@ final class DatePickerScreenVC: UIViewController {
         view = datePickerScreen
     }
 }
+
+// MARK: - DatePickerScreen Delegate
+
+extension DatePickerScreenVC: PresentHistory {
+    func pushScreen() {
+        let historyVC = HistoryScreenVC()
+        historyVC.date = getShortDate(date: datePickerScreen.datePicker.date)
+        present(historyVC, animated: true)
+    }
+}

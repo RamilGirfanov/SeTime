@@ -181,3 +181,43 @@ extension TaskListScreenVC {
         taskListScreen.tasksTableView.reloadData()
     }
 }
+
+// MARK: - AddTaskScreen Delegate
+
+extension TaskListScreenVC: AddTasksProtocol {
+    func addTask(name: String, definition: String) {
+        let taskList = TaskList()
+        taskList.name = name
+        taskList.definition = definition
+        RealmManager.shared.addTaskList(task: taskList)
+        tasks = RealmManager.shared.getTaskList()
+        taskListScreen.tasksTableView.reloadData()
+    }
+}
+
+// MARK: - DefinitionTaskScreen Delegate
+
+extension TaskListScreenVC: EditTasksProtocol {
+    func editTask(taskIndex: Int) {
+        let editTaskVC = EditTaskScreenVC()
+        editTaskVC.taskIndex = taskIndex
+        editTaskVC.name = tasks[taskIndex].name
+        editTaskVC.definition = tasks[taskIndex].definition
+        editTaskVC.delegate = self
+        present(editTaskVC, animated: true)
+    }
+}
+
+// MARK: - EditTaskScreen Delegate
+
+extension TaskListScreenVC: SaveTasksProtocol {
+    func saveTask(taskIndex: Int, name: String, definition: String) {
+        RealmManager.shared.updateTaskList(
+            index: taskIndex,
+            name: name,
+            definition: definition
+        )
+        tasks = RealmManager.shared.getTaskList()
+        taskListScreen.tasksTableView.reloadData()
+    }
+}

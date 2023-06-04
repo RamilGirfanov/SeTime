@@ -43,9 +43,11 @@ final class MainScreenVC: UIViewController {
         super.viewWillAppear(animated)
         mainScreen.tasksTableView.reloadData()
     }
+}
     
-    // MARK: - Private Methods
-    
+// MARK: - MainScreen Targets
+
+extension MainScreenVC {
     private func setupTargets() {
         mainScreen.workButton.addTarget(self, action: #selector(startWork), for: .touchUpInside)
         mainScreen.breakButton.addTarget(self, action: #selector(startBreak), for: .touchUpInside)
@@ -101,6 +103,144 @@ final class MainScreenVC: UIViewController {
         let taskAddVC = AddTaskScreenVC()
         taskAddVC.delegate = self
         present(taskAddVC, animated: true)
+    }
+}
+
+// MARK: - NotificationCenter
+
+extension MainScreenVC {
+    
+    func setupNC() {
+        NotifiCenter.shared.addObserver(
+            self,
+            selector: #selector(stopTimers),
+            name: NotifiCenter.notificationSceneDidDisconnect,
+            object: nil
+        )
+        
+        NotifiCenter.shared.addObserver(
+            self,
+            selector: #selector(updateTime),
+            name: NotifiCenter.notificationUpdateTime,
+            object: nil
+        )
+        NotifiCenter.shared.addObserver(
+            self,
+            selector: #selector(updateTaskTime),
+            name: NotifiCenter.notificationTaskTime,
+            object: nil
+        )
+        
+        NotifiCenter.shared.addObserver(
+            self,
+            selector: #selector(checkDay),
+            name: NotifiCenter.notificationCheckDay,
+            object: nil
+        )
+    }
+    
+    @objc private func updateTime() {
+        mainScreen.viewForTimeReview.workTimeDataLabel.text = viewModel.workTime
+        mainScreen.viewForTimeReview.breakTimeDataLabel.text = viewModel.breakTime
+        mainScreen.viewForTimeReview.totalTimeDataLabel.text = viewModel.totalTime
+    }
+    
+    @objc private func updateTaskTime() {
+        mainScreen.taskTimeDataLabel.text = viewModel.taskTime
+    }
+    
+    @objc func stopTimers() {
+        stop()
+    }
+    
+    @objc func checkDay() {
+        guard !UserDefaults.standard.bool(forKey: "workTimerIsActive"),
+              !UserDefaults.standard.bool(forKey: "breakTimerIsActive")
+        else {
+            return
+        }
+        
+        let currentDate = getShortDate(date: Date())
+        
+        if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first {
+            // Если день в БД есть
+            viewModel.setDay(day: day)
+            mainScreen.currentDay(day: day)
+        } else {
+            // Если дня в БД нет
+            let day = Day()
+            day.date = currentDate
+            RealmManager.shared.saveDay(day: day)
+            viewModel = MainScreenViewModel(model: TimeManager(day: day))
+            
+            mainScreen.newDay()
+        }
+    }
+}
+
+// MARK: - Уведомления
+
+extension MainScreenVC {
+    func notificationWorkTime() {
+        if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") {
+            let content: UNMutableNotificationContent = {
+                let content = UNMutableNotificationContent()
+                content.title = "SeTime"
+                content.body = NSLocalizedString("timeToBreak", comment: "")
+                content.sound = UNNotificationSound.default
+                content.badge = 1
+                return content
+            }()
+            
+            let timeInterval = Double(UserDefaults.standard.integer(forKey: "workTimeToNotice"))
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
+            
+            let workTimeRequest = UNNotificationRequest(identifier: "Work notification", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(workTimeRequest)
+        }
+    }
+    
+    func notificationBreakTime() {
+        if UserDefaults.standard.bool(forKey: "notificationBreakTolerance") {
+            let content: UNMutableNotificationContent = {
+                let content = UNMutableNotificationContent()
+                content.title = "SeTime"
+                content.body = NSLocalizedString("timeToWork", comment: "")
+                content.sound = UNNotificationSound.default
+                content.badge = 1
+                return content
+            }()
+            
+            let timeInterval = Double(UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
+            
+            let breakTimeRequest = UNNotificationRequest(identifier: "Break notification", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(breakTimeRequest)
+        }
+    }
+    
+    enum NotificationType {
+        case workNotice
+        case breakNotice
+    }
+    
+    func cancelNotification(notificationType: NotificationType) {
+        switch notificationType {
+        case .workNotice:
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Work notification"])
+        case .breakNotice:
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Break notification"])
+        }
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension MainScreenVC: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
     }
 }
 
@@ -246,148 +386,5 @@ extension MainScreenVC: StartTasksProtocol {
     func startTask(name: String, definition: String) {
         viewModel.addTask(name: name, definition: definition)
         mainScreen.activateAddTaskMode(taskName: name)
-    }
-}
-
-// MARK: - NotificationCenter
-
-extension MainScreenVC {
-    
-    static let notificationUpdateTime = Notification.Name("updateTime")
-    static let notificationTaskTime = Notification.Name("taskTime")
-    static let notificationSceneDidDisconnect = Notification.Name("disconnect")
-    static let notificationCheckDay = Notification.Name("checkDay")
-    
-    func setupNC() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(stopTimers),
-            name: MainScreenVC.notificationSceneDidDisconnect,
-            object: nil
-        )
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(checkDay),
-            name: MainScreenVC.notificationCheckDay,
-            object: nil
-        )
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateTime),
-            name: MainScreenVC.notificationUpdateTime,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateTaskTime),
-            name: MainScreenVC.notificationTaskTime,
-            object: nil
-        )
-    }
-    
-    @objc private func updateTime() {
-        mainScreen.viewForTimeReview.workTimeDataLabel.text = viewModel.workTime
-        mainScreen.viewForTimeReview.breakTimeDataLabel.text = viewModel.breakTime
-        mainScreen.viewForTimeReview.totalTimeDataLabel.text = viewModel.totalTime
-    }
-    
-    @objc private func updateTaskTime() {
-        mainScreen.taskTimeDataLabel.text = viewModel.taskTime
-    }
-    
-    @objc func stopTimers() {
-        stop()
-    }
-    
-    @objc func checkDay() {
-        guard !UserDefaults.standard.bool(forKey: "workTimerIsActive"),
-              !UserDefaults.standard.bool(forKey: "breakTimerIsActive")
-        else {
-            return
-        }
-        
-        let currentDate = getShortDate(date: Date())
-        
-        if let day = RealmManager.shared.localRealm.objects(Day.self).filter("date == %@", currentDate).first {
-            // Если день в БД есть
-            viewModel.setDay(day: day)
-            mainScreen.currentDay(day: day)
-        } else {
-            // Если дня в БД нет
-            let day = Day()
-            day.date = currentDate
-            RealmManager.shared.saveDay(day: day)
-            viewModel = MainScreenViewModel(model: TimeManager(day: day))
-            
-            mainScreen.newDay()
-        }
-    }
-}
-
-// MARK: - Уведомления
-
-extension MainScreenVC {
-    func notificationWorkTime() {
-        if UserDefaults.standard.bool(forKey: "notificationWorkTolerance") {
-            let content: UNMutableNotificationContent = {
-                let content = UNMutableNotificationContent()
-                content.title = "SeTime"
-                content.body = NSLocalizedString("timeToBreak", comment: "")
-                content.sound = UNNotificationSound.default
-                content.badge = 1
-                return content
-            }()
-            
-            let timeInterval = Double(UserDefaults.standard.integer(forKey: "workTimeToNotice"))
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
-            
-            let workTimeRequest = UNNotificationRequest(identifier: "Work notification", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(workTimeRequest)
-        }
-    }
-    
-    func notificationBreakTime() {
-        if UserDefaults.standard.bool(forKey: "notificationBreakTolerance") {
-            let content: UNMutableNotificationContent = {
-                let content = UNMutableNotificationContent()
-                content.title = "SeTime"
-                content.body = NSLocalizedString("timeToWork", comment: "")
-                content.sound = UNNotificationSound.default
-                content.badge = 1
-                return content
-            }()
-            
-            let timeInterval = Double(UserDefaults.standard.integer(forKey: "breakTimeToNotice"))
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: true)
-            
-            let breakTimeRequest = UNNotificationRequest(identifier: "Break notification", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(breakTimeRequest)
-        }
-    }
-    
-    enum NotificationType {
-        case workNotice
-        case breakNotice
-    }
-    
-    func cancelNotification(notificationType: NotificationType) {
-        switch notificationType {
-        case .workNotice:
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Work notification"])
-        case .breakNotice:
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["Break notification"])
-        }
-    }
-}
-
-// MARK: - UNUserNotificationCenterDelegate
-
-extension MainScreenVC: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
     }
 }

@@ -34,25 +34,25 @@ final class MainScreenViewModel: MainScreenViewModelProtocol {
     
     var workTime = "" {
         didSet {
-            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
+            NotifiCenter.shared.post(name: NotifiCenter.notificationUpdateTime, object: nil)
         }
     }
     
     var breakTime = "" {
         didSet {
-            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
+            NotifiCenter.shared.post(name: NotifiCenter.notificationUpdateTime, object: nil)
         }
     }
     
     var totalTime = "" {
         didSet {
-            NotificationCenter.default.post(name: MainScreenVC.notificationUpdateTime, object: nil)
+            NotifiCenter.shared.post(name: NotifiCenter.notificationUpdateTime, object: nil)
         }
     }
     
     var taskTime = "" {
         didSet {
-            NotificationCenter.default.post(name: MainScreenVC.notificationTaskTime, object: nil)
+            NotifiCenter.shared.post(name: NotifiCenter.notificationTaskTime, object: nil)
         }
     }
     

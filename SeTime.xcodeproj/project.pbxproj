@@ -7,41 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		74052BC2297DA1F90079E533 /* ext AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052B8F297DA1F90079E533 /* ext AddTaskScreen.swift */; };
 		74052BC4297DA1F90079E533 /* AddTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052B92297DA1F90079E533 /* AddTaskScreen.swift */; };
 		74052BD9297DA1F90079E533 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BB9297DA1F90079E533 /* MainScreenViewController.swift */; };
 		74052BE0297DA1F90079E533 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BC1297DA1F90079E533 /* MainScreenView.swift */; };
-		74052BE4297DA2C70079E533 /* AddTaskScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE1297DA2C70079E533 /* AddTaskScreenVC.swift */; };
-		74052BE9297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE7297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift */; };
-		74052BEA297DA3270079E533 /* ext HSVC EditTasksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE8297DA3270079E533 /* ext HSVC EditTasksProtocol.swift */; };
+		74052BE4297DA2C70079E533 /* AddTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BE1297DA2C70079E533 /* AddTaskScreenViewController.swift */; };
 		74052BEC297DA3530079E533 /* HistoryScrean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BEB297DA3530079E533 /* HistoryScrean.swift */; };
-		74052BEF297DA36C0079E533 /* HistoryScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BED297DA36C0079E533 /* HistoryScreenVC.swift */; };
-		74052BF0297DA36C0079E533 /* ext HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BEE297DA36C0079E533 /* ext HistoryScreen.swift */; };
+		74052BEF297DA36C0079E533 /* HistoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BED297DA36C0079E533 /* HistoryScreenViewController.swift */; };
 		74052BF6297DA3DE0079E533 /* DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BF5297DA3DE0079E533 /* DatePickerScreen.swift */; };
-		74052BF9297DA3F20079E533 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BF7297DA3F20079E533 /* DatePickerVC.swift */; };
-		74052BFA297DA3F20079E533 /* ext DatePickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BF8297DA3F20079E533 /* ext DatePickerScreen.swift */; };
+		74052BF9297DA3F20079E533 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BF7297DA3F20079E533 /* DatePickerViewController.swift */; };
 		74052BFC297DA4390079E533 /* DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BFB297DA4390079E533 /* DefinitionTaskScreen.swift */; };
-		74052BFF297DA4430079E533 /* DefinitionTaskScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BFD297DA4430079E533 /* DefinitionTaskScreenVC.swift */; };
-		74052C00297DA4430079E533 /* ext DefinitionTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BFE297DA4430079E533 /* ext DefinitionTaskScreen.swift */; };
+		74052BFF297DA4430079E533 /* DefinitionTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052BFD297DA4430079E533 /* DefinitionTaskScreenViewController.swift */; };
 		74052C02297DA46F0079E533 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C01297DA46F0079E533 /* SettingsScreen.swift */; };
-		74052C04297DA4C10079E533 /* SettingsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C03297DA4C10079E533 /* SettingsScreenVC.swift */; };
-		74052C06297DA5030079E533 /* ext SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C05297DA5030079E533 /* ext SettingsScreen.swift */; };
-		74052C08297DA5240079E533 /* ext UNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C07297DA5240079E533 /* ext UNC.swift */; };
+		74052C04297DA4C10079E533 /* SettingsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C03297DA4C10079E533 /* SettingsScreenViewController.swift */; };
 		74052C0A297DA57D0079E533 /* EditTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C09297DA57D0079E533 /* EditTaskScreen.swift */; };
-		74052C0D297DA58E0079E533 /* ext EditTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C0B297DA58E0079E533 /* ext EditTaskScreen.swift */; };
-		74052C0E297DA58E0079E533 /* EditTaskScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C0C297DA58E0079E533 /* EditTaskScreenVC.swift */; };
+		74052C0E297DA58E0079E533 /* EditTaskScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C0C297DA58E0079E533 /* EditTaskScreenViewController.swift */; };
 		74052C11297DA5AF0079E533 /* ViewForTimeReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C0F297DA5AF0079E533 /* ViewForTimeReview.swift */; };
 		74052C12297DA5AF0079E533 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C10297DA5AF0079E533 /* TaskCell.swift */; };
 		74052C14297DC8840079E533 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C13297DC8840079E533 /* TabBarController.swift */; };
 		74052C1B297DD4CC0079E533 /* TaskListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C1A297DD4CC0079E533 /* TaskListCell.swift */; };
-		74052C1F297DD8090079E533 /* TaskListScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C1E297DD8090079E533 /* TaskListScreenVC.swift */; };
+		74052C1F297DD8090079E533 /* TaskListScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C1E297DD8090079E533 /* TaskListScreenViewController.swift */; };
 		74052C21297DD9110079E533 /* TaskListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C20297DD9110079E533 /* TaskListScreen.swift */; };
-		74052C27297DFC110079E533 /* ext AddTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */; };
-		74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */; };
-		74052C2B297E008F0079E533 /* ext SaveTaskListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */; };
 		7405476B2A2A6A010018C9DF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7405476A2A2A6A010018C9DF /* ViewModel.swift */; };
 		7405476D2A2A6A0D0018C9DF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7405476C2A2A6A0D0018C9DF /* Model.swift */; };
 		740547702A2A9DCD0018C9DF /* Timer Status.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7405476F2A2A9DCD0018C9DF /* Timer Status.plist */; };
+		740547742A2D0B3C0018C9DF /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740547732A2D0B3C0018C9DF /* NotificationCenter.swift */; };
 		741FDF082921653B00F36193 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF072921653B00F36193 /* DataObjects.swift */; };
 		741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FDF0B2921701D00F36193 /* RealmManager.swift */; };
 		7438FFF3294D320D00EB250A /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438FFF2294D320D00EB250A /* Keyboard.swift */; };
@@ -57,41 +46,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		74052B8F297DA1F90079E533 /* ext AddTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext AddTaskScreen.swift"; sourceTree = "<group>"; };
 		74052B92297DA1F90079E533 /* AddTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskScreen.swift; sourceTree = "<group>"; };
 		74052BB9297DA1F90079E533 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		74052BC1297DA1F90079E533 /* MainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
-		74052BE1297DA2C70079E533 /* AddTaskScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskScreenVC.swift; sourceTree = "<group>"; };
-		74052BE7297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext HSVC SaveTasksProtocol.swift"; sourceTree = "<group>"; };
-		74052BE8297DA3270079E533 /* ext HSVC EditTasksProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext HSVC EditTasksProtocol.swift"; sourceTree = "<group>"; };
+		74052BE1297DA2C70079E533 /* AddTaskScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74052BEB297DA3530079E533 /* HistoryScrean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScrean.swift; sourceTree = "<group>"; };
-		74052BED297DA36C0079E533 /* HistoryScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScreenVC.swift; sourceTree = "<group>"; };
-		74052BEE297DA36C0079E533 /* ext HistoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext HistoryScreen.swift"; sourceTree = "<group>"; };
+		74052BED297DA36C0079E533 /* HistoryScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScreenViewController.swift; sourceTree = "<group>"; };
 		74052BF5297DA3DE0079E533 /* DatePickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerScreen.swift; sourceTree = "<group>"; };
-		74052BF7297DA3F20079E533 /* DatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
-		74052BF8297DA3F20079E533 /* ext DatePickerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext DatePickerScreen.swift"; sourceTree = "<group>"; };
+		74052BF7297DA3F20079E533 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		74052BFB297DA4390079E533 /* DefinitionTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreen.swift; sourceTree = "<group>"; };
-		74052BFD297DA4430079E533 /* DefinitionTaskScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenVC.swift; sourceTree = "<group>"; };
-		74052BFE297DA4430079E533 /* ext DefinitionTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext DefinitionTaskScreen.swift"; sourceTree = "<group>"; };
+		74052BFD297DA4430079E533 /* DefinitionTaskScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74052C01297DA46F0079E533 /* SettingsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
-		74052C03297DA4C10079E533 /* SettingsScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenVC.swift; sourceTree = "<group>"; };
-		74052C05297DA5030079E533 /* ext SettingsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext SettingsScreen.swift"; sourceTree = "<group>"; };
-		74052C07297DA5240079E533 /* ext UNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext UNC.swift"; sourceTree = "<group>"; };
+		74052C03297DA4C10079E533 /* SettingsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreenViewController.swift; sourceTree = "<group>"; };
 		74052C09297DA57D0079E533 /* EditTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskScreen.swift; sourceTree = "<group>"; };
-		74052C0B297DA58E0079E533 /* ext EditTaskScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ext EditTaskScreen.swift"; sourceTree = "<group>"; };
-		74052C0C297DA58E0079E533 /* EditTaskScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskScreenVC.swift; sourceTree = "<group>"; };
+		74052C0C297DA58E0079E533 /* EditTaskScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskScreenViewController.swift; sourceTree = "<group>"; };
 		74052C0F297DA5AF0079E533 /* ViewForTimeReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForTimeReview.swift; sourceTree = "<group>"; };
 		74052C10297DA5AF0079E533 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		74052C13297DC8840079E533 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		74052C1A297DD4CC0079E533 /* TaskListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCell.swift; sourceTree = "<group>"; };
-		74052C1E297DD8090079E533 /* TaskListScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreenVC.swift; sourceTree = "<group>"; };
+		74052C1E297DD8090079E533 /* TaskListScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreenViewController.swift; sourceTree = "<group>"; };
 		74052C20297DD9110079E533 /* TaskListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListScreen.swift; sourceTree = "<group>"; };
-		74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext AddTaskListProtocol.swift"; sourceTree = "<group>"; };
-		74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext EditTaskListProtocol.swift"; sourceTree = "<group>"; };
-		74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ext SaveTaskListProtocol.swift"; sourceTree = "<group>"; };
 		7405476A2A2A6A010018C9DF /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7405476C2A2A6A0D0018C9DF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7405476F2A2A9DCD0018C9DF /* Timer Status.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Timer Status.plist"; sourceTree = "<group>"; };
+		740547732A2D0B3C0018C9DF /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		741FDF072921653B00F36193 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		741FDF0B2921701D00F36193 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		7438FFF2294D320D00EB250A /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
@@ -123,160 +101,55 @@
 		74052B8D297DA1F90079E533 /* Add Task Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052B91297DA1F90079E533 /* View */,
-				74052B8E297DA1F90079E533 /* Controller */,
-			);
-			path = "Add Task Screen";
-			sourceTree = "<group>";
-		};
-		74052B8E297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052BE1297DA2C70079E533 /* AddTaskScreenVC.swift */,
-				74052B8F297DA1F90079E533 /* ext AddTaskScreen.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052B91297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052BE1297DA2C70079E533 /* AddTaskScreenViewController.swift */,
 				74052B92297DA1F90079E533 /* AddTaskScreen.swift */,
 			);
-			path = View;
+			path = "Add Task Screen";
 			sourceTree = "<group>";
 		};
 		74052B93297DA1F90079E533 /* History Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052B99297DA1F90079E533 /* View */,
-				74052B94297DA1F90079E533 /* Controller */,
-			);
-			path = "History Screen";
-			sourceTree = "<group>";
-		};
-		74052B94297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052BED297DA36C0079E533 /* HistoryScreenVC.swift */,
-				74052BEE297DA36C0079E533 /* ext HistoryScreen.swift */,
-				74052BE8297DA3270079E533 /* ext HSVC EditTasksProtocol.swift */,
-				74052BE7297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052B99297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052BED297DA36C0079E533 /* HistoryScreenViewController.swift */,
 				74052BEB297DA3530079E533 /* HistoryScrean.swift */,
 			);
-			path = View;
+			path = "History Screen";
 			sourceTree = "<group>";
 		};
 		74052B9B297DA1F90079E533 /* DatePicker Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052B9F297DA1F90079E533 /* View */,
-				74052B9C297DA1F90079E533 /* Controller */,
-			);
-			path = "DatePicker Screen";
-			sourceTree = "<group>";
-		};
-		74052B9C297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052BF7297DA3F20079E533 /* DatePickerVC.swift */,
-				74052BF8297DA3F20079E533 /* ext DatePickerScreen.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052B9F297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052BF7297DA3F20079E533 /* DatePickerViewController.swift */,
 				74052BF5297DA3DE0079E533 /* DatePickerScreen.swift */,
 			);
-			path = View;
+			path = "DatePicker Screen";
 			sourceTree = "<group>";
 		};
 		74052BA1297DA1F90079E533 /* Definition Task Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052BA5297DA1F90079E533 /* View */,
-				74052BA2297DA1F90079E533 /* Controller */,
-			);
-			path = "Definition Task Screen";
-			sourceTree = "<group>";
-		};
-		74052BA2297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052BFD297DA4430079E533 /* DefinitionTaskScreenVC.swift */,
-				74052BFE297DA4430079E533 /* ext DefinitionTaskScreen.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052BA5297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052BFD297DA4430079E533 /* DefinitionTaskScreenViewController.swift */,
 				74052BFB297DA4390079E533 /* DefinitionTaskScreen.swift */,
 			);
-			path = View;
+			path = "Definition Task Screen";
 			sourceTree = "<group>";
 		};
 		74052BA7297DA1F90079E533 /* Setting Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052BAC297DA1F90079E533 /* View */,
-				74052BA8297DA1F90079E533 /* Controller */,
-			);
-			path = "Setting Screen";
-			sourceTree = "<group>";
-		};
-		74052BA8297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052C03297DA4C10079E533 /* SettingsScreenVC.swift */,
-				74052C05297DA5030079E533 /* ext SettingsScreen.swift */,
-				74052C07297DA5240079E533 /* ext UNC.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052BAC297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052C03297DA4C10079E533 /* SettingsScreenViewController.swift */,
 				74052C01297DA46F0079E533 /* SettingsScreen.swift */,
 			);
-			path = View;
+			path = "Setting Screen";
 			sourceTree = "<group>";
 		};
 		74052BAE297DA1F90079E533 /* Edit Task Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052BB2297DA1F90079E533 /* View */,
-				74052BAF297DA1F90079E533 /* Controller */,
-			);
-			path = "Edit Task Screen";
-			sourceTree = "<group>";
-		};
-		74052BAF297DA1F90079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052C0C297DA58E0079E533 /* EditTaskScreenVC.swift */,
-				74052C0B297DA58E0079E533 /* ext EditTaskScreen.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052BB2297DA1F90079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				74052C0C297DA58E0079E533 /* EditTaskScreenViewController.swift */,
 				74052C09297DA57D0079E533 /* EditTaskScreen.swift */,
 			);
-			path = View;
+			path = "Edit Task Screen";
 			sourceTree = "<group>";
 		};
 		74052BB4297DA1F90079E533 /* Custom Views */ = {
@@ -284,6 +157,7 @@
 			children = (
 				74052C10297DA5AF0079E533 /* TaskCell.swift */,
 				74052C0F297DA5AF0079E533 /* ViewForTimeReview.swift */,
+				74052C1A297DD4CC0079E533 /* TaskListCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -291,30 +165,10 @@
 		74052C15297DD2CF0079E533 /* List Screen */ = {
 			isa = PBXGroup;
 			children = (
-				74052C17297DD2F10079E533 /* View */,
-				74052C16297DD2EA0079E533 /* Controller */,
-			);
-			path = "List Screen";
-			sourceTree = "<group>";
-		};
-		74052C16297DD2EA0079E533 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				74052C1E297DD8090079E533 /* TaskListScreenVC.swift */,
-				74052C26297DFC110079E533 /* ext AddTaskListProtocol.swift */,
-				74052C28297DFE530079E533 /* ext EditTaskListProtocol.swift */,
-				74052C2A297E008F0079E533 /* ext SaveTaskListProtocol.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		74052C17297DD2F10079E533 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				74052C1A297DD4CC0079E533 /* TaskListCell.swift */,
+				74052C1E297DD8090079E533 /* TaskListScreenViewController.swift */,
 				74052C20297DD9110079E533 /* TaskListScreen.swift */,
 			);
-			path = View;
+			path = "List Screen";
 			sourceTree = "<group>";
 		};
 		740547682A2A69A90018C9DF /* Screens */ = {
@@ -348,6 +202,14 @@
 				7405476C2A2A6A0D0018C9DF /* Model.swift */,
 			);
 			path = TimeModel;
+			sourceTree = "<group>";
+		};
+		740547722A2D0B280018C9DF /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				740547732A2D0B3C0018C9DF /* NotificationCenter.swift */,
+			);
+			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
 		741FDF0A2921654E00F36193 /* RealmModel */ = {
@@ -415,6 +277,7 @@
 		74ED60CB286594C10008B57C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				740547722A2D0B280018C9DF /* NotificationCenter */,
 				740547712A2C8B280018C9DF /* TimeModel */,
 				741FDF0A2921654E00F36193 /* RealmModel */,
 			);
@@ -528,41 +391,30 @@
 				74052BFC297DA4390079E533 /* DefinitionTaskScreen.swift in Sources */,
 				7405476D2A2A6A0D0018C9DF /* Model.swift in Sources */,
 				74052BEC297DA3530079E533 /* HistoryScrean.swift in Sources */,
-				74052C29297DFE530079E533 /* ext EditTaskListProtocol.swift in Sources */,
 				741FDF082921653B00F36193 /* DataObjects.swift in Sources */,
 				74052C02297DA46F0079E533 /* SettingsScreen.swift in Sources */,
-				74052C06297DA5030079E533 /* ext SettingsScreen.swift in Sources */,
-				74052BFA297DA3F20079E533 /* ext DatePickerScreen.swift in Sources */,
 				741FDF0C2921701D00F36193 /* RealmManager.swift in Sources */,
-				74052BE4297DA2C70079E533 /* AddTaskScreenVC.swift in Sources */,
-				74052C27297DFC110079E533 /* ext AddTaskListProtocol.swift in Sources */,
-				74052C04297DA4C10079E533 /* SettingsScreenVC.swift in Sources */,
-				74052BFF297DA4430079E533 /* DefinitionTaskScreenVC.swift in Sources */,
+				74052BE4297DA2C70079E533 /* AddTaskScreenViewController.swift in Sources */,
+				74052C04297DA4C10079E533 /* SettingsScreenViewController.swift in Sources */,
+				74052BFF297DA4430079E533 /* DefinitionTaskScreenViewController.swift in Sources */,
 				74052C0A297DA57D0079E533 /* EditTaskScreen.swift in Sources */,
-				74052BEA297DA3270079E533 /* ext HSVC EditTasksProtocol.swift in Sources */,
 				74052BE0297DA1F90079E533 /* MainScreenView.swift in Sources */,
 				74ED60C4286593E50008B57C /* Constants.swift in Sources */,
 				74052C12297DA5AF0079E533 /* TaskCell.swift in Sources */,
 				74052C1B297DD4CC0079E533 /* TaskListCell.swift in Sources */,
-				74052BEF297DA36C0079E533 /* HistoryScreenVC.swift in Sources */,
+				74052BEF297DA36C0079E533 /* HistoryScreenViewController.swift in Sources */,
 				74052BC4297DA1F90079E533 /* AddTaskScreen.swift in Sources */,
-				74052BE9297DA3270079E533 /* ext HSVC SaveTasksProtocol.swift in Sources */,
 				7405476B2A2A6A010018C9DF /* ViewModel.swift in Sources */,
+				740547742A2D0B3C0018C9DF /* NotificationCenter.swift in Sources */,
 				7438FFF3294D320D00EB250A /* Keyboard.swift in Sources */,
-				74052C0D297DA58E0079E533 /* ext EditTaskScreen.swift in Sources */,
 				74052C14297DC8840079E533 /* TabBarController.swift in Sources */,
 				74ED60C2286593E50008B57C /* AppDelegate.swift in Sources */,
 				74ED60C3286593E50008B57C /* SceneDelegate.swift in Sources */,
-				74052C2B297E008F0079E533 /* ext SaveTaskListProtocol.swift in Sources */,
-				74052C00297DA4430079E533 /* ext DefinitionTaskScreen.swift in Sources */,
-				74052BF0297DA36C0079E533 /* ext HistoryScreen.swift in Sources */,
-				74052C08297DA5240079E533 /* ext UNC.swift in Sources */,
-				74052C0E297DA58E0079E533 /* EditTaskScreenVC.swift in Sources */,
-				74052BF9297DA3F20079E533 /* DatePickerVC.swift in Sources */,
-				74052C1F297DD8090079E533 /* TaskListScreenVC.swift in Sources */,
+				74052C0E297DA58E0079E533 /* EditTaskScreenViewController.swift in Sources */,
+				74052BF9297DA3F20079E533 /* DatePickerViewController.swift in Sources */,
+				74052C1F297DD8090079E533 /* TaskListScreenViewController.swift in Sources */,
 				74052BF6297DA3DE0079E533 /* DatePickerScreen.swift in Sources */,
 				74052C11297DA5AF0079E533 /* ViewForTimeReview.swift in Sources */,
-				74052BC2297DA1F90079E533 /* ext AddTaskScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
