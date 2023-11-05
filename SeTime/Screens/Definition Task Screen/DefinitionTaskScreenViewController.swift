@@ -46,3 +46,12 @@ final class DefinitionTaskScreenVC: UIViewController {
         view = taskDefinitionScreen
     }
 }
+
+// MARK: - DefinitionTaskScreen Delegate
+
+extension DefinitionTaskScreenVC: EditTaskProtocol {
+    func editTask() {
+        dismiss(animated: true)
+        delegate?.editTask(taskIndex: taskIndex)
+    }
+}

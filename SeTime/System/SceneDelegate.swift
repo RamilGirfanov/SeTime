@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Останавливает все таймеры
-        NotificationCenter.default.post(name: MainScreenVC.notificationSceneDidDisconnect, object: nil)
+        NotificationCenter.default.post(name: NotifiCenter.notificationSceneDidDisconnect, object: nil)
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        NotificationCenter.default.post(name: MainScreenVC.notificationCheckDay, object: nil)
+        NotificationCenter.default.post(name: NotifiCenter.notificationCheckDay, object: nil)
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
