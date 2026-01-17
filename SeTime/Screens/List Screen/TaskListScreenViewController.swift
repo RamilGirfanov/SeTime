@@ -86,9 +86,9 @@ extension TaskListScreenVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") {_, _, _ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") {_, _, completionHandler in
             self.deleteTask(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -176,9 +176,20 @@ extension TaskListScreenVC {
     }
     
     func deleteTask(index: Int) {
+        // Сохраняем текущее состояние таблицы
+        let currentTasksCount = tasks.count
+        
+        // Удаляем из базы данных
         RealmManager.shared.deleteTaskList(index: index)
+        
+        // Обновляем локальный массив
         tasks = RealmManager.shared.getTaskList()
-        taskListScreen.tasksTableView.reloadData()
+        
+        // Проверяем, что количество задач изменилось
+        if tasks.count != currentTasksCount {
+            // Обновляем всю таблицу, если нужно
+            taskListScreen.tasksTableView.reloadData()
+        }
     }
 }
 
